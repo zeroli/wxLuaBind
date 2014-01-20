@@ -146,7 +146,7 @@ int WXLUABIND_API init(lua_State* L)
                // def("sa", (int*)&B::m_sa) // cannot compile
             ]
             ,
-        class_<C, A>("C")
+        class_<C, bases<> >("C")
             .def(constructor<>())
     ];
 

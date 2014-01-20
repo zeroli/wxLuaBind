@@ -700,7 +700,7 @@ int luaopen_gdicmn(lua_State* L)
             BIND_CTOR(wxDC&, wxCoord, wxCoord, wxCoord, wxCoord)
         END_BIND_CLASS(wxDCClipper)
 
-        BEGIN_BIND_CLASS_DERIVE(wxWindowDC, WindowDC, wxDC)
+        BEGIN_BIND_CLASS(wxWindowDC, WindowDC, wxDC)
             BIND_CTOR()
             BIND_CTOR(wxWindow*)
 

@@ -8,7 +8,7 @@ int luaopen_wxframe( lua_State* L )
 {
     module(L, "wx")
     [
-        class_<wxFrame, wxWindow>("Frame")
+        BEGIN_BIND_CLASS(wxFrame, Frame, wxWindow)
             BIND_TITLE_WIN_ALL_CTORS()
             BIND_WIN_CREATE_FUNC(wxFrame)
     ];
