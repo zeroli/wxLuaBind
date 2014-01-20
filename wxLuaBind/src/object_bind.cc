@@ -2,7 +2,7 @@
 
 #include "object_bind.h"
 
-REGISTER_WXLUA_BIND(wxobject)
+REGISTER_WXLUA_PREBIND(wxobject)
 
 int luaopen_wxobject(lua_State* L)
 {

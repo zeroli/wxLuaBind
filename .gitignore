@@ -3,3 +3,4 @@
 *.suo
 Debug/
 Build/
+*.sln

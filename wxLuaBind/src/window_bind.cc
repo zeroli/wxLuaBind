@@ -2,7 +2,7 @@
 
 #include "window_bind.h"
 
-REGISTER_WXLUA_BIND(wxwindow)
+REGISTER_WXLUA_PREBIND(wxwindow)
 
 int luaopen_wxwindow( lua_State* L )
 {

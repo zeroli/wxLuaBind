@@ -2,30 +2,40 @@
 
 #include "wxlua_bind_info.h"
 
+wxHashTable* wxLuaBindInfo::m_sPreBindTable = NULL;
 wxHashTable* wxLuaBindInfo::m_sBindTable = NULL;
 
-void wxLuaBindInfo::Register()
+void wxLuaBindInfo::Register(bool prebind)
 {
-    if (!m_sBindTable)
+    if (prebind)
+        Register(&m_sPreBindTable);
+    else
+        Register(&m_sBindTable);
+}
+
+void wxLuaBindInfo::Register(wxHashTable** table)
+{
+    if (!*table)
     {
         wxHashTable *bindTable = new wxHashTable(wxKEY_STRING);
-        if (m_sBindTable)
-            delete m_sBindTable;
-        else
-            m_sBindTable = bindTable;
+        *table = bindTable;
     }
-    m_sBindTable->Put(m_name, (wxObject*)this);
+    (*table)->Put(m_name, (wxObject*)this);
 }
 
 void wxLuaBindInfo::Unregister()
 {
-    if (m_sBindTable)
+    wxHashTable* table = NULL;
+    if (m_prebind) table = m_sPreBindTable;
+    else table = m_sBindTable;
+
+    if (table)
     {
-        m_sBindTable->Delete(m_name);
-        if (m_sBindTable->GetCount() == 0)
+        table->Delete(m_name);
+        if (table->GetCount() == 0)
         {
-            delete m_sBindTable;
-            m_sBindTable = NULL;
+            delete table;
+            table = NULL;
         }
     }
 }
@@ -38,16 +48,22 @@ int wxLuaBindInfo::Bind( lua_State* L )
 
 int wxLuaBindInfo::BindAll(lua_State* L)
 {
-    if (!m_sBindTable) return 0;
+    wxHashTable* tables[] = { m_sPreBindTable, m_sBindTable };
 
-    wxHashTable::Node* pNode = NULL;
-    m_sBindTable->BeginFind();
-    while (NULL != (pNode = m_sBindTable->Next()))
+    for (int i = 0; i < sizeof(tables)/sizeof(wxHashTable*); i++)
     {
-        wxLuaBindInfo* pInfo = wxDynamicCast(pNode->GetData(), wxLuaBindInfo);
-        if (!pInfo) continue;
+        wxHashTable* table = tables[i];
+        if (!table) continue;
 
-        pInfo->Bind(L);
+        wxHashTable::Node* pNode = NULL;
+        table->BeginFind();
+        while (NULL != (pNode = table->Next()))
+        {
+            wxLuaBindInfo* pInfo = wxDynamicCast(pNode->GetData(), wxLuaBindInfo);
+            if (!pInfo) continue;
+
+            pInfo->Bind(L);
+        }
     }
     return 0;
 }
