@@ -2,6 +2,8 @@
 
 #include "toplevel_bind.h"
 
+REGISTER_WXLUA_BIND(toplevel)
+
 int luaopen_toplevel(lua_State* L)
 {
     BEGIN_LUA_TABLE(wx)

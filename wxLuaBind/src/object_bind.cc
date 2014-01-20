@@ -2,6 +2,8 @@
 
 #include "object_bind.h"
 
+REGISTER_WXLUA_BIND(wxobject)
+
 int luaopen_wxobject(lua_State* L)
 {
     module(L, "wx")

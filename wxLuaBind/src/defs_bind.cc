@@ -2,7 +2,9 @@
 
 #include "defs_bind.h"
 
-int luaopen_wxdefs(lua_State* L)
+REGISTER_WXLUA_BIND(defs)
+
+int luaopen_defs(lua_State* L)
 {
     BEGIN_LUA_TABLE(wx)
         BIND_TABLE_VALUE(NULL, nil)
@@ -127,3 +129,4 @@ int luaopen_wxdefs(lua_State* L)
     END_LUA_TABLE(wx)
     return 0;
 }
+

@@ -1,6 +1,10 @@
 #ifndef WXLUABIND_LUABIND_HELPER_H_
 #define WXLUABIND_LUABIND_HELPER_H_
 
+#define NEW_LUA_TABLE(name) \
+    lua_newtable(L); \
+    lua_setglobal(L, #name);
+
 #define BEGIN_LUA_TABLE(class) { object g = globals(L); object table = g[#class];
 #define BIND_CLASS_STATIC(class, name) table[#name] = class::name;
 #define BIND_TABLE_VALUE(name, value) table[#name] = value;

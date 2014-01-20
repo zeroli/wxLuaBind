@@ -2,6 +2,8 @@
 
 #include "gdicmn_bind.h"
 
+REGISTER_WXLUA_BIND(gdicmn)
+
 namespace
 {
     std::ostream& operator << (std::ostream& out, const wxSize& size)
@@ -706,3 +708,4 @@ int luaopen_gdicmn(lua_State* L)
 
     return 0;
 }
+

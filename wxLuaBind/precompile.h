@@ -6,6 +6,8 @@
 #include <luabind/luabind.hpp>
 #include <luabind/operator.hpp>
 
+using namespace luabind;
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -20,7 +22,6 @@ extern "C" {
 
 #include "luabind_helper.h"
 #include "win_bind_helper.h"
-
-using namespace luabind;
+#include "wxlua_bind_info.h"
 
 #endif  // WXLUABIND_PRECOMPILE_H_

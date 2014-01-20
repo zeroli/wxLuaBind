@@ -4,6 +4,6 @@
 #include "config.h"
 
 EXTERN_C
-int WXLUABIND_API luaopen_wxdefs(lua_State* L);
+int WXLUABIND_API luaopen_defs(lua_State* L);
 
 #endif  // WXLUABIND_DEF_BIND_H_

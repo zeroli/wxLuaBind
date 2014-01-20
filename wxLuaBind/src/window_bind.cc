@@ -2,6 +2,8 @@
 
 #include "window_bind.h"
 
+REGISTER_WXLUA_BIND(wxwindow)
+
 int luaopen_wxwindow( lua_State* L )
 {
     module(L, "wx")
@@ -46,3 +48,4 @@ int luaopen_wxwindow( lua_State* L )
 
     return 0;
 }
+

@@ -2,6 +2,8 @@
 
 #include "string_bind.h"
 
+REGISTER_WXLUA_BIND(wxstring)
+
 int luaopen_wxstring(lua_State* L)
 {
     module(L, "wx")

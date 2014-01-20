@@ -18,7 +18,8 @@ void LuaError(lua_State* L)
     lua_pop(L, 1);
 
     fprintf(stderr, msg.c_str());
-    wxMessageBox(msg, "ERROR", wxICON_ERROR);
+    if (wxTheApp)
+        wxMessageBox(msg, "ERROR", wxICON_ERROR);
 }
 
 int dofile(lua_State* L)

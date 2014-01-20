@@ -178,6 +178,10 @@
 				RelativePath=".\src\wx_luabind.cc"
 				>
 			</File>
+			<File
+				RelativePath=".\src\wxlua_bind_info.cc"
+				>
+			</File>
 			<Filter
 				Name="core"
 				>
@@ -286,6 +290,10 @@
 			</File>
 			<File
 				RelativePath=".\include\wx_luabind.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\wxlua_bind_info.h"
 				>
 			</File>
 		</Filter>

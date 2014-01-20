@@ -2,6 +2,8 @@
 
 #include "app_bind.h"
 
+REGISTER_WXLUA_BIND(wxapp)
+
 class wxLuaApp : public wxApp
 {
 public:
@@ -48,3 +50,4 @@ int luaopen_wxapp(lua_State* L)
     ];
     return 0;
 }
+

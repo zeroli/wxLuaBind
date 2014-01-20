@@ -2,6 +2,8 @@
 
 #include "frame_bind.h"
 
+REGISTER_WXLUA_BIND(wxframe)
+
 int luaopen_wxframe( lua_State* L )
 {
     module(L, "wx")
