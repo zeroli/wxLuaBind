@@ -34,17 +34,13 @@ int dofile(lua_State* L)
     return 0;
 }
 
-#include <map>
-
-std::map<std::string, int> map;
-#define DEF1(name,value) map[#name] = value;
-#define DEF2(var) DEF1(var, var)
-#define ONE 1
+#define BIND_VAR_ARGS(name, ...) name##__VA_ARGS__
 
 int main()
 {
-    //DEF2(ONE);
-    //fprintf(stderr, "%s = %d\n", map.begin()->first.c_str(), map.begin()->second);
+    //const char* tyes = "tyes=>test ok";
+    //const char* tyesno = "tyesno=>testfail";
+    //fprintf(stderr, "args= %s\n", BIND_VAR_ARGS(t, yes));
 
     //return 0;
 

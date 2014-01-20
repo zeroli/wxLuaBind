@@ -8,6 +8,12 @@
 
 #include "luabind_helper.h"
 
+enum {
+    E1 = 2,
+    E2,
+    E3,
+};
+
 class testclass
 {
 public:
@@ -20,6 +26,7 @@ private:
 
 class A
 {
+public:
     enum {
         enum1 = 3,
         enum2 = 4,
@@ -35,6 +42,8 @@ public:
     A& operator +(int x) { a += x; return *this; }
     A& operator +(const std::string& x) { std::cout << x << "\n"; return *this; }
     A& operator ()(int x) { std::cout << "a = " << a << "\n"; return *this; }
+
+    bool operator==(const A& a) const { return true; }
 
     friend
     std::ostream& operator <<(std::ostream& out, const A& aa) {
@@ -88,6 +97,13 @@ int WXLUABIND_API init(lua_State* L)
 
         module(L)
         [
+            //enum_("constants")
+            //[
+            //    value("E1", E1),
+            //    value("E2", E2),
+            //    value("E3", E3)
+            //],
+
             // bind: overloaded free functions
             def("greet", (void(*)())&greet),
             def("greet", (void(*)(const char*))&greet),
@@ -110,11 +126,12 @@ int WXLUABIND_API init(lua_State* L)
             .property("data", &A::geta, &A::seta)
             .enum_("constants")
             [
-                value("enum1", 3),
-                value("enum2", 40),
-                value("enum3", 6)
+                value("enum1", A::enum1),
+                value("enum2", A::enum2),
+                value("enum3", A::enum3)
             ]
-            .def(self + int())
+            .def(self == other<const A&>())
+            .def(self + other<int>())
             .def(self + other<const std::string&>())
             .def(self(int()))
             .def(tostring(self))

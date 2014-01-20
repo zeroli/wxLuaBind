@@ -2,6 +2,7 @@
 
 #include "wx_luabind.h"
 
+#include "object_bind.h"
 #include "defs_bind.h"
 #include "string_bind.h"
 #include "app_bind.h"
@@ -16,6 +17,7 @@ int luaopen_wx(lua_State* L)
 
     module(L, "wx");
 
+    luaopen_wxobject(L);
     luaopen_wxstring(L);
 
     luaopen_wxapp(L);

@@ -38,7 +38,7 @@ int luaopen_wxapp(lua_State* L)
             ,
 
         class_<wxLuaApp, wxApp>("App")
-            BIND_CTOR_0()
+            BIND_CTOR()
             BIND_MEMBER_FUNC(wxApp, MainLoop)
             BIND_MEMBER_FUNC(wxApp, Yield)
 

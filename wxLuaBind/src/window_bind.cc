@@ -6,7 +6,7 @@ int luaopen_wxwindow( lua_State* L )
 {
     module(L, "wx")
     [
-        class_<wxWindow>("Window")
+        BEGIN_BIND_CLASS_WX(wxWindow, Window)
             BIND_WIN_ALL_CTORS()
             BIND_WIN_CREATE_FUNC(wxWindow)
 
@@ -27,10 +27,14 @@ int luaopen_wxwindow( lua_State* L )
 
             BIND_MEMBER_FUNC(wxWindow, AdjustForLayoutDirection)
 
-            .def("SetSize", (void (wxWindow::*)(int, int, int, int, int))&wxWindow::SetSize)
-            .def("SetSize", (void (wxWindow::*)(int, int))(&wxWindow::SetSize))
-            .def("SetSize", (void (wxWindow::*)(const wxSize&))(&wxWindow::SetSize))
-            .def("SetSize", (void (wxWindow::*)(const wxRect&, int))(&wxWindow::SetSize))
+            BIND_MEMBER_OVERLOAD(wxWindow, SetSize,
+                void, (int, int, int, int, int))
+            BIND_MEMBER_OVERLOAD(wxWindow, SetSize,
+                void, (int, int))
+            BIND_MEMBER_OVERLOAD(wxWindow, SetSize,
+                void, (const wxSize&))
+            BIND_MEMBER_OVERLOAD(wxWindow, SetSize,
+                void, (const wxRect&, int))
 
             BIND_MEMBER_FUNC(wxWindow, Raise)
             BIND_MEMBER_FUNC(wxWindow, Lower)

@@ -7,40 +7,31 @@
 #define BIND_VARIABLE(var) BIND_TABLE_VALUE(var, var)
 #define BIND_MACRO(macro) table[#macro] = macro;
 #define BIND_ENUM(ev) table[#ev] = (long)ev;
-#define END_LUA_TABLE(class) }
+#define END_LUA_TABLE(...) }
 
-#define BIND_CLASS(class, name) \
+#define BEGIN_BIND_CLASS(class, name) \
     class_<class>(#name)
-#define BIND_CLASS_1(class, base, name) \
-    class_<class, base>(#name)
-#define BIND_CLASS_2(class, base1, base2, name) \
-    class_<class, base_<base1, base2> >(#name)
+#define BEGIN_BIND_CLASS_DERIVE(class, name, ...) \
+    class_<class, bases<__VA_ARGS__> >(#name)
+#define END_BIND_CLASS(...) \
+    ,
+#define BEGIN_BIND_CLASS_WX(class, name) \
+    BEGIN_BIND_CLASS_DERIVE(class, name, wxObject)
 
-#define BIND_CTOR_0() \
-    .def(constructor<>())
-#define BIND_CTOR_1(arg1) \
-    .def(constructor<arg1>())
-#define BIND_CTOR_2(arg1, arg2) \
-    .def(constructor<arg1, arg2>())
-#define BIND_CTOR_3(arg1, arg2, arg3) \
-    .def(constructor<arg1, arg2, arg3>())
-#define BIND_CTOR_4(arg1, arg2, arg3, arg4) \
-    .def(constructor<arg1, arg2, arg3, arg4>())
-#define BIND_CTOR_5(arg1, arg2, arg3, arg4, arg5) \
-    .def(constructor<arg1, arg2, arg3, arg4, arg5>())
-#define BIND_CTOR_6(arg1, arg2, arg3, arg4, arg5, arg6) \
-    .def(constructor<arg1, arg2, arg3, arg4, arg5, arg6>())
-#define BIND_CTOR_7(arg1, arg2, arg3, arg4, arg5, arg6, arg7) \
-    .def(constructor<arg1, arg2, arg3, arg4, arg5, arg6, arg7>())
-#define BIND_CTOR_8(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) \
-    .def(constructor<arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8>())
-#define BIND_CTOR() BIND_CTOR_0()
+#define BIND_CTOR(...) \
+    .def(constructor<__VA_ARGS__>())
 
 #define BIND_FUNC(F) \
     def(#F, &F)
 
 #define BIND_FUNC_WITH_NAME(name, F) \
     def(#name, &F)
+
+#define BIND_STATIC_FUNC(class, F) \
+    def(#F, &class::F)
+
+#define BIND_STATIC_FUNC_WITH_NAME(name, class, F) \
+    def(#name, &class::F)
 
 #define BIND_MEMBER_FUNC(class, F) \
     .def(#F, &class::F)
@@ -60,5 +51,24 @@
 
 #define BIND_CLASS_PRINT() \
     .def(tostring(self))
+
+#define BIND_OPERATOR(op, arg1) \
+    .def(self op other<arg1>())
+
+#define BIND_OPERATOR_C(op, arg1) \
+    .def(const_self op other<arg1>())
+
+#define BEGIN_BIND_SCOPE() \
+    .scope [
+#define END_BIND_SCOPE() \
+    ]
+
+#define BEGIN_CLASS_ENUM(tag) \
+    .enum_(#tag) [
+#define END_CLASS_ENUM(tag) \
+    ]
+
+#define BIND_MEMBER_OVERLOAD(class, F, R, args) \
+    .def(#F, (R(class::*)args)&class::F)
 
 #endif  // WXLUABIND_LUABIND_HELPER_H_
