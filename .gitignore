@@ -1,0 +1,6 @@
+./lua-5.1/build-vc/lua-5.1.vcproj.BRIONTECH.zeli.user
+./luabind-0.9.1/build-vc/luabind-vc90.vcproj.BRIONTECH.zeli.user
+./TestApp/TestApp.vcproj.BRIONTECH.zeli.user
+./wxLuaBind/wxLuaBind.vcproj.BRIONTECH.zeli.user
+wxLuaBind.ncb
+Debug/TestApp.exe Debug/TestApp.ilk Debug/TestApp.pdb Debug/lua-5.1.dll Debug/lua-5.1.exp Debug/lua-5.1.ilk Debug/lua-5.1.lib Debug/lua-5.1.pdb Debug/luabind-0.9.1.dll Debug/luabind-0.9.1.exp Debug/luabind-0.9.1.ilk Debug/luabind-0.9.1.lib Debug/luabind-0.9.1.pdb Debug/wx.dll Debug/wx.exp Debug/wx.ilk Debug/wx.lib Debug/wx.pdb Debug/wxmsw28d_stc_vc_custom.dll Debug/wxmsw28d_vc_custom.dll Debug/wxmsw28d_vc_custom.pdb

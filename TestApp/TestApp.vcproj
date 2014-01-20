@@ -18,7 +18,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionDir)\Build\$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="2"
 			>
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;D:\cpp_lua\lua-5.1\include&quot;;&quot;D:\wxWidgets-2.8.9\include&quot;"
+				AdditionalIncludeDirectories="&quot;..\lua-5.1\include&quot;;&quot;D:\wxWidgets-2.8.9\include&quot;"
 				PreprocessorDefinitions="WXUSINGDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
