@@ -20,7 +20,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 // OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 #ifndef LUABIND_ENUM_MAKER_HPP_INCLUDED
 #define LUABIND_ENUM_MAKER_HPP_INCLUDED
 
@@ -65,7 +64,7 @@ namespace luabind
 			return v;
 		}
 
-	private: 
+	private:
 
 		value() {}
 	};
@@ -97,14 +96,17 @@ namespace luabind
 
 			From& operator[](const value& val)
 			{
+                if (val.name_ == 0) return from_;
+
 				from_.add_static_constant(val.name_, val.val_);
 				return from_;
 			}
-			
+
 			From& operator[](const value_vector& values)
 			{
 				for (value_vector::const_iterator i = values.begin(); i != values.end(); ++i)
 				{
+                    if (i->name_ == 0) continue;
 					from_.add_static_constant(i->name_, i->val_);
 				}
 

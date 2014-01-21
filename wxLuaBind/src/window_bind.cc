@@ -1,9 +1,9 @@
 #include <precompile.h>
 
-REGISTER_WXLUA_PREBIND(wxwindow)
+REGISTER_WXLUA_PREBIND(wxwindow, BIND_NO_WINDOW)
 {
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS_WX(wxWindow, Window)
+        BEGIN_BIND_CLASS(wxWindow, Window, wxEvtHandler)
             BIND_WIN_ALL_CTORS()
             BIND_WIN_CREATE_FUNC(wxWindow)
 

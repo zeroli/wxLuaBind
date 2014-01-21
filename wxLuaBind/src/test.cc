@@ -34,6 +34,8 @@ public:
     };
 
 public:
+    A(int ia = 230) : a(ia) { }
+
     int a;
     int b;
     void seta(int x) { a = x; }
@@ -119,7 +121,8 @@ int WXLUABIND_API init(lua_State* L)
             // overloaded member functions, enums,
             // operators
             class_<A>("A")
-            .def(constructor<>())
+            //.def(constructor<>())
+            .def(constructor<int>())
             //            .def_readwrite("a", &A::a)
             .def("plus", &plus)
             .def("f", (void (A::*)(int))&A::f)

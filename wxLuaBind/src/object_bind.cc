@@ -1,6 +1,6 @@
 #include <precompile.h>
 
-REGISTER_WXLUA_PREBIND(wxobject)
+REGISTER_WXLUA_PREBIND(wxobject, BIND_NO_OBJECT)
 {
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS(wxObject, Object)

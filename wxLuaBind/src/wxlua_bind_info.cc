@@ -5,22 +5,32 @@
 wxHashTable* wxLuaBindInfo::m_sPreBindTable = NULL;
 wxHashTable* wxLuaBindInfo::m_sBindTable = NULL;
 
-void wxLuaBindInfo::Register(bool prebind)
+void wxLuaBindInfo::Register(bool prebind, long NO)
 {
     if (prebind)
-        Register(&m_sPreBindTable);
+        RegisterPrebindInfo(NO);
     else
-        Register(&m_sBindTable);
+        RegisterBindInfo();
 }
 
-void wxLuaBindInfo::Register(wxHashTable** table)
+void wxLuaBindInfo::RegisterPrebindInfo(long NO)
 {
-    if (!*table)
+    if (!m_sPreBindTable)
+    {
+        wxHashTable *bindTable = new wxHashTable(wxKEY_INTEGER);
+        m_sPreBindTable = bindTable;
+    }
+    m_sPreBindTable->Put(NO, (wxObject*)this);
+}
+
+void wxLuaBindInfo::RegisterBindInfo()
+{
+    if (!m_sBindTable)
     {
         wxHashTable *bindTable = new wxHashTable(wxKEY_STRING);
-        *table = bindTable;
+        m_sBindTable = bindTable;
     }
-    (*table)->Put(m_name, (wxObject*)this);
+    m_sBindTable->Put(m_name, (wxObject*)this);
 }
 
 void wxLuaBindInfo::Unregister()
@@ -31,7 +41,8 @@ void wxLuaBindInfo::Unregister()
 
     if (table)
     {
-        table->Delete(m_name);
+        if (m_prebind) table->Delete(m_NO);
+        else table->Delete(m_name);
         if (table->GetCount() == 0)
         {
             delete table;

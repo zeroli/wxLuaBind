@@ -1,5 +1,60 @@
 #include <precompile.h>
 
+namespace FrameNS
+{
+    // 4 default arguments
+    wxStatusBar* CreateStatusBar(wxFrame* self)
+    {
+        return self->CreateStatusBar(1, wxST_SIZEGRIP|wxFULL_REPAINT_ON_RESIZE, 0, wxStatusLineNameStr);
+    }
+    wxStatusBar* CreateStatusBar(wxFrame* self, int number)
+    {
+        return self->CreateStatusBar(number);
+    }
+    wxStatusBar* CreateStatusBar(wxFrame* self, int number,
+        long style)
+    {
+        return self->CreateStatusBar(number, style);
+    }
+    wxStatusBar* CreateStatusBar(wxFrame* self, int number,
+        long style, wxWindowID winid)
+    {
+        return self->CreateStatusBar(number, style, winid);
+    }
+    wxStatusBar* CreateStatusBar(wxFrame* self, int number,
+        long style, wxWindowID winid, const wxString& name)
+    {
+        return self->CreateStatusBar(number, style, winid, name);
+    }
+
+    // =========================
+    void SetStatusText(wxFrame* self, const wxString &text)
+    {
+        self->SetStatusText(text);
+    }
+    void SetStatusText(wxFrame* self, const wxString &text, int number)
+    {
+        self->SetStatusText(text, number);
+    }
+
+    void PushStatusText(wxFrame* self, const wxString &text)
+    {
+        self->PushStatusText(text);
+    }
+    void PushStatusText(wxFrame* self, const wxString &text, int number )
+    {
+        self->PushStatusText(text, number);
+    }
+    void PopStatusText(wxFrame* self)
+    {
+        self->PopStatusText();
+    }
+    void PopStatusText(wxFrame* self, int number)
+    {
+        self->PopStatusText(number);
+    }
+} // namespace FrameNS
+
 REGISTER_WXLUA_BIND(wxframe)
 {
     BEGIN_BIND_MODULE(wx)
@@ -16,17 +71,38 @@ REGISTER_WXLUA_BIND(wxframe)
 #endif
             BIND_MF(wxFrame, ProcessCommand)
 #if wxUSE_STATUSBAR
+
+            BIND_F2MF_OVERLOAD(FrameNS, CreateStatusBar,
+                wxStatusBar*, (wxFrame*))
+            BIND_F2MF_OVERLOAD(FrameNS, CreateStatusBar,
+                wxStatusBar*, (wxFrame*, int))
+            BIND_F2MF_OVERLOAD(FrameNS, CreateStatusBar,
+                wxStatusBar*, (wxFrame*, int, long))
+            BIND_F2MF_OVERLOAD(FrameNS, CreateStatusBar,
+                wxStatusBar*, (wxFrame*, int, long, wxWindowID))
             BIND_MF(wxFrame, CreateStatusBar)
+
             BIND_MF(wxFrame, OnCreateStatusBar)
 
             BIND_MF(wxFrame, GetStatusBar)
             BIND_MF(wxFrame, SetStatusBar)
 
+            BIND_F2MF_OVERLOAD(FrameNS, SetStatusText,
+                void, (wxFrame*, const wxString&))
+            BIND_F2MF_OVERLOAD(FrameNS, SetStatusText,
+                void, (wxFrame*, const wxString&, int))
+
             BIND_MF(wxFrame, SetStatusText)
             BIND_MF(wxFrame, SetStatusWidths)
 
-            BIND_MF(wxFrame, PushStatusText)
-            BIND_MF(wxFrame, PopStatusText)
+            BIND_F2MF_OVERLOAD(FrameNS, PushStatusText,
+                void, (wxFrame*, const wxString&))
+            BIND_F2MF_OVERLOAD(FrameNS, PushStatusText,
+                void, (wxFrame*, const wxString&, int))
+            BIND_F2MF_OVERLOAD(FrameNS, PopStatusText,
+                void, (wxFrame*))
+            BIND_F2MF_OVERLOAD(FrameNS, PopStatusText,
+                void, (wxFrame*, int))
 
             BIND_MF(wxFrame, SetStatusBarPane)
             BIND_MF(wxFrame, GetStatusBarPane)

@@ -405,7 +405,7 @@ REGISTER_WXLUA_BIND(gdicmn)
         //BIND_VARIABLE(wxNullPalette)
         //BIND_VARIABLE(wxNullFont)
         //BIND_VARIABLE(wxNullColour)
-        BIND_VARIABLE(wxTheColourDatabase)
+        //BIND_VARIABLE(wxTheColourDatabase)
 
         BIND_VARIABLE(wxDefaultSize)
         BIND_VARIABLE(wxDefaultPosition)

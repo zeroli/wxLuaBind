@@ -1,10 +1,107 @@
 #include <precompile.h>
 
+namespace MenuNS
+{
+    // 3 default arguments
+    wxMenuItem* Append(wxMenu* self, int itemid)
+    {
+        return self->Append(itemid);
+    }
+    wxMenuItem* Append(wxMenu* self, int itemid,
+        const wxString& text)
+    {
+        return self->Append(itemid, text);
+    }
+    wxMenuItem* Append(wxMenu* self, int itemid,
+        const wxString& text, const wxString& help)
+    {
+        return self->Append(itemid, text, help);
+    }
+    wxMenuItem* Append(wxMenu* self, int itemid,
+        const wxString& text, const wxString& help, wxItemKind kind)
+    {
+        return self->Append(itemid, text, help, kind);
+    }
+    // 3 default arguments
+    wxMenuItem* Insert(wxMenu* self, size_t pos, int itemid)
+    {
+        return self->Insert(pos, itemid);
+    }
+    wxMenuItem* Insert(wxMenu* self, size_t pos, int itemid, const wxString& text)
+    {
+        return self->Insert(pos, itemid, text);
+    }
+    wxMenuItem* Insert(wxMenu* self, size_t pos,
+        int itemid, const wxString& text, const wxString& help)
+    {
+        return self->Insert(pos, itemid, text, help);
+    }
+    wxMenuItem* Insert(wxMenu* self, size_t pos,
+        int itemid, const wxString& text, const wxString& help, wxItemKind kind)
+    {
+        return self->Insert(pos, itemid, text, help, kind);
+    }
+
+    // 1 default arguments
+    wxMenuItem* Insert(wxMenu* self, size_t pos,
+        int itemid, const wxString& text, wxMenu *submenu)
+    {
+        return self->Insert(pos, itemid, text, submenu);
+    }
+    wxMenuItem* Insert(wxMenu* self, size_t pos,
+        int itemid, const wxString& text, wxMenu *submenu, const wxString& help)
+    {
+        return self->Insert(pos, itemid, text, submenu, help);
+    }
+
+    // 3 default arguments => 4 interfaces
+    wxMenuItem* Prepend(wxMenu* self, int itemid)
+    {
+        return self->Prepend(itemid);
+    }
+    wxMenuItem* Prepend(wxMenu* self, int itemid,
+        const wxString& text )
+    {
+        return self->Prepend(itemid, text);
+    }
+    wxMenuItem* Prepend(wxMenu* self, int itemid,
+        const wxString& text, const wxString& help)
+    {
+        return self->Prepend(itemid, text, help);
+    }
+    wxMenuItem* Prepend(wxMenu* self, int itemid,
+        const wxString& text, const wxString& help, wxItemKind kind)
+    {
+        return self->Prepend(itemid, text, help, kind);
+    }
+
+    // 1 default arguments => 2 interfaces
+    wxMenuItem* Prepend(wxMenu* self, int itemid,
+        const wxString& text,
+        wxMenu *submenu)
+    {
+        return self->Prepend(itemid, text, submenu);
+    }
+    wxMenuItem* Prepend(wxMenu* self, int itemid,
+        const wxString& text,
+        wxMenu *submenu,
+        const wxString& help)
+    {
+        return self->Prepend(itemid, text, submenu, help);
+    }
+}  // namespace MenuNS
+
 REGISTER_WXLUA_BIND(wxmenu)
 {
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS_WX(wxMenuItem, MenuItem)
-            BIND_CTOR(wxMenu*, int,const wxString&,const wxString&,wxItemKind,wxMenu*)
+            BIND_CTOR()
+            BIND_CTOR(wxMenu*)
+            BIND_CTOR(wxMenu*, int)
+            BIND_CTOR(wxMenu*, int, const wxString&)
+            BIND_CTOR(wxMenu*, int, const wxString&, const wxString&)
+            BIND_CTOR(wxMenu*, int, const wxString&, const wxString&, wxItemKind)
+            BIND_CTOR(wxMenu*, int,const wxString&, const wxString&,wxItemKind,wxMenu*)
 
             // wxMenuItemBase class related interfaces
             BEGIN_BIND_SCOPE()
@@ -80,25 +177,44 @@ REGISTER_WXLUA_BIND(wxmenu)
 
         // wxMenu class bind
         BEGIN_BIND_CLASS(wxMenu, Menu)
+            BIND_CTOR()
+            BIND_CTOR(const wxString&)
             BIND_CTOR(const wxString&, long)
             BIND_CTOR(long)
 
-            BIND_MF_OVERLOAD(wxMenu, Append,
-                wxMenuItem*, (int,const wxString&,const wxString&, wxItemKind))
+            BIND_F2MF_OVERLOAD(MenuNS, Append,
+                wxMenuItem*, (wxMenu*, int))
+            BIND_F2MF_OVERLOAD(MenuNS, Append,
+                wxMenuItem*, (wxMenu*, int, const wxString&))
+            BIND_F2MF_OVERLOAD(MenuNS, Append,
+                wxMenuItem*, (wxMenu*, int, const wxString&, const wxString&))
+            BIND_F2MF_OVERLOAD(MenuNS, Append,
+                wxMenuItem*, (wxMenu*, int,const wxString&,const wxString&, wxItemKind))
+
             BIND_MF(wxMenu, AppendSeparator)
             BIND_MF(wxMenu, AppendCheckItem)
             BIND_MF(wxMenu, AppendRadioItem)
             BIND_MF(wxMenu, AppendSubMenu)
-            BIND_MF_OVERLOAD(wxMenu, Append,
-                wxMenuItem*, (wxMenuItem*))
+            BIND_MF_OVERLOAD(wxMenu, Append, wxMenuItem*, (wxMenuItem*))
 
             BIND_MF(wxMenu, Break)
+
             BIND_MF_OVERLOAD(wxMenu, Insert,
                 wxMenuItem*, (size_t, wxMenuItem*))
-            BIND_MF_OVERLOAD(wxMenu, Insert,
-                wxMenuItem*, (size_t, int, const wxString&, const wxString&, wxItemKind))
-            BIND_MF_OVERLOAD(wxMenu, Insert,
-                wxMenuItem*, (size_t, int, const wxString&, wxMenu*, const wxString&))
+
+            BIND_F2MF_OVERLOAD(MenuNS, Insert,
+                wxMenuItem*, (wxMenu*, size_t, int))
+            BIND_F2MF_OVERLOAD(MenuNS, Insert,
+                wxMenuItem*, (wxMenu*, size_t, int, const wxString&))
+            BIND_F2MF_OVERLOAD(MenuNS, Insert,
+                wxMenuItem*, (wxMenu*, size_t, int, const wxString&, const wxString&))
+            BIND_F2MF_OVERLOAD(MenuNS, Insert,
+                wxMenuItem*, (wxMenu*, size_t, int, const wxString&, const wxString&, wxItemKind))
+
+            BIND_F2MF_OVERLOAD(MenuNS, Insert,
+                wxMenuItem*, (wxMenu*, size_t, int, const wxString&, wxMenu*))
+            BIND_F2MF_OVERLOAD(MenuNS, Insert,
+                wxMenuItem*, (wxMenu*, size_t, int, const wxString&, wxMenu*, const wxString&))
 
             BIND_MF(wxMenu, InsertSeparator)
             BIND_MF(wxMenu, InsertCheckItem)
@@ -106,10 +222,20 @@ REGISTER_WXLUA_BIND(wxmenu)
 
             BIND_MF_OVERLOAD(wxMenu, Prepend,
                 wxMenuItem*, (wxMenuItem*))
-            BIND_MF_OVERLOAD(wxMenu, Prepend,
-                wxMenuItem*, (int, const wxString&, const wxString&, wxItemKind))
-            BIND_MF_OVERLOAD(wxMenu, Prepend,
-                wxMenuItem*, (int, const wxString&, wxMenu*, const wxString&))
+
+            BIND_F2MF_OVERLOAD(MenuNS, Prepend,
+                wxMenuItem*, (wxMenu*, int))
+            BIND_F2MF_OVERLOAD(MenuNS, Prepend,
+                wxMenuItem*, (wxMenu*, int, const wxString&))
+            BIND_F2MF_OVERLOAD(MenuNS, Prepend,
+                wxMenuItem*, (wxMenu*, int, const wxString&, const wxString&))
+            BIND_F2MF_OVERLOAD(MenuNS, Prepend,
+                wxMenuItem*, (wxMenu*, int, const wxString&, const wxString&, wxItemKind))
+
+            BIND_F2MF_OVERLOAD(MenuNS, Prepend,
+                wxMenuItem*, (wxMenu*, int, const wxString&, wxMenu*))
+            BIND_F2MF_OVERLOAD(MenuNS, Prepend,
+                wxMenuItem*, (wxMenu*, int, const wxString&, wxMenu*, const wxString&))
 
             BIND_MF(wxMenu, PrependSeparator)
             BIND_MF(wxMenu, PrependCheckItem)

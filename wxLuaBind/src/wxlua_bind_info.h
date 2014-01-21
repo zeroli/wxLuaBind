@@ -6,10 +6,11 @@ typedef int (*wxLuaBindFunc)(lua_State*);
 class wxLuaBindInfo : public wxObject
 {
 public:
-    wxLuaBindInfo(const wxChar* name, wxLuaBindFunc func, bool prebind = false)
-        : m_name(name), m_func(func), m_prebind(prebind)
+    wxLuaBindInfo(const wxChar* name, wxLuaBindFunc func,
+        bool prebind = false, int NO = -1)
+        : m_name(name), m_func(func), m_prebind(prebind), m_NO(NO)
     {
-        Register(prebind);
+        Register(prebind, NO);
     }
     ~wxLuaBindInfo()
     {
@@ -20,13 +21,17 @@ public:
 public:
     static int BindAll(lua_State* L);
 private:
-    void Register(bool prebind);
-    void Register(wxHashTable** table);
+    void Register(bool prebind, long NO);
+
+    void RegisterPrebindInfo(long NO);
+    void RegisterBindInfo();
+
     void Unregister();
 private:
     const wxChar* m_name;
     wxLuaBindFunc m_func;
     bool m_prebind;
+    long m_NO;
 private:
     static wxHashTable* m_sPreBindTable;
     static wxHashTable* m_sBindTable;
@@ -38,7 +43,7 @@ private:
         (wxLuaBindFunc)luaopen_##name, ##__VA_ARGS__); \
     int luaopen_##name(lua_State* L)
 
-#define REGISTER_WXLUA_PREBIND(name) \
-    REGISTER_WXLUA_BIND(name, true)
+#define REGISTER_WXLUA_PREBIND(name, NO) \
+    REGISTER_WXLUA_BIND(name, true, NO)
 
 #endif  // WXLUABIND_WX_BIND_INFO_H_

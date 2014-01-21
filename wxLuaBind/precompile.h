@@ -25,4 +25,10 @@ extern "C" {
 #include "win_bind_helper.h"
 #include "wxlua_bind_info.h"
 
+enum {
+    BIND_NO_WXDEFS = 0,
+    BIND_NO_OBJECT,
+    BIND_NO_EVENT,
+    BIND_NO_WINDOW,
+};
 #endif  // WXLUABIND_PRECOMPILE_H_

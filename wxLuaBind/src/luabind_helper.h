@@ -72,13 +72,20 @@
 
 #define BEGIN_CLASS_ENUM(tag) \
     .enum_(#tag) [
+#define BIND_CLASS_ENUM(class, ev) \
+    value(#ev, class::ev),
 #define END_CLASS_ENUM(tag) \
-    value() ]
+    value(0, 0) ]
 
 #define BIND_MF_OVERLOAD(class, F, R, args) \
     .def(#F, (R(class::*)args)&class::F)
 
 #define BIND_SMF_OVERLOAD(class, F, R, args) \
     def(#F, (R(*)args)&class::F),
+
+// non-member function bind to member function
+// supporting overloaded functions
+#define BIND_F2MF_OVERLOAD(ns, F, R, args) \
+    .def(#F, (R(*)args)&ns::F)
 
 #endif  // WXLUABIND_LUABIND_HELPER_H_
