@@ -1,31 +1,26 @@
 #include <precompile.h>
 
-EXTERN_C
-int luaopen_wxobject(lua_State* L);
-
 REGISTER_WXLUA_PREBIND(wxobject)
-
-int luaopen_wxobject(lua_State* L)
 {
-    module(L, "wx")
-    [
+    BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS(wxObject, Object)
             BIND_CTOR()
             BIND_CTOR(const wxObject&)
 
             // FIXME: cannot compile
             //BIND_OPERATOR(=, const wxObject&)
-            BIND_MEMBER_FUNC_WITH_NAME(assign, wxObject, operator=)
+            BIND_MF_NAME(assign, wxObject, operator=)
 
-            BIND_MEMBER_FUNC(wxObject, IsKindOf)
+            BIND_MF(wxObject, IsKindOf)
 
-            BIND_MEMBER_FUNC(wxObject, GetRefData)
-            BIND_MEMBER_FUNC(wxObject, SetRefData)
-            BIND_MEMBER_FUNC(wxObject, Ref)
-            BIND_MEMBER_FUNC(wxObject, UnRef)
-            BIND_MEMBER_FUNC(wxObject, UnShare)
+            BIND_MF(wxObject, GetRefData)
+            BIND_MF(wxObject, SetRefData)
+            BIND_MF(wxObject, Ref)
+            BIND_MF(wxObject, UnRef)
+            BIND_MF(wxObject, UnShare)
 
-            BIND_MEMBER_FUNC(wxObject, IsSameAs)
-    ];
+            BIND_MF(wxObject, IsSameAs)
+        END_BIND_CLASS(wxObject)
+    END_BIND_MODULE(wx)
     return 0;
 }

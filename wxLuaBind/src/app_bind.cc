@@ -1,10 +1,5 @@
 #include <precompile.h>
 
-EXTERN_C
-int luaopen_wxapp(lua_State* L);
-
-REGISTER_WXLUA_BIND(wxapp)
-
 class wxLuaApp : public wxApp
 {
 public:
@@ -31,24 +26,25 @@ wxApp* GetApp()
     return wxTheApp;
 }
 
-int luaopen_wxapp(lua_State* L)
+REGISTER_WXLUA_BIND(wxapp)
 {
-    module(L, "wx")
-    [
+    BEGIN_BIND_MODULE(wx)
         BIND_FUNC(GetApp)
-            ,
-        class_<wxApp>("wxApp")
-            ,
 
-        class_<wxLuaApp, wxApp>("App")
+        BEGIN_BIND_CLASS(wxApp, wxApp)
+        END_BIND_CLASS(wxApp)
+
+        BEGIN_BIND_CLASS(wxLuaApp, App, wxApp)
             BIND_CTOR()
-            BIND_MEMBER_FUNC(wxApp, MainLoop)
-            BIND_MEMBER_FUNC(wxApp, Yield)
+            BIND_MF(wxApp, MainLoop)
+            BIND_MF(wxApp, Yield)
 
-            BIND_MEMBER_FUNC(wxApp, SetTopWindow)
-            BIND_MEMBER_FUNC(wxApp, GetTopWindow)
+            BIND_MF(wxApp, SetTopWindow)
+            BIND_MF(wxApp, GetTopWindow)
+        END_BIND_CLASS(wxLuaApp)
 
-    ];
+    END_BIND_MODULE(wx)
+
     return 0;
 }
 

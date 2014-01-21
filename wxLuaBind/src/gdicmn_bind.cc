@@ -1,10 +1,5 @@
 #include <precompile.h>
 
-EXTERN_C
-int luaopen_gdicmn(lua_State* L);
-
-REGISTER_WXLUA_BIND(gdicmn)
-
 namespace
 {
     std::ostream& operator << (std::ostream& out, const wxSize& size)
@@ -69,48 +64,47 @@ namespace
     }
 }  // anonymous namespace
 
-int luaopen_gdicmn(lua_State* L)
+REGISTER_WXLUA_BIND(gdicmn)
 {
-    module(L, "wx")
-    [
+    BEGIN_BIND_MODULE(wx)
         // wxSize bind
         BEGIN_BIND_CLASS(wxSize, Size)
             BIND_CTOR()
             BIND_CTOR(int, int)
 
-            BIND_MEMBER_DATA(wxSize, x)
-            BIND_MEMBER_DATA(wxSize, y)
+            BIND_MD(wxSize, x)
+            BIND_MD(wxSize, y)
 
-            BIND_OPERATOR_C(==, const wxSize&)
+            BIND_OP_C(==, const wxSize&)
             // FIXME: how to bind "!=" not supported in lua
             //BIND_OPERATOR_C(!=, const wxSize&)
-            BIND_OPERATOR_C(+, const wxSize&)
-            BIND_OPERATOR_C(-, const wxSize&)
-            BIND_OPERATOR_C(/, int)
-            BIND_OPERATOR_C(*, int)
+            BIND_OP_C(+, const wxSize&)
+            BIND_OP_C(-, const wxSize&)
+            BIND_OP_C(/, int)
+            BIND_OP_C(*, int)
 
-            BIND_MEMBER_FUNC(wxSize, IncTo)
-            BIND_MEMBER_FUNC(wxSize, DecTo)
+            BIND_MF(wxSize, IncTo)
+            BIND_MF(wxSize, DecTo)
 
-            .def("IncBy", (void(wxSize::*)(int,int))&wxSize::IncBy)
-            .def("IncBy", (void(wxSize::*)(const wxSize&))&wxSize::IncBy)
-            .def("IncBy", (void(wxSize::*)(int))&wxSize::IncBy)
+            BIND_MF_OVERLOAD(wxSize, IncBy, void, (int,int))
+            BIND_MF_OVERLOAD(wxSize, IncBy, void, (const wxSize&))
+            BIND_MF_OVERLOAD(wxSize, IncBy, void, (int))
 
-            .def("DecBy", (void(wxSize::*)(int,int))&wxSize::DecBy)
-            .def("DecBy", (void(wxSize::*)(const wxSize&))&wxSize::DecBy)
-            .def("DecBy", (void(wxSize::*)(int))&wxSize::DecBy)
+            BIND_MF_OVERLOAD(wxSize, DecBy, void, (int,int))
+            BIND_MF_OVERLOAD(wxSize, DecBy, void, (const wxSize&))
+            BIND_MF_OVERLOAD(wxSize, DecBy, void, (int))
 
-            BIND_MEMBER_FUNC(wxSize, Scale)
-            BIND_MEMBER_FUNC(wxSize, Set)
-            BIND_MEMBER_FUNC(wxSize, SetWidth)
-            BIND_MEMBER_FUNC(wxSize, SetHeight)
-            BIND_MEMBER_FUNC(wxSize, GetWidth)
-            BIND_MEMBER_FUNC(wxSize, GetHeight)
-            BIND_MEMBER_FUNC(wxSize, IsFullySpecified)
+            BIND_MF(wxSize, Scale)
+            BIND_MF(wxSize, Set)
+            BIND_MF(wxSize, SetWidth)
+            BIND_MF(wxSize, SetHeight)
+            BIND_MF(wxSize, GetWidth)
+            BIND_MF(wxSize, GetHeight)
+            BIND_MF(wxSize, IsFullySpecified)
 
-            BIND_MEMBER_FUNC(wxSize, SetDefaults)
-            BIND_MEMBER_FUNC(wxSize, GetX)
-            BIND_MEMBER_FUNC(wxSize, GetY)
+            BIND_MF(wxSize, SetDefaults)
+            BIND_MF(wxSize, GetX)
+            BIND_MF(wxSize, GetY)
 
             BIND_CLASS_PRINT()
         END_BIND_CLASS(wxSize)
@@ -120,9 +114,10 @@ int luaopen_gdicmn(lua_State* L)
             BIND_CTOR()
             BIND_CTOR(double, double)
 
-            BIND_OPERATOR_C(+, const wxRealPoint&)
-            BIND_OPERATOR_C(-, const wxRealPoint&)
-            BIND_OPERATOR_C(==, const wxRealPoint&)
+            BIND_OP_C(+, const wxRealPoint&)
+            BIND_OP_C(-, const wxRealPoint&)
+            BIND_OP_C(==, const wxRealPoint&)
+            // FIXME: cannot suppot != in LUA???
             //BIND_OPERATOR_C(!=, const wxRealPoint&)
 
             BIND_CLASS_PRINT()
@@ -133,10 +128,10 @@ int luaopen_gdicmn(lua_State* L)
             BIND_CTOR()
             BIND_CTOR(int, int)
 
-            BIND_MEMBER_DATA(wxPoint, x)
-            BIND_MEMBER_DATA(wxPoint, y)
+            BIND_MD(wxPoint, x)
+            BIND_MD(wxPoint, y)
 
-            BIND_OPERATOR(==, const wxPoint&)
+            BIND_OP(==, const wxPoint&)
 
             BIND_CLASS_PRINT()
         END_BIND_CLASS(wxPoint)
@@ -149,111 +144,113 @@ int luaopen_gdicmn(lua_State* L)
             BIND_CTOR(const wxPoint&, const wxSize&)
             BIND_CTOR(const wxSize&)
 
-            BIND_MEMBER_FUNC(wxRect, GetX)
-            BIND_MEMBER_FUNC(wxRect, SetX)
+            BIND_MF(wxRect, GetX)
+            BIND_MF(wxRect, SetX)
 
-            BIND_MEMBER_FUNC(wxRect, GetY)
-            BIND_MEMBER_FUNC(wxRect, SetY)
+            BIND_MF(wxRect, GetY)
+            BIND_MF(wxRect, SetY)
 
-            BIND_MEMBER_FUNC(wxRect, GetWidth)
-            BIND_MEMBER_FUNC(wxRect, SetWidth)
+            BIND_MF(wxRect, GetWidth)
+            BIND_MF(wxRect, SetWidth)
 
-            BIND_MEMBER_FUNC(wxRect, GetHeight)
-            BIND_MEMBER_FUNC(wxRect, SetHeight)
+            BIND_MF(wxRect, GetHeight)
+            BIND_MF(wxRect, SetHeight)
 
-            BIND_MEMBER_FUNC(wxRect, GetPosition)
-            BIND_MEMBER_FUNC(wxRect, SetPosition)
+            BIND_MF(wxRect, GetPosition)
+            BIND_MF(wxRect, SetPosition)
 
-            BIND_MEMBER_FUNC(wxRect, GetSize)
-            BIND_MEMBER_FUNC(wxRect, SetSize)
+            BIND_MF(wxRect, GetSize)
+            BIND_MF(wxRect, SetSize)
 
-            BIND_MEMBER_FUNC(wxRect, IsEmpty)
+            BIND_MF(wxRect, IsEmpty)
 
-            BIND_MEMBER_FUNC(wxRect, GetLeft)
-            BIND_MEMBER_FUNC(wxRect, GetTop)
-            BIND_MEMBER_FUNC(wxRect, GetBottom)
-            BIND_MEMBER_FUNC(wxRect, GetRight)
+            BIND_MF(wxRect, GetLeft)
+            BIND_MF(wxRect, GetTop)
+            BIND_MF(wxRect, GetBottom)
+            BIND_MF(wxRect, GetRight)
 
-            BIND_MEMBER_FUNC(wxRect, SetLeft)
-            BIND_MEMBER_FUNC(wxRect, SetRight)
-            BIND_MEMBER_FUNC(wxRect, SetTop)
-            BIND_MEMBER_FUNC(wxRect, SetBottom)
+            BIND_MF(wxRect, SetLeft)
+            BIND_MF(wxRect, SetRight)
+            BIND_MF(wxRect, SetTop)
+            BIND_MF(wxRect, SetBottom)
 
-            BIND_MEMBER_FUNC(wxRect, GetTopLeft)
-            BIND_MEMBER_FUNC(wxRect, GetLeftTop)
-            BIND_MEMBER_FUNC(wxRect, SetTopLeft)
-            BIND_MEMBER_FUNC(wxRect, SetLeftTop)
+            BIND_MF(wxRect, GetTopLeft)
+            BIND_MF(wxRect, GetLeftTop)
+            BIND_MF(wxRect, SetTopLeft)
+            BIND_MF(wxRect, SetLeftTop)
 
-            BIND_MEMBER_FUNC(wxRect, GetBottomRight)
-            BIND_MEMBER_FUNC(wxRect, GetRightBottom)
-            BIND_MEMBER_FUNC(wxRect, SetBottomRight)
-            BIND_MEMBER_FUNC(wxRect, SetRightBottom)
+            BIND_MF(wxRect, GetBottomRight)
+            BIND_MF(wxRect, GetRightBottom)
+            BIND_MF(wxRect, SetBottomRight)
+            BIND_MF(wxRect, SetRightBottom)
 
-            BIND_MEMBER_FUNC(wxRect, GetTopRight)
-            BIND_MEMBER_FUNC(wxRect, GetRightTop)
-            BIND_MEMBER_FUNC(wxRect, SetTopRight)
-            BIND_MEMBER_FUNC(wxRect, SetRightTop)
+            BIND_MF(wxRect, GetTopRight)
+            BIND_MF(wxRect, GetRightTop)
+            BIND_MF(wxRect, SetTopRight)
+            BIND_MF(wxRect, SetRightTop)
 
-            BIND_MEMBER_FUNC(wxRect, GetBottomLeft)
-            BIND_MEMBER_FUNC(wxRect, GetLeftBottom)
-            BIND_MEMBER_FUNC(wxRect, SetBottomLeft)
-            BIND_MEMBER_FUNC(wxRect, SetLeftBottom)
+            BIND_MF(wxRect, GetBottomLeft)
+            BIND_MF(wxRect, GetLeftBottom)
+            BIND_MF(wxRect, SetBottomLeft)
+            BIND_MF(wxRect, SetLeftBottom)
 
-            BIND_MEMBER_OVERLOAD(wxRect, Inflate,
+            BIND_MF_OVERLOAD(wxRect, Inflate,
                 wxRect&, (wxCoord, wxCoord))
-            BIND_MEMBER_OVERLOAD(wxRect, Inflate,
+            BIND_MF_OVERLOAD(wxRect, Inflate,
                 wxRect&, (const wxSize&))
-            BIND_MEMBER_OVERLOAD(wxRect, Inflate,
+            BIND_MF_OVERLOAD(wxRect, Inflate,
                 wxRect&, (wxCoord))
-            BIND_MEMBER_OVERLOAD(wxRect, Inflate,
+            BIND_MF_OVERLOAD(wxRect, Inflate,
                 wxRect, (wxCoord, wxCoord) const)
 
-            BIND_MEMBER_OVERLOAD(wxRect, Deflate,
+            BIND_MF_OVERLOAD(wxRect, Deflate,
                 wxRect, (wxCoord, wxCoord) const)
-            BIND_MEMBER_OVERLOAD(wxRect, Deflate,
+            BIND_MF_OVERLOAD(wxRect, Deflate,
                 wxRect&, (wxCoord, wxCoord))
-            BIND_MEMBER_OVERLOAD(wxRect, Deflate,
+            BIND_MF_OVERLOAD(wxRect, Deflate,
                 wxRect&, (const wxSize&))
-            BIND_MEMBER_OVERLOAD(wxRect, Deflate,
+            BIND_MF_OVERLOAD(wxRect, Deflate,
                 wxRect&, (wxCoord))
-            BIND_MEMBER_OVERLOAD(wxRect, Deflate,
+            BIND_MF_OVERLOAD(wxRect, Deflate,
                 wxRect, (wxCoord, wxCoord) const)
 
-            BIND_MEMBER_OVERLOAD(wxRect, Offset,
+            BIND_MF_OVERLOAD(wxRect, Offset,
                 void, (wxCoord, wxCoord))
-            BIND_MEMBER_OVERLOAD(wxRect, Offset,
+            BIND_MF_OVERLOAD(wxRect, Offset,
                 void, (const wxPoint&))
 
-            BIND_MEMBER_OVERLOAD(wxRect, Intersect,
+            BIND_MF_OVERLOAD(wxRect, Intersect,
                 wxRect&, (const wxRect&))
-            BIND_MEMBER_OVERLOAD(wxRect, Intersect,
+            BIND_MF_OVERLOAD(wxRect, Intersect,
                 wxRect, (const wxRect&)const)
 
-            BIND_MEMBER_OVERLOAD(wxRect, Union,
+            BIND_MF_OVERLOAD(wxRect, Union,
                 wxRect&, (const wxRect&))
-            BIND_MEMBER_OVERLOAD(wxRect, Union,
+            BIND_MF_OVERLOAD(wxRect, Union,
                 wxRect, (const wxRect&)const)
 
-            BIND_OPERATOR_C(==, const wxRect&)
+            BIND_OP_C(==, const wxRect&)
+            // FIXME: cannot support != in LUA ??
             //BIND_OPERATOR(!=, const wxRect&)
 
-            BIND_MEMBER_OVERLOAD(wxRect, Contains, bool, (int,int)const)
-            BIND_MEMBER_OVERLOAD(wxRect, Contains, bool, (const wxPoint&)const)
-            BIND_MEMBER_OVERLOAD(wxRect, Contains, bool, (const wxRect&)const)
+            BIND_MF_OVERLOAD(wxRect, Contains, bool, (int,int)const)
+            BIND_MF_OVERLOAD(wxRect, Contains, bool, (const wxPoint&)const)
+            BIND_MF_OVERLOAD(wxRect, Contains, bool, (const wxRect&)const)
 
-            BIND_MEMBER_FUNC(wxRect, Intersects)
-            BIND_OPERATOR_C(+, const wxRect&)
+            BIND_MF(wxRect, Intersects)
+            BIND_OP_C(+, const wxRect&)
 
-            BIND_MEMBER_FUNC(wxRect, CentreIn)
-            BIND_MEMBER_FUNC(wxRect, CenterIn)
+            BIND_MF(wxRect, CentreIn)
+            BIND_MF(wxRect, CenterIn)
 
-            BIND_MEMBER_DATA(wxRect, x)
-            BIND_MEMBER_DATA(wxRect, y)
-            BIND_MEMBER_DATA(wxRect, width)
-            BIND_MEMBER_DATA(wxRect, height)
+            BIND_MD(wxRect, x)
+            BIND_MD(wxRect, y)
+            BIND_MD(wxRect, width)
+            BIND_MD(wxRect, height)
 
             BIND_CLASS_PRINT()
-    ];
+        END_BIND_CLASS(wxRect)
+    END_BIND_MODULE(wx)
 
     // enum: wxBitmapType
     BEGIN_LUA_TABLE(wx)
@@ -344,32 +341,31 @@ int luaopen_gdicmn(lua_State* L)
     END_LUA_TABLE(wx)
 
     // special macro
-    module(L, "wx")
-    [
-        BIND_FUNC_WITH_NAME(wxICON, Create_wxIcon),
-        BIND_FUNC_WITH_NAME(wxBITMAP, Create_wxBitmap)
-    ];
+    BEGIN_BIND_MODULE(wx)
+        BIND_FUNC_NAME(wxICON, Create_wxIcon)
+        BIND_FUNC_NAME(wxBITMAP, Create_wxBitmap)
+    END_BIND_MODULE(wx)
 
-    module(L, "wx")
-    [
+    BEGIN_BIND_MODULE(wx)
+
         BEGIN_BIND_CLASS(wxPenList, PenList)
-            BIND_MEMBER_FUNC(wxPenList, FindOrCreatePen)
+            BIND_MF(wxPenList, FindOrCreatePen)
         END_BIND_CLASS(wxPenList)
 
         BEGIN_BIND_CLASS(wxBrushList, BrushList)
-            BIND_MEMBER_FUNC(wxBrushList, FindOrCreateBrush)
+            BIND_MF(wxBrushList, FindOrCreateBrush)
         END_BIND_CLASS(wxBrushList)
 
         BEGIN_BIND_CLASS(wxFontList, FontList)
-            BIND_MEMBER_FUNC(wxFontList, FindOrCreateFont)
+            BIND_MF(wxFontList, FindOrCreateFont)
         END_BIND_CLASS(wxFontList)
 
         BEGIN_BIND_CLASS(wxColourDatabase, ColourDatabase)
             BIND_CTOR()
 
-            BIND_MEMBER_FUNC(wxColourDatabase, Find)
-            BIND_MEMBER_FUNC(wxColourDatabase, FindName)
-            BIND_MEMBER_FUNC(wxColourDatabase, AddColour)
+            BIND_MF(wxColourDatabase, Find)
+            BIND_MF(wxColourDatabase, FindName)
+            BIND_MF(wxColourDatabase, AddColour)
         END_BIND_CLASS(wxColourDatabase)
 
         BEGIN_BIND_CLASS(wxResourceCache, ResourceCache)
@@ -383,17 +379,17 @@ int luaopen_gdicmn(lua_State* L)
             BIND_CTOR()
 
             BEGIN_BIND_SCOPE()
-                BIND_STATIC_FUNC(wxStockGDI, DeleteAll),
-                BIND_STATIC_FUNC(wxStockGDI, instance),
-                BIND_STATIC_FUNC(wxStockGDI, GetBrush),
-                BIND_STATIC_FUNC(wxStockGDI, GetColour),
-                BIND_STATIC_FUNC(wxStockGDI, GetCursor),
-                BIND_STATIC_FUNC(wxStockGDI, GetPen)
+                BIND_SMF(wxStockGDI, DeleteAll)
+                BIND_SMF(wxStockGDI, instance)
+                BIND_SMF(wxStockGDI, GetBrush)
+                BIND_SMF(wxStockGDI, GetColour)
+                BIND_SMF(wxStockGDI, GetCursor)
+                BIND_SMF(wxStockGDI, GetPen)
             END_BIND_SCOPE()
 
-            BIND_MEMBER_FUNC(wxStockGDI, GetFont)
-
-    ];
+            BIND_MF(wxStockGDI, GetFont)
+        END_BIND_CLASS(wxStockGDI)
+    END_BIND_MODULE(wx)
 
     // bind global variables
     BEGIN_LUA_TABLE(wx)
@@ -416,275 +412,274 @@ int luaopen_gdicmn(lua_State* L)
     END_LUA_TABLE(wx)
 
     // bind global extern functions
-    module(L, "wx")
-    [
-        BIND_FUNC(wxInitializeStockLists),
-        BIND_FUNC(wxDeleteStockLists),
-        BIND_FUNC(wxColourDisplay),
-        BIND_FUNC(wxDisplayDepth),
-        BIND_FUNC_WITH_NAME(wxGetDisplayDepth, wxDisplayDepth),
-        BIND_FUNC(wxDisplaySize),
-        BIND_FUNC(wxGetDisplaySize),
-        BIND_FUNC(wxDisplaySizeMM),
-        BIND_FUNC(wxGetDisplaySizeMM),
-        BIND_FUNC(wxClientDisplayRect),
-        BIND_FUNC(wxGetClientDisplayRect),
+    BEGIN_BIND_MODULE(wx)
+        BIND_FUNC(wxInitializeStockLists)
+        BIND_FUNC(wxDeleteStockLists)
+        BIND_FUNC(wxColourDisplay)
+        BIND_FUNC(wxDisplayDepth)
+        BIND_FUNC_NAME(wxGetDisplayDepth, wxDisplayDepth)
+        BIND_FUNC(wxDisplaySize)
+        BIND_FUNC(wxGetDisplaySize)
+        BIND_FUNC(wxDisplaySizeMM)
+        BIND_FUNC(wxGetDisplaySizeMM)
+        BIND_FUNC(wxClientDisplayRect)
+        BIND_FUNC(wxGetClientDisplayRect)
         BIND_FUNC(wxSetCursor)
-    ];
+    END_BIND_MODULE(wx)
 
     // dc related classes
-    module(L, "wx")
-    [
-        BEGIN_BIND_CLASS_WX(wxDC, DC)
-            BIND_MEMBER_FUNC(wxDC, DrawObject)
+    BEGIN_BIND_MODULE(wx)
 
-            BIND_MEMBER_OVERLOAD(wxDC, FloodFill,
+        BEGIN_BIND_CLASS_WX(wxDC, DC)
+            BIND_MF(wxDC, DrawObject)
+
+            BIND_MF_OVERLOAD(wxDC, FloodFill,
                 bool, (wxCoord,wxCoord,const wxColour&,int))
-            BIND_MEMBER_OVERLOAD(wxDC, FloodFill,
+            BIND_MF_OVERLOAD(wxDC, FloodFill,
                 bool, (const wxPoint&, const wxColour&,int))
 
-            BIND_MEMBER_OVERLOAD(wxDC, GradientFillConcentric,
+            BIND_MF_OVERLOAD(wxDC, GradientFillConcentric,
                 void, (const wxRect&,const wxColour&,const wxColour&))
-            BIND_MEMBER_OVERLOAD(wxDC, GradientFillConcentric,
+            BIND_MF_OVERLOAD(wxDC, GradientFillConcentric,
                 void, (const wxRect&,const wxColour&,const wxColour&,const wxPoint&))
 
-            BIND_MEMBER_FUNC(wxDC, GradientFillLinear)
+            BIND_MF(wxDC, GradientFillLinear)
 
-            BIND_MEMBER_OVERLOAD(wxDC, GetPixel,
+            BIND_MF_OVERLOAD(wxDC, GetPixel,
                 bool, (wxCoord,wxCoord,wxColour*)const)
-            BIND_MEMBER_OVERLOAD(wxDC, GetPixel,
+            BIND_MF_OVERLOAD(wxDC, GetPixel,
                 bool, (const wxPoint&,wxColour*)const)
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawLine,
+            BIND_MF_OVERLOAD(wxDC, DrawLine,
                 void, (wxCoord,wxCoord,wxCoord,wxCoord))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawLine,
+            BIND_MF_OVERLOAD(wxDC, DrawLine,
                 void, (const wxPoint&,const wxPoint&))
 
-            BIND_MEMBER_OVERLOAD(wxDC, CrossHair,
+            BIND_MF_OVERLOAD(wxDC, CrossHair,
                 void, (wxCoord,wxCoord))
-            BIND_MEMBER_OVERLOAD(wxDC, CrossHair,
+            BIND_MF_OVERLOAD(wxDC, CrossHair,
                 void, (const wxPoint&))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawArc,
+            BIND_MF_OVERLOAD(wxDC, DrawArc,
                 void, (wxCoord,wxCoord,wxCoord,wxCoord,wxCoord,wxCoord))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawArc,
+            BIND_MF_OVERLOAD(wxDC, DrawArc,
                 void, (const wxPoint&, const wxPoint&,const wxPoint&))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawCheckMark,
+            BIND_MF_OVERLOAD(wxDC, DrawCheckMark,
                 void, (wxCoord,wxCoord,wxCoord,wxCoord))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawCheckMark,
+            BIND_MF_OVERLOAD(wxDC, DrawCheckMark,
                 void, (const wxRect&))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawEllipticArc,
+            BIND_MF_OVERLOAD(wxDC, DrawEllipticArc,
                 void, (wxCoord,wxCoord,wxCoord,wxCoord,double,double))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawEllipticArc,
+            BIND_MF_OVERLOAD(wxDC, DrawEllipticArc,
                 void, (const wxPoint&,const wxSize&,double,double))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawPoint,
+            BIND_MF_OVERLOAD(wxDC, DrawPoint,
                 void, (wxCoord,wxCoord))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawPoint,
+            BIND_MF_OVERLOAD(wxDC, DrawPoint,
                 void, (const wxPoint&))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawLines,
+            BIND_MF_OVERLOAD(wxDC, DrawLines,
                 void, (int,wxPoint[],wxCoord,wxCoord))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawLines,
+            BIND_MF_OVERLOAD(wxDC, DrawLines,
                 void, (const wxList*, wxCoord, wxCoord))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawPolygon,
+            BIND_MF_OVERLOAD(wxDC, DrawPolygon,
                 void, (int, wxPoint[], wxCoord, wxCoord, int))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawPolygon,
+            BIND_MF_OVERLOAD(wxDC, DrawPolygon,
                 void, (const wxList*, wxCoord, wxCoord, int))
 
-            BIND_MEMBER_FUNC(wxDC, DrawPolyPolygon)
+            BIND_MF(wxDC, DrawPolyPolygon)
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawRectangle,
+            BIND_MF_OVERLOAD(wxDC, DrawRectangle,
                 void, (wxCoord, wxCoord, wxCoord, wxCoord))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawRectangle,
+            BIND_MF_OVERLOAD(wxDC, DrawRectangle,
                 void, (const wxPoint&, const wxSize&))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawRectangle,
+            BIND_MF_OVERLOAD(wxDC, DrawRectangle,
                 void, (const wxRect&))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawRoundedRectangle,
+            BIND_MF_OVERLOAD(wxDC, DrawRoundedRectangle,
                 void, (wxCoord, wxCoord, wxCoord, wxCoord, double))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawRoundedRectangle,
+            BIND_MF_OVERLOAD(wxDC, DrawRoundedRectangle,
                 void, (const wxPoint&, const wxSize&, double))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawRoundedRectangle,
+            BIND_MF_OVERLOAD(wxDC, DrawRoundedRectangle,
                 void, (const wxRect&, double))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawCircle,
+            BIND_MF_OVERLOAD(wxDC, DrawCircle,
                 void, (wxCoord, wxCoord, wxCoord))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawCircle,
+            BIND_MF_OVERLOAD(wxDC, DrawCircle,
                 void, (const wxPoint&, wxCoord))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawEllipse,
+            BIND_MF_OVERLOAD(wxDC, DrawEllipse,
                 void, (wxCoord, wxCoord, wxCoord, wxCoord))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawEllipse,
+            BIND_MF_OVERLOAD(wxDC, DrawEllipse,
                 void, (const wxPoint&, const wxSize&))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawEllipse,
+            BIND_MF_OVERLOAD(wxDC, DrawEllipse,
                 void, (const wxRect&))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawIcon,
+            BIND_MF_OVERLOAD(wxDC, DrawIcon,
                 void, (const wxIcon&, wxCoord, wxCoord))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawIcon,
+            BIND_MF_OVERLOAD(wxDC, DrawIcon,
                 void, (const wxIcon&, const wxPoint&))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawBitmap,
+            BIND_MF_OVERLOAD(wxDC, DrawBitmap,
                 void, (const wxBitmap&, wxCoord, wxCoord, bool))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawBitmap,
+            BIND_MF_OVERLOAD(wxDC, DrawBitmap,
                 void, (const wxBitmap&, const wxPoint&, bool))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawText,
+            BIND_MF_OVERLOAD(wxDC, DrawText,
                 void, (const wxString&, wxCoord, wxCoord))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawText,
+            BIND_MF_OVERLOAD(wxDC, DrawText,
                 void, (const wxString&, const wxPoint&))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawRotatedText,
+            BIND_MF_OVERLOAD(wxDC, DrawRotatedText,
                 void, (const wxString&, wxCoord, wxCoord, double))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawRotatedText,
+            BIND_MF_OVERLOAD(wxDC, DrawRotatedText,
                 void, (const wxString&, const wxPoint&, double))
 
-            BIND_MEMBER_OVERLOAD(wxDC, DrawLabel,
+            BIND_MF_OVERLOAD(wxDC, DrawLabel,
                 void, (const wxString&, const wxBitmap&, const wxRect&,
                     int, int, wxRect*))
-            BIND_MEMBER_OVERLOAD(wxDC, DrawLabel,
+            BIND_MF_OVERLOAD(wxDC, DrawLabel,
                 void, (const wxString&, const wxRect&, int, int))
 
             // luabind only support 9 arguments
             //BIND_MEMBER_OVERLOAD(wxDC, Blit,
             //    bool, (wxCoord, wxCoord, wxCoord, wxCoord,
             //        wxDC*, wxCoord, wxCoord, int, bool, wxCoord, wxCoord))
-            BIND_MEMBER_OVERLOAD(wxDC, Blit,
+            BIND_MF_OVERLOAD(wxDC, Blit,
                 bool, (const wxPoint&, const wxSize&,
                     wxDC*, const wxPoint&, int, bool, const wxPoint&))
 
-            BIND_MEMBER_FUNC(wxDC, GetAsBitmap)
-            BIND_MEMBER_FUNC(wxDC, Clear)
-            BIND_MEMBER_FUNC(wxDC, StartDoc)
-            BIND_MEMBER_FUNC(wxDC, EndDoc)
-            BIND_MEMBER_FUNC(wxDC, StartPage)
-            BIND_MEMBER_FUNC(wxDC, EndPage)
+            BIND_MF(wxDC, GetAsBitmap)
+            BIND_MF(wxDC, Clear)
+            BIND_MF(wxDC, StartDoc)
+            BIND_MF(wxDC, EndDoc)
+            BIND_MF(wxDC, StartPage)
+            BIND_MF(wxDC, EndPage)
 
-            BIND_MEMBER_FUNC(wxDC, SetFont)
-            BIND_MEMBER_FUNC(wxDC, SetPen)
-            BIND_MEMBER_FUNC(wxDC, SetBrush)
-            BIND_MEMBER_FUNC(wxDC, SetBackground)
-            BIND_MEMBER_FUNC(wxDC, SetBackgroundMode)
+            BIND_MF(wxDC, SetFont)
+            BIND_MF(wxDC, SetPen)
+            BIND_MF(wxDC, SetBrush)
+            BIND_MF(wxDC, SetBackground)
+            BIND_MF(wxDC, SetBackgroundMode)
 
-            BIND_MEMBER_OVERLOAD(wxDC, SetClippingRegion,
+            BIND_MF_OVERLOAD(wxDC, SetClippingRegion,
                 void, (wxCoord, wxCoord, wxCoord, wxCoord))
-            BIND_MEMBER_OVERLOAD(wxDC, SetClippingRegion,
+            BIND_MF_OVERLOAD(wxDC, SetClippingRegion,
                 void, (const wxPoint&, const wxSize&))
-            BIND_MEMBER_OVERLOAD(wxDC, SetClippingRegion,
+            BIND_MF_OVERLOAD(wxDC, SetClippingRegion,
                 void, (const wxRect&))
-            BIND_MEMBER_OVERLOAD(wxDC, SetClippingRegion,
+            BIND_MF_OVERLOAD(wxDC, SetClippingRegion,
                 void, (const wxRegion&))
 
-            BIND_MEMBER_FUNC(wxDC, DestroyClippingRegion)
+            BIND_MF(wxDC, DestroyClippingRegion)
 
-            BIND_MEMBER_OVERLOAD(wxDC, GetClippingBox,
+            BIND_MF_OVERLOAD(wxDC, GetClippingBox,
                 void, (wxCoord*, wxCoord*, wxCoord*, wxCoord*) const)
-            BIND_MEMBER_OVERLOAD(wxDC, GetClippingBox,
+            BIND_MF_OVERLOAD(wxDC, GetClippingBox,
                 void, (wxRect&) const)
 
-            BIND_MEMBER_FUNC(wxDC, GetCharHeight)
-            BIND_MEMBER_FUNC(wxDC, GetCharWidth)
+            BIND_MF(wxDC, GetCharHeight)
+            BIND_MF(wxDC, GetCharWidth)
 
-            BIND_MEMBER_OVERLOAD(wxDC, GetTextExtent,
+            BIND_MF_OVERLOAD(wxDC, GetTextExtent,
                 void, (const wxString&, wxCoord *, wxCoord *,
                     wxCoord *, wxCoord *, wxFont *) const)
-            BIND_MEMBER_OVERLOAD(wxDC, GetTextExtent,
+            BIND_MF_OVERLOAD(wxDC, GetTextExtent,
                 wxSize, (const wxString&) const)
 
-            BIND_MEMBER_OVERLOAD(wxDC, GetMultiLineTextExtent,
+            BIND_MF_OVERLOAD(wxDC, GetMultiLineTextExtent,
                 void, (const wxString&, wxCoord *, wxCoord *,
                     wxCoord *, wxFont *) const)
-            BIND_MEMBER_OVERLOAD(wxDC, GetMultiLineTextExtent,
+            BIND_MF_OVERLOAD(wxDC, GetMultiLineTextExtent,
                 wxSize, (const wxString&) const)
 
-            BIND_MEMBER_FUNC(wxDC, GetPartialTextExtents)
+            BIND_MF(wxDC, GetPartialTextExtents)
 
-            BIND_MEMBER_OVERLOAD(wxDC, GetSize,
+            BIND_MF_OVERLOAD(wxDC, GetSize,
                 void, (int*, int*) const)
-            BIND_MEMBER_OVERLOAD(wxDC, GetSize,
+            BIND_MF_OVERLOAD(wxDC, GetSize,
                 wxSize, ()const)
 
-            BIND_MEMBER_OVERLOAD(wxDC, GetSizeMM,
+            BIND_MF_OVERLOAD(wxDC, GetSizeMM,
                 void, (int*, int*) const)
-            BIND_MEMBER_OVERLOAD(wxDC, GetSizeMM,
+            BIND_MF_OVERLOAD(wxDC, GetSizeMM,
                 wxSize, ()const)
 
-            BIND_MEMBER_FUNC(wxDC, DeviceToLogicalX)
-            BIND_MEMBER_FUNC(wxDC, DeviceToLogicalY)
-            BIND_MEMBER_FUNC(wxDC, DeviceToLogicalXRel)
-            BIND_MEMBER_FUNC(wxDC, DeviceToLogicalYRel)
-            BIND_MEMBER_FUNC(wxDC, LogicalToDeviceX)
-            BIND_MEMBER_FUNC(wxDC, LogicalToDeviceY)
-            BIND_MEMBER_FUNC(wxDC, LogicalToDeviceXRel)
-            BIND_MEMBER_FUNC(wxDC, LogicalToDeviceYRel)
+            BIND_MF(wxDC, DeviceToLogicalX)
+            BIND_MF(wxDC, DeviceToLogicalY)
+            BIND_MF(wxDC, DeviceToLogicalXRel)
+            BIND_MF(wxDC, DeviceToLogicalYRel)
+            BIND_MF(wxDC, LogicalToDeviceX)
+            BIND_MF(wxDC, LogicalToDeviceY)
+            BIND_MF(wxDC, LogicalToDeviceXRel)
+            BIND_MF(wxDC, LogicalToDeviceYRel)
 
-            BIND_MEMBER_FUNC(wxDC, CanDrawBitmap)
-            BIND_MEMBER_FUNC(wxDC, CanGetTextExtent)
-            BIND_MEMBER_FUNC(wxDC, GetDepth)
-            BIND_MEMBER_FUNC(wxDC, GetPPI)
-            BIND_MEMBER_FUNC(wxDC, Ok)
-            BIND_MEMBER_FUNC(wxDC, IsOk)
-            BIND_MEMBER_FUNC(wxDC, GetBackgroundMode)
-            BIND_MEMBER_FUNC(wxDC, GetBackground)
-            BIND_MEMBER_FUNC(wxDC, GetBrush)
-            BIND_MEMBER_FUNC(wxDC, GetFont)
-            BIND_MEMBER_FUNC(wxDC, GetPen)
-            BIND_MEMBER_FUNC(wxDC, GetTextForeground)
-            BIND_MEMBER_FUNC(wxDC, GetTextBackground)
-            BIND_MEMBER_FUNC(wxDC, SetTextForeground)
-            BIND_MEMBER_FUNC(wxDC, SetTextBackground)
-            BIND_MEMBER_FUNC(wxDC, GetMapMode)
-            BIND_MEMBER_FUNC(wxDC, SetMapMode)
-            BIND_MEMBER_FUNC(wxDC, GetUserScale)
-            BIND_MEMBER_FUNC(wxDC, SetUserScale)
-            BIND_MEMBER_FUNC(wxDC, GetLogicalScale)
-            BIND_MEMBER_FUNC(wxDC, SetLogicalScale)
+            BIND_MF(wxDC, CanDrawBitmap)
+            BIND_MF(wxDC, CanGetTextExtent)
+            BIND_MF(wxDC, GetDepth)
+            BIND_MF(wxDC, GetPPI)
+            BIND_MF(wxDC, Ok)
+            BIND_MF(wxDC, IsOk)
+            BIND_MF(wxDC, GetBackgroundMode)
+            BIND_MF(wxDC, GetBackground)
+            BIND_MF(wxDC, GetBrush)
+            BIND_MF(wxDC, GetFont)
+            BIND_MF(wxDC, GetPen)
+            BIND_MF(wxDC, GetTextForeground)
+            BIND_MF(wxDC, GetTextBackground)
+            BIND_MF(wxDC, SetTextForeground)
+            BIND_MF(wxDC, SetTextBackground)
+            BIND_MF(wxDC, GetMapMode)
+            BIND_MF(wxDC, SetMapMode)
+            BIND_MF(wxDC, GetUserScale)
+            BIND_MF(wxDC, SetUserScale)
+            BIND_MF(wxDC, GetLogicalScale)
+            BIND_MF(wxDC, SetLogicalScale)
 
-            BIND_MEMBER_OVERLOAD(wxDC, GetLogicalOrigin,
+            BIND_MF_OVERLOAD(wxDC, GetLogicalOrigin,
                 void, (wxCoord*, wxCoord*) const)
-            BIND_MEMBER_OVERLOAD(wxDC, GetLogicalOrigin,
+            BIND_MF_OVERLOAD(wxDC, GetLogicalOrigin,
                 wxPoint, () const)
 
-            BIND_MEMBER_FUNC(wxDC, SetLogicalOrigin)
+            BIND_MF(wxDC, SetLogicalOrigin)
 
-            BIND_MEMBER_OVERLOAD(wxDC, GetDeviceOrigin,
+            BIND_MF_OVERLOAD(wxDC, GetDeviceOrigin,
                 void, (wxCoord*, wxCoord*) const)
-            BIND_MEMBER_OVERLOAD(wxDC, GetDeviceOrigin,
+            BIND_MF_OVERLOAD(wxDC, GetDeviceOrigin,
                 wxPoint, () const)
 
-            BIND_MEMBER_FUNC(wxDC, SetDeviceOrigin)
+            BIND_MF(wxDC, SetDeviceOrigin)
 
-            BIND_MEMBER_FUNC(wxDC, ComputeScaleAndOrigin)
-            BIND_MEMBER_FUNC(wxDC, SetAxisOrientation)
-            BIND_MEMBER_FUNC(wxDC, GetLogicalFunction)
-            BIND_MEMBER_FUNC(wxDC, SetLogicalFunction)
+            BIND_MF(wxDC, ComputeScaleAndOrigin)
+            BIND_MF(wxDC, SetAxisOrientation)
+            BIND_MF(wxDC, GetLogicalFunction)
+            BIND_MF(wxDC, SetLogicalFunction)
 
-            BIND_MEMBER_FUNC(wxDC, CalcBoundingBox)
-            BIND_MEMBER_FUNC(wxDC, ResetBoundingBox)
+            BIND_MF(wxDC, CalcBoundingBox)
+            BIND_MF(wxDC, ResetBoundingBox)
 
-            BIND_MEMBER_FUNC(wxDC, MinX)
-            BIND_MEMBER_FUNC(wxDC, MaxX)
-            BIND_MEMBER_FUNC(wxDC, MinY)
-            BIND_MEMBER_FUNC(wxDC, MaxY)
+            BIND_MF(wxDC, MinX)
+            BIND_MF(wxDC, MaxX)
+            BIND_MF(wxDC, MinY)
+            BIND_MF(wxDC, MaxY)
 
-            BIND_MEMBER_OVERLOAD(wxDC, GetTextExtent,
+            BIND_MF_OVERLOAD(wxDC, GetTextExtent,
                 void, (const wxString&, wxCoord*, wxCoord*, wxCoord*, wxCoord*, wxFont*) const)
-            BIND_MEMBER_OVERLOAD(wxDC, GetTextExtent,
+            BIND_MF_OVERLOAD(wxDC, GetTextExtent,
                 wxSize, (const wxString&) const)
 
-            BIND_MEMBER_FUNC(wxDC, GetLayoutDirection)
-            BIND_MEMBER_FUNC(wxDC, SetLayoutDirection)
+            BIND_MF(wxDC, GetLayoutDirection)
+            BIND_MF(wxDC, SetLayoutDirection)
 
         END_BIND_CLASS(wxDC)
 
         BEGIN_BIND_CLASS(wxDCTextColourChanger, DCTextColourChanger)
             BIND_CTOR(wxDC&)
             BIND_CTOR(wxDC&, const wxColour&)
-            BIND_MEMBER_FUNC(wxDCTextColourChanger, Set)
+            BIND_MF(wxDCTextColourChanger, Set)
         END_BIND_CLASS(wxDCTextColourChanger)
 
         BEGIN_BIND_CLASS(wxDCPenChanger, DCPenChanger)
@@ -704,8 +699,9 @@ int luaopen_gdicmn(lua_State* L)
         BEGIN_BIND_CLASS(wxWindowDC, WindowDC, wxDC)
             BIND_CTOR()
             BIND_CTOR(wxWindow*)
+        END_BIND_CLASS(wxWindowDC)
 
-    ];
+    END_BIND_MODULE(wx)
 
     return 0;
 }

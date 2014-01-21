@@ -1,11 +1,6 @@
 #include <precompile.h>
 
-EXTERN_C
-int luaopen_toplevel(lua_State* L);
-
 REGISTER_WXLUA_BIND(toplevel)
-
-int luaopen_toplevel(lua_State* L)
 {
     BEGIN_LUA_TABLE(wx)
         BIND_MACRO(wxSTAY_ON_TOP)
@@ -36,6 +31,50 @@ int luaopen_toplevel(lua_State* L)
         BIND_ENUM(wxUSER_ATTENTION_ERROR)
 
     END_LUA_TABLE(wx)
+
+    BEGIN_BIND_MODULE(wx)
+
+        BEGIN_BIND_CLASS(wxTopLevelWindow, TopLevelWindow, wxWindow)
+            BIND_CTOR()
+
+            BIND_MF(wxTopLevelWindow, Maximize)
+            BIND_MF(wxTopLevelWindow, Restore)
+            BIND_MF(wxTopLevelWindow, Iconize)
+            BIND_MF(wxTopLevelWindow, IsMaximized)
+            BIND_MF(wxTopLevelWindow, IsAlwaysMaximized)
+            BIND_MF(wxTopLevelWindow, IsIconized)
+            BIND_MF(wxTopLevelWindow, GetIcon)
+            BIND_MF(wxTopLevelWindow, GetIcons)
+            BIND_MF(wxTopLevelWindow, SetIcon)
+            BIND_MF(wxTopLevelWindow, SetIcons)
+            BIND_MF(wxTopLevelWindow, ShowFullScreen)
+            BIND_MF(wxTopLevelWindow, IsFullScreen)
+            BIND_MF(wxTopLevelWindow, GetTitle)
+            BIND_MF(wxTopLevelWindow, EnableCloseButton)
+            BIND_MF(wxTopLevelWindow, SetShape)
+            BIND_MF(wxTopLevelWindow, RequestUserAttention)
+            BIND_MF(wxTopLevelWindow, IsActive)
+            BIND_MF(wxTopLevelWindow, ShouldPreventAppExit)
+            BIND_MF(wxTopLevelWindow, CentreOnScreen)
+            BIND_MF(wxTopLevelWindow, CenterOnScreen)
+            BIND_MF(wxTopLevelWindow, RemoveChild)
+            BIND_MF(wxTopLevelWindow, GetDefaultItem)
+            BIND_MF(wxTopLevelWindow, SetDefaultItem)
+            BIND_MF(wxTopLevelWindow, GetTmpDefaultItem)
+            BIND_MF(wxTopLevelWindow, SetTmpDefaultItem)
+            BIND_MF(wxTopLevelWindow, Destroy)
+            BIND_MF(wxTopLevelWindow, IsTopLevel)
+            BIND_MF(wxTopLevelWindow, IsVisible)
+            BIND_MF(wxTopLevelWindow, OnCloseWindow)
+            BIND_MF(wxTopLevelWindow, OnSize)
+            BIND_MF(wxTopLevelWindow, GetRectForTopLevelChildren)
+            BIND_MF(wxTopLevelWindow, OnActivate)
+            BIND_MF(wxTopLevelWindow, DoUpdateWindowUI)
+            BIND_MF(wxTopLevelWindow, SetMinSize)
+            BIND_MF(wxTopLevelWindow, SetMaxSize)
+            BIND_MF(wxTopLevelWindow, DoSetSizeHints)
+        END_BIND_CLASS(wxTopLevelWindow)
+    END_BIND_MODULE(wx)
 
     return 0;
 }

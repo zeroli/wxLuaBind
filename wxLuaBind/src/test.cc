@@ -97,6 +97,7 @@ int WXLUABIND_API init(lua_State* L)
 
         module(L)
         [
+            scope(def("greet", (void(*)())&greet)),
             //enum_("constants")
             //[
             //    value("E1", E1),
@@ -105,7 +106,7 @@ int WXLUABIND_API init(lua_State* L)
             //],
 
             // bind: overloaded free functions
-            def("greet", (void(*)())&greet),
+            //def("greet", (void(*)())&greet),
             def("greet", (void(*)(const char*))&greet),
 
             // bind: class and its member functions

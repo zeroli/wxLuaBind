@@ -61,14 +61,8 @@
     BIND_CTOR(TITLE_WIN_CREATOR_ARGS_6()) \
     BIND_CTOR(TITLE_WIN_CREATOR_ARGS_7())
 
-    //.def(constructor<TITLE_WIN_CREATOR_ARGS_MIN()>())\
-    //.def(constructor<TITLE_WIN_CREATOR_ARGS_4()>())\
-    //.def(constructor<TITLE_WIN_CREATOR_ARGS_5()>())\
-    //.def(constructor<TITLE_WIN_CREATOR_ARGS_6()>())\
-    //.def(constructor<TITLE_WIN_CREATOR_ARGS_7()>())
-
 // ============================================
 #define BIND_WIN_CREATE_FUNC(class) \
-    BIND_MEMBER_FUNC(class, Create)
+    BIND_MF(class, Create)
 
 #endif  // WXLUABIND_WIN_BIND_HELPER_H_

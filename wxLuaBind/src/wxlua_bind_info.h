@@ -33,7 +33,11 @@ private:
 };
 
 #define REGISTER_WXLUA_BIND(name, ...) \
-    wxLuaBindInfo wxLB_##name(wxT(#name), (wxLuaBindFunc)luaopen_##name, ##__VA_ARGS__);
+    EXTERN_C int luaopen_##name(lua_State* L); \
+    wxLuaBindInfo wxLB_##name(wxT(#name), \
+        (wxLuaBindFunc)luaopen_##name, ##__VA_ARGS__); \
+    int luaopen_##name(lua_State* L)
+
 #define REGISTER_WXLUA_PREBIND(name) \
     REGISTER_WXLUA_BIND(name, true)
 

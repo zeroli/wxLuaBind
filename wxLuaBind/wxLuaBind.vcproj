@@ -194,6 +194,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\menu_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\panel_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\toplevel_bind.cc"
 					>
 				</File>
@@ -211,6 +219,10 @@
 				</File>
 				<File
 					RelativePath=".\src\defs_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\event_bind.cc"
 					>
 				</File>
 				<File

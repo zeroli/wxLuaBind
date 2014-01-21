@@ -1,11 +1,6 @@
 #include <precompile.h>
 
-EXTERN_C
-int luaopen_defs(lua_State* L);
-
 REGISTER_WXLUA_BIND(defs)
-
-int luaopen_defs(lua_State* L)
 {
     BEGIN_LUA_TABLE(wx)
         BIND_TABLE_VALUE(NULL, nil)
@@ -128,6 +123,7 @@ int luaopen_defs(lua_State* L)
         BIND_ENUM(wxID_HIGHEST)
 
     END_LUA_TABLE(wx)
+
     return 0;
 }
 
