@@ -1,6 +1,7 @@
 #include <precompile.h>
 
-#include "string_bind.h"
+EXTERN_C
+int luaopen_wxstring(lua_State* L);
 
 REGISTER_WXLUA_BIND(wxstring)
 

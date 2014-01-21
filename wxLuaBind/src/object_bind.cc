@@ -1,6 +1,7 @@
 #include <precompile.h>
 
-#include "object_bind.h"
+EXTERN_C
+int luaopen_wxobject(lua_State* L);
 
 REGISTER_WXLUA_PREBIND(wxobject)
 

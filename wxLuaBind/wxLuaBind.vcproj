@@ -190,15 +190,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\frame_bind.h"
-					>
-				</File>
-				<File
 					RelativePath=".\src\gdicmn_bind.cc"
-					>
-				</File>
-				<File
-					RelativePath=".\src\gdicmn_bind.h"
 					>
 				</File>
 				<File
@@ -206,15 +198,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\toplevel_bind.h"
-					>
-				</File>
-				<File
 					RelativePath=".\src\window_bind.cc"
-					>
-				</File>
-				<File
-					RelativePath=".\src\window_bind.h"
 					>
 				</File>
 			</Filter>
@@ -226,15 +210,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\app_bind.h"
-					>
-				</File>
-				<File
 					RelativePath=".\src\defs_bind.cc"
-					>
-				</File>
-				<File
-					RelativePath=".\src\defs_bind.h"
 					>
 				</File>
 				<File
@@ -242,15 +218,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\object_bind.h"
-					>
-				</File>
-				<File
 					RelativePath=".\src\string_bind.cc"
-					>
-				</File>
-				<File
-					RelativePath=".\src\string_bind.h"
 					>
 				</File>
 			</Filter>

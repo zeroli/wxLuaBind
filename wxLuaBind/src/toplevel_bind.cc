@@ -1,6 +1,7 @@
 #include <precompile.h>
 
-#include "toplevel_bind.h"
+EXTERN_C
+int luaopen_toplevel(lua_State* L);
 
 REGISTER_WXLUA_BIND(toplevel)
 

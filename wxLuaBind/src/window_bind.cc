@@ -1,6 +1,7 @@
 #include <precompile.h>
 
-#include "window_bind.h"
+EXTERN_C
+int luaopen_wxwindow(lua_State* L);
 
 REGISTER_WXLUA_PREBIND(wxwindow)
 

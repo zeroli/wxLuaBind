@@ -1,6 +1,7 @@
 #include <precompile.h>
 
-#include "defs_bind.h"
+EXTERN_C
+int luaopen_defs(lua_State* L);
 
 REGISTER_WXLUA_BIND(defs)
 

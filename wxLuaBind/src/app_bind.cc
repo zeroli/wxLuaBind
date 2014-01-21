@@ -1,6 +1,7 @@
 #include <precompile.h>
 
-#include "app_bind.h"
+EXTERN_C
+int luaopen_wxapp(lua_State* L);
 
 REGISTER_WXLUA_BIND(wxapp)
 

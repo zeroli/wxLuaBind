@@ -1,6 +1,7 @@
 #include <precompile.h>
 
-#include "gdicmn_bind.h"
+EXTERN_C
+int luaopen_gdicmn(lua_State* L);
 
 REGISTER_WXLUA_BIND(gdicmn)
 

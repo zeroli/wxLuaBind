@@ -1,6 +1,7 @@
 #include <precompile.h>
 
-#include "frame_bind.h"
+EXTERN_C
+int luaopen_wxframe(lua_State* L);
 
 REGISTER_WXLUA_BIND(wxframe)
 
