@@ -3,7 +3,7 @@
 use strict;
 use Data::Dumper;
 
-require "xmlconfig.pm";
+require "ConfigUtil.pm";
 require "common.pm";
 
 die "perl $0 <class name> <cpp interface file>\n" if @ARGV < 2;

@@ -5,45 +5,7 @@
 package Config;
 
 use Data::Dumper;
-use XML::Simple;
 
-$XML::Simple::PREFERRED_PARSER = 'XML::Parser';
-
-# can parse xml string or xml file
-sub Load {
-	my $xml = shift;
-	my %opts = @_;
-	my %defopts = (keeproot=>0, searchpath=>".", suppressempty=>1, forcearray=>[], noattr=>1, keyattr=>[], contentkey=>"");
-	while (my ($key,$value) = each(%opts)) {
-		$defopts{$key} = $value;
-	}
-	my @inopts = %defopts;
-	return XMLin($xml, @inopts);
-}
-
-# can output pretty xml to one file
-sub Save {
-	my $outxmlf = shift;
-	my $outref = shift;
-	my %opts = @_;
-	unless (defined $outref) {
-		return 0;
-	}
-	my %defopts = (rootname=>"", suppressempty=>1, noattr=>1, keyattr=>[], contentkey=>"");
-	while (my ($key, $value) = each(%opts)) {
-		$defopts{$key} = $value;
-	}
-	open OUTPUT, "> $outxmlf" or return 0;
-	my @outopts = %defopts;
-	my $outf = XMLout($outref, @outopts);
-	# remove blank lines, for empty key
-	my @lines = split(/\n/, $outf);
-	@lines = map{ ($_ =~ m/^\s*$/) ? () : $_} @lines;
-	$outf = join("\n", @lines);
-	print OUTPUT $outf;
-	close OUTPUT;
-	return 1;
-}
 
 # subroutine: get hash pointer of node, i.e. read from one xml file
 # usage:
@@ -345,30 +307,6 @@ sub Clone {
 	return $newnode;
 }
 
-sub Hash2Xml {
-	my $hashref = shift;
-	my %opts = @_;
-	my %defopts = (rootname=>"", suppressempty=>1, noattr=>1, keyattr=>[], contentkey=>[]);
-	while (my ($key, $value) = each(%opts)) {
-		$defopts{$key} = $value;
-	}
-	my @opts = %defopts;
-	my $xml = XMLout($hashref, @opts);
-	return $xml;
-}
-
-sub Xml2Hash {
-	my $xml = shift;
-	my %opts = @_;
-	my %defopts = (keeproot=>1, searchpath =>".", suppressempty=>1, noattr=>1, keyattr=>[], contentkey=>"");
-	while (my ($key, $value) = each(%opts)) {
-		$defopts{$key} = $value;
-	}
-	my @opts = %defopts;	
-	my $hashref = XMLin($xml, @opts);
-	return $hashref;
-}
-
 sub Dump {
 	my ($node, $name) = @_;
 	print STDERR "==HASH NODE('$name')==\n";
@@ -376,11 +314,5 @@ sub Dump {
 	print STDERR "\n";
 }
 
-sub Print {
-	my ($node, $name) = @_;
-	print STDERR "==XML NODE('$name')==\n";
-	print STDERR Hash2Xml($node);
-	print STDERR "\n";
-}
 
 1;
