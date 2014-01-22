@@ -10,7 +10,7 @@ die "perl $0 <class name> <cpp interface file>\n" if @ARGV < 2;
 
 my $class_name = shift;
 my $cpp_ifile = shift; 
-#my $debug = shift;
+#$debug = shift;
 
 my @func_list;
 my $func_decl;
@@ -45,20 +45,10 @@ Debug(Dumper(@func_list));
 
 my $tabspaces = ' 'x4;
 
-my $allcode_cpp;
 my $allcode_macro;
 
 foreach (@func_list) {
     gen_wxluabind_cpp_code($class_name, $_);
-}
-
-if ($allcode_cpp) {
-    Out(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
-    Out("All cpp code wrapper for wxluabind\n");
-    Out(gen_wrap_ns_begin(""));
-    Out($allcode_cpp);
-    Out(gen_wrap_ns_end(""));
-    Out("\n");
 }
 
 if ($allcode_macro) {
@@ -70,7 +60,7 @@ if ($allcode_macro) {
 
 exit 0;
 
-# ==================================================
+# ==========================================
 sub gen_wxluabind_cpp_code {
     my ($class_name, $func_decl) = @_;
 
@@ -84,10 +74,9 @@ sub gen_wxluabind_cpp_code {
     Config::SetConfigData($function, "class_name", $class_name);
     Config::SetConfigData($function, "func", $func_decl);
 
-    my $hasdefault = 0;
     my ($func_type, $ret_type, $func_name, $args_decl, $modifier)
         = parse_cpp_func($func_decl);
-    if ($ret_type && $func_name)
+    if ($func_name)
     {
         Debug("prefix cpp keywords: '$func_type'\n");
         Debug("return type: '$ret_type'\n");
@@ -113,7 +102,6 @@ sub gen_wxluabind_cpp_code {
                 my $defaultval = pop(@array);
                 Config::SetConfigData($argcf, "hasdefault", 1);
                 Config::SetConfigData($argcf, "default", $defaultval);
-                $hasdefault = 1;
             }
             $_ = $array[0];
 
@@ -132,115 +120,48 @@ sub gen_wxluabind_cpp_code {
             Debug("argument name: '$name'\n"); 
         }
         Config::SetConfigData($function, "args_number", $i_arg);
-        Config::SetConfigData($function, "hasdefault_arg", $hasdefault);
     } else {
         Debug("!!!!!Maybe not one correct function declaration.\n");
-        Debug($func_decl);
         return;
     }
 
     Debug(Dumper($function));
 
+
     my $func_name = Config::GetConfigData($function, "func_name");
-    my $nargs = Config::GetConfigData($function, "args_number", 0);
 
-    if ($hasdefault) 
-    {
-        $allcode_cpp .= "// Auto generated CPP code for '$func_name'\n";
-        $allcode_cpp .= "// =================================\n";
+    $allcode_macro .= "// Auto generated MACRO code for ctor of '$func_name':\n";
+    $allcode_macro .= "// =================================\n";
 
-        for (my $i = 0; ; $i++) {
-            my $argcf = Config::GetNode($function, "argument", $i);
-            last unless (defined $argcf);
+    my $macro = "BIND_CTOR";
+    Config::SetConfigData($function, "macro", $macro);
 
-            my $hasdefault = Config::GetConfigData($argcf, "hasdefault", 0);
-            next unless $hasdefault;
+    my $nargs = Config::GetConfigData($function, "args_number", 0); 
 
-            $allcode_cpp .= gen_wrap_overload_static_func($function, $i);
-        }
-        # always print one function with all arguments
-        $allcode_cpp .= gen_wrap_overload_static_func($function, $nargs);
-        $allcode_cpp .= "\n";
-        
-        $allcode_macro .= "// Auto generated MACRO code for '$func_name':\n";
-        $allcode_macro .= "// =================================\n";
+    # always generate one dummy ctor macro
+    $allcode_macro .= gen_ctor_macro($function, 0);
 
-        my $macro = "BIND_F2MF_OVERLOAD";
-        Config::SetConfigData($function, "macro", $macro);
-
-        for (my $i = 0; ; $i++) {
-            my $argcf = Config::GetNode($function, "argument", $i);
-            last unless (defined $argcf);
-
-            my $hasdefault = Config::GetConfigData($argcf, "hasdefault", 0);
-            next unless $hasdefault;
-
-            $allcode_macro .= gen_overload_func_defarg_macro($function, $i);
-        }
-        $allcode_macro .= gen_overload_func_defarg_macro($function, $nargs);
-    } else {
-        my $macro = "BIND_MF";
-        Config::SetConfigData($function, "macro", $macro);
-
-        $allcode_macro .= "// Auto generated MACRO code for mem funcs:\n";
-        $allcode_macro .= gen_mem_func_macro($function, $nargs);
-    }
-}
-
-# ==============================================================
-sub gen_wrap_ns_begin {
-    my $ns = shift;
-    my $out =<<EOF;
-namespace $ns
-{
-EOF
-    return $out;
-}
-
-sub gen_wrap_ns_end {
-    my $ns = shift;
-    my $out =<<EOF;
-}  // namespace $ns
-EOF
-    return $out;
-}
-
-sub gen_wrap_overload_static_func {
-    my ($function, $nargs) = @_;
-    my $out;
-
-    my $class_name = Config::GetConfigData($function, "class_name");
-    my $fname = Config::GetConfigData($function, "func_name");
-    my $ret_type = Config::GetConfigData($function, "return_type");
-    
-    my @args;
-    $out .= "$ret_type $fname$nargs($class_name* self";
-
-    for (my $i = 0; $i < $nargs; $i++) {
+    for (my $i = 0; ; $i++) {
         my $argcf = Config::GetNode($function, "argument", $i);
         last unless (defined $argcf);
 
-        $out .= ", ";
-        $out .= Config::GetConfigData($argcf, "type");
+        my $hasdefault = Config::GetConfigData($argcf, "hasdefault", 0);
+        next unless $hasdefault;
 
-        my $name = Config::GetConfigData($argcf, "name", "A$i");
-        $out .= " $name";
-
-        push @args, $name;
+        $allcode_macro .= gen_ctor_macro($function, $i) if $i > 0;
     }
-    $out .= ")\n";
-    # cannot append modifier, like "const" 
-    
-    my $real_args = join(',', @args);
-
-    my $fbody ="{\n${tabspaces}return self->";
-    $fbody .= Config::GetConfigData($function, "func_name");
-    $fbody .= "($real_args);\n}\n";
- 
-    return $out.$fbody;
+    $allcode_macro .= gen_ctor_macro($function, $nargs);
 }
 
-sub gen_overload_func_defarg_macro {
+# ==============================================================
+# Will generate below macro for wxluabind
+# BIND_CTOR()
+# BIND_CTOR(ARG1)
+# BIND_CTRO(ARG1, ARG2)
+# ...
+# One line for one call
+# =====================
+sub gen_ctor_macro {
     my ($function, $nargs) = @_;
 
     my $class_name = Config::GetConfigData($function, "class_name");
@@ -249,32 +170,18 @@ sub gen_overload_func_defarg_macro {
     my $macro = Config::GetConfigData($function, "macro");
 
     my $out = $macro;
-    $out .= "($func_name, $nargs,\n";
-    $out .= "${tabspaces}";
-    $out .= "$ret_type, ($class_name*";
+    $out .= "(";
     
     for (my $i = 0; $i < $nargs; $i++) {
         my $argcf = Config::GetNode($function, "argument", $i);
         last unless (defined $argcf);
        
-        $out .= ",";
+        $out .= ", " if $i > 0;
         $out .= Config::GetConfigData($argcf, "type");
     }
-    $out .= "))\n";
+    $out .= ")\n";
 
     return $out;
 }
 
-sub gen_mem_func_macro {
-    my ($function, $nargs) = @_;
-
-    my $class_name = Config::GetConfigData($function, "class_name");
-    my $func_name = Config::GetConfigData($function, "func_name");
-    my $macro = Config::GetConfigData($function, "macro");
-
-    my $out = $macro;
-    $out .= "($class_name, $func_name)\n";
-
-    return $out;
-}
 

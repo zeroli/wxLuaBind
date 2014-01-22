@@ -46,4 +46,12 @@ private:
 #define REGISTER_WXLUA_PREBIND(name, NO) \
     REGISTER_WXLUA_BIND(name, true, NO)
 
+enum {
+    BIND_NO_WXDEFS = 0,
+    BIND_NO_OBJECT,
+    BIND_NO_EVENT,
+    BIND_NO_WINDOW,
+    BIND_NO_CONTROL,
+};
+
 #endif  // WXLUABIND_WX_BIND_INFO_H_

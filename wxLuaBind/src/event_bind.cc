@@ -272,7 +272,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
     END_LUA_TABLE(wx)
 
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS_WX(wxEvent, Event)
+        BEGIN_BIND_CLASS_OBJECT(wxEvent, Event)
             BIND_MF(wxEvent, SetEventType)
             BIND_MF(wxEvent, GetEventType)
             BIND_MF(wxEvent, GetEventObject)
@@ -841,7 +841,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxIdleEvent)
 
         // wxEvtHandler bind
-        BEGIN_BIND_CLASS_WX(wxEvtHandler, EvtHandler)
+        BEGIN_BIND_CLASS_OBJECT(wxEvtHandler, EvtHandler)
             BIND_CTOR()
 
             BIND_MF(wxEvtHandler, GetNextHandler)

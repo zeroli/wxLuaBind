@@ -430,7 +430,7 @@ REGISTER_WXLUA_BIND(gdicmn)
     // dc related classes
     BEGIN_BIND_MODULE(wx)
 
-        BEGIN_BIND_CLASS_WX(wxDC, DC)
+        BEGIN_BIND_CLASS_OBJECT(wxDC, DC)
             BIND_MF(wxDC, DrawObject)
 
             BIND_MF_OVERLOAD(wxDC, FloodFill,

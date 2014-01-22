@@ -22,8 +22,12 @@
     class_<class, bases<__VA_ARGS__> >(#name)
 #define END_BIND_CLASS(...) \
     ,
-#define BEGIN_BIND_CLASS_WX(class, name) \
+#define BEGIN_BIND_CLASS_OBJECT(class, name) \
     BEGIN_BIND_CLASS(class, name, wxObject)
+#define BEGIN_BIND_CLASS_WIN(class, name) \
+    BEGIN_BIND_CLASS(class, name, wxWindow)
+#define BEGIN_BIND_CLASS_EVENT(class, name) \
+    BEGIN_BIND_CLASS(class, name, wxEvent)
 
 #define BIND_CTOR(...) \
     .def(constructor<__VA_ARGS__>())

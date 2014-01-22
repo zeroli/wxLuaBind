@@ -186,6 +186,10 @@
 				Name="core"
 				>
 				<File
+					RelativePath=".\src\control_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\frame_bind.cc"
 					>
 				</File>

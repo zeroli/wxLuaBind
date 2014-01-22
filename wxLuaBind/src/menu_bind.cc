@@ -202,7 +202,7 @@ namespace
 REGISTER_WXLUA_BIND(wxmenu)
 {
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS_WX(wxMenuItem, MenuItem)
+        BEGIN_BIND_CLASS_OBJECT(wxMenuItem, MenuItem)
             BIND_CTOR()
             BIND_CTOR(wxMenu*)
             BIND_CTOR(wxMenu*, int)
