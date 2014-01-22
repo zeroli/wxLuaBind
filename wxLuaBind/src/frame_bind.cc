@@ -1,59 +1,116 @@
 #include <precompile.h>
 
-namespace FrameNS
+namespace
 {
-    // 4 default arguments
-    wxStatusBar* CreateStatusBar(wxFrame* self)
+    // Auto generated CPP code for 'Create'
+    // =================================
+    bool Create3(wxFrame* self, wxWindow * parent, wxWindowID id, const wxString& title)
     {
-        return self->CreateStatusBar(1, wxST_SIZEGRIP|wxFULL_REPAINT_ON_RESIZE, 0, wxStatusLineNameStr);
+        return self->Create(parent,id,title);
     }
-    wxStatusBar* CreateStatusBar(wxFrame* self, int number)
+    bool Create4(wxFrame* self, wxWindow * parent, wxWindowID id, const wxString& title, const wxPoint& pos)
+    {
+        return self->Create(parent,id,title,pos);
+    }
+    bool Create5(wxFrame* self, wxWindow * parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size)
+    {
+        return self->Create(parent,id,title,pos,size);
+    }
+    bool Create6(wxFrame* self, wxWindow * parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style)
+    {
+        return self->Create(parent,id,title,pos,size,style);
+    }
+    bool Create7(wxFrame* self, wxWindow * parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style, const wxString& name)
+    {
+        return self->Create(parent,id,title,pos,size,style,name);
+    }
+
+    // Auto generated CPP code for 'CreateStatusBar'
+    // =================================
+    wxStatusBar* CreateStatusBar0(wxFrame* self)
+    {
+        return self->CreateStatusBar();
+    }
+    wxStatusBar* CreateStatusBar1(wxFrame* self, int number)
     {
         return self->CreateStatusBar(number);
     }
-    wxStatusBar* CreateStatusBar(wxFrame* self, int number,
-        long style)
+    wxStatusBar* CreateStatusBar2(wxFrame* self, int number, long style)
     {
-        return self->CreateStatusBar(number, style);
+        return self->CreateStatusBar(number,style);
     }
-    wxStatusBar* CreateStatusBar(wxFrame* self, int number,
-        long style, wxWindowID winid)
+    wxStatusBar* CreateStatusBar3(wxFrame* self, int number, long style, wxWindowID winid)
     {
-        return self->CreateStatusBar(number, style, winid);
+        return self->CreateStatusBar(number,style,winid);
     }
-    wxStatusBar* CreateStatusBar(wxFrame* self, int number,
-        long style, wxWindowID winid, const wxString& name)
+    wxStatusBar* CreateStatusBar4(wxFrame* self, int number, long style, wxWindowID winid, const wxString& name)
     {
-        return self->CreateStatusBar(number, style, winid, name);
+        return self->CreateStatusBar(number,style,winid,name);
     }
 
-    // =========================
-    void SetStatusText(wxFrame* self, const wxString &text)
+    // Auto generated CPP code for 'SetStatusText'
+    // =================================
+    void SetStatusText1(wxFrame* self, const wxString & text)
     {
-        self->SetStatusText(text);
+        return self->SetStatusText(text);
     }
-    void SetStatusText(wxFrame* self, const wxString &text, int number)
+    void SetStatusText2(wxFrame* self, const wxString & text, int number)
     {
-        self->SetStatusText(text, number);
+        return self->SetStatusText(text,number);
     }
 
-    void PushStatusText(wxFrame* self, const wxString &text)
+    // Auto generated CPP code for 'PushStatusText'
+    // =================================
+    void PushStatusText1(wxFrame* self, const wxString & text)
     {
-        self->PushStatusText(text);
+        return self->PushStatusText(text);
     }
-    void PushStatusText(wxFrame* self, const wxString &text, int number )
+    void PushStatusText2(wxFrame* self, const wxString & text, int number)
     {
-        self->PushStatusText(text, number);
+        return self->PushStatusText(text,number);
     }
-    void PopStatusText(wxFrame* self)
+
+    // Auto generated CPP code for 'PopStatusText'
+    // =================================
+    void PopStatusText0(wxFrame* self)
     {
-        self->PopStatusText();
+        return self->PopStatusText();
     }
-    void PopStatusText(wxFrame* self, int number)
+    void PopStatusText1(wxFrame* self, int number)
     {
-        self->PopStatusText(number);
+        return self->PopStatusText(number);
     }
-} // namespace FrameNS
+
+    // Auto generated CPP code for 'CreateToolBar'
+    // =================================
+    wxToolBar* CreateToolBar0(wxFrame* self)
+    {
+        return self->CreateToolBar();
+    }
+    wxToolBar* CreateToolBar1(wxFrame* self, long style)
+    {
+        return self->CreateToolBar(style);
+    }
+    wxToolBar* CreateToolBar2(wxFrame* self, long style, wxWindowID winid)
+    {
+        return self->CreateToolBar(style,winid);
+    }
+    wxToolBar* CreateToolBar3(wxFrame* self, long style, wxWindowID winid, const wxString& name)
+    {
+        return self->CreateToolBar(style,winid,name);
+    }
+
+    // Auto generated CPP code for 'UpdateWindowUI'
+    // =================================
+    void UpdateWindowUI0(wxFrame* self)
+    {
+        return self->UpdateWindowUI();
+    }
+    void UpdateWindowUI1(wxFrame* self, long flags)
+    {
+        return self->UpdateWindowUI(flags);
+    }
+}  // namespace
 
 REGISTER_WXLUA_BIND(wxframe)
 {
@@ -70,56 +127,94 @@ REGISTER_WXLUA_BIND(wxframe)
             BIND_MF(wxFrame, GetMenuBar)
 #endif
             BIND_MF(wxFrame, ProcessCommand)
+
+            // Auto generated MACRO code for 'Create':
+            // =================================
+            BIND_F2MF_OVERLOAD(Create, 3,
+            bool, (wxFrame*,wxWindow *,wxWindowID,const wxString&))
+            BIND_F2MF_OVERLOAD(Create, 4,
+            bool, (wxFrame*,wxWindow *,wxWindowID,const wxString&,const wxPoint&))
+            BIND_F2MF_OVERLOAD(Create, 5,
+            bool, (wxFrame*,wxWindow *,wxWindowID,const wxString&,const wxPoint&,const wxSize&))
+            BIND_F2MF_OVERLOAD(Create, 6,
+            bool, (wxFrame*,wxWindow *,wxWindowID,const wxString&,const wxPoint&,const wxSize&,long))
+            BIND_F2MF_OVERLOAD(Create, 7,
+            bool, (wxFrame*,wxWindow *,wxWindowID,const wxString&,const wxPoint&,const wxSize&,long,const wxString&))
+
 #if wxUSE_STATUSBAR
 
-            BIND_F2MF_OVERLOAD(FrameNS, CreateStatusBar,
-                wxStatusBar*, (wxFrame*))
-            BIND_F2MF_OVERLOAD(FrameNS, CreateStatusBar,
-                wxStatusBar*, (wxFrame*, int))
-            BIND_F2MF_OVERLOAD(FrameNS, CreateStatusBar,
-                wxStatusBar*, (wxFrame*, int, long))
-            BIND_F2MF_OVERLOAD(FrameNS, CreateStatusBar,
-                wxStatusBar*, (wxFrame*, int, long, wxWindowID))
-            BIND_MF(wxFrame, CreateStatusBar)
+            // Auto generated MACRO code for 'CreateStatusBar':
+            // =================================
+            BIND_F2MF_OVERLOAD(CreateStatusBar, 0,
+            wxStatusBar*, (wxFrame*))
+            BIND_F2MF_OVERLOAD(CreateStatusBar, 1,
+            wxStatusBar*, (wxFrame*,int))
+            BIND_F2MF_OVERLOAD(CreateStatusBar, 2,
+            wxStatusBar*, (wxFrame*,int,long))
+            BIND_F2MF_OVERLOAD(CreateStatusBar, 3,
+            wxStatusBar*, (wxFrame*,int,long,wxWindowID))
+            BIND_F2MF_OVERLOAD(CreateStatusBar, 4,
+            wxStatusBar*, (wxFrame*,int,long,wxWindowID,const wxString&))
+
+            // Auto generated MACRO code for 'SetStatusText':
+            // =================================
+            BIND_F2MF_OVERLOAD(SetStatusText, 1,
+            void, (wxFrame*,const wxString &))
+            BIND_F2MF_OVERLOAD(SetStatusText, 2,
+            void, (wxFrame*,const wxString &,int))
+
+            // Auto generated MACRO code for 'PushStatusText':
+            // =================================
+            BIND_F2MF_OVERLOAD(PushStatusText, 1,
+            void, (wxFrame*,const wxString &))
+            BIND_F2MF_OVERLOAD(PushStatusText, 2,
+            void, (wxFrame*,const wxString &,int))
+
+            // Auto generated MACRO code for 'PopStatusText':
+            // =================================
+            BIND_F2MF_OVERLOAD(PopStatusText, 0,
+            void, (wxFrame*))
+            BIND_F2MF_OVERLOAD(PopStatusText, 1,
+            void, (wxFrame*,int))
 
             BIND_MF(wxFrame, OnCreateStatusBar)
 
             BIND_MF(wxFrame, GetStatusBar)
             BIND_MF(wxFrame, SetStatusBar)
 
-            BIND_F2MF_OVERLOAD(FrameNS, SetStatusText,
-                void, (wxFrame*, const wxString&))
-            BIND_F2MF_OVERLOAD(FrameNS, SetStatusText,
-                void, (wxFrame*, const wxString&, int))
-
             BIND_MF(wxFrame, SetStatusText)
             BIND_MF(wxFrame, SetStatusWidths)
-
-            BIND_F2MF_OVERLOAD(FrameNS, PushStatusText,
-                void, (wxFrame*, const wxString&))
-            BIND_F2MF_OVERLOAD(FrameNS, PushStatusText,
-                void, (wxFrame*, const wxString&, int))
-            BIND_F2MF_OVERLOAD(FrameNS, PopStatusText,
-                void, (wxFrame*))
-            BIND_F2MF_OVERLOAD(FrameNS, PopStatusText,
-                void, (wxFrame*, int))
 
             BIND_MF(wxFrame, SetStatusBarPane)
             BIND_MF(wxFrame, GetStatusBarPane)
 #endif
 #if wxUSE_TOOLBAR
-            BIND_MF(wxFrame, CreateToolBar)
+            // Auto generated MACRO code for 'CreateToolBar':
+            // =================================
+            BIND_F2MF_OVERLOAD(CreateToolBar, 0,
+            wxToolBar*, (wxFrame*))
+            BIND_F2MF_OVERLOAD(CreateToolBar, 1,
+            wxToolBar*, (wxFrame*,long))
+            BIND_F2MF_OVERLOAD(CreateToolBar, 2,
+            wxToolBar*, (wxFrame*,long,wxWindowID))
+            BIND_F2MF_OVERLOAD(CreateToolBar, 3,
+            wxToolBar*, (wxFrame*,long,wxWindowID,const wxString&))
+
             BIND_MF(wxFrame, OnCreateToolBar)
             BIND_MF(wxFrame, GetToolBar)
             BIND_MF(wxFrame, SetToolBar)
 #endif
 
-            BIND_MF(wxFrame, UpdateWindowUI)
-
 #ifndef wxTopLevelWindowNative
             BIND_MF(wxFrame, ShowFullScreen)
             BIND_MF(wxFrame, IsFullScreen)
 #endif
+            // Auto generated MACRO code for 'UpdateWindowUI':
+            // =================================
+            BIND_F2MF_OVERLOAD(UpdateWindowUI, 0,
+            void, (wxFrame*))
+            BIND_F2MF_OVERLOAD(UpdateWindowUI, 1,
+            void, (wxFrame*,long))
         END_BIND_CLASS(wxFrame)
     END_BIND_MODULE(wx)
 

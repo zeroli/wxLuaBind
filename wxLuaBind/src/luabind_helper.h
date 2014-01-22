@@ -85,7 +85,7 @@
 
 // non-member function bind to member function
 // supporting overloaded functions
-#define BIND_F2MF_OVERLOAD(ns, F, R, args) \
-    .def(#F, (R(*)args)&ns::F)
+#define BIND_F2MF_OVERLOAD(F, N, R, args) \
+    .def(#F, (R(*)args)&F##N)
 
 #endif  // WXLUABIND_LUABIND_HELPER_H_

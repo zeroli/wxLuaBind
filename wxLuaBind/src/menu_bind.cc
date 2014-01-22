@@ -1,95 +1,203 @@
 #include <precompile.h>
 
-namespace MenuNS
+namespace
 {
-    // 3 default arguments
-    wxMenuItem* Append(wxMenu* self, int itemid)
+    // =================================
+    wxMenuItem* Append1(wxMenu* self, int itemid)
     {
         return self->Append(itemid);
     }
-    wxMenuItem* Append(wxMenu* self, int itemid,
-        const wxString& text)
+    wxMenuItem* Append2(wxMenu* self, int itemid, const wxString& text)
     {
-        return self->Append(itemid, text);
+        return self->Append(itemid,text);
     }
-    wxMenuItem* Append(wxMenu* self, int itemid,
-        const wxString& text, const wxString& help)
+    wxMenuItem* Append3(wxMenu* self, int itemid, const wxString& text, const wxString& help)
     {
-        return self->Append(itemid, text, help);
+        return self->Append(itemid,text,help);
     }
-    wxMenuItem* Append(wxMenu* self, int itemid,
-        const wxString& text, const wxString& help, wxItemKind kind)
+    wxMenuItem* Append4(wxMenu* self, int itemid, const wxString& text, const wxString& help, wxItemKind kind)
     {
-        return self->Append(itemid, text, help, kind);
-    }
-    // 3 default arguments
-    wxMenuItem* Insert(wxMenu* self, size_t pos, int itemid)
-    {
-        return self->Insert(pos, itemid);
-    }
-    wxMenuItem* Insert(wxMenu* self, size_t pos, int itemid, const wxString& text)
-    {
-        return self->Insert(pos, itemid, text);
-    }
-    wxMenuItem* Insert(wxMenu* self, size_t pos,
-        int itemid, const wxString& text, const wxString& help)
-    {
-        return self->Insert(pos, itemid, text, help);
-    }
-    wxMenuItem* Insert(wxMenu* self, size_t pos,
-        int itemid, const wxString& text, const wxString& help, wxItemKind kind)
-    {
-        return self->Insert(pos, itemid, text, help, kind);
+        return self->Append(itemid,text,help,kind);
     }
 
-    // 1 default arguments
-    wxMenuItem* Insert(wxMenu* self, size_t pos,
-        int itemid, const wxString& text, wxMenu *submenu)
+    // Auto generated CPP code for 'AppendCheckItem'
+    // =================================
+    wxMenuItem* AppendCheckItem2(wxMenu* self, int itemid, const wxString& text)
     {
-        return self->Insert(pos, itemid, text, submenu);
+        return self->AppendCheckItem(itemid,text);
     }
-    wxMenuItem* Insert(wxMenu* self, size_t pos,
-        int itemid, const wxString& text, wxMenu *submenu, const wxString& help)
+    wxMenuItem* AppendCheckItem3(wxMenu* self, int itemid, const wxString& text, const wxString& help)
     {
-        return self->Insert(pos, itemid, text, submenu, help);
+        return self->AppendCheckItem(itemid,text,help);
     }
-
-    // 3 default arguments => 4 interfaces
-    wxMenuItem* Prepend(wxMenu* self, int itemid)
+    // Auto generated CPP code for 'AppendRadioItem'
+    // =================================
+    wxMenuItem* AppendRadioItem2(wxMenu* self, int itemid, const wxString& text)
+    {
+        return self->AppendRadioItem(itemid,text);
+    }
+    wxMenuItem* AppendRadioItem3(wxMenu* self, int itemid, const wxString& text, const wxString& help)
+    {
+        return self->AppendRadioItem(itemid,text,help);
+    }
+    // Auto generated CPP code for 'AppendSubMenu'
+    // =================================
+    wxMenuItem* AppendSubMenu2(wxMenu* self, wxMenu * submenu, const wxString& text)
+    {
+        return self->AppendSubMenu(submenu,text);
+    }
+    wxMenuItem* AppendSubMenu3(wxMenu* self, wxMenu * submenu, const wxString& text, const wxString& help)
+    {
+        return self->AppendSubMenu(submenu,text,help);
+    }
+    // Auto generated CPP code for 'Insert'
+    // =================================
+    wxMenuItem* Insert2(wxMenu* self, size_t pos, int itemid)
+    {
+        return self->Insert(pos,itemid);
+    }
+    wxMenuItem* Insert3(wxMenu* self, size_t pos, int itemid, const wxString& text)
+    {
+        return self->Insert(pos,itemid,text);
+    }
+    wxMenuItem* Insert4(wxMenu* self, size_t pos, int itemid, const wxString& text, const wxString& help)
+    {
+        return self->Insert(pos,itemid,text,help);
+    }
+    wxMenuItem* Insert5(wxMenu* self, size_t pos, int itemid, const wxString& text, const wxString& help, wxItemKind kind)
+    {
+        return self->Insert(pos,itemid,text,help,kind);
+    }
+    // Auto generated CPP code for 'InsertCheckItem'
+    // =================================
+    wxMenuItem* InsertCheckItem3(wxMenu* self, size_t pos, int itemid, const wxString& text)
+    {
+        return self->InsertCheckItem(pos,itemid,text);
+    }
+    wxMenuItem* InsertCheckItem4(wxMenu* self, size_t pos, int itemid, const wxString& text, const wxString& help)
+    {
+        return self->InsertCheckItem(pos,itemid,text,help);
+    }
+    // Auto generated CPP code for 'InsertRadioItem'
+    // =================================
+    wxMenuItem* InsertRadioItem3(wxMenu* self, size_t pos, int itemid, const wxString& text)
+    {
+        return self->InsertRadioItem(pos,itemid,text);
+    }
+    wxMenuItem* InsertRadioItem4(wxMenu* self, size_t pos, int itemid, const wxString& text, const wxString& help)
+    {
+        return self->InsertRadioItem(pos,itemid,text,help);
+    }
+    // Auto generated CPP code for 'Insert'
+    // =================================
+    wxMenuItem* Insert4(wxMenu* self, size_t pos, int itemid, const wxString& text, wxMenu * submenu)
+    {
+        return self->Insert(pos,itemid,text,submenu);
+    }
+    wxMenuItem* Insert5(wxMenu* self, size_t pos, int itemid, const wxString& text, wxMenu * submenu, const wxString& help)
+    {
+        return self->Insert(pos,itemid,text,submenu,help);
+    }
+    // Auto generated CPP code for 'Prepend'
+    // =================================
+    wxMenuItem* Prepend1(wxMenu* self, int itemid)
     {
         return self->Prepend(itemid);
     }
-    wxMenuItem* Prepend(wxMenu* self, int itemid,
-        const wxString& text )
+    wxMenuItem* Prepend2(wxMenu* self, int itemid, const wxString& text)
     {
-        return self->Prepend(itemid, text);
+        return self->Prepend(itemid,text);
     }
-    wxMenuItem* Prepend(wxMenu* self, int itemid,
-        const wxString& text, const wxString& help)
+    wxMenuItem* Prepend3(wxMenu* self, int itemid, const wxString& text, const wxString& help)
     {
-        return self->Prepend(itemid, text, help);
+        return self->Prepend(itemid,text,help);
     }
-    wxMenuItem* Prepend(wxMenu* self, int itemid,
-        const wxString& text, const wxString& help, wxItemKind kind)
+    wxMenuItem* Prepend4(wxMenu* self, int itemid, const wxString& text, const wxString& help, wxItemKind kind)
     {
-        return self->Prepend(itemid, text, help, kind);
+        return self->Prepend(itemid,text,help,kind);
+    }
+    // Auto generated CPP code for 'PrependCheckItem'
+    // =================================
+    wxMenuItem* PrependCheckItem2(wxMenu* self, int itemid, const wxString& text)
+    {
+        return self->PrependCheckItem(itemid,text);
+    }
+    wxMenuItem* PrependCheckItem3(wxMenu* self, int itemid, const wxString& text, const wxString& help)
+    {
+        return self->PrependCheckItem(itemid,text,help);
+    }
+    // Auto generated CPP code for 'PrependRadioItem'
+    // =================================
+    wxMenuItem* PrependRadioItem2(wxMenu* self, int itemid, const wxString& text)
+    {
+        return self->PrependRadioItem(itemid,text);
+    }
+    wxMenuItem* PrependRadioItem3(wxMenu* self, int itemid, const wxString& text, const wxString& help)
+    {
+        return self->PrependRadioItem(itemid,text,help);
+    }
+    // Auto generated CPP code for 'Prepend'
+    // =================================
+    wxMenuItem* Prepend3(wxMenu* self, int itemid, const wxString& text, wxMenu * submenu)
+    {
+        return self->Prepend(itemid,text,submenu);
+    }
+    wxMenuItem* Prepend4(wxMenu* self, int itemid, const wxString& text, wxMenu * submenu, const wxString& help)
+    {
+        return self->Prepend(itemid,text,submenu,help);
+    }
+    // Auto generated CPP code for 'FindItem'
+    // =================================
+    wxMenuItem* FindItem1(wxMenu* self, int itemid)
+    {
+        return self->FindItem(itemid);
+    }
+    wxMenuItem* FindItem2(wxMenu* self, int itemid, wxMenu ** menu)
+    {
+        return self->FindItem(itemid,menu);
+    }
+    // Auto generated CPP code for 'UpdateUI'
+    // =================================
+    void UpdateUI0(wxMenu* self)
+    {
+        return self->UpdateUI();
+    }
+    void UpdateUI1(wxMenu* self, wxEvtHandler* source)
+    {
+        return self->UpdateUI(source);
+    }
+    // Auto generated CPP code for 'FindChildItem'
+    // =================================
+    wxMenuItem * FindChildItem1(wxMenu* self, int itemid)
+    {
+        return self->FindChildItem(itemid);
+    }
+    wxMenuItem * FindChildItem2(wxMenu* self, int itemid, size_t * pos)
+    {
+        return self->FindChildItem(itemid,pos);
     }
 
-    // 1 default arguments => 2 interfaces
-    wxMenuItem* Prepend(wxMenu* self, int itemid,
-        const wxString& text,
-        wxMenu *submenu)
+    // Auto generated CPP code for 'SendEvent'
+    // =================================
+    bool SendEvent1(wxMenu* self, int itemid)
     {
-        return self->Prepend(itemid, text, submenu);
+        return self->SendEvent(itemid);
     }
-    wxMenuItem* Prepend(wxMenu* self, int itemid,
-        const wxString& text,
-        wxMenu *submenu,
-        const wxString& help)
+    bool SendEvent2(wxMenu* self, int itemid, int checked)
     {
-        return self->Prepend(itemid, text, submenu, help);
+        return self->SendEvent(itemid,checked);
     }
-}  // namespace MenuNS
+    // Auto generated CPP code for 'Append'
+    // =================================
+    wxMenuItem* Append3(wxMenu* self, int itemid, const wxString& text, wxMenu * submenu)
+    {
+        return self->Append(itemid,text,submenu);
+    }
+    wxMenuItem* Append4(wxMenu* self, int itemid, const wxString& text, wxMenu * submenu, const wxString& help)
+    {
+        return self->Append(itemid,text,submenu,help);
+    }
+}  // namespace
 
 REGISTER_WXLUA_BIND(wxmenu)
 {
@@ -101,7 +209,7 @@ REGISTER_WXLUA_BIND(wxmenu)
             BIND_CTOR(wxMenu*, int, const wxString&)
             BIND_CTOR(wxMenu*, int, const wxString&, const wxString&)
             BIND_CTOR(wxMenu*, int, const wxString&, const wxString&, wxItemKind)
-            BIND_CTOR(wxMenu*, int,const wxString&, const wxString&,wxItemKind,wxMenu*)
+            BIND_CTOR(wxMenu*, int, const wxString&, const wxString&,wxItemKind,wxMenu*)
 
             // wxMenuItemBase class related interfaces
             BEGIN_BIND_SCOPE()
@@ -182,15 +290,6 @@ REGISTER_WXLUA_BIND(wxmenu)
             BIND_CTOR(const wxString&, long)
             BIND_CTOR(long)
 
-            BIND_F2MF_OVERLOAD(MenuNS, Append,
-                wxMenuItem*, (wxMenu*, int))
-            BIND_F2MF_OVERLOAD(MenuNS, Append,
-                wxMenuItem*, (wxMenu*, int, const wxString&))
-            BIND_F2MF_OVERLOAD(MenuNS, Append,
-                wxMenuItem*, (wxMenu*, int, const wxString&, const wxString&))
-            BIND_F2MF_OVERLOAD(MenuNS, Append,
-                wxMenuItem*, (wxMenu*, int,const wxString&,const wxString&, wxItemKind))
-
             BIND_MF(wxMenu, AppendSeparator)
             BIND_MF(wxMenu, AppendCheckItem)
             BIND_MF(wxMenu, AppendRadioItem)
@@ -202,20 +301,6 @@ REGISTER_WXLUA_BIND(wxmenu)
             BIND_MF_OVERLOAD(wxMenu, Insert,
                 wxMenuItem*, (size_t, wxMenuItem*))
 
-            BIND_F2MF_OVERLOAD(MenuNS, Insert,
-                wxMenuItem*, (wxMenu*, size_t, int))
-            BIND_F2MF_OVERLOAD(MenuNS, Insert,
-                wxMenuItem*, (wxMenu*, size_t, int, const wxString&))
-            BIND_F2MF_OVERLOAD(MenuNS, Insert,
-                wxMenuItem*, (wxMenu*, size_t, int, const wxString&, const wxString&))
-            BIND_F2MF_OVERLOAD(MenuNS, Insert,
-                wxMenuItem*, (wxMenu*, size_t, int, const wxString&, const wxString&, wxItemKind))
-
-            BIND_F2MF_OVERLOAD(MenuNS, Insert,
-                wxMenuItem*, (wxMenu*, size_t, int, const wxString&, wxMenu*))
-            BIND_F2MF_OVERLOAD(MenuNS, Insert,
-                wxMenuItem*, (wxMenu*, size_t, int, const wxString&, wxMenu*, const wxString&))
-
             BIND_MF(wxMenu, InsertSeparator)
             BIND_MF(wxMenu, InsertCheckItem)
             BIND_MF(wxMenu, InsertRadioItem)
@@ -223,19 +308,122 @@ REGISTER_WXLUA_BIND(wxmenu)
             BIND_MF_OVERLOAD(wxMenu, Prepend,
                 wxMenuItem*, (wxMenuItem*))
 
-            BIND_F2MF_OVERLOAD(MenuNS, Prepend,
-                wxMenuItem*, (wxMenu*, int))
-            BIND_F2MF_OVERLOAD(MenuNS, Prepend,
-                wxMenuItem*, (wxMenu*, int, const wxString&))
-            BIND_F2MF_OVERLOAD(MenuNS, Prepend,
-                wxMenuItem*, (wxMenu*, int, const wxString&, const wxString&))
-            BIND_F2MF_OVERLOAD(MenuNS, Prepend,
-                wxMenuItem*, (wxMenu*, int, const wxString&, const wxString&, wxItemKind))
+                // Auto generated MACRO code for 'Append':
+                // =================================
+                BIND_F2MF_OVERLOAD(Append, 1,
+                wxMenuItem*, (wxMenu*,int))
+                BIND_F2MF_OVERLOAD(Append, 2,
+                wxMenuItem*, (wxMenu*,int,const wxString&))
+                BIND_F2MF_OVERLOAD(Append, 3,
+                wxMenuItem*, (wxMenu*,int,const wxString&,const wxString&))
+                BIND_F2MF_OVERLOAD(Append, 4,
+                wxMenuItem*, (wxMenu*,int,const wxString&,const wxString&,wxItemKind))
 
-            BIND_F2MF_OVERLOAD(MenuNS, Prepend,
-                wxMenuItem*, (wxMenu*, int, const wxString&, wxMenu*))
-            BIND_F2MF_OVERLOAD(MenuNS, Prepend,
-                wxMenuItem*, (wxMenu*, int, const wxString&, wxMenu*, const wxString&))
+                // Auto generated MACRO code for 'AppendCheckItem':
+                // =================================
+                BIND_F2MF_OVERLOAD(AppendCheckItem, 2,
+                wxMenuItem*, (wxMenu*,int,const wxString&))
+                BIND_F2MF_OVERLOAD(AppendCheckItem, 3,
+                wxMenuItem*, (wxMenu*,int,const wxString&,const wxString&))
+                // Auto generated MACRO code for 'AppendRadioItem':
+                // =================================
+                BIND_F2MF_OVERLOAD(AppendRadioItem, 2,
+                wxMenuItem*, (wxMenu*,int,const wxString&))
+                BIND_F2MF_OVERLOAD(AppendRadioItem, 3,
+                wxMenuItem*, (wxMenu*,int,const wxString&,const wxString&))
+                // Auto generated MACRO code for 'AppendSubMenu':
+                // =================================
+                BIND_F2MF_OVERLOAD(AppendSubMenu, 2,
+                wxMenuItem*, (wxMenu*,wxMenu *,const wxString&))
+                BIND_F2MF_OVERLOAD(AppendSubMenu, 3,
+                wxMenuItem*, (wxMenu*,wxMenu *,const wxString&,const wxString&))
+                // Auto generated MACRO code for 'Insert':
+                // =================================
+                BIND_F2MF_OVERLOAD(Insert, 2,
+                wxMenuItem*, (wxMenu*,size_t,int))
+                BIND_F2MF_OVERLOAD(Insert, 3,
+                wxMenuItem*, (wxMenu*,size_t,int,const wxString&))
+                BIND_F2MF_OVERLOAD(Insert, 4,
+                wxMenuItem*, (wxMenu*,size_t,int,const wxString&,const wxString&))
+                BIND_F2MF_OVERLOAD(Insert, 5,
+                wxMenuItem*, (wxMenu*,size_t,int,const wxString&,const wxString&,wxItemKind))
+                // Auto generated MACRO code for 'InsertCheckItem':
+                // =================================
+                BIND_F2MF_OVERLOAD(InsertCheckItem, 3,
+                wxMenuItem*, (wxMenu*,size_t,int,const wxString&))
+                BIND_F2MF_OVERLOAD(InsertCheckItem, 4,
+                wxMenuItem*, (wxMenu*,size_t,int,const wxString&,const wxString&))
+                // Auto generated MACRO code for 'InsertRadioItem':
+                // =================================
+                BIND_F2MF_OVERLOAD(InsertRadioItem, 3,
+                wxMenuItem*, (wxMenu*,size_t,int,const wxString&))
+                BIND_F2MF_OVERLOAD(InsertRadioItem, 4,
+                wxMenuItem*, (wxMenu*,size_t,int,const wxString&,const wxString&))
+                // Auto generated MACRO code for 'Insert':
+                // =================================
+                BIND_F2MF_OVERLOAD(Insert, 4,
+                wxMenuItem*, (wxMenu*,size_t,int,const wxString&,wxMenu *))
+                BIND_F2MF_OVERLOAD(Insert, 5,
+                wxMenuItem*, (wxMenu*,size_t,int,const wxString&,wxMenu *,const wxString&))
+                // Auto generated MACRO code for 'Prepend':
+                // =================================
+                BIND_F2MF_OVERLOAD(Prepend, 1,
+                wxMenuItem*, (wxMenu*,int))
+                BIND_F2MF_OVERLOAD(Prepend, 2,
+                wxMenuItem*, (wxMenu*,int,const wxString&))
+                BIND_F2MF_OVERLOAD(Prepend, 3,
+                wxMenuItem*, (wxMenu*,int,const wxString&,const wxString&))
+                BIND_F2MF_OVERLOAD(Prepend, 4,
+                wxMenuItem*, (wxMenu*,int,const wxString&,const wxString&,wxItemKind))
+                // Auto generated MACRO code for 'PrependCheckItem':
+                // =================================
+                BIND_F2MF_OVERLOAD(PrependCheckItem, 2,
+                wxMenuItem*, (wxMenu*,int,const wxString&))
+                BIND_F2MF_OVERLOAD(PrependCheckItem, 3,
+                wxMenuItem*, (wxMenu*,int,const wxString&,const wxString&))
+                // Auto generated MACRO code for 'PrependRadioItem':
+                // =================================
+                BIND_F2MF_OVERLOAD(PrependRadioItem, 2,
+                wxMenuItem*, (wxMenu*,int,const wxString&))
+                BIND_F2MF_OVERLOAD(PrependRadioItem, 3,
+                wxMenuItem*, (wxMenu*,int,const wxString&,const wxString&))
+                // Auto generated MACRO code for 'Prepend':
+                // =================================
+                BIND_F2MF_OVERLOAD(Prepend, 3,
+                wxMenuItem*, (wxMenu*,int,const wxString&,wxMenu *))
+                BIND_F2MF_OVERLOAD(Prepend, 4,
+                wxMenuItem*, (wxMenu*,int,const wxString&,wxMenu *,const wxString&))
+                // Auto generated MACRO code for 'FindItem':
+                // =================================
+                BIND_F2MF_OVERLOAD(FindItem, 1,
+                wxMenuItem*, (wxMenu*,int))
+                BIND_F2MF_OVERLOAD(FindItem, 2,
+                wxMenuItem*, (wxMenu*,int,wxMenu **))
+                // Auto generated MACRO code for 'UpdateUI':
+                // =================================
+                BIND_F2MF_OVERLOAD(UpdateUI, 0,
+                void, (wxMenu*))
+                BIND_F2MF_OVERLOAD(UpdateUI, 1,
+                void, (wxMenu*,wxEvtHandler*))
+                // Auto generated MACRO code for 'FindChildItem':
+                // =================================
+                BIND_F2MF_OVERLOAD(FindChildItem, 1,
+                wxMenuItem *, (wxMenu*,int))
+                BIND_F2MF_OVERLOAD(FindChildItem, 2,
+                wxMenuItem *, (wxMenu*,int,size_t *))
+
+                // Auto generated MACRO code for 'SendEvent':
+                // =================================
+                BIND_F2MF_OVERLOAD(SendEvent, 1,
+                bool, (wxMenu*,int))
+                BIND_F2MF_OVERLOAD(SendEvent, 2,
+                bool, (wxMenu*,int,int))
+                // Auto generated MACRO code for 'Append':
+                // =================================
+                BIND_F2MF_OVERLOAD(Append, 3,
+                wxMenuItem*, (wxMenu*,int,const wxString&,wxMenu *))
+                BIND_F2MF_OVERLOAD(Append, 4,
+                wxMenuItem*, (wxMenu*,int,const wxString&,wxMenu *,const wxString&))
 
             BIND_MF(wxMenu, PrependSeparator)
             BIND_MF(wxMenu, PrependCheckItem)
@@ -287,7 +475,6 @@ REGISTER_WXLUA_BIND(wxmenu)
 
             BIND_MF(wxMenu, GetStyle)
 
-            BIND_MF(wxMenu, UpdateUI)
             BIND_MF(wxMenu, GetMenuBar)
 
             BIND_MF(wxMenu, Attach)

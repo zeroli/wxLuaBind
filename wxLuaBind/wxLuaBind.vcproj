@@ -18,7 +18,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(SolutionDir)\Build\$(ProjectName)"
+			IntermediateDirectory="$(SolutionDir)\build\$(ProjectName)"
 			ConfigurationType="2"
 			CharacterSet="2"
 			>
@@ -203,6 +203,10 @@
 				</File>
 				<File
 					RelativePath=".\src\statusbar_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\toolbar_bind.cc"
 					>
 				</File>
 				<File

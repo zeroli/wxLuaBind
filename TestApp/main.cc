@@ -9,7 +9,7 @@ extern "C" {
 
 #include <wx/wxprec.h>
 
-const char* luafile = "D:\\cpp_lua\\wxLuaBind\\TestLua\\minimal.wx.lua";
+const char* luafile = "D:\\cpp_lua\\wxLuaBind\\luasample\\minimal.wx.lua";
 
 void LuaError(lua_State* L)
 {
