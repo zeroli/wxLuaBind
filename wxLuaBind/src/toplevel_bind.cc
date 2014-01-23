@@ -34,7 +34,7 @@ REGISTER_WXLUA_BIND(toplevel)
 
     BEGIN_BIND_MODULE(wx)
 
-        BEGIN_BIND_CLASS(wxTopLevelWindow, TopLevelWindow, wxWindow)
+        BEGIN_BIND_CLASS_WIN(wxTopLevelWindow)
             BIND_CTOR()
 
             BIND_MF(wxTopLevelWindow, Maximize)

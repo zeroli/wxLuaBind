@@ -242,7 +242,7 @@ namespace
 REGISTER_WXLUA_BIND(wxtoolbar)
 {
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS_OBJECT(wxToolBarToolBase, ToolBarToolBase)
+        BEGIN_BIND_CLASS_OBJECT(wxToolBarToolBase)
             // Auto generated MACRO code for ctor of 'wxToolBarToolBase':
             // =================================
             BIND_CTOR()
@@ -292,7 +292,7 @@ REGISTER_WXLUA_BIND(wxtoolbar)
 
         END_BIND_CLASS(wxToolBarToolBase)
 
-        BEGIN_BIND_CLASS(wxToolBar, ToolBar, wxControl)
+        BEGIN_BIND_CLASS(wxToolBar, wxControl)
             // Auto generated MACRO code for 'wxToolBar':
             // =================================
             BIND_CTOR()

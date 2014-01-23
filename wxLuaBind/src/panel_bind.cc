@@ -3,7 +3,7 @@
 REGISTER_WXLUA_BIND(wxpanel)
 {
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS(wxPanel, Panel, wxWindow)
+        BEGIN_BIND_CLASS_WIN(wxPanel)
             BIND_WIN_ALL_CTORS()
             BIND_CTOR(wxWindow*,int,int,int,int,long,const wxString&)
 

@@ -115,7 +115,7 @@ namespace
 REGISTER_WXLUA_BIND(wxframe)
 {
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS(wxFrame, Frame, wxWindow)
+        BEGIN_BIND_CLASS_WIN(wxFrame)
             BIND_TITLE_WIN_ALL_CTORS()
             BIND_WIN_CREATE_FUNC(wxFrame)
 

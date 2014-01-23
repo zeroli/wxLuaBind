@@ -3,7 +3,7 @@
 REGISTER_WXLUA_PREBIND(wxwindow, BIND_NO_WINDOW)
 {
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS(wxWindow, Window, wxEvtHandler)
+        BEGIN_BIND_CLASS(wxWindow, wxEvtHandler)
             BIND_WIN_ALL_CTORS()
             BIND_WIN_CREATE_FUNC(wxWindow)
 

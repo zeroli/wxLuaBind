@@ -84,7 +84,7 @@ namespace
 REGISTER_WXLUA_BIND(wxstatusbar)
 {
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS(wxStatusBar, StatusBar, wxWindow)
+        BEGIN_BIND_CLASS_WIN(wxStatusBar)
             BIND_CTOR()
             BIND_CTOR(wxWindow*)
             BIND_CTOR(wxWindow*, wxWindowID)

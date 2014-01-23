@@ -68,7 +68,7 @@ REGISTER_WXLUA_BIND(gdicmn)
 {
     BEGIN_BIND_MODULE(wx)
         // wxSize bind
-        BEGIN_BIND_CLASS(wxSize, Size)
+        BEGIN_BIND_CLASS(wxSize)
             BIND_CTOR()
             BIND_CTOR(int, int)
 
@@ -110,7 +110,7 @@ REGISTER_WXLUA_BIND(gdicmn)
         END_BIND_CLASS(wxSize)
 
         // wxRealPoint bind
-        BEGIN_BIND_CLASS(wxRealPoint, RealPoint)
+        BEGIN_BIND_CLASS(wxRealPoint)
             BIND_CTOR()
             BIND_CTOR(double, double)
 
@@ -124,7 +124,7 @@ REGISTER_WXLUA_BIND(gdicmn)
         END_BIND_CLASS(wxRealPoint)
 
         // wxPoint bind
-        BEGIN_BIND_CLASS(wxPoint, Point)
+        BEGIN_BIND_CLASS(wxPoint)
             BIND_CTOR()
             BIND_CTOR(int, int)
 
@@ -137,7 +137,7 @@ REGISTER_WXLUA_BIND(gdicmn)
         END_BIND_CLASS(wxPoint)
 
         // wxRect bind
-        BEGIN_BIND_CLASS(wxRect, Rect)
+        BEGIN_BIND_CLASS(wxRect)
             BIND_CTOR()
             BIND_CTOR(int,int,int,int)
             BIND_CTOR(const wxPoint&, const wxPoint&)
@@ -348,19 +348,19 @@ REGISTER_WXLUA_BIND(gdicmn)
 
     BEGIN_BIND_MODULE(wx)
 
-        BEGIN_BIND_CLASS(wxPenList, PenList)
+        BEGIN_BIND_CLASS(wxPenList)
             BIND_MF(wxPenList, FindOrCreatePen)
         END_BIND_CLASS(wxPenList)
 
-        BEGIN_BIND_CLASS(wxBrushList, BrushList)
+        BEGIN_BIND_CLASS(wxBrushList)
             BIND_MF(wxBrushList, FindOrCreateBrush)
         END_BIND_CLASS(wxBrushList)
 
-        BEGIN_BIND_CLASS(wxFontList, FontList)
+        BEGIN_BIND_CLASS(wxFontList)
             BIND_MF(wxFontList, FindOrCreateFont)
         END_BIND_CLASS(wxFontList)
 
-        BEGIN_BIND_CLASS(wxColourDatabase, ColourDatabase)
+        BEGIN_BIND_CLASS(wxColourDatabase)
             BIND_CTOR()
 
             BIND_MF(wxColourDatabase, Find)
@@ -368,14 +368,14 @@ REGISTER_WXLUA_BIND(gdicmn)
             BIND_MF(wxColourDatabase, AddColour)
         END_BIND_CLASS(wxColourDatabase)
 
-        BEGIN_BIND_CLASS(wxResourceCache, ResourceCache)
+        BEGIN_BIND_CLASS(wxResourceCache)
             BIND_CTOR()
 #if !wxUSE_STL
             BIND_CTOR(const unsigned int)
 #endif
         END_BIND_CLASS(wxResourceCache)
 
-        BEGIN_BIND_CLASS(wxStockGDI, StockGDI)
+        BEGIN_BIND_CLASS(wxStockGDI)
             BIND_CTOR()
 
             BEGIN_BIND_SCOPE()
@@ -430,7 +430,7 @@ REGISTER_WXLUA_BIND(gdicmn)
     // dc related classes
     BEGIN_BIND_MODULE(wx)
 
-        BEGIN_BIND_CLASS_OBJECT(wxDC, DC)
+        BEGIN_BIND_CLASS_OBJECT(wxDC)
             BIND_MF(wxDC, DrawObject)
 
             BIND_MF_OVERLOAD(wxDC, FloodFill,
@@ -676,27 +676,27 @@ REGISTER_WXLUA_BIND(gdicmn)
 
         END_BIND_CLASS(wxDC)
 
-        BEGIN_BIND_CLASS(wxDCTextColourChanger, DCTextColourChanger)
+        BEGIN_BIND_CLASS(wxDCTextColourChanger)
             BIND_CTOR(wxDC&)
             BIND_CTOR(wxDC&, const wxColour&)
             BIND_MF(wxDCTextColourChanger, Set)
         END_BIND_CLASS(wxDCTextColourChanger)
 
-        BEGIN_BIND_CLASS(wxDCPenChanger, DCPenChanger)
+        BEGIN_BIND_CLASS(wxDCPenChanger)
             BIND_CTOR(wxDC&, const wxPen&)
         END_BIND_CLASS(wxDCPenChanger)
 
-        BEGIN_BIND_CLASS(wxDCBrushChanger, DCBrushChanger)
+        BEGIN_BIND_CLASS(wxDCBrushChanger)
             BIND_CTOR(wxDC&, const wxBrush&)
         END_BIND_CLASS(wxDCBrushChanger)
 
-        BEGIN_BIND_CLASS(wxDCClipper, DCClipper)
+        BEGIN_BIND_CLASS(wxDCClipper)
             BIND_CTOR(wxDC&, const wxRegion&)
             BIND_CTOR(wxDC&, const wxRect&)
             BIND_CTOR(wxDC&, wxCoord, wxCoord, wxCoord, wxCoord)
         END_BIND_CLASS(wxDCClipper)
 
-        BEGIN_BIND_CLASS(wxWindowDC, WindowDC, wxDC)
+        BEGIN_BIND_CLASS(wxWindowDC, wxDC)
             BIND_CTOR()
             BIND_CTOR(wxWindow*)
         END_BIND_CLASS(wxWindowDC)

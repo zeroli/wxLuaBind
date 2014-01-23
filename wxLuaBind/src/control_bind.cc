@@ -33,7 +33,7 @@ namespace
 REGISTER_WXLUA_PREBIND(wxcontrol, BIND_NO_CONTROL)
 {
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS_WIN(wxControl, Control)
+        BEGIN_BIND_CLASS_WIN(wxControl)
             // Auto generated MACRO code for ctor of 'wxControl':
             // =================================
             BIND_CTOR()

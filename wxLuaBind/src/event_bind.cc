@@ -272,7 +272,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
     END_LUA_TABLE(wx)
 
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS_OBJECT(wxEvent, Event)
+        BEGIN_BIND_CLASS_OBJECT(wxEvent)
             BIND_MF(wxEvent, SetEventType)
             BIND_MF(wxEvent, GetEventType)
             BIND_MF(wxEvent, GetEventObject)
@@ -294,16 +294,16 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
             BIND_MF(wxEvent, ResumePropagation)
         END_BIND_CLASS(wxEvent)
 
-        BEGIN_BIND_CLASS(wxPropagationDisabler, PropagationDisabler)
+        BEGIN_BIND_CLASS(wxPropagationDisabler)
             BIND_CTOR(wxEvent&)
         END_BIND_CLASS(wxPropagationDisabler)
 
-        BEGIN_BIND_CLASS(wxPropagateOnce, PropagateOnce)
+        BEGIN_BIND_CLASS(wxPropagateOnce)
             BIND_CTOR(wxEvent&)
         END_BIND_CLASS(wxPropagateOnce)
 
         // wxCommandEvent bind
-        BEGIN_BIND_CLASS(wxCommandEvent, CommandEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxCommandEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
             BIND_CTOR(wxEventType, int)
@@ -332,7 +332,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxCommandEvent)
 
         // wxNotifyEvent bind
-        BEGIN_BIND_CLASS(wxNotifyEvent, NotifyEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxNotifyEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
             BIND_CTOR(wxEventType, int)
@@ -344,7 +344,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxNotifyEvent)
 
         // wxScrollEvent bind
-        BEGIN_BIND_CLASS(wxScrollEvent, ScrollEvent, wxCommandEvent)
+        BEGIN_BIND_CLASS(wxScrollEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
             BIND_CTOR(wxEventType, int)
@@ -358,7 +358,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxScrollEvent)
 
         // wxScrollWinEvent
-        BEGIN_BIND_CLASS(wxScrollWinEvent, ScrollWinEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxScrollWinEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
             BIND_CTOR(wxEventType, int)
@@ -372,7 +372,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxScrollWinEvent)
 
         // wxMouseEvent bind
-        BEGIN_BIND_CLASS(wxMouseEvent, MouseEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxMouseEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
             BIND_CTOR(const wxMouseEvent&)
@@ -431,7 +431,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxMouseEvent)
 
         // wxSetCursorEvent bind
-        BEGIN_BIND_CLASS(wxSetCursorEvent, SetCursorEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxSetCursorEvent)
             BIND_CTOR()
             BIND_CTOR(wxCoord)
             BIND_CTOR(wxCoord, wxCoord)
@@ -445,7 +445,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxSetCursorEvent)
 
         // wxKeyEvent bind
-        BEGIN_BIND_CLASS(wxKeyEvent, KeyEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxKeyEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
 
@@ -471,11 +471,11 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
             BIND_MF(wxKeyEvent, GetX)
             BIND_MF(wxKeyEvent, GetY)
 
-            BIND_MF_NAME(Assign, wxKeyEvent, operator =)
+            BIND_MF_NAME(copy, wxKeyEvent, operator =)
         END_BIND_CLASS(wxKeyEvent)
 
         // wxSizeEvent bind
-        BEGIN_BIND_CLASS(wxSizeEvent, SizeEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxSizeEvent)
             BIND_CTOR()
             BIND_CTOR(const wxSize&)
             BIND_CTOR(const wxSize&, int)
@@ -489,7 +489,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxSizeEvent)
 
         // wxMoveEvent bind
-        BEGIN_BIND_CLASS(wxMoveEvent, MoveEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxMoveEvent)
             BIND_CTOR()
             BIND_CTOR(const wxPoint&)
             BIND_CTOR(const wxPoint&, int)
@@ -504,20 +504,20 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxMoveEvent)
 
         // wxPaintEvent bind
-        BEGIN_BIND_CLASS(wxPaintEvent, PaintEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxPaintEvent)
             BIND_CTOR()
             BIND_CTOR(int)
             BIND_CTOR(const wxPaintEvent&)
         END_BIND_CLASS(wxPaintEvent)
 
         // wxNcPaintEvent bind
-        BEGIN_BIND_CLASS(wxNcPaintEvent, NcPaintEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxNcPaintEvent)
             BIND_CTOR()
             BIND_CTOR(int)
         END_BIND_CLASS(wxNcPaintEvent)
 
         // wxEraseEvent bind
-        BEGIN_BIND_CLASS(wxEraseEvent, EraseEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxEraseEvent)
             BIND_CTOR()
             BIND_CTOR(int)
             BIND_CTOR(int, wxDC*)
@@ -527,7 +527,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxEraseEvent)
 
         // wxFocusEvent bind
-        BEGIN_BIND_CLASS(wxFocusEvent, FocusEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxFocusEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
             BIND_CTOR(wxEventType, int)
@@ -538,7 +538,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxFocusEvent)
 
         // wxChildFocusEvent bind
-        BEGIN_BIND_CLASS(wxChildFocusEvent, ChildFocusEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxChildFocusEvent)
             BIND_CTOR()
             BIND_CTOR(wxWindow*)
 
@@ -546,7 +546,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxChildFocusEvent)
 
         // wxActivateEvent bind
-        BEGIN_BIND_CLASS(wxActivateEvent, ActivateEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxActivateEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
             BIND_CTOR(wxEventType, bool)
@@ -557,13 +557,13 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxActivateEvent)
 
         // wxInitDialogEvent bind
-        BEGIN_BIND_CLASS(wxInitDialogEvent, InitDialogEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxInitDialogEvent)
             BIND_CTOR()
             BIND_CTOR(int)
         END_BIND_CLASS(wxInitDialogEvent)
 
         // wxMenuEvent bind
-        BEGIN_BIND_CLASS(wxMenuEvent, MenuEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxMenuEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
             BIND_CTOR(wxEventType, int)
@@ -576,7 +576,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxMenuEvent)
 
         // wxCloseEvent bind
-        BEGIN_BIND_CLASS(wxCloseEvent, CloseEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxCloseEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
             BIND_CTOR(wxEventType, int)
@@ -592,7 +592,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxCloseEvent)
 
         // wxShowEvent bind
-        BEGIN_BIND_CLASS(wxShowEvent, ShowEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxShowEvent)
             BIND_CTOR()
             BIND_CTOR(int)
             BIND_CTOR(int, bool)
@@ -603,7 +603,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxShowEvent)
 
         // wxIconizeEvent bind
-        BEGIN_BIND_CLASS(wxIconizeEvent, IconizeEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxIconizeEvent)
             BIND_CTOR()
             BIND_CTOR(int)
             BIND_CTOR(int, bool)
@@ -613,13 +613,13 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxIconizeEvent)
 
         // wxMaximizeEvent bind
-        BEGIN_BIND_CLASS(wxMaximizeEvent, MaximizeEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxMaximizeEvent)
             BIND_CTOR()
             BIND_CTOR(int)
         END_BIND_CLASS(wxMaximizeEvent)
 
         // wxJoystickEvent bind
-        BEGIN_BIND_CLASS(wxJoystickEvent, wxJoystickEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxJoystickEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
             BIND_CTOR(wxEventType, int)
@@ -647,7 +647,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxJoystickEvent)
 
         // wxDropFilesEvent bind
-        BEGIN_BIND_CLASS(wxDropFilesEvent, DropFilesEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxDropFilesEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
             BIND_CTOR(wxEventType, int)
@@ -660,7 +660,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxDropFilesEvent)
 
         // wxUpdateUIEvent bind
-        BEGIN_BIND_CLASS(wxUpdateUIEvent, UpdateUIEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxUpdateUIEvent)
             BIND_CTOR()
             BIND_CTOR(wxWindowID)
             BIND_CTOR(const wxUpdateUIEvent&)
@@ -690,12 +690,12 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxUpdateUIEvent)
 
         // wxSysColourChangedEvent bind
-        BEGIN_BIND_CLASS(wxSysColourChangedEvent, SysColourChangedEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxSysColourChangedEvent)
             BIND_CTOR()
         END_BIND_CLASS(wxSysColourChangedEvent)
 
         // wxMouseCaptureChangedEvent bind
-        BEGIN_BIND_CLASS(wxMouseCaptureChangedEvent, MouseCaptureChangedEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxMouseCaptureChangedEvent)
             BIND_CTOR()
             BIND_CTOR(wxWindowID)
             BIND_CTOR(wxWindowID, wxWindow*)
@@ -705,19 +705,19 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxMouseCaptureChangedEvent)
 
         // wxMouseCaptureLostEvent bind
-        BEGIN_BIND_CLASS(wxMouseCaptureLostEvent, MouseCaptureLostEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxMouseCaptureLostEvent)
             BIND_CTOR()
             BIND_CTOR(wxWindowID)
             BIND_CTOR(const wxMouseCaptureLostEvent&)
         END_BIND_CLASS(wxMouseCaptureLostEvent)
 
         // wxDisplayChangedEvent bind
-        BEGIN_BIND_CLASS(wxDisplayChangedEvent, DisplayChangedEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxDisplayChangedEvent)
             BIND_CTOR()
         END_BIND_CLASS(wxDisplayChangedEvent)
 
         // wxPaletteChangedEvent bind
-        BEGIN_BIND_CLASS(wxPaletteChangedEvent, PaletteChangedEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxPaletteChangedEvent)
             BIND_CTOR()
             BIND_CTOR(wxWindowID)
             BIND_CTOR(const wxPaletteChangedEvent&)
@@ -727,7 +727,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxPaletteChangedEvent)
 
         // wxQueryNewPaletteEvent bind
-        BEGIN_BIND_CLASS(wxQueryNewPaletteEvent, QueryNewPaletteEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxQueryNewPaletteEvent)
             BIND_CTOR()
             BIND_CTOR(wxWindowID)
             BIND_CTOR(const wxQueryNewPaletteEvent&)
@@ -737,7 +737,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxQueryNewPaletteEvent)
 
         // wxNavigationKeyEvent bind
-        BEGIN_BIND_CLASS(wxNavigationKeyEvent, NavigationKeyEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxNavigationKeyEvent)
             BIND_CTOR()
             BIND_CTOR(const wxNavigationKeyEvent&)
 
@@ -763,7 +763,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxNavigationKeyEvent)
 
         // wxWindowCreateEvent bind
-        BEGIN_BIND_CLASS(wxWindowCreateEvent, WindowCreateEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxWindowCreateEvent)
             BIND_CTOR()
             BIND_CTOR(wxWindow*)
 
@@ -771,7 +771,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxWindowCreateEvent)
 
         // wxWindowDestroyEvent bind
-        BEGIN_BIND_CLASS(wxWindowDestroyEvent, WindowDestroyEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxWindowDestroyEvent)
             BIND_CTOR()
             BIND_CTOR(wxWindow*)
 
@@ -779,7 +779,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxWindowDestroyEvent)
 
         // wxHelpEvent bind
-        BEGIN_BIND_CLASS(wxHelpEvent, HelpEvent, wxCommandEvent)
+        BEGIN_BIND_CLASS(wxHelpEvent, wxCommandEvent)
             BEGIN_CLASS_ENUM(Origin)
                 BIND_CLASS_ENUM(wxHelpEvent, Origin_Unknown)
                 BIND_CLASS_ENUM(wxHelpEvent, Origin_Keyboard)
@@ -806,7 +806,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxHelpEvent)
 
         // wxClipboardTextEvent bind
-        BEGIN_BIND_CLASS(wxClipboardTextEvent, wxClipboardTextEvent, wxCommandEvent)
+        BEGIN_BIND_CLASS(wxClipboardTextEvent, wxCommandEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
             BIND_CTOR(wxEventType, wxWindowID)
@@ -814,7 +814,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxClipboardTextEvent)
 
         // wxContextMenuEvent bind
-        BEGIN_BIND_CLASS(wxContextMenuEvent, wxContextMenuEvent, wxCommandEvent)
+        BEGIN_BIND_CLASS(wxContextMenuEvent, wxCommandEvent)
             BIND_CTOR()
             BIND_CTOR(wxEventType)
             BIND_CTOR(wxEventType, wxWindowID)
@@ -826,7 +826,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxContextMenuEvent)
 
         // wxIdleEvent bind
-        BEGIN_BIND_CLASS(wxIdleEvent, IdleEvent, wxEvent)
+        BEGIN_BIND_CLASS_EVENT(wxIdleEvent)
             BIND_CTOR()
             BIND_CTOR(const wxIdleEvent&)
 
@@ -841,7 +841,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxIdleEvent)
 
         // wxEvtHandler bind
-        BEGIN_BIND_CLASS_OBJECT(wxEvtHandler, EvtHandler)
+        BEGIN_BIND_CLASS_OBJECT(wxEvtHandler)
             BIND_CTOR()
 
             BIND_MF(wxEvtHandler, GetNextHandler)

@@ -14,20 +14,25 @@
 #define BIND_CLASS_STATIC(class, name) table[#name] = class::name;
 #define BIND_TABLE_VALUE(name, value) table[#name] = value;
 #define BIND_VARIABLE(var) BIND_TABLE_VALUE(var, var)
+#define BIND_VARIABLE_NAME(name, var) BIND_TABLE_VALUE(name, var)
 #define BIND_MACRO(macro) table[#macro] = macro;
+#define BIND_MACRO_NAME(name, macro) table[#name] = macro;
 #define BIND_ENUM(ev) table[#ev] = (long)ev;
+#define BIND_ENUM_NAME(name, ev) table[#name] = (long)ev;
 #define END_LUA_TABLE(...) }
 
-#define BEGIN_BIND_CLASS(class, name, ...) \
+#define BEGIN_BIND_CLASS(class,  ...) \
+    class_<class, bases<__VA_ARGS__> >(#class)
+#define BEGIN_BIND_CLASS_NAME(name, class,  ...) \
     class_<class, bases<__VA_ARGS__> >(#name)
 #define END_BIND_CLASS(...) \
     ,
-#define BEGIN_BIND_CLASS_OBJECT(class, name) \
-    BEGIN_BIND_CLASS(class, name, wxObject)
-#define BEGIN_BIND_CLASS_WIN(class, name) \
-    BEGIN_BIND_CLASS(class, name, wxWindow)
-#define BEGIN_BIND_CLASS_EVENT(class, name) \
-    BEGIN_BIND_CLASS(class, name, wxEvent)
+#define BEGIN_BIND_CLASS_OBJECT(class) \
+    BEGIN_BIND_CLASS(class, wxObject)
+#define BEGIN_BIND_CLASS_WIN(class) \
+    BEGIN_BIND_CLASS(class, wxWindow)
+#define BEGIN_BIND_CLASS_EVENT(class) \
+    BEGIN_BIND_CLASS(class, wxEvent)
 
 #define BIND_CTOR(...) \
     .def(constructor<__VA_ARGS__>())

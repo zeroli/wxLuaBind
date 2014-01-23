@@ -3,7 +3,7 @@
 REGISTER_WXLUA_BIND(wxstring)
 {
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS(wxString, String)
+        BEGIN_BIND_CLASS(wxString)
             BIND_CTOR()
             BIND_CTOR(const wxString&)
             BIND_CTOR(wxChar, size_t)

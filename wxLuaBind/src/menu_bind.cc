@@ -202,7 +202,7 @@ namespace
 REGISTER_WXLUA_BIND(wxmenu)
 {
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS_OBJECT(wxMenuItem, MenuItem)
+        BEGIN_BIND_CLASS_OBJECT(wxMenuItem)
             BIND_CTOR()
             BIND_CTOR(wxMenu*)
             BIND_CTOR(wxMenu*, int)
@@ -284,7 +284,7 @@ REGISTER_WXLUA_BIND(wxmenu)
         END_BIND_CLASS(wxMenuItem)
 
         // wxMenu class bind
-        BEGIN_BIND_CLASS(wxMenu, Menu)
+        BEGIN_BIND_CLASS(wxMenu)
             BIND_CTOR()
             BIND_CTOR(const wxString&)
             BIND_CTOR(const wxString&, long)
@@ -492,7 +492,7 @@ REGISTER_WXLUA_BIND(wxmenu)
         END_BIND_CLASS(wxMenu)
 
         // wxMenuBar bind
-        BEGIN_BIND_CLASS(wxMenuBar, MenuBar, wxWindow)
+        BEGIN_BIND_CLASS_WIN(wxMenuBar)
             BIND_CTOR()
             BIND_CTOR(long)
             BIND_CTOR(size_t, wxMenu**,const wxString*, long)

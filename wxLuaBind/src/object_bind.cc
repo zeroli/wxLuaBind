@@ -3,13 +3,13 @@
 REGISTER_WXLUA_PREBIND(wxobject, BIND_NO_OBJECT)
 {
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS(wxObject, Object)
+        BEGIN_BIND_CLASS(wxObject)
             BIND_CTOR()
             BIND_CTOR(const wxObject&)
 
             // FIXME: cannot compile
             //BIND_OPERATOR(=, const wxObject&)
-            BIND_MF_NAME(assign, wxObject, operator=)
+            BIND_MF_NAME(copy, wxObject, operator=)
 
             BIND_MF(wxObject, IsKindOf)
 
