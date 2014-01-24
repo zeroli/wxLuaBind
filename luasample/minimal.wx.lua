@@ -2,9 +2,9 @@
 test lua using minimal wx sample
 --]]
 
-package.cpath = package.cpath..";../../Debug/?.dll;"
-package.loadlib('wx.dll', 'luaopen_wx')()
---require("wx")
+--package.cpath = package.cpath..";../../Debug/?.dll;"
+--package.loadlib('wx.dll', 'luaopen_wx')()
+require("wx")
 
 app = wx.wxApp()
 
