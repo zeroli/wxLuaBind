@@ -65,6 +65,30 @@ sub is_c_comment_end {
     return 0;
 }
 
+sub is_cpp_func_body_begin {
+    my $line = shift;
+    
+    $line = trim($line);
+    return 1 if ($line =~ /^{/);
+    return 0; 
+}
+
+sub is_cpp_func_body_end {
+    my $line = shift;
+    
+    $line = trim($line);
+    return 1 if ($line =~ /}$/);
+    return 0; 
+}
+
+sub is_cpp_macro {
+    my $line = shift;
+    
+    $line = trim($line);
+    return 1 if ($line =~ /^#/);
+    return 0; 
+}
+
 my $cppkw_functype_pat = "(virtual|inline|static)";
 my $cppkw_funcmodifier_pat = "(const)";
 
@@ -76,7 +100,9 @@ sub parse_cpp_func {
     # locate right most parenthesis, so that modifier extracted
     my $rp = rindex($func_decl, ")");
     my $modifier = substr($func_decl, $rp+1);
-   
+    $modifier =~ s/;+.*//; # remove multiple ";"
+    $modifier =~ s/=.*//;  # remove pure virtual "=0"
+
     # extract arguments
     my @stack;
     my $lp = -1;
@@ -100,8 +126,8 @@ sub parse_cpp_func {
     my $func = substr($func_decl, 0, $lp);
     $func = trim($func);
     my $fname_p = -1;
-    for (my $p = $lp-1; $p >= 0; $p--) {
-        my $c = substr($func_decl, $p, 1);
+    for (my $p = length($func)-1; $p >= 0; $p--) {
+        my $c = substr($func, $p, 1);
         next if ($c =~ /\w/);
 
         $fname_p = $p;
@@ -109,10 +135,10 @@ sub parse_cpp_func {
     }
     $fname_p++;
 
-    my $func_name = substr($func_decl, $fname_p, $lp-$fname_p);
+    my $func_name = substr($func, $fname_p);
 
     # extract return types & function type
-    $func = substr($func_decl, 0, $fname_p);
+    $func = substr($func, 0, $fname_p);
     my ($func_type, $ret_type) = (undef, $func);
 
     if ($func =~ /^${cppkw_functype_pat}(.+)/) {

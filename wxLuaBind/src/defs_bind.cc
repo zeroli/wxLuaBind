@@ -122,6 +122,10 @@ REGISTER_WXLUA_PREBIND(defs, BIND_NO_WXDEFS)
 
         BIND_ENUM(wxID_HIGHEST)
 
+        // enum wxOrientation bind
+        BIND_ENUM(wxHORIZONTAL)
+        BIND_ENUM(wxVERTICAL)
+        BIND_ENUM(wxBOTH)
     END_LUA_TABLE(wx)
 
     return 0;

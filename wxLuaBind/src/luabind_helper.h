@@ -33,12 +33,17 @@
     BEGIN_BIND_CLASS(class, wxWindow)
 #define BEGIN_BIND_CLASS_EVENT(class) \
     BEGIN_BIND_CLASS(class, wxEvent)
+#define BEGIN_BIND_CLASS_CONTROL(class) \
+    BEGIN_BIND_CLASS(class, wxControl)
 
 #define BIND_CTOR(...) \
     .def(constructor<__VA_ARGS__>())
 
 #define BIND_FUNC(F) \
     def(#F, &F),
+
+#define BIND_FUNC_OVERLOAD(F, R, args) \
+    def(#F, (R(*)args)&F),
 
 #define BIND_FUNC_NAME(name, F) \
     def(#name, &F),
@@ -88,6 +93,9 @@
 
 #define BIND_MF_OVERLOAD(class, F, R, args) \
     .def(#F, (R(class::*)args)&class::F)
+
+#define BIND_MF_OVERLOAD_NAME(name, class, F, R, args) \
+    .def(#name, (R(class::*)args)&class::F)
 
 #define BIND_SMF_OVERLOAD(class, F, R, args) \
     def(#F, (R(*)args)&class::F),

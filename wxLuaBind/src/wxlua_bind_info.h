@@ -48,6 +48,7 @@ private:
 
 enum {
     BIND_NO_WXDEFS = 0,
+    BIND_NO_CLIENTDATA,
     BIND_NO_OBJECT,
     BIND_NO_EVENT,
     BIND_NO_WINDOW,

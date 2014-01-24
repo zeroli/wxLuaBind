@@ -117,7 +117,18 @@ REGISTER_WXLUA_BIND(wxframe)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS_WIN(wxFrame)
             BIND_TITLE_WIN_ALL_CTORS()
-            BIND_WIN_CREATE_FUNC(wxFrame)
+            // Auto generated MACRO code for 'Create':
+            // =================================
+            BIND_F2MF_OVERLOAD(Create, 3,
+            bool, (wxFrame*, wxWindow *, wxWindowID, const wxString&))
+            BIND_F2MF_OVERLOAD(Create, 4,
+            bool, (wxFrame*, wxWindow *, wxWindowID, const wxString&, const wxPoint&))
+            BIND_F2MF_OVERLOAD(Create, 5,
+            bool, (wxFrame*, wxWindow *, wxWindowID, const wxString&, const wxPoint&, const wxSize&))
+            BIND_F2MF_OVERLOAD(Create, 6,
+            bool, (wxFrame*, wxWindow *, wxWindowID, const wxString&, const wxPoint&, const wxSize&, long))
+            BIND_F2MF_OVERLOAD(Create, 7,
+            bool, (wxFrame*, wxWindow *, wxWindowID, const wxString&, const wxPoint&, const wxSize&, long, const wxString&))
 
             BIND_MF(wxFrame, GetClientAreaOrigin)
             BIND_MF(wxFrame, SendSizeEvent)

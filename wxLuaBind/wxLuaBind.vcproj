@@ -186,7 +186,19 @@
 				Name="core"
 				>
 				<File
+					RelativePath=".\src\caret_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\colour_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\control_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\dnd_bind.cc"
 					>
 				</File>
 				<File
@@ -198,6 +210,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\gdiobj_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\menu_bind.cc"
 					>
 				</File>
@@ -206,11 +222,27 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\sizer_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\stattext_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\statusbar_bind.cc"
 					>
 				</File>
 				<File
+					RelativePath=".\src\textctrl_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\toolbar_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\tooltip_bind.cc"
 					>
 				</File>
 				<File
@@ -227,6 +259,10 @@
 				>
 				<File
 					RelativePath=".\src\app_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\clntdata_bind.cc"
 					>
 				</File>
 				<File

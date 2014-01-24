@@ -2,6 +2,10 @@
 #define WXLUABIND_PRECOMPILE_H_
 
 #include <wx/wxprec.h>
+#include <wx/caret.h>
+
+#include <wx/tooltip.h>
+#include <wx/dnd.h>
 
 #include <luabind/luabind.hpp>
 #include <luabind/operator.hpp>

@@ -16,7 +16,11 @@ function main()
 		wx.wxDefaultSize, wx.wxDEFAULT_FRAME_STYLE)
 
 	panel = wx.wxPanel(frame, wx.wxID_ANY)
-
+	mainSizer = wx.wxBoxSizer(wx.wxVERTICAL)
+	--panel.SetSizer(mainSizer)
+	mainSizer.Add(wx.wxTextCtrl(panel, wx.wxID_ANY, wx.wxString("this is one testing text control"),
+		wx.wxDefaultPosition, wx.wxSize(200, 40)), 0)
+	mainSizer.Add(wx.wxStaticText(panel, wx.wxID_ANY, wx.wxString("this is one static text")), 0)
     -- connect the paint event handler function with the paint event
     --panel:Connect(wx.wxEVT_PAINT, OnPaint)
 

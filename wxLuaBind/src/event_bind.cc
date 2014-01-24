@@ -19,9 +19,13 @@ namespace
 
     // Auto generated CPP code for 'Connect'
     // =================================
-    void Connect3(wxEvtHandler* self, int winid, int eventType, wxObjectEventFunction func)
+    void Connect3(wxEvtHandler* self, int winid, int eventType, object objfunc)
     {
-        return self->Connect(winid,eventType,func);
+        objfunc.is_valid();
+        int objtype = type(objfunc);
+        fprintf(stderr, "obj type: %d", objtype);
+
+        //return self->Connect(winid,eventType,func);
     }
     void Connect4(wxEvtHandler* self, int winid, int eventType, wxObjectEventFunction func, wxObject * userData)
     {
@@ -872,7 +876,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
             // Auto generated MACRO code for 'Connect':
             // =================================
             BIND_F2MF_OVERLOAD(Connect, 3,
-            void, (wxEvtHandler*,int,int,wxObjectEventFunction))
+            void, (wxEvtHandler*,int,int,object))
             BIND_F2MF_OVERLOAD(Connect, 4,
             void, (wxEvtHandler*,int,int,wxObjectEventFunction,wxObject *))
             BIND_F2MF_OVERLOAD(Connect, 5,
