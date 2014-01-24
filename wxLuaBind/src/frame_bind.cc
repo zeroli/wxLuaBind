@@ -139,19 +139,6 @@ REGISTER_WXLUA_BIND(wxframe)
 #endif
             BIND_MF(wxFrame, ProcessCommand)
 
-            // Auto generated MACRO code for 'Create':
-            // =================================
-            BIND_F2MF_OVERLOAD(Create, 3,
-            bool, (wxFrame*,wxWindow *,wxWindowID,const wxString&))
-            BIND_F2MF_OVERLOAD(Create, 4,
-            bool, (wxFrame*,wxWindow *,wxWindowID,const wxString&,const wxPoint&))
-            BIND_F2MF_OVERLOAD(Create, 5,
-            bool, (wxFrame*,wxWindow *,wxWindowID,const wxString&,const wxPoint&,const wxSize&))
-            BIND_F2MF_OVERLOAD(Create, 6,
-            bool, (wxFrame*,wxWindow *,wxWindowID,const wxString&,const wxPoint&,const wxSize&,long))
-            BIND_F2MF_OVERLOAD(Create, 7,
-            bool, (wxFrame*,wxWindow *,wxWindowID,const wxString&,const wxPoint&,const wxSize&,long,const wxString&))
-
 #if wxUSE_STATUSBAR
 
             // Auto generated MACRO code for 'CreateStatusBar':
