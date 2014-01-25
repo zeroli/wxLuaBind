@@ -298,6 +298,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\radiobut_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\sizer_bind.cc"
 					>
 				</File>

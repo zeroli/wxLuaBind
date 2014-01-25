@@ -59,13 +59,24 @@ function main()
 			checklistbox:Check(i-1, true)
 		end		
 	end
-	-- test radio box
-	--do
+
+	--do	-- test radio box
 		--sizer2 = wx.wxBoxSizer(wx.wxVERTICAL)
 		--sizer1:Add(sizer2, 0)
 		--radiobox = wx.wxRadioBox(panel, wx.wxID_ANY, wx.wxString("radio box test"))
 		--sizer2:Add(radiobox, 0)
 	--end
+	
+	do	-- test radio buttons
+		staticbox = wx.wxStaticBox(panel, wx.wxID_ANY, wx.wxString("Radio button test"))
+		sizer3 = wx.wxStaticBoxSizer(staticbox, wx.wxVERTICAL)
+		sizer1:Add(sizer3, 0, wx.wxALL, 5)
+		for i=1, 5 do
+			btn = wx.wxRadioButton(panel, wx.wxID_ANY, wx.wxString("radio button"..i))
+			sizer3:Add(btn, 0, wx.wxALL, 2)
+			if i == 3 then btn:SetValue(true) end
+		end
+	end
 	
 	panel:Layout()
     -- connect the paint event handler function with the paint event
