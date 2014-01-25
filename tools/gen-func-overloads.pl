@@ -30,7 +30,10 @@ for (my $i = 0; $i < @lines; $i++) {
     if (is_c_comment_begin($line)) {
         next if (is_c_comment_end($line));
         for (my $j = $i+1; $j < @lines; $j++) {
-            last if (is_c_comment_end($lines[$j]));
+            if (is_c_comment_end($lines[$j])) {
+                $i = $j;
+                last;
+            }
         }
         next;
     }
@@ -38,7 +41,10 @@ for (my $i = 0; $i < @lines; $i++) {
     if (is_cpp_func_body_begin($line)) {
         next if (is_cpp_func_body_end($line));
         for (my $j = $i+1; $j < @lines; $j++) {
-            last if (is_cpp_func_body_end($lines[$j]));
+            if (is_cpp_func_body_end($lines[$j])) {
+                $i = $j;
+                last;
+            }
         }
         next;
     }
