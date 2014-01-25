@@ -4,29 +4,7 @@ TODO List
 1. change gen perl script to check if one class is pure base class, if that, will not generate any ctor
 2. gen perl script seems to have issue for below code:
  wxSizerFlags(int proportion = 0) : m_proportion(proportion)
-3. gen below code issue, too
-    wxSizerFlags& Border(int direction, int borderInPixels)
-    {
-        m_flags &= ~wxALL;
-        m_flags |= direction;
 
-        m_borderInPixels = borderInPixels;
-
-        return *this;
-    }
-
-    wxSizerFlags& Border(int direction = wxALL)
-    {
-#if wxUSE_BORDER_BY_DEFAULT
-        return Border(direction, GetDefaultBorder());
-#else
-        // no borders by default on limited size screen
-        wxUnusedVar(direction);
-
-        return *this;
-#endif
-    }
-    
 ==========================================
 1. Support lua function converted **automatically** to C function interface,
 if we coding as below

@@ -29,6 +29,8 @@
     ,
 #define BEGIN_BIND_CLASS_OBJECT(class) \
     BEGIN_BIND_CLASS(class, wxObject)
+#define BEGIN_BIND_CLASS_GDIOBJECT(class) \
+    BEGIN_BIND_CLASS(class, wxGDIObject)
 #define BEGIN_BIND_CLASS_WIN(class) \
     BEGIN_BIND_CLASS(class, wxWindow)
 #define BEGIN_BIND_CLASS_EVENT(class) \

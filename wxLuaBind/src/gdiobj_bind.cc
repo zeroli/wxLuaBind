@@ -14,7 +14,7 @@ namespace
     }
 }  // namespace
 
-REGISTER_WXLUA_BIND(gdiobj)
+REGISTER_WXLUA_PREBIND(gdiobj, BIND_NO_GDIOBJECT)
 {
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS_OBJECT(wxGDIObject)

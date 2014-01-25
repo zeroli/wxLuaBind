@@ -70,9 +70,9 @@ REGISTER_WXLUA_BIND(wxcolor)
         BIND_F2MF_OVERLOAD(GetAsString, 1,
         wxString, (wxColour*, long))
         //BIND_OP(==, other<const wxColour&>)
-        BIND_MF_NAME("eq", wxColour, operator ==)
+        BIND_MF_NAME(eq, wxColour, operator ==)
         // FIXME: cannot bind !=
-        BIND_MF_NAME("ne", wxColour, operator !=)
+        BIND_MF_NAME(ne, wxColour, operator !=)
 
         END_BIND_CLASS(wxColour)
     END_BIND_MODULE(wx)

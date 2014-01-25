@@ -21,6 +21,12 @@ REGISTER_WXLUA_PREBIND(wxobject, BIND_NO_OBJECT)
 
             BIND_MF(wxObject, IsSameAs)
         END_BIND_CLASS(wxObject)
+        // Bind class wxObjectRefData
+        BEGIN_BIND_CLASS(wxObjectRefData)
+        BIND_CTOR()
+        BIND_MF(wxObjectRefData, GetRefCount)
+        END_BIND_CLASS(wxObjectRefData)
+
     END_BIND_MODULE(wx)
     return 0;
 }

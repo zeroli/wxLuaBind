@@ -56,6 +56,7 @@ for (my $i = 0; $i < @lines; $i++) {
     next if ($line =~ /[{|}]/);
 
     $line =~ s/(\/\*.*\*\/)*?//g; # remove embedded comment 
+    $line =~ s/(\/\/+.*)*?//g; # remove embedded comment 
 
     my @list = split(/,/, $line);
     @list = grep{$_}map{my @arr=split(/=/, $_); trim($arr[0])}@list;

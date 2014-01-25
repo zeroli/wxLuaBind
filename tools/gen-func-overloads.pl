@@ -6,10 +6,10 @@ use Data::Dumper;
 require "ConfigUtil.pm";
 require "common.pm";
 
-die "perl $0 <class name> <cpp interface file>\n" if @ARGV < 2;
+die "perl $0 <cpp interface file> <class name>\n" if @ARGV < 2;
 
-my $class_name = shift;
 my $cpp_ifile = shift; 
+my $class_name = shift;
 my $debug = shift;
 
 my @func_list;
@@ -18,7 +18,8 @@ my $func_decl;
 open (IFILE, "<$cpp_ifile") or die "Cannot open file '$cpp_ifile' !\n";
 my $tmp = $/; $/ = undef; my $code = <IFILE>; $/ = $tmp; close(IFILE);
 
-$code =~ s/(\{(.|\n)*?\})/;/g;
+#$code =~ s/(\{(.|\n)*?\})/;/g;
+$code = remove_func_body($code);
 my @lines = split(/\n/, $code);
 for (my $i = 0; $i < @lines; $i++) {
     my $line = trim($lines[$i]); 
@@ -50,7 +51,7 @@ for (my $i = 0; $i < @lines; $i++) {
     }
 
 
-    $func_decl .= $line;
+    $func_decl .= $line." ";  # always append one space to separate 2 identifiers
     if ($line =~ /;$/) {
         push @func_list, $func_decl;
         $func_decl = undef;
@@ -94,9 +95,9 @@ for (my $if = 0; ; $if++) {
 if ($allcode_cpp) {
     Out(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
     Out("//All cpp code wrapper for wxluabind\n");
-    Out(gen_wrap_ns_begin(""));
+    Out(gen_wrap_ns_begin($class_name));
     Out($allcode_cpp);
-    Out(gen_wrap_ns_end(""));
+    Out(gen_wrap_ns_end($class_name));
     Out("\n");
 }
 
@@ -209,7 +210,7 @@ sub parse_func_decl {
 sub gen_class_bind_macro_begin {
     my ($class_name) = @_;
 
-    my $out = "// $class_name binding\n";
+    my $out = "// Bind class $class_name\n";
     $out .= "BEGIN_BIND_CLASS($class_name)\n";
     return $out;
 }
@@ -249,12 +250,12 @@ sub gen_static_mem_func_wrap_code {
             my $hasdefault = Config::GetConfigData($argcf, "hasdefault", 0);
             next unless $hasdefault;
 
-            $allcode_cpp .= gen_static_mem_func_macro_overload($function, $i, $macro);
+            $allcode_macro .= gen_static_mem_func_macro_overload($function, $i, $macro);
         }
         # always macro one func with all arguments
-        $allcode_cpp .= gen_static_mem_func_macro_overload($function, $nargs, $macro);
-        $allcode_cpp .= "END_BIND_SCOPE()\n";
-        $allcode_cpp .= "\n";
+        $allcode_macro .= gen_static_mem_func_macro_overload($function, $nargs, $macro);
+        $allcode_macro .= "END_BIND_SCOPE()\n";
+        $allcode_macro .= "\n";
     }
     else
     {
@@ -340,7 +341,7 @@ sub gen_member_func_wrap_code {
         }
         $allcode_macro .= gen_mem_func_macro_overload($function, $nargs, $macro);
     } else {
-        if (is_overloaded_func_wodefault($func_name)) {
+        if (has_same_func_name($func_name)) {
             my $macro = "BIND_MF_OVERLOAD";
 
             $allcode_macro .= gen_overload_mem_func_macro($function, $nargs, $macro);
@@ -353,16 +354,13 @@ sub gen_member_func_wrap_code {
 }
 
 # is overloaded function without default arg??
-sub is_overloaded_func_wodefault {
+sub has_same_func_name {
     my ($func_name) = @_;
 
     my $count = 0;
     for (my $if = 0; ; $if++) {
         my $function = Config::GetNode($class_scope, "function", $if);
         last unless (defined $function);
-
-        my $hasdefault = Config::GetConfigData($function, "hasdefault_arg", 0);
-        next if $hasdefault;
 
         my $name = Config::GetConfigData($function, "func_name");
         $count++ if $name eq $func_name;
@@ -431,7 +429,8 @@ sub gen_ctor_macro {
 sub gen_wrap_ns_begin {
     my $ns = shift;
     my $out =<<EOF;
-namespace $ns
+// namespace for class $ns
+namespace
 {
 EOF
     return $out;
@@ -440,7 +439,7 @@ EOF
 sub gen_wrap_ns_end {
     my $ns = shift;
     my $out =<<EOF;
-}  // namespace $ns
+}  // namespace for $ns
 EOF
     return $out;
 }

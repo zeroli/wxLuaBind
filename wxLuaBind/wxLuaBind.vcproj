@@ -186,11 +186,63 @@
 				Name="core"
 				>
 				<File
+					RelativePath=".\src\aboutdlg_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\accel_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\anidecod_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\animate_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\animdecod_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\artprov_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\bitmap_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\bookctrl_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\brush_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\busyinfo_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\button_bind.cc"
 					>
 				</File>
 				<File
+					RelativePath=".\src\calctrl_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\caret_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\checkbox_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\checklst_bind.cc"
 					>
 				</File>
 				<File
@@ -226,7 +278,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\listbox_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\menu_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\odcombo_bind.cc"
 					>
 				</File>
 				<File
@@ -234,7 +294,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\radiobox_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\sizer_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\statbox_bind.cc"
 					>
 				</File>
 				<File

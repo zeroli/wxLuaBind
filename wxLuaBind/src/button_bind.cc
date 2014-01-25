@@ -34,7 +34,38 @@ namespace
     }
 }  // namespace
 
-REGISTER_WXLUA_BIND(wxbutton)
+// namespace for class wxBitmapButton
+namespace
+{
+    // Auto generated CPP code for 'Create'
+    // =================================
+    bool Create3(wxBitmapButton* self, wxWindow * parent, wxWindowID id, const wxBitmap& bitmap)
+    {
+        return self->Create(parent,id,bitmap);
+    }
+    bool Create4(wxBitmapButton* self, wxWindow * parent, wxWindowID id, const wxBitmap& bitmap, const wxPoint& pos)
+    {
+        return self->Create(parent,id,bitmap,pos);
+    }
+    bool Create5(wxBitmapButton* self, wxWindow * parent, wxWindowID id, const wxBitmap& bitmap, const wxPoint& pos, const wxSize& size)
+    {
+        return self->Create(parent,id,bitmap,pos,size);
+    }
+    bool Create6(wxBitmapButton* self, wxWindow * parent, wxWindowID id, const wxBitmap& bitmap, const wxPoint& pos, const wxSize& size, long style)
+    {
+        return self->Create(parent,id,bitmap,pos,size,style);
+    }
+    bool Create7(wxBitmapButton* self, wxWindow * parent, wxWindowID id, const wxBitmap& bitmap, const wxPoint& pos, const wxSize& size, long style, const wxValidator& validator)
+    {
+        return self->Create(parent,id,bitmap,pos,size,style,validator);
+    }
+    bool Create8(wxBitmapButton* self, wxWindow * parent, wxWindowID id, const wxBitmap& bitmap, const wxPoint& pos, const wxSize& size, long style, const wxValidator& validator, const wxString& name)
+    {
+        return self->Create(parent,id,bitmap,pos,size,style,validator,name);
+    }
+}  // namespace for wxBitmapButton
+
+REGISTER_WXLUA_BIND(button)
 {
     BEGIN_LUA_TABLE(wx)
         BIND_MACRO(wxBU_EXACTFIT)
@@ -42,6 +73,7 @@ REGISTER_WXLUA_BIND(wxbutton)
     END_LUA_TABLE(wx)
 
     BEGIN_BIND_MODULE(wx)
+
         BEGIN_BIND_CLASS_CONTROL(wxButton)
         // Auto generated MACRO code for ctor of 'wxButton':
         // =================================
@@ -79,6 +111,63 @@ REGISTER_WXLUA_BIND(wxbutton)
         BIND_SMF(wxButton, GetDefaultSize)
         END_BIND_SCOPE()
         END_BIND_CLASS(wxButton)
+
+        BEGIN_BIND_CLASS(wxBitmapButton, wxButton)
+        // Auto generated MACRO code for ctor of 'wxBitmapButton':
+        // =================================
+        BIND_CTOR()
+        // Auto generated MACRO code for ctor of 'wxBitmapButton':
+        // =================================
+        BIND_CTOR(wxWindow *, wxWindowID, const wxBitmap&)
+        BIND_CTOR(wxWindow *, wxWindowID, const wxBitmap&, const wxPoint&)
+        BIND_CTOR(wxWindow *, wxWindowID, const wxBitmap&, const wxPoint&, const wxSize&)
+        BIND_CTOR(wxWindow *, wxWindowID, const wxBitmap&, const wxPoint&, const wxSize&, long)
+        BIND_CTOR(wxWindow *, wxWindowID, const wxBitmap&, const wxPoint&, const wxSize&, long, const wxValidator&)
+        BIND_CTOR(wxWindow *, wxWindowID, const wxBitmap&, const wxPoint&, const wxSize&, long, const wxValidator&, const wxString&)
+        // Auto generated MACRO code for 'Create':
+        // =================================
+        BIND_F2MF_OVERLOAD(Create, 3,
+        bool, (wxBitmapButton*, wxWindow *, wxWindowID, const wxBitmap&))
+        BIND_F2MF_OVERLOAD(Create, 4,
+        bool, (wxBitmapButton*, wxWindow *, wxWindowID, const wxBitmap&, const wxPoint&))
+        BIND_F2MF_OVERLOAD(Create, 5,
+        bool, (wxBitmapButton*, wxWindow *, wxWindowID, const wxBitmap&, const wxPoint&, const wxSize&))
+        BIND_F2MF_OVERLOAD(Create, 6,
+        bool, (wxBitmapButton*, wxWindow *, wxWindowID, const wxBitmap&, const wxPoint&, const wxSize&, long))
+        BIND_F2MF_OVERLOAD(Create, 7,
+        bool, (wxBitmapButton*, wxWindow *, wxWindowID, const wxBitmap&, const wxPoint&, const wxSize&, long, const wxValidator&))
+        BIND_F2MF_OVERLOAD(Create, 8,
+        bool, (wxBitmapButton*, wxWindow *, wxWindowID, const wxBitmap&, const wxPoint&, const wxSize&, long, const wxValidator&, const wxString&))
+        BIND_MF(wxBitmapButton, SetBitmapLabel)
+        BIND_MF(wxBitmapButton, SetBitmapSelected)
+        BIND_MF(wxBitmapButton, SetBitmapFocus)
+        BIND_MF(wxBitmapButton, SetBitmapDisabled)
+        BIND_MF(wxBitmapButton, SetBitmapHover)
+        BIND_MF_OVERLOAD(wxBitmapButton, GetBitmapLabel,
+        const wxBitmap&, () const)
+        BIND_MF_OVERLOAD(wxBitmapButton, GetBitmapSelected,
+        const wxBitmap&, () const)
+        BIND_MF_OVERLOAD(wxBitmapButton, GetBitmapFocus,
+        const wxBitmap&, () const)
+        BIND_MF_OVERLOAD(wxBitmapButton, GetBitmapDisabled,
+        const wxBitmap&, () const)
+        BIND_MF_OVERLOAD(wxBitmapButton, GetBitmapHover,
+        const wxBitmap&, () const)
+        BIND_MF_OVERLOAD(wxBitmapButton, GetBitmapLabel,
+        wxBitmap&, ())
+        BIND_MF_OVERLOAD(wxBitmapButton, GetBitmapSelected,
+        wxBitmap&, ())
+        BIND_MF_OVERLOAD(wxBitmapButton, GetBitmapFocus,
+        wxBitmap&, ())
+        BIND_MF_OVERLOAD(wxBitmapButton, GetBitmapDisabled,
+        wxBitmap&, ())
+        BIND_MF_OVERLOAD(wxBitmapButton, GetBitmapHover,
+        wxBitmap&, ())
+        BIND_MF(wxBitmapButton, SetMargins)
+        BIND_MF(wxBitmapButton, GetMarginX)
+        BIND_MF(wxBitmapButton, GetMarginY)
+        END_BIND_CLASS(wxBitmapButton)
+
     END_BIND_MODULE(wx)
     return 0;
 }

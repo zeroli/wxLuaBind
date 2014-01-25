@@ -13,24 +13,61 @@ function main()
 	winid = wx.wxID_ANY
 	title = wx.wxString("this is one minimal frame window")
 	frame = wx.wxFrame(parentwin, winid, title, wx.wxDefaultPosition,
-		wx.wxDefaultSize, wx.wxDEFAULT_FRAME_STYLE)
+		wx.wxSize(600, 500), wx.wxDEFAULT_FRAME_STYLE)
 
+	-- test basic controls
 	panel = wx.wxPanel(frame, wx.wxID_ANY)
 	mainSizer = wx.wxBoxSizer(wx.wxVERTICAL)
 	panel:SetSizer(mainSizer)
+	-- test text ctrl
 	mainSizer:Add(wx.wxTextCtrl(panel, wx.wxID_ANY, wx.wxString("this is one testing text control"),
 		wx.wxDefaultPosition, wx.wxSize(200, 40)), 0)
+	-- test static text
 	mainSizer:Add(wx.wxStaticText(panel, wx.wxID_ANY, wx.wxString("this is one static text")), 0)
+	-- test button
 	mainSizer:Add(wx.wxButton(panel, wx.wxID_ANY, wx.wxString("this is one button")), 0)
-	mainSizer:Add(wx.wxButton(panel, wx.wxID_ANY, wx.wxString("this is one button")), 0)
-	
+
+	-- test combo box
 	combo = wx.wxComboBox(panel, wx.wxID_ANY, wx.wxString("combo box text"))
-	mainSizer:Add(combo,1)
-	combo:Append(wx.wxString("item1"))
-	combo:Append(wx.wxString("item2"))
-	combo:Append(wx.wxString("item3"))
-	combo:Append(wx.wxString("item4"))
-	combo:Append(wx.wxString("item5"))
+	mainSizer:Add(combo, 0)
+	for i=1, 5 do
+		combo:Append(wx.wxString("item"..i))
+	end
+	-- test check box
+	for i=1, 5 do
+		checkbox = wx.wxCheckBox(panel, wx.wxID_ANY, wx.wxString("check box"..i))
+		if i % 2 == 0 then
+			checkbox:SetValue(true)
+		end
+		mainSizer:Add(checkbox, 0)
+	end
+	
+	sizer1 = wx.wxBoxSizer(wx.wxHORIZONTAL)
+	mainSizer:Add(sizer1, 1, wx.wxGROW + wx.wxALL, 5)
+	-- test list box
+	listbox = wx.wxListBox(panel, wx.wxID_ANY)
+	sizer1:Add(listbox, 0)
+	for i=1, 5 do
+		listbox:Insert(wx.wxString("list item"..i), listbox:GetCount())
+	end
+	-- test check list box
+	checklistbox = wx.wxCheckListBox(panel, wx.wxID_ANY)
+	sizer1:Add(checklistbox, 0)
+	for i=1, 10 do
+		checklistbox:Insert(wx.wxString("check list item"..i), checklistbox:GetCount())
+		if i % 2 == 0 then
+			checklistbox:Check(i-1, true)
+		end		
+	end
+	-- test radio box
+	--do
+		--sizer2 = wx.wxBoxSizer(wx.wxVERTICAL)
+		--sizer1:Add(sizer2, 0)
+		--radiobox = wx.wxRadioBox(panel, wx.wxID_ANY, wx.wxString("radio box test"))
+		--sizer2:Add(radiobox, 0)
+	--end
+	
+	panel:Layout()
     -- connect the paint event handler function with the paint event
     --panel:Connect(wx.wxEVT_PAINT, OnPaint)
 

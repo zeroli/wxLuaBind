@@ -149,4 +149,14 @@ sub parse_cpp_func {
         trim($args), trim($modifier));
 }
 
+sub remove_func_body {
+    my ($code) = @_;
+
+    while ($code =~ /[\{\}]/) {
+        $code =~ s/(\{[^\{\}]*\})/;/g;
+    }
+
+    return $code;
+}
+
 1;
