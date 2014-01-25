@@ -186,11 +186,23 @@
 				Name="core"
 				>
 				<File
+					RelativePath=".\src\button_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\caret_bind.cc"
 					>
 				</File>
 				<File
 					RelativePath=".\src\colour_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\combo_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\combobox_bind.cc"
 					>
 				</File>
 				<File
@@ -263,6 +275,10 @@
 				</File>
 				<File
 					RelativePath=".\src\clntdata_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\ctrlsub_bind.cc"
 					>
 				</File>
 				<File

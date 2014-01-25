@@ -21,6 +21,16 @@ function main()
 	mainSizer:Add(wx.wxTextCtrl(panel, wx.wxID_ANY, wx.wxString("this is one testing text control"),
 		wx.wxDefaultPosition, wx.wxSize(200, 40)), 0)
 	mainSizer:Add(wx.wxStaticText(panel, wx.wxID_ANY, wx.wxString("this is one static text")), 0)
+	mainSizer:Add(wx.wxButton(panel, wx.wxID_ANY, wx.wxString("this is one button")), 0)
+	mainSizer:Add(wx.wxButton(panel, wx.wxID_ANY, wx.wxString("this is one button")), 0)
+	
+	combo = wx.wxComboBox(panel, wx.wxID_ANY, wx.wxString("combo box text"))
+	mainSizer:Add(combo,1)
+	combo:Append(wx.wxString("item1"))
+	combo:Append(wx.wxString("item2"))
+	combo:Append(wx.wxString("item3"))
+	combo:Append(wx.wxString("item4"))
+	combo:Append(wx.wxString("item5"))
     -- connect the paint event handler function with the paint event
     --panel:Connect(wx.wxEVT_PAINT, OnPaint)
 

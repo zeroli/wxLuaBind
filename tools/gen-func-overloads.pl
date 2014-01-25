@@ -3,7 +3,7 @@
 use strict;
 use Data::Dumper;
 
-require "xmlconfig.pm";
+require "ConfigUtil.pm";
 require "common.pm";
 
 die "perl $0 <class name> <cpp interface file>\n" if @ARGV < 2;
@@ -203,7 +203,8 @@ sub parse_func_decl {
 sub gen_class_bind_macro_begin {
     my ($class_name) = @_;
 
-    my $out = "BEGIN_BIND_CLASS($class_name)\n";
+    my $out = "// $class_name binding\n";
+    $out .= "BEGIN_BIND_CLASS($class_name)\n";
     return $out;
 }
 

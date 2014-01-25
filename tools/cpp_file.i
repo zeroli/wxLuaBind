@@ -1,139 +1,45 @@
-        BIND_VARIABLE(wxEVT_COMMAND_CHECKBOX_CLICKED)
-        BIND_VARIABLE(wxEVT_COMMAND_CHOICE_SELECTED)
-        BIND_VARIABLE(wxEVT_COMMAND_LISTBOX_SELECTED)
-        BIND_VARIABLE(wxEVT_COMMAND_CHECKLISTBOX_TOGGLED)
+    wxItemContainer() { m_clientDataItemsType = wxClientData_None; }
+    virtual ~wxItemContainer();
 
-        BIND_VARIABLE(wxEVT_COMMAND_MENU_SELECTED)
-        BIND_VARIABLE(wxEVT_COMMAND_SLIDER_UPDATED)
-        BIND_VARIABLE(wxEVT_COMMAND_RADIOBOX_SELECTED)
-        BIND_VARIABLE(wxEVT_COMMAND_RADIOBUTTON_SELECTED)
-        BIND_VARIABLE(wxEVT_COMMAND_SCROLLBAR_UPDATED)
-        BIND_VARIABLE(wxEVT_COMMAND_VLBOX_SELECTED)
-        BIND_VARIABLE(wxEVT_COMMAND_COMBOBOX_SELECTED)
-        BIND_VARIABLE(wxEVT_COMMAND_TOOL_RCLICKED)
-        BIND_VARIABLE(wxEVT_COMMAND_TOOL_ENTER)
-        BIND_VARIABLE(wxEVT_COMMAND_SPINCTRL_UPDATED)
+    // adding items
+    // ------------
 
-        BIND_VARIABLE(wxEVT_SOCKET)
+    int Append(const wxString& item)
+        { return DoAppend(item); }
+    int Append(const wxString& item, void *clientData)
+        { int n = DoAppend(item); SetClientData(n, clientData); return n; }
+    int Append(const wxString& item, wxClientData *clientData)
+        { int n = DoAppend(item); SetClientObject(n, clientData); return n; }
 
-        BIND_VARIABLE(wxEVT_TIMER)
+    // only for rtti needs (separate name)
+    void AppendString( const wxString& item)
+        { Append( item ); }
 
-        BIND_VARIABLE(wxEVT_LEFT_DOWN)
-        BIND_VARIABLE(wxEVT_LEFT_UP)
-        BIND_VARIABLE(wxEVT_MIDDLE_DOWN)
-        BIND_VARIABLE(wxEVT_MIDDLE_UP)
-        BIND_VARIABLE(wxEVT_RIGHT_DOWN)
-        BIND_VARIABLE(wxEVT_RIGHT_UP)
-        BIND_VARIABLE(wxEVT_MOTION)
-        BIND_VARIABLE(wxEVT_ENTER_WINDOW)
-        BIND_VARIABLE(wxEVT_LEAVE_WINDOW)
-        BIND_VARIABLE(wxEVT_LEFT_DCLICK)
-        BIND_VARIABLE(wxEVT_MIDDLE_DCLICK)
-        BIND_VARIABLE(wxEVT_RIGHT_DCLICK)
-        BIND_VARIABLE(wxEVT_SET_FOCUS)
-        BIND_VARIABLE(wxEVT_KILL_FOCUS)
-        BIND_VARIABLE(wxEVT_CHILD_FOCUS)
-        BIND_VARIABLE(wxEVT_MOUSEWHEEL)
+    // append several items at once to the control
+    void Append(const wxArrayString& strings);
 
-        BIND_VARIABLE(wxEVT_NC_LEFT_DOWN)
-        BIND_VARIABLE(wxEVT_NC_LEFT_UP)
-        BIND_VARIABLE(wxEVT_NC_MIDDLE_DOWN)
-        BIND_VARIABLE(wxEVT_NC_MIDDLE_UP)
-        BIND_VARIABLE(wxEVT_NC_RIGHT_DOWN)
-        BIND_VARIABLE(wxEVT_NC_RIGHT_UP)
-        BIND_VARIABLE(wxEVT_NC_MOTION)
-        BIND_VARIABLE(wxEVT_NC_ENTER_WINDOW)
-        BIND_VARIABLE(wxEVT_NC_LEAVE_WINDOW)
-        BIND_VARIABLE(wxEVT_NC_LEFT_DCLICK)
-        BIND_VARIABLE(wxEVT_NC_MIDDLE_DCLICK)
-        BIND_VARIABLE(wxEVT_NC_RIGHT_DCLICK)
+    int Insert(const wxString& item, unsigned int pos)
+        { return DoInsert(item, pos); }
+    int Insert(const wxString& item, unsigned int pos, void *clientData);
+    int Insert(const wxString& item, unsigned int pos, wxClientData *clientData);
 
-        BIND_VARIABLE(wxEVT_CHAR)
-        BIND_VARIABLE(wxEVT_CHAR_HOOK)
-        BIND_VARIABLE(wxEVT_NAVIGATION_KEY)
-        BIND_VARIABLE(wxEVT_KEY_UP)
-#if wxUSE_HOTKEY
-        BIND_VARIABLE(wxEVT_HOTKEY)
-#endif
-        BIND_VARIABLE(wxEVT_SET_CURSOR)
+    // deleting items
+    // --------------
 
-        BIND_VARIABLE(wxEVT_SCROLL_TOP)
-        BIND_VARIABLE(wxEVT_SCROLL_BOTTOM)
-        BIND_VARIABLE(wxEVT_SCROLL_LINEUP)
-        BIND_VARIABLE(wxEVT_SCROLL_LINEDOWN)
-        BIND_VARIABLE(wxEVT_SCROLL_PAGEUP)
-        BIND_VARIABLE(wxEVT_SCROLL_PAGEDOWN)
-        BIND_VARIABLE(wxEVT_SCROLL_THUMBTRACK)
-        BIND_VARIABLE(wxEVT_SCROLL_THUMBRELEASE)
-        BIND_VARIABLE(wxEVT_SCROLL_CHANGED)
+    virtual void Clear() = 0;
+    virtual void Delete(unsigned int n) = 0;
 
-        BIND_VARIABLE(wxEVT_SCROLLWIN_TOP)
-        BIND_VARIABLE(wxEVT_SCROLLWIN_BOTTOM)
-        BIND_VARIABLE(wxEVT_SCROLLWIN_LINEUP)
-        BIND_VARIABLE(wxEVT_SCROLLWIN_LINEDOWN)
-        BIND_VARIABLE(wxEVT_SCROLLWIN_PAGEUP)
-        BIND_VARIABLE(wxEVT_SCROLLWIN_PAGEDOWN)
-        BIND_VARIABLE(wxEVT_SCROLLWIN_THUMBTRACK)
-        BIND_VARIABLE(wxEVT_SCROLLWIN_THUMBRELEASE)
+    // misc
+    // ----
 
-        BIND_VARIABLE(wxEVT_SIZE)
-        BIND_VARIABLE(wxEVT_MOVE)
-        BIND_VARIABLE(wxEVT_CLOSE_WINDOW)
-        BIND_VARIABLE(wxEVT_END_SESSION)
-        BIND_VARIABLE(wxEVT_QUERY_END_SESSION)
-        BIND_VARIABLE(wxEVT_ACTIVATE_APP)
+    // client data stuff
+    void SetClientData(unsigned int n, void* clientData);
+    void* GetClientData(unsigned int n) const;
 
-        BIND_VARIABLE(wxEVT_ACTIVATE)
-        BIND_VARIABLE(wxEVT_CREATE)
-        BIND_VARIABLE(wxEVT_DESTROY)
-        BIND_VARIABLE(wxEVT_SHOW)
-        BIND_VARIABLE(wxEVT_ICONIZE)
-        BIND_VARIABLE(wxEVT_MAXIMIZE)
-        BIND_VARIABLE(wxEVT_MOUSE_CAPTURE_CHANGED)
-        BIND_VARIABLE(wxEVT_MOUSE_CAPTURE_LOST)
-        BIND_VARIABLE(wxEVT_PAINT)
-        BIND_VARIABLE(wxEVT_ERASE_BACKGROUND)
-        BIND_VARIABLE(wxEVT_NC_PAINT)
-        BIND_VARIABLE(wxEVT_PAINT_ICON)
-        BIND_VARIABLE(wxEVT_MENU_OPEN)
-        BIND_VARIABLE(wxEVT_MENU_CLOSE)
-        BIND_VARIABLE(wxEVT_MENU_HIGHLIGHT)
-        BIND_VARIABLE(wxEVT_CONTEXT_MENU)
-        BIND_VARIABLE(wxEVT_SYS_COLOUR_CHANGED)
-        BIND_VARIABLE(wxEVT_DISPLAY_CHANGED)
-        BIND_VARIABLE(wxEVT_SETTING_CHANGED)
-        BIND_VARIABLE(wxEVT_QUERY_NEW_PALETTE)
-        BIND_VARIABLE(wxEVT_PALETTE_CHANGED)
-        BIND_VARIABLE(wxEVT_JOY_BUTTON_DOWN)
-        BIND_VARIABLE(wxEVT_JOY_BUTTON_UP)
-        BIND_VARIABLE(wxEVT_JOY_MOVE)
-        BIND_VARIABLE(wxEVT_JOY_ZMOVE)
-        BIND_VARIABLE(wxEVT_DROP_FILES)
-        BIND_VARIABLE(wxEVT_DRAW_ITEM)
-        BIND_VARIABLE(wxEVT_MEASURE_ITEM)
-        BIND_VARIABLE(wxEVT_COMPARE_ITEM)
-        BIND_VARIABLE(wxEVT_INIT_DIALOG)
-        BIND_VARIABLE(wxEVT_IDLE)
-        BIND_VARIABLE(wxEVT_UPDATE_UI)
-        BIND_VARIABLE(wxEVT_SIZING)
-        BIND_VARIABLE(wxEVT_MOVING)
-        BIND_VARIABLE(wxEVT_HIBERNATE)
+    void SetClientObject(unsigned int n, wxClientData* clientData);
+    wxClientData* GetClientObject(unsigned int n) const;
 
-        BIND_VARIABLE(wxEVT_COMMAND_TEXT_COPY)
-        BIND_VARIABLE(wxEVT_COMMAND_TEXT_CUT)
-        BIND_VARIABLE(wxEVT_COMMAND_TEXT_PASTE)
-
-        BIND_VARIABLE(wxEVT_COMMAND_LEFT_CLICK)
-        BIND_VARIABLE(wxEVT_COMMAND_LEFT_DCLICK)
-        BIND_VARIABLE(wxEVT_COMMAND_RIGHT_CLICK)
-        BIND_VARIABLE(wxEVT_COMMAND_RIGHT_DCLICK)
-        BIND_VARIABLE(wxEVT_COMMAND_SET_FOCUS)
-        BIND_VARIABLE(wxEVT_COMMAND_KILL_FOCUS)
-        BIND_VARIABLE(wxEVT_COMMAND_ENTER)
-
-        BIND_VARIABLE(wxEVT_HELP)
-        BIND_VARIABLE(wxEVT_DETAILED_HELP)
-
-        BIND_VARIABLE(wxEVT_COMMAND_TOOL_CLICKED)
-
-        BIND_VARIABLE(wxEVT_COMMAND_TEXT_UPDATED)
+    bool HasClientObjectData() const
+        { return m_clientDataItemsType == wxClientData_Object; }
+    bool HasClientUntypedData() const
+        { return m_clientDataItemsType == wxClientData_Void; }
