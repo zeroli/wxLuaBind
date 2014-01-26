@@ -110,7 +110,7 @@ sub gen_enum_bind_macro_begin {
     my ($class_name, $enum_name) = @_;
 
     my $out;
-    $out .= "BEGIN_CLASS_ENUM($enum_name)\n" if $class_name;
+    $out .= "BEGIN_CLASS_ENUM(".($enum_name ? $enum_name : "constant").")\n" if $class_name;
     $out .= "// Bind enum $enum_name (totally ".@enum_list.")\n";
     return $out;
 }
@@ -119,7 +119,7 @@ sub gen_enum_bind_macro_end {
     my ($class_name, $enum_name) = @_;
 
     my $out;
-    $out .= "END_CLASS_ENUM($enum_name)\n" if $class_name;
+    $out .= "END_CLASS_ENUM(".($enum_name ? $enum_name : "constant").")\n" if $class_name;
 
     return "$out\n";
 }

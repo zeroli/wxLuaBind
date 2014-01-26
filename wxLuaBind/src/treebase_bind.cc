@@ -2,7 +2,7 @@
 
 #include <wx/treebase.h>
 
-REGISTER_WXLUA_BIND(treebase)
+REGISTER_WXLUA_PREBIND(treebase, BIND_NO_TREEBASE)
 {
     BEGIN_BIND_MODULE(wx)
 #if wxUSE_TREECTRL

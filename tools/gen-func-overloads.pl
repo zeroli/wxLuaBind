@@ -243,8 +243,8 @@ sub gen_free_func_wrap_code {
     my $hasdefault = Config::GetConfigData($function, "hasdefault_arg", 0);
 
     # for free functions, we will not generate overloaded functions based on default arguments
-    $allcode_macro .= "// Auto generated MACRO code for '$func_name':\n";
-    $allcode_macro .= "// =================================\n";
+    $allcode_macro .= "$tabspaces// Auto generated MACRO code for '$func_name':\n";
+    $allcode_macro .= "$tabspaces// =================================\n";
 
     if (has_same_free_func_name($func_name))
     {
@@ -273,8 +273,8 @@ sub gen_static_mem_func_wrap_code {
     {
         my $macro = "BIND_SMF_OVERLOAD";
 
-        $allcode_macro .= "// Auto generated MACRO code for '$func_name':\n";
-        $allcode_macro .= "// =================================\n";
+        $allcode_macro .= "$tabspaces// Auto generated MACRO code for '$func_name':\n";
+        $allcode_macro .= "$tabspaces// =================================\n";
         $allcode_macro .= "BEGIN_BIND_SCOPE()\n";
         for (my $i = 0; ; $i++) {
             my $argcf = Config::GetNode($function, "argument", $i);
@@ -398,8 +398,8 @@ sub gen_member_func_wrap_code {
         $allcode_cpp .= gen_mem_func_overload_cpp_wrapper($function, $nargs);
         $allcode_cpp .= "\n";
         
-        $allcode_macro .= "// Auto generated MACRO code for '$func_name':\n";
-        $allcode_macro .= "// =================================\n";
+        $allcode_macro .= "$tabspaces// Auto generated MACRO code for '$func_name':\n";
+        $allcode_macro .= "$tabspaces// =================================\n";
 
         my $macro = "BIND_F2MF_OVERLOAD";
 
@@ -485,8 +485,8 @@ sub gen_ctor_wrap_code {
     
     my $func_name = Config::GetConfigData($function, "func_name");
 
-    $allcode_macro .= "// Auto generated MACRO code for ctor of '$func_name':\n";
-    $allcode_macro .= "// =================================\n";
+    $allcode_macro .= "$tabspaces// Auto generated MACRO code for ctor of '$func_name':\n";
+    $allcode_macro .= "$tabspaces// =================================\n";
 
     my $macro = "BIND_CTOR";
 
@@ -521,7 +521,7 @@ sub gen_ctor_macro {
     my $func_name = Config::GetConfigData($function, "func_name");
     my $ret_type = Config::GetConfigData($function, "return_type");
 
-    my $out = $macro;
+    my $out = $tabspaces.$macro;
     $out .= "(";
     
     for (my $i = 0; $i < $nargs; $i++) {
@@ -616,7 +616,7 @@ sub gen_mem_func_macro {
 
     my $func_name = Config::GetConfigData($function, "func_name");
 
-    my $out = $macro;
+    my $out = "$tabspaces$macro";
     $out .= "($class_name, $func_name)\n";
 
     return $out;
@@ -647,7 +647,7 @@ sub gen_overload_mem_func_macro {
     my $ret_type = Config::GetConfigData($function, "return_type");
     my $modifier = Config::GetConfigData($function, "func_modifier");
      
-    my $out = $macro;
+    my $out = "$tabspaces$macro";
     $out .= "($class_name, $func_name,\n";
     $out .= "$tabspaces$ret_type, (";
 

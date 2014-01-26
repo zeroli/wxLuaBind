@@ -401,6 +401,10 @@
 			<Filter
 				Name="adv"
 				>
+				<File
+					RelativePath=".\src\bmpcbox_bind.cc"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="xrc"

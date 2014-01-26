@@ -1,6 +1,6 @@
 #include <precompile.h>
 
-REGISTER_WXLUA_BIND(toplevel)
+REGISTER_WXLUA_PREBIND(toplevel, BIND_NO_TOPLEVELWIN)
 {
     BEGIN_LUA_TABLE(wx)
         BIND_MACRO(wxSTAY_ON_TOP)
