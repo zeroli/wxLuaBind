@@ -6,7 +6,7 @@ use Data::Dumper;
 require "ConfigUtil.pm";
 require "common.pm";
 
-die "perl $0 <cpp interface file> <class name>\n" if @ARGV < 2;
+die "perl $0 <cpp interface file> <class name>\n" if @ARGV < 1;
 
 my $cpp_ifile = shift; 
 my $class_name = shift;
@@ -72,6 +72,7 @@ my $class_scope = {};
 Config::SetConfigData($class_scope, "class_name", $class_name);
 
 my %func_wrap_code_gen_dispatch;
+$func_wrap_code_gen_dispatch{"free"} = \&gen_free_func_wrap_code;
 $func_wrap_code_gen_dispatch{"static"} = \&gen_static_mem_func_wrap_code;
 $func_wrap_code_gen_dispatch{"member"} = \&gen_member_func_wrap_code;
 $func_wrap_code_gen_dispatch{"ctor"} = \&gen_ctor_wrap_code;
@@ -95,9 +96,9 @@ for (my $if = 0; ; $if++) {
 if ($allcode_cpp) {
     Out(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
     Out("//All cpp code wrapper for wxluabind\n");
-    Out(gen_wrap_ns_begin($class_name));
+    Out(gen_wrap_ns_begin($class_name)) if ($class_name);
     Out($allcode_cpp);
-    Out(gen_wrap_ns_end($class_name));
+    Out(gen_wrap_ns_end($class_name)) if ($class_name);
     Out("\n");
 }
 
@@ -181,6 +182,11 @@ sub parse_func_decl {
 
     Debug(Dumper($function));
 
+    unless ($class_name) {
+        Config::SetConfigData($function, "type", "free");
+        return;
+    }
+
     if ($ret_type =~ /~/) {
         Config::SetConfigData($function, "type", "dtor");
     }
@@ -228,6 +234,33 @@ sub gen_dtor_wrap_code {
     print "this is one dtor funtion, do nothing\n";
 }
 
+sub gen_free_func_wrap_code {
+    my ($function) = @_;
+
+    my $func_name = Config::GetConfigData($function, "func_name");
+    my $nargs = Config::GetConfigData($function, "args_number", 0);
+
+    my $hasdefault = Config::GetConfigData($function, "hasdefault_arg", 0);
+
+    # for free functions, we will not generate overloaded functions based on default arguments
+    $allcode_macro .= "// Auto generated MACRO code for '$func_name':\n";
+    $allcode_macro .= "// =================================\n";
+
+    if (has_same_free_func_name($func_name))
+    {
+        my $macro = "BIND_FUNC_OVERLOAD";
+
+        $allcode_macro .= gen_overload_free_func_macro($function, $macro);
+        $allcode_macro .= "\n";
+    }
+    else
+    {
+        my $macro = "BIND_FUNC";
+        $allcode_macro .= gen_free_func_macro($function, $macro);
+        $allcode_macro .= "\n";
+    }
+}
+
 sub gen_static_mem_func_wrap_code {
     my ($function) = @_;
 
@@ -260,10 +293,50 @@ sub gen_static_mem_func_wrap_code {
     else
     {
         my $macro = "BIND_SMF";
-        $allcode_macro .= gen_static_mem_func_macro($function, $macro); 
+
+        if (has_same_static_mem_func_name($func_name)) {
+            my $macro = "BIND_SMF_OVERLOAD";
+
+            $allcode_macro .= gen_overload_static_mem_func_macro($function, $macro); 
+        } else {
+            my $macro = "BIND_SMF";
+
+            $allcode_macro .= gen_static_mem_func_macro($function, $macro); 
+        }
     }
 }
 
+sub gen_overload_free_func_macro {
+    my ($function, $macro) = @_;
+
+    my $func_name = Config::GetConfigData($function, "func_name");
+    my $ret_type = Config::GetConfigData($function, "return_type");
+
+    my $out = $macro;
+    $out .= "($func_name,\n";
+    $out .= "$ret_type, (";
+
+    for (my $i = 0; ; $i++) {
+        my $argcf = Config::GetNode($function, "argument", $i);
+        last unless (defined $argcf);
+       
+        $out .= ", " if $i != 0;
+        $out .= Config::GetConfigData($argcf, "type");
+    }
+    $out .= "))\n";
+    return $out;
+}
+
+sub gen_free_func_macro {
+    my ($function, $macro) = @_;
+
+    my $func_name = Config::GetConfigData($function, "func_name");
+    my $ret_type = Config::GetConfigData($function, "return_type");
+
+    my $out = $macro;
+    $out .= "($func_name)\n";
+    return $out;
+}
 sub gen_static_mem_func_macro_overload {
     my ($function, $nargs, $macro) = @_;
 
@@ -341,7 +414,7 @@ sub gen_member_func_wrap_code {
         }
         $allcode_macro .= gen_mem_func_macro_overload($function, $nargs, $macro);
     } else {
-        if (has_same_func_name($func_name)) {
+        if (has_same_mem_func_name($func_name)) {
             my $macro = "BIND_MF_OVERLOAD";
 
             $allcode_macro .= gen_overload_mem_func_macro($function, $nargs, $macro);
@@ -353,14 +426,52 @@ sub gen_member_func_wrap_code {
     }
 }
 
-# is overloaded function without default arg??
-sub has_same_func_name {
+# is overloaded non-static functions??
+sub has_same_mem_func_name {
     my ($func_name) = @_;
 
     my $count = 0;
     for (my $if = 0; ; $if++) {
         my $function = Config::GetNode($class_scope, "function", $if);
         last unless (defined $function);
+
+        my $type = Config::GetConfigData($function, "type");
+        next if ($type eq "static");
+
+        my $name = Config::GetConfigData($function, "func_name");
+        $count++ if $name eq $func_name;
+    }
+    return ($count > 1) ? 1 : 0;
+}
+
+# is overloaded static functions??
+sub has_same_static_mem_func_name {
+    my ($func_name) = @_;
+
+    my $count = 0;
+    for (my $if = 0; ; $if++) {
+        my $function = Config::GetNode($class_scope, "function", $if);
+        last unless (defined $function);
+
+        my $type = Config::GetConfigData($function, "type");
+        next unless ($type eq "static");
+
+        my $name = Config::GetConfigData($function, "func_name");
+        $count++ if $name eq $func_name;
+    }
+    return ($count > 1) ? 1 : 0;
+}
+
+sub has_same_free_func_name {
+    my ($func_name) = @_;
+    
+    my $count = 0;
+    for (my $if = 0; ; $if++) {
+        my $function = Config::GetNode($class_scope, "function", $if);
+        last unless (defined $function);
+
+        my $type = Config::GetConfigData($function, "type");
+        next unless ($type eq "free");
 
         my $name = Config::GetConfigData($function, "func_name");
         $count++ if $name eq $func_name;
@@ -508,6 +619,24 @@ sub gen_mem_func_macro {
     my $out = $macro;
     $out .= "($class_name, $func_name)\n";
 
+    return $out;
+}
+
+sub gen_overload_static_mem_func_macro {
+    my ($function, $macro) = @_;
+
+    my $func_name = Config::GetConfigData($function, "func_name");
+    my $ret_type = Config::GetConfigData($function, "return_type");
+     
+    my $out = "BEGIN_BIND_SCOPE()\n";
+    $out .= $macro;
+    $out .= "($class_name, $func_name,\n";
+    $out .= "$tabspaces$ret_type, (";
+
+    $out .= make_argument_type_list($function);
+    $out .= ")";
+    $out .= ")\n";
+    $out .= "END_BIND_SCOPE()\n";
     return $out;
 }
 

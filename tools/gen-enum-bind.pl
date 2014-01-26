@@ -9,6 +9,7 @@ require "common.pm";
 die "perl $0 <cpp interface file>\n" if @ARGV < 1;
 
 my $cpp_ifile = shift; 
+my $class_name = shift;
 my $debug = shift;
 
 my $enum_name;
@@ -70,42 +71,57 @@ my $tabspaces = ' 'x4;
 my $allcode_macro;
 foreach (@enum_list) {
     my $enum = $_;
-    $allcode_macro .= gen_enum_macro($enum);
+    $allcode_macro .= gen_enum_macro($class_name, $enum);
 }
 
 Out(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
-Out(gen_enum_bind_macro_begin($enum_name));
+Out(gen_enum_bind_macro_begin($class_name, $enum_name));
 Out($allcode_macro);
-Out(gen_enum_bind_macro_end($enum_name));
+Out(gen_enum_bind_macro_end($class_name, $enum_name));
 Out("\n");
 
 exit 0;
 
 # ==============================================
 sub gen_enum_macro {
-    my ($enum) = @_;
+    my ($class_name, $enum) = @_;
 
-    my $macro = "BIND_ENUM";
-    my $out = $macro;
-    $out .= "(";
-    $enum = trim($enum);
-    $out .= $enum;
+    if ($class_name) {
+        my $macro = "BIND_CLASS_ENUM";
+        my $out = $tabspaces.$macro;
+        $out .= "($class_name, ";
+        $enum = trim($enum);
+        $out .= $enum;
+        $out .= ")\n";
+        return $out;
+    } else {
+        my $macro = "BIND_ENUM";
+        my $out = $macro;
+        $out .= "(";
+        $enum = trim($enum);
+        $out .= $enum;
 
-    $out .= ")\n";
-    return $out;
+        $out .= ")\n";
+        return $out;
+    }
 }
 
 sub gen_enum_bind_macro_begin {
-    my ($enum_name) = @_;
+    my ($class_name, $enum_name) = @_;
 
-    my $out = "// Bind enum $enum_name (totally ".@enum_list.")\n";
+    my $out;
+    $out .= "BEGIN_CLASS_ENUM($enum_name)\n" if $class_name;
+    $out .= "// Bind enum $enum_name (totally ".@enum_list.")\n";
     return $out;
 }
 
 sub gen_enum_bind_macro_end {
-    my ($enum_name) = @_;
+    my ($class_name, $enum_name) = @_;
 
-    return "\n";
+    my $out;
+    $out .= "END_CLASS_ENUM($enum_name)\n" if $class_name;
+
+    return "$out\n";
 }
 
 

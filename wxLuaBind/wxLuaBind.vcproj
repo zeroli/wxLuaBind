@@ -246,6 +246,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\collpane_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\colour_bind.cc"
 					>
 				</File>
@@ -259,6 +263,22 @@
 				</File>
 				<File
 					RelativePath=".\src\control_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cursor_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\dialog_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\dirctrl_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\dirdlg_bind.cc"
 					>
 				</File>
 				<File
@@ -331,6 +351,10 @@
 				</File>
 				<File
 					RelativePath=".\src\toplevel_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\treebase_bind.cc"
 					>
 				</File>
 				<File
