@@ -105,9 +105,9 @@ if ($allcode_cpp) {
 if ($allcode_macro) {
     Out(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
     Out("//All macro code for wxluabind\n");
-    Out(gen_class_bind_macro_begin($class_name));
+    Out(gen_class_bind_macro_begin($class_name)) if ($class_name);
     Out($allcode_macro);
-    Out(gen_class_bind_macro_end($class_name));
+    Out(gen_class_bind_macro_end($class_name)) if ($class_name);
     Out("\n");
 }
 
@@ -242,22 +242,41 @@ sub gen_free_func_wrap_code {
 
     my $hasdefault = Config::GetConfigData($function, "hasdefault_arg", 0);
 
-    # for free functions, we will not generate overloaded functions based on default arguments
     $allcode_macro .= "$tabspaces// Auto generated MACRO code for '$func_name':\n";
     $allcode_macro .= "$tabspaces// =================================\n";
 
-    if (has_same_free_func_name($func_name))
+    if ($hasdefault)
     {
         my $macro = "BIND_FUNC_OVERLOAD";
 
-        $allcode_macro .= gen_overload_free_func_macro($function, $macro);
+        for (my $i = 0; ; $i++) {
+            my $argcf = Config::GetNode($function, "argument", $i);
+            last unless (defined $argcf);
+
+            my $hasdefault = Config::GetConfigData($argcf, "hasdefault", 0);
+            next unless $hasdefault;
+
+            $allcode_macro .= gen_free_func_macro_overload($function, $i, $macro);
+        }
+        # always macro one func with all arguments
+        $allcode_macro .= gen_free_func_macro_overload($function, $nargs, $macro);
         $allcode_macro .= "\n";
     }
     else
     {
-        my $macro = "BIND_FUNC";
-        $allcode_macro .= gen_free_func_macro($function, $macro);
-        $allcode_macro .= "\n";
+        if (has_same_free_func_name($func_name))
+        {
+            my $macro = "BIND_FUNC_OVERLOAD";
+
+            $allcode_macro .= gen_free_func_macro_overload($function, $nargs, $macro);
+            $allcode_macro .= "\n";
+        }
+        else
+        {
+            my $macro = "BIND_FUNC";
+            $allcode_macro .= gen_free_func_macro($function, $macro);
+            $allcode_macro .= "\n";
+        }
     }
 }
 
@@ -306,17 +325,17 @@ sub gen_static_mem_func_wrap_code {
     }
 }
 
-sub gen_overload_free_func_macro {
-    my ($function, $macro) = @_;
+sub gen_free_func_macro_overload {
+    my ($function, $nargs, $macro) = @_;
 
     my $func_name = Config::GetConfigData($function, "func_name");
     my $ret_type = Config::GetConfigData($function, "return_type");
 
-    my $out = $macro;
+    my $out = $tabspaces.$macro;
     $out .= "($func_name,\n";
-    $out .= "$ret_type, (";
+    $out .= "$tabspaces$tabspaces$ret_type, (";
 
-    for (my $i = 0; ; $i++) {
+    for (my $i = 0; $i < $nargs; $i++) {
         my $argcf = Config::GetNode($function, "argument", $i);
         last unless (defined $argcf);
        
@@ -333,7 +352,7 @@ sub gen_free_func_macro {
     my $func_name = Config::GetConfigData($function, "func_name");
     my $ret_type = Config::GetConfigData($function, "return_type");
 
-    my $out = $macro;
+    my $out = $tabspaces.$macro;
     $out .= "($func_name)\n";
     return $out;
 }
@@ -594,7 +613,7 @@ sub gen_mem_func_macro_overload {
     my $func_name = Config::GetConfigData($function, "func_name");
     my $ret_type = Config::GetConfigData($function, "return_type");
 
-    my $out = $macro;
+    my $out = $tabspaces.$macro;
     $out .= "($func_name, $nargs,\n";
     $out .= "${tabspaces}";
     $out .= "$ret_type, ($class_name*";
@@ -629,9 +648,9 @@ sub gen_overload_static_mem_func_macro {
     my $ret_type = Config::GetConfigData($function, "return_type");
      
     my $out = "BEGIN_BIND_SCOPE()\n";
-    $out .= $macro;
+    $out .= $tabspaces.$macro;
     $out .= "($class_name, $func_name,\n";
-    $out .= "$tabspaces$ret_type, (";
+    $out .= "$tabspaces$tabspaces$ret_type, (";
 
     $out .= make_argument_type_list($function);
     $out .= ")";

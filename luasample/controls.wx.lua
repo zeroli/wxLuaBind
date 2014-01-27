@@ -1,5 +1,5 @@
 --[[
-test lua using minimal wx sample
+test lua using controls wx sample
 --]]
 
 --package.cpath = package.cpath..";../../Debug/?.dll;"
@@ -7,16 +7,6 @@ test lua using minimal wx sample
 require("wx")
 
 app = wx.wxApp()
-
-function OnPaint(event)
-    -- must always create a wxPaintDC in a wxEVT_PAINT handler
-    local dc = wx.wxPaintDC(panel)
-    -- call some drawing functions
-    dc:DrawRectangle(10, 10, 300, 300);
-    dc:DrawRoundedRectangle(20, 20, 280, 280, 20);
-    dc:DrawEllipse(30, 30, 260, 260);
-    dc:DrawText(wx.wxString("A test string"), 50, 150);
-end
 
 function CreateControls(panel)
 	mainSizer = wx.wxBoxSizer(wx.wxVERTICAL)
@@ -92,9 +82,7 @@ function main()
 
 	-- test basic controls
 	panel = wx.wxPanel(frame, wx.wxID_ANY)
-	--CreateControls(panel)
-    -- connect the paint event handler function with the paint event
-    panel:Connect(wx.wxEVT_PAINT, OnPaint)
+	CreateControls(panel)
 
     -- create a simple file menu
     local fileMenu = wx.wxMenu()

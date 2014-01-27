@@ -270,6 +270,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\dc_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\dialog_bind.cc"
 					>
 				</File>
@@ -303,6 +307,10 @@
 				</File>
 				<File
 					RelativePath=".\src\menu_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\msgdlg_bind.cc"
 					>
 				</File>
 				<File
@@ -391,6 +399,10 @@
 				</File>
 				<File
 					RelativePath=".\src\string_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\version_bind.cc"
 					>
 				</File>
 			</Filter>

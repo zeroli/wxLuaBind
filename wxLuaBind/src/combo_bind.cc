@@ -344,8 +344,10 @@ REGISTER_WXLUA_PREBIND(combo, BIND_NO_COMBO)
     END_BIND_MODULE(wx)
 
     BEGIN_LUA_TABLE(wx)
+#if defined(__WXUNIVERSAL__)
     BIND_MACRO(wxACTION_COMBOBOX_POPUP)
     BIND_MACRO(wxACTION_COMBOBOX_DISMISS)
+#endif
     // Bind enum  (totally 1)
     BIND_ENUM(wxCP_IFLAG_CREATED)
     // Bind enum  (totally 2)

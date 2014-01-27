@@ -2,53 +2,67 @@
 
 namespace
 {
+    class wxLuaEvtHandler : public wxEvtHandler
+    {
+    public:
+        explicit wxLuaEvtHandler(const object& luafunc)
+            : m_luaFunc(luafunc)
+        {
+        }
+
+        void OnEvent(wxEvent& evt)
+        {
+            if (!m_luaFunc.is_valid())
+            {
+                fprintf(stderr, "Connected Lua function is not valid\n");
+                return;
+            }
+
+            lua_State* L = m_luaFunc.interpreter();
+            m_luaFunc.push(L);
+            lua_pushlightuserdata(L, &evt);
+
+            if (lua_pcall(L, 1, 0, 0) != 0)
+            {
+                fprintf(stderr, "Error: %s\n", lua_tostring(L, -1));
+                lua_pop(L, 1);
+            }
+        }
+    private:
+        object m_luaFunc;
+    };
+}  // anonymous namespace
+
+namespace
+{
     // Auto generated CPP code for 'Connect'
     // =================================
-    void Connect4(wxEvtHandler* self, int winid, int lastId, int eventType, wxObjectEventFunction func)
+    void Connect4(wxEvtHandler* self, int winid, int lastId, int eventType, object objfunc)
     {
-        return self->Connect(winid,lastId,eventType,func);
-    }
-    void Connect5(wxEvtHandler* self, int winid, int lastId, int eventType, wxObjectEventFunction func, wxObject * userData)
-    {
-        return self->Connect(winid,lastId,eventType,func,userData);
-    }
-    void Connect6(wxEvtHandler* self, int winid, int lastId, int eventType, wxObjectEventFunction func, wxObject * userData, wxEvtHandler * eventSink)
-    {
-        return self->Connect(winid,lastId,eventType,func,userData,eventSink);
+        if (objfunc.is_valid() && type(objfunc) != LUA_TFUNCTION)
+        {
+            fprintf(stderr, "The passed 3rd argument is not valid Lua function");
+            return;
+        }
+
+        wxLuaEvtHandler* evtHandler(new wxLuaEvtHandler(objfunc));
+        // pass evt handler as userdata, to let wx help us destroy it, to make our life easier
+        return self->Connect(winid, lastId, eventType,
+            (wxObjectEventFunction(&wxLuaEvtHandler::OnEvent)), evtHandler, evtHandler);
     }
 
     // Auto generated CPP code for 'Connect'
     // =================================
     void Connect3(wxEvtHandler* self, int winid, int eventType, object objfunc)
     {
-        objfunc.is_valid();
-        int objtype = type(objfunc);
-        fprintf(stderr, "obj type: %d", objtype);
-
-        //return self->Connect(winid,eventType,func);
-    }
-    void Connect4(wxEvtHandler* self, int winid, int eventType, wxObjectEventFunction func, wxObject * userData)
-    {
-        return self->Connect(winid,eventType,func,userData);
-    }
-    void Connect5(wxEvtHandler* self, int winid, int eventType, wxObjectEventFunction func, wxObject * userData, wxEvtHandler * eventSink)
-    {
-        return self->Connect(winid,eventType,func,userData,eventSink);
+        Connect4(self, winid, wxID_ANY, eventType, objfunc);
     }
 
     // Auto generated CPP code for 'Connect'
     // =================================
-    void Connect2(wxEvtHandler* self, int eventType, wxObjectEventFunction func)
+    void Connect2(wxEvtHandler* self, int eventType, object objfunc)
     {
-        return self->Connect(eventType,func);
-    }
-    void Connect3(wxEvtHandler* self, int eventType, wxObjectEventFunction func, wxObject * userData)
-    {
-        return self->Connect(eventType,func,userData);
-    }
-    void Connect4(wxEvtHandler* self, int eventType, wxObjectEventFunction func, wxObject * userData, wxEvtHandler * eventSink)
-    {
-        return self->Connect(eventType,func,userData,eventSink);
+        Connect4(self, wxID_ANY, wxID_ANY, eventType, objfunc);
     }
 
     // Auto generated CPP code for 'Disconnect'
@@ -56,18 +70,6 @@ namespace
     bool Disconnect3(wxEvtHandler* self, int winid, int lastId, wxEventType eventType)
     {
         return self->Disconnect(winid,lastId,eventType);
-    }
-    bool Disconnect4(wxEvtHandler* self, int winid, int lastId, wxEventType eventType, wxObjectEventFunction func)
-    {
-        return self->Disconnect(winid,lastId,eventType,func);
-    }
-    bool Disconnect5(wxEvtHandler* self, int winid, int lastId, wxEventType eventType, wxObjectEventFunction func, wxObject * userData)
-    {
-        return self->Disconnect(winid,lastId,eventType,func,userData);
-    }
-    bool Disconnect6(wxEvtHandler* self, int winid, int lastId, wxEventType eventType, wxObjectEventFunction func, wxObject * userData, wxEvtHandler * eventSink)
-    {
-        return self->Disconnect(winid,lastId,eventType,func,userData,eventSink);
     }
 
     // Auto generated CPP code for 'Disconnect'
@@ -83,33 +85,6 @@ namespace
     bool Disconnect2(wxEvtHandler* self, int winid, wxEventType eventType)
     {
         return self->Disconnect(winid,eventType);
-    }
-    bool Disconnect3(wxEvtHandler* self, int winid, wxEventType eventType, wxObjectEventFunction func)
-    {
-        return self->Disconnect(winid,eventType,func);
-    }
-    bool Disconnect4(wxEvtHandler* self, int winid, wxEventType eventType, wxObjectEventFunction func, wxObject * userData)
-    {
-        return self->Disconnect(winid,eventType,func,userData);
-    }
-    bool Disconnect5(wxEvtHandler* self, int winid, wxEventType eventType, wxObjectEventFunction func, wxObject * userData, wxEvtHandler * eventSink)
-    {
-        return self->Disconnect(winid,eventType,func,userData,eventSink);
-    }
-
-    // Auto generated CPP code for 'Disconnect'
-    // =================================
-    bool Disconnect2(wxEvtHandler* self, wxEventType eventType, wxObjectEventFunction func)
-    {
-        return self->Disconnect(eventType,func);
-    }
-    bool Disconnect3(wxEvtHandler* self, wxEventType eventType, wxObjectEventFunction func, wxObject * userData)
-    {
-        return self->Disconnect(eventType,func,userData);
-    }
-    bool Disconnect4(wxEvtHandler* self, wxEventType eventType, wxObjectEventFunction func, wxObject * userData, wxEvtHandler * eventSink)
-    {
-        return self->Disconnect(eventType,func,userData,eventSink);
     }
 }  // namespace
 
@@ -867,40 +842,22 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
             // Auto generated MACRO code for 'Connect':
             // =================================
             BIND_F2MF_OVERLOAD(Connect, 4,
-            void, (wxEvtHandler*,int,int,int,wxObjectEventFunction))
-            BIND_F2MF_OVERLOAD(Connect, 5,
-            void, (wxEvtHandler*,int,int,int,wxObjectEventFunction,wxObject *))
-            BIND_F2MF_OVERLOAD(Connect, 6,
-            void, (wxEvtHandler*,int,int,int,wxObjectEventFunction,wxObject *,wxEvtHandler *))
+            void, (wxEvtHandler*,int,int,int,object))
 
             // Auto generated MACRO code for 'Connect':
             // =================================
             BIND_F2MF_OVERLOAD(Connect, 3,
             void, (wxEvtHandler*,int,int,object))
-            BIND_F2MF_OVERLOAD(Connect, 4,
-            void, (wxEvtHandler*,int,int,wxObjectEventFunction,wxObject *))
-            BIND_F2MF_OVERLOAD(Connect, 5,
-            void, (wxEvtHandler*,int,int,wxObjectEventFunction,wxObject *,wxEvtHandler *))
 
             // Auto generated MACRO code for 'Connect':
             // =================================
             BIND_F2MF_OVERLOAD(Connect, 2,
-            void, (wxEvtHandler*,int,wxObjectEventFunction))
-            BIND_F2MF_OVERLOAD(Connect, 3,
-            void, (wxEvtHandler*,int,wxObjectEventFunction,wxObject *))
-            BIND_F2MF_OVERLOAD(Connect, 4,
-            void, (wxEvtHandler*,int,wxObjectEventFunction,wxObject *,wxEvtHandler *))
+            void, (wxEvtHandler*,int, object))
 
             // Auto generated MACRO code for 'Disconnect':
             // =================================
             BIND_F2MF_OVERLOAD(Disconnect, 3,
             bool, (wxEvtHandler*,int,int,wxEventType))
-            BIND_F2MF_OVERLOAD(Disconnect, 4,
-            bool, (wxEvtHandler*,int,int,wxEventType,wxObjectEventFunction))
-            BIND_F2MF_OVERLOAD(Disconnect, 5,
-            bool, (wxEvtHandler*,int,int,wxEventType,wxObjectEventFunction,wxObject *))
-            BIND_F2MF_OVERLOAD(Disconnect, 6,
-            bool, (wxEvtHandler*,int,int,wxEventType,wxObjectEventFunction,wxObject *,wxEvtHandler *))
 
             // Auto generated MACRO code for 'Disconnect':
             // =================================
@@ -910,21 +867,6 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
             bool, (wxEvtHandler*,int))
             BIND_F2MF_OVERLOAD(Disconnect, 2,
             bool, (wxEvtHandler*,int,wxEventType))
-            BIND_F2MF_OVERLOAD(Disconnect, 3,
-            bool, (wxEvtHandler*,int,wxEventType,wxObjectEventFunction))
-            BIND_F2MF_OVERLOAD(Disconnect, 4,
-            bool, (wxEvtHandler*,int,wxEventType,wxObjectEventFunction,wxObject *))
-            BIND_F2MF_OVERLOAD(Disconnect, 5,
-            bool, (wxEvtHandler*,int,wxEventType,wxObjectEventFunction,wxObject *,wxEvtHandler *))
-
-            // Auto generated MACRO code for 'Disconnect':
-            // =================================
-            BIND_F2MF_OVERLOAD(Disconnect, 2,
-            bool, (wxEvtHandler*,wxEventType,wxObjectEventFunction))
-            BIND_F2MF_OVERLOAD(Disconnect, 3,
-            bool, (wxEvtHandler*,wxEventType,wxObjectEventFunction,wxObject *))
-            BIND_F2MF_OVERLOAD(Disconnect, 4,
-            bool, (wxEvtHandler*,wxEventType,wxObjectEventFunction,wxObject *,wxEvtHandler *))
 
             BIND_MF(wxEvtHandler, GetDynamicEventTable)
             BIND_MF(wxEvtHandler, SetClientObject)
