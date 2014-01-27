@@ -9,8 +9,6 @@ extern "C" {
 
 #include <wx/wxprec.h>
 
-const char* luafile = "D:\\cpp_lua\\wxLuaBind\\luasample\\minimal.wx.lua";
-
 void LuaError(lua_State* L)
 {
     wxString msg;
@@ -22,7 +20,7 @@ void LuaError(lua_State* L)
         wxMessageBox(msg, "ERROR", wxICON_ERROR);
 }
 
-int dofile(lua_State* L)
+int dofile(lua_State* L, const char* luafile)
 {
     luaL_openlibs(L);
 
@@ -35,18 +33,18 @@ int dofile(lua_State* L)
     return 0;
 }
 
-#define BIND_VAR_ARGS(name, ...) name##__VA_ARGS__
-
-int main()
+int main(int argc, char** argv)
 {
-    //const char* tyes = "tyes=>test ok";
-    //const char* tyesno = "tyesno=>testfail";
-    //fprintf(stderr, "args= %s\n", BIND_VAR_ARGS(t, yes));
+    if (argc < 2)
+    {
+        fprintf(stderr, "Usage: %s %s\n", argv[0], argv[1]);
+        exit(1);
+    }
 
-    //return 0;
+    const char* luafile = argv[1];
 
     lua_State* L = lua_open();
-    dofile(L);
+    dofile(L, luafile);
 
     // FIXME: adding it will crash at lua's gc
     //lua_close(L);

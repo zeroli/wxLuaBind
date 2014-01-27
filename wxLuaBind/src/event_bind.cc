@@ -12,11 +12,8 @@ namespace
 
         void OnEvent(wxEvent& evt)
         {
-            if (!m_luaFunc.is_valid())
-            {
-                fprintf(stderr, "Connected Lua function is not valid\n");
-                return;
-            }
+            wxASSERT_MSG(m_luaFunc.is_valid(),
+                "Connected Lua function is not valid\n");
 
             lua_State* L = m_luaFunc.interpreter();
             m_luaFunc.push(L);
@@ -24,7 +21,7 @@ namespace
 
             if (lua_pcall(L, 1, 0, 0) != 0)
             {
-                fprintf(stderr, "Error: %s\n", lua_tostring(L, -1));
+                wxLogError("Error: %s\n", lua_tostring(L, -1));
                 lua_pop(L, 1);
             }
         }
@@ -41,14 +38,14 @@ namespace
     {
         if (objfunc.is_valid() && type(objfunc) != LUA_TFUNCTION)
         {
-            fprintf(stderr, "The passed 3rd argument is not valid Lua function");
+            wxLogError("The passed 3rd argument is not valid Lua function");
             return;
         }
 
         wxLuaEvtHandler* evtHandler(new wxLuaEvtHandler(objfunc));
         // pass evt handler as userdata, to let wx help us destroy it, to make our life easier
         return self->Connect(winid, lastId, eventType,
-            (wxObjectEventFunction(&wxLuaEvtHandler::OnEvent)), evtHandler, evtHandler);
+            (wxObjectEventFunction)&wxLuaEvtHandler::OnEvent, evtHandler, evtHandler);
     }
 
     // Auto generated CPP code for 'Connect'
