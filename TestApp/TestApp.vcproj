@@ -187,6 +187,10 @@
 			Name="LuaCode"
 			>
 			<File
+				RelativePath="..\luasample\controls.wx.lua"
+				>
+			</File>
+			<File
 				RelativePath="..\luasample\minimal.wx.lua"
 				>
 			</File>
