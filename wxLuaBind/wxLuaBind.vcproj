@@ -409,6 +409,14 @@
 			<Filter
 				Name="aui"
 				>
+				<File
+					RelativePath=".\src\auibar_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\auibook_bind.cc"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="adv"

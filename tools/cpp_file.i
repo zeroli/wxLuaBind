@@ -1,45 +1,82 @@
-    wxItemContainer() { m_clientDataItemsType = wxClientData_None; }
-    virtual ~wxItemContainer();
 
-    // adding items
-    // ------------
+    wxAuiNotebook();
 
-    int Append(const wxString& item)
-        { return DoAppend(item); }
-    int Append(const wxString& item, void *clientData)
-        { int n = DoAppend(item); SetClientData(n, clientData); return n; }
-    int Append(const wxString& item, wxClientData *clientData)
-        { int n = DoAppend(item); SetClientObject(n, clientData); return n; }
+    wxAuiNotebook(wxWindow* parent,
+                  wxWindowID id = wxID_ANY,
+                  const wxPoint& pos = wxDefaultPosition,
+                  const wxSize& size = wxDefaultSize,
+                  long style = wxAUI_NB_DEFAULT_STYLE);
 
-    // only for rtti needs (separate name)
-    void AppendString( const wxString& item)
-        { Append( item ); }
+    virtual ~wxAuiNotebook();
 
-    // append several items at once to the control
-    void Append(const wxArrayString& strings);
+    bool Create(wxWindow* parent,
+                wxWindowID id = wxID_ANY,
+                const wxPoint& pos = wxDefaultPosition,
+                const wxSize& size = wxDefaultSize,
+                long style = 0);
 
-    int Insert(const wxString& item, unsigned int pos)
-        { return DoInsert(item, pos); }
-    int Insert(const wxString& item, unsigned int pos, void *clientData);
-    int Insert(const wxString& item, unsigned int pos, wxClientData *clientData);
+    void SetWindowStyleFlag(long style);
+    void SetArtProvider(wxAuiTabArt* art);
+    wxAuiTabArt* GetArtProvider() const;
 
-    // deleting items
-    // --------------
+    virtual void SetUniformBitmapSize(const wxSize& size);
+    virtual void SetTabCtrlHeight(int height);
 
-    virtual void Clear() = 0;
-    virtual void Delete(unsigned int n) = 0;
+    bool AddPage(wxWindow* page,
+                 const wxString& caption,
+                 bool select = false,
+                 const wxBitmap& bitmap = wxNullBitmap);
 
-    // misc
-    // ----
+    bool InsertPage(size_t page_idx,
+                    wxWindow* page,
+                    const wxString& caption,
+                    bool select = false,
+                    const wxBitmap& bitmap = wxNullBitmap);
 
-    // client data stuff
-    void SetClientData(unsigned int n, void* clientData);
-    void* GetClientData(unsigned int n) const;
+    bool DeletePage(size_t page);
+    bool RemovePage(size_t page);
 
-    void SetClientObject(unsigned int n, wxClientData* clientData);
-    wxClientData* GetClientObject(unsigned int n) const;
+    size_t GetPageCount() const;
+    wxWindow* GetPage(size_t page_idx) const;
+    int GetPageIndex(wxWindow* page_wnd) const;
 
-    bool HasClientObjectData() const
-        { return m_clientDataItemsType == wxClientData_Object; }
-    bool HasClientUntypedData() const
-        { return m_clientDataItemsType == wxClientData_Void; }
+    bool SetPageText(size_t page, const wxString& text);
+    wxString GetPageText(size_t page_idx) const;
+
+    bool SetPageBitmap(size_t page, const wxBitmap& bitmap);
+    wxBitmap GetPageBitmap(size_t page_idx) const;
+
+    size_t SetSelection(size_t new_page);
+    int GetSelection() const;
+
+    virtual void Split(size_t page, int direction);
+
+#if wxABI_VERSION >= 20801
+    const wxAuiManager& GetAuiManager() const { return m_mgr; }
+#endif
+
+#if wxABI_VERSION >= 20805
+    // Sets the normal font
+    void SetNormalFont(const wxFont& font);
+
+    // Sets the selected tab font
+    void SetSelectedFont(const wxFont& font);
+
+    // Sets the measuring font
+    void SetMeasuringFont(const wxFont& font);
+
+    // Sets the tab font
+    virtual bool SetFont(const wxFont& font);
+
+    // Gets the tab control height
+    int GetTabCtrlHeight() const;
+
+    // Gets the height of the notebook for a given page height
+    int GetHeightForPageHeight(int pageHeight);
+
+    // Advances the selection, generation page selection events
+    void AdvanceSelection(bool forward = true);
+
+    // Shows the window menu
+    bool ShowWindowMenu();
+#endif
