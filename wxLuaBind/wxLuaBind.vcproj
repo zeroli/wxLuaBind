@@ -417,6 +417,14 @@
 					RelativePath=".\src\auibook_bind.cc"
 					>
 				</File>
+				<File
+					RelativePath=".\src\dockart_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\floatpane_bind.cc"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="adv"
