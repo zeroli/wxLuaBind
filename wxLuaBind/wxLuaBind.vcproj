@@ -302,6 +302,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\image_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\listbox_bind.cc"
 					>
 				</File>
@@ -334,6 +338,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\spinbutt_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\spinctrl_bind.cc"
+					>
+				</File>
+				<File
 					RelativePath=".\src\statbox_bind.cc"
 					>
 				</File>
@@ -363,6 +375,10 @@
 				</File>
 				<File
 					RelativePath=".\src\treebase_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\treectrl_bind.cc"
 					>
 				</File>
 				<File
@@ -423,6 +439,14 @@
 				</File>
 				<File
 					RelativePath=".\src\floatpane_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\framemanager_bind.cc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\tabmdi_bind.cc"
 					>
 				</File>
 			</Filter>

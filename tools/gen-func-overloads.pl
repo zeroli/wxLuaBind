@@ -290,7 +290,23 @@ sub gen_static_mem_func_wrap_code {
 
     if ($hasdefault)
     {
-        my $macro = "BIND_SMF_OVERLOAD";
+        $allcode_cpp .= "// Auto generated CPP code for '$func_name'\n";
+        $allcode_cpp .= "// =================================\n";
+
+        for (my $i = 0; ; $i++) {
+            my $argcf = Config::GetNode($function, "argument", $i);
+            last unless (defined $argcf);
+
+            my $hasdefault = Config::GetConfigData($argcf, "hasdefault", 0);
+            next unless $hasdefault;
+
+            $allcode_cpp .= gen_static_mem_func_overload_cpp_wrapper($function, $i);
+        }
+        # always print one function with all arguments
+        $allcode_cpp .= gen_static_mem_func_overload_cpp_wrapper($function, $nargs);
+        $allcode_cpp .= "\n";
+
+        my $macro = "BIND_F2SMF_OVERLOAD";
 
         $allcode_macro .= "$tabspaces// Auto generated MACRO code for '$func_name':\n";
         $allcode_macro .= "$tabspaces// =================================\n";
@@ -356,6 +372,41 @@ sub gen_free_func_macro {
     $out .= "($func_name)\n";
     return $out;
 }
+
+
+sub gen_static_mem_func_overload_cpp_wrapper {
+    my ($function, $nargs) = @_;
+
+    my $fname = Config::GetConfigData($function, "func_name");
+    my $ret_type = Config::GetConfigData($function, "return_type");
+    
+    my $out = "$ret_type $fname$nargs(";
+
+    my @args;
+    for (my $i = 0; $i < $nargs; $i++) {
+        my $argcf = Config::GetNode($function, "argument", $i);
+        last unless (defined $argcf);
+
+        $out .= ", " if ($i != 0);
+        $out .= Config::GetConfigData($argcf, "type");
+
+        my $name = Config::GetConfigData($argcf, "name", "A$i");
+        $out .= " $name";
+
+        push @args, $name;
+    }
+    $out .= ")\n";
+    # cannot append modifier, like "const" 
+    
+    my $real_args = join(',', @args);
+
+    my $fbody ="{\n${tabspaces}return ${class_name}::";
+    $fbody .= Config::GetConfigData($function, "func_name");
+    $fbody .= "($real_args);\n}\n";
+ 
+    return $out.$fbody;
+}
+
 sub gen_static_mem_func_macro_overload {
     my ($function, $nargs, $macro) = @_;
 
@@ -363,7 +414,7 @@ sub gen_static_mem_func_macro_overload {
     my $ret_type = Config::GetConfigData($function, "return_type");
 
     my $out = "$tabspaces$macro";
-    $out .= "($class_name, $func_name,\n";
+    $out .= "($func_name,$nargs,\n";
     $out .= "$ret_type, (";
 
     for (my $i = 0; $i < $nargs; $i++) {

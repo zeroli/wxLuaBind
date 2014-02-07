@@ -2,7 +2,52 @@
 
 #include <wx/artprov.h>
 
-REGISTER_WXLUA_BIND(argprov)
+// namespace for class wxArtProvider
+namespace
+{
+    // Auto generated CPP code for 'GetBitmap'
+    // =================================
+    wxBitmap GetBitmap1(const wxArtID& id)
+    {
+        return wxArtProvider::GetBitmap(id);
+    }
+    wxBitmap GetBitmap2(const wxArtID& id, const wxArtClient& client)
+    {
+        return wxArtProvider::GetBitmap(id,client);
+    }
+    wxBitmap GetBitmap3(const wxArtID& id, const wxArtClient& client, const wxSize& size)
+    {
+        return wxArtProvider::GetBitmap(id,client,size);
+    }
+
+    // Auto generated CPP code for 'GetIcon'
+    // =================================
+    wxIcon GetIcon1(const wxArtID& id)
+    {
+        return wxArtProvider::GetIcon(id);
+    }
+    wxIcon GetIcon2(const wxArtID& id, const wxArtClient& client)
+    {
+        return wxArtProvider::GetIcon(id,client);
+    }
+    wxIcon GetIcon3(const wxArtID& id, const wxArtClient& client, const wxSize& size)
+    {
+        return wxArtProvider::GetIcon(id,client,size);
+    }
+
+    // Auto generated CPP code for 'GetSizeHint'
+    // =================================
+    wxSize GetSizeHint1(const wxArtClient& client)
+    {
+        return wxArtProvider::GetSizeHint(client);
+    }
+    wxSize GetSizeHint2(const wxArtClient& client, bool platform_dependent)
+    {
+        return wxArtProvider::GetSizeHint(client,platform_dependent);
+    }
+}  // namespace for wxArtProvider
+
+REGISTER_WXLUA_BIND(artprov)
 {
     BEGIN_LUA_TABLE(wx)
         BIND_MACRO(wxART_TOOLBAR)
@@ -88,31 +133,31 @@ REGISTER_WXLUA_BIND(argprov)
         // Auto generated MACRO code for 'GetBitmap':
         // =================================
         BEGIN_BIND_SCOPE()
-        BIND_SMF_OVERLOAD(wxArtProvider, GetBitmap,
+        BIND_F2SMF_OVERLOAD(GetBitmap,1,
         wxBitmap, (const wxArtID&))
-        BIND_SMF_OVERLOAD(wxArtProvider, GetBitmap,
+        BIND_F2SMF_OVERLOAD(GetBitmap,2,
         wxBitmap, (const wxArtID&, const wxArtClient&))
-        BIND_SMF_OVERLOAD(wxArtProvider, GetBitmap,
+        BIND_F2SMF_OVERLOAD(GetBitmap,3,
         wxBitmap, (const wxArtID&, const wxArtClient&, const wxSize&))
         END_BIND_SCOPE()
 
         // Auto generated MACRO code for 'GetIcon':
         // =================================
         BEGIN_BIND_SCOPE()
-        BIND_SMF_OVERLOAD(wxArtProvider, GetIcon,
+        BIND_F2SMF_OVERLOAD(GetIcon,1,
         wxIcon, (const wxArtID&))
-        BIND_SMF_OVERLOAD(wxArtProvider, GetIcon,
+        BIND_F2SMF_OVERLOAD(GetIcon,2,
         wxIcon, (const wxArtID&, const wxArtClient&))
-        BIND_SMF_OVERLOAD(wxArtProvider, GetIcon,
+        BIND_F2SMF_OVERLOAD(GetIcon,3,
         wxIcon, (const wxArtID&, const wxArtClient&, const wxSize&))
         END_BIND_SCOPE()
 
         // Auto generated MACRO code for 'GetSizeHint':
         // =================================
         BEGIN_BIND_SCOPE()
-        BIND_SMF_OVERLOAD(wxArtProvider, GetSizeHint,
+        BIND_F2SMF_OVERLOAD(GetSizeHint,1,
         wxSize, (const wxArtClient&))
-        BIND_SMF_OVERLOAD(wxArtProvider, GetSizeHint,
+        BIND_F2SMF_OVERLOAD(GetSizeHint,2,
         wxSize, (const wxArtClient&, bool))
         END_BIND_SCOPE()
 

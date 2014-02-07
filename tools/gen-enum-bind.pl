@@ -54,7 +54,7 @@ for (my $i = 0; $i < @lines; $i++) {
         $enum_name = $list[1];
         next;
     }
-    next if ($line =~ /[{|}]/);
+    next if ($line =~ /[{}]/);
 
     $line =~ s/(\/\*.*\*\/)*?//g; # remove embedded comment 
     $line =~ s/(\/\/+.*)*?//g; # remove embedded comment 

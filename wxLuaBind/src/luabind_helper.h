@@ -107,4 +107,9 @@
 #define BIND_F2MF_OVERLOAD(F, N, R, args) \
     .def(#F, (R(*)args)&F##N)
 
+// non-member function bind to static member function
+// supporting overloaded functions due to default arguments
+#define BIND_F2SMF_OVERLOAD(F, N, R, args) \
+    def(#F, (R(*)args)&F##N),
+
 #endif  // WXLUABIND_LUABIND_HELPER_H_

@@ -55,6 +55,10 @@ public:
 public:
     virtual void f(int a) { std::cout << "in A:f(int) : " << a << "\n"; }
     void f(int a, int b) { std::cout << a << ", " << b << "\n"; }
+
+    static void sf(int a, int b = 10) {
+        std::cout << "a = " << a << ", b = " << b << "\n";
+    }
 };
 
 class B : public A {
@@ -90,6 +94,23 @@ void greet(const char* s)
     std::cout << "customized greet: " << s << "\n";
 }
 
+namespace
+{
+    void A_sf2(int a, int b)
+    {
+        A::sf(a, b);
+    }
+    void A_sf1(int a)
+    {
+        A::sf(a);
+    }
+
+    void freefunc(int a, int b = 230)
+    {
+        std::cout << "a = " << a << ", b = " << b << "\n";
+    }
+}
+
 EXTERN_C
 int WXLUABIND_API init(lua_State* L)
 {
@@ -110,6 +131,10 @@ int WXLUABIND_API init(lua_State* L)
             // bind: overloaded free functions
             //def("greet", (void(*)())&greet),
             def("greet", (void(*)(const char*))&greet),
+
+            // cannot work correctly
+            def("freefunc", (void(*)(int))&freefunc),
+            def("freefunc", (void(*)(int,int))&freefunc),
 
             // bind: class and its member functions
             class_<testclass>("testclass")
@@ -139,6 +164,11 @@ int WXLUABIND_API init(lua_State* L)
             .def(self + other<const std::string&>())
             .def(self(int()))
             .def(tostring(self))
+            .scope
+            [
+                def("sf", (void(*)(int))&::A_sf1),
+                def("sf", (void(*)(int, int))&::A_sf2)
+            ]
             ,
     // bind: derived class and virtual functions
         class_<B, A>("B")

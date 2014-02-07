@@ -5,9 +5,6 @@
 REGISTER_WXLUA_BIND(dockart)
 {
 #if wxUSE_AUI
-    BEGIN_LUA_TABLE(wx)
-
-    END_LUA_TABLE(wx)
 
     BEGIN_BIND_MODULE(wx)
     // Bind class wxAuiDockArt
@@ -48,6 +45,10 @@ REGISTER_WXLUA_BIND(dockart)
     END_BIND_CLASS(wxAuiDefaultDockArt)
 
     END_BIND_MODULE(wx)
+
+    BEGIN_LUA_TABLE(wx)
+
+    END_LUA_TABLE(wx)
 #endif  // wxUSE_AUI
     return 0;
 }

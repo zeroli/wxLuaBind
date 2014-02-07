@@ -255,5 +255,9 @@ REGISTER_WXLUA_BIND(bitmap)
         END_BIND_CLASS(wxMask)
 
     END_BIND_MODULE(wx)
+
+    BEGIN_LUA_TABLE(wx)
+        BIND_VARIABLE(wxNullBitmap)
+    END_LUA_TABLE(wx)
     return 0;
 }

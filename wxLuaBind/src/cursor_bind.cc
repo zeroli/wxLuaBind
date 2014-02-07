@@ -55,5 +55,9 @@ REGISTER_WXLUA_BIND(cursor)
         END_BIND_CLASS(wxCursor)
 
     END_BIND_MODULE(wx)
+
+    BEGIN_LUA_TABLE(wx)
+       BIND_VARIABLE(wxNullCursor)
+    END_LUA_TABLE(wx)
     return 0;
 }

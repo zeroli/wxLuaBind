@@ -76,5 +76,9 @@ REGISTER_WXLUA_BIND(wxcolor)
 
         END_BIND_CLASS(wxColour)
     END_BIND_MODULE(wx)
+
+    BEGIN_LUA_TABLE(wx)
+        BIND_VARIABLE(wxNullColour)
+    END_LUA_TABLE(wx)
     return 0;
 }
