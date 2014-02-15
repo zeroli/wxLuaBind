@@ -82,10 +82,9 @@ int HitTest2(wxBookCtrlBase* self, const wxPoint& pt, long * flags)
 }  // namespace for wxBookCtrlBase
 
 REGISTER_WXLUA_BIND(bookctrl)
-{
     BEGIN_BIND_MODULE(wx)
         // Bind class wxBookCtrlBase
-        BEGIN_BIND_CLASS(wxBookCtrlBase)
+        BEGIN_BIND_CLASS_CONTROL(wxBookCtrlBase)
         // Auto generated MACRO code for 'Create':
         // =================================
         BIND_F2MF_OVERLOAD(Create, 2,
@@ -159,5 +158,4 @@ REGISTER_WXLUA_BIND(bookctrl)
     END_BIND_CLASS(wxBookCtrlBase)
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(bookctrl)

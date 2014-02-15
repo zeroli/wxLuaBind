@@ -21,22 +21,41 @@
 #define BIND_ENUM_NAME(name, ev) table[#name] = (long)ev;
 #define END_LUA_TABLE(...) }
 
+// Binding this class will still make C++ own its lifetime, and be destroyed in C++
+#define BEGIN_BIND_CPPCLASS(class,  ...) \
+    class_<class, bases<__VA_ARGS__>, class*>(#class)
+#define BEGIN_BIND_CPPCLASS_NAME(name, class,  ...) \
+    class_<class, bases<__VA_ARGS__>, class*>(#name)
+
+// Binding this class will make LUA own its lifetime, and be destroyed in lua GC
 #define BEGIN_BIND_CLASS(class,  ...) \
     class_<class, bases<__VA_ARGS__> >(#class)
 #define BEGIN_BIND_CLASS_NAME(name, class,  ...) \
     class_<class, bases<__VA_ARGS__> >(#name)
+
 #define END_BIND_CLASS(...) \
     ,
+
+// some objects may be owned by LUA (default behavior)
 #define BEGIN_BIND_CLASS_OBJECT(class) \
     BEGIN_BIND_CLASS(class, wxObject)
+// some other objects may be owned by C++
+#define BEGIN_BIND_CPPCLASS_OBJECT(class) \
+    BEGIN_BIND_CPPCLASS(class, wxObject)
+
 #define BEGIN_BIND_CLASS_GDIOBJECT(class) \
     BEGIN_BIND_CLASS(class, wxGDIObject)
+
+// all windows objects should be owned by C++
 #define BEGIN_BIND_CLASS_WIN(class) \
-    BEGIN_BIND_CLASS(class, wxWindow)
+    BEGIN_BIND_CPPCLASS(class, wxWindow)
+
+// event object should be owned by LUA
 #define BEGIN_BIND_CLASS_EVENT(class) \
     BEGIN_BIND_CLASS(class, wxEvent)
+// all controls objects should be owned by C++
 #define BEGIN_BIND_CLASS_CONTROL(class) \
-    BEGIN_BIND_CLASS(class, wxControl)
+    BEGIN_BIND_CPPCLASS(class, wxControl)
 
 #define BIND_CTOR(...) \
     .def(constructor<__VA_ARGS__>())

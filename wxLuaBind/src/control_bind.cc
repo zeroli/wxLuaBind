@@ -31,7 +31,6 @@ namespace
 }  // namespace
 
 REGISTER_WXLUA_PREBIND(wxcontrol, BIND_NO_CONTROL)
-{
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS_WIN(wxControl)
             // Auto generated MACRO code for ctor of 'wxControl':
@@ -79,5 +78,4 @@ REGISTER_WXLUA_PREBIND(wxcontrol, BIND_NO_CONTROL)
         // bind const wxChar wxControlNameStr[]
         BIND_TABLE_VALUE(wxControlNameStr, &wxControlNameStr[0])
     END_LUA_TABLE(wx)
-    return 0;
-}
+END_REGISTER(control)

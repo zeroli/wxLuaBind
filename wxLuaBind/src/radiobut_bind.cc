@@ -32,7 +32,6 @@ namespace
 }  // namespace for wxRadioButton
 
 REGISTER_WXLUA_BIND(radiobut)
-{
     BEGIN_BIND_MODULE(wx)
         // Bind class wxRadioButton
         BEGIN_BIND_CLASS_CONTROL(wxRadioButton)
@@ -66,5 +65,4 @@ REGISTER_WXLUA_BIND(radiobut)
         END_BIND_CLASS(wxRadioButton)
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(radiobut)

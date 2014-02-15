@@ -9,15 +9,18 @@ public:
     }
     ~wxLuaApp()
     {
+        CleanUp();
+        SetInstance(NULL);
+
         wxUninitialize();
     }
-
 private:
     void DoInit()
     {
         SetInstance(this);
-        wxInitialize();
         SetExitOnFrameDelete(true);
+
+        wxInitialize();
     }
 };
 
@@ -26,8 +29,7 @@ wxApp* GetApp()
     return wxTheApp;
 }
 
-REGISTER_WXLUA_BIND(wxapp)
-{
+REGISTER_WXLUA_BIND(app)
     BEGIN_BIND_MODULE(wx)
         BIND_FUNC(GetApp)
 
@@ -44,7 +46,4 @@ REGISTER_WXLUA_BIND(wxapp)
         END_BIND_CLASS(wxLuaApp)
 
     END_BIND_MODULE(wx)
-
-    return 0;
-}
-
+END_REGISTER(app)

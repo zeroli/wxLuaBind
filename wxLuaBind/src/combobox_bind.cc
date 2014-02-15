@@ -132,13 +132,12 @@ namespace
 }  // namespace
 
 REGISTER_WXLUA_PREBIND(combobox, BIND_NO_COMBOBOX)
-{
     BEGIN_LUA_TABLE(wx)
         BIND_TABLE_VALUE(wxComboBoxNameStr, &wxComboBoxNameStr[0])
     END_LUA_TABLE(wx)
 
     BEGIN_BIND_MODULE(wx)
-    BEGIN_BIND_CLASS(wxChoice, wxControl, wxItemContainer)
+    BEGIN_BIND_CPPCLASS(wxChoice, wxControl, wxItemContainer)
     // Auto generated MACRO code for ctor of 'wxChoice':
     // =================================
     BIND_CTOR()
@@ -204,7 +203,7 @@ REGISTER_WXLUA_PREBIND(combobox, BIND_NO_COMBOBOX)
     END_BIND_CLASS(wxChoice)
 
     // wxComboBox bind
-    BEGIN_BIND_CLASS(wxComboBox, wxChoice)
+    BEGIN_BIND_CPPCLASS(wxComboBox, wxChoice)
     // Auto generated MACRO code for ctor of 'wxComboBox':
     // =================================
     BIND_CTOR()
@@ -263,7 +262,7 @@ REGISTER_WXLUA_PREBIND(combobox, BIND_NO_COMBOBOX)
     END_BIND_CLASS(wxComboBox)
 
     // Bind class wxBitmapComboBoxBase
-    BEGIN_BIND_CLASS(wxBitmapComboBoxBase)
+    BEGIN_BIND_CPPCLASS(wxBitmapComboBoxBase)
     BIND_MF(wxBitmapComboBoxBase, GetItemBitmap)
     BIND_MF(wxBitmapComboBoxBase, SetItemBitmap)
     BIND_MF(wxBitmapComboBoxBase, GetBitmapSize)
@@ -274,5 +273,4 @@ REGISTER_WXLUA_PREBIND(combobox, BIND_NO_COMBOBOX)
     BEGIN_LUA_TABLE(wx)
         BIND_MACRO(wxGENERIC_BITMAPCOMBOBOX)
     END_LUA_TABLE(wx)
-    return 0;
-}
+END_REGISTER(combobox)

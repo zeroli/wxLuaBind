@@ -423,7 +423,6 @@ namespace
 }  // namespace
 
 REGISTER_WXLUA_BIND(wxsizer)
-{
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS(wxSizerFlags)
         BIND_CTOR()
@@ -473,7 +472,7 @@ REGISTER_WXLUA_BIND(wxsizer)
         END_BIND_CLASS(wxSizerFlags)
 
         // wxSizerSpacer bind
-        BEGIN_BIND_CLASS(wxSizerSpacer)
+        BEGIN_BIND_CPPCLASS(wxSizerSpacer)
         // Auto generated MACRO code for ctor of 'wxSizerSpacer':
         // =================================
         BIND_CTOR(const wxSize&)
@@ -484,7 +483,7 @@ REGISTER_WXLUA_BIND(wxsizer)
         END_BIND_CLASS(wxSizerSpacer)
 
         // wxSizerItem bind
-        BEGIN_BIND_CLASS(wxSizerItem)
+        BEGIN_BIND_CPPCLASS(wxSizerItem)
         // Auto generated MACRO code for ctor of 'wxSizerItem':
         // =================================
         BIND_CTOR(wxWindow *, int, int, int, wxObject*)
@@ -553,7 +552,7 @@ REGISTER_WXLUA_BIND(wxsizer)
         END_BIND_CLASS(wxSizerItem)
 
         // wxSizer bind
-        BEGIN_BIND_CLASS(wxSizer, wxObject, wxClientDataContainer)
+        BEGIN_BIND_CPPCLASS(wxSizer, wxObject, wxClientDataContainer)
         // Auto generated MACRO code for 'Add':
         // =================================
         BIND_F2MF_OVERLOAD(Add, 1,
@@ -830,7 +829,7 @@ REGISTER_WXLUA_BIND(wxsizer)
 
         END_BIND_CLASS(wxSizer)
 
-        BEGIN_BIND_CLASS(wxGridSizer, wxSizer)
+        BEGIN_BIND_CPPCLASS(wxGridSizer, wxSizer)
         // Auto generated MACRO code for ctor of 'wxGridSizer':
         // =================================
         BIND_CTOR(int, int, int, int)
@@ -852,7 +851,7 @@ REGISTER_WXLUA_BIND(wxsizer)
 
         END_BIND_CLASS(wxGridSizer)
 
-        BEGIN_BIND_CLASS(wxFlexGridSizer, wxSizer)
+        BEGIN_BIND_CPPCLASS(wxFlexGridSizer, wxSizer)
         // Auto generated MACRO code for ctor of 'wxFlexGridSizer':
         // =================================
         BIND_CTOR(int, int, int, int)
@@ -886,7 +885,7 @@ REGISTER_WXLUA_BIND(wxsizer)
 
         END_BIND_CLASS(wxFlexGridSizer)
 
-        BEGIN_BIND_CLASS(wxBoxSizer, wxSizer)
+        BEGIN_BIND_CPPCLASS(wxBoxSizer, wxSizer)
         // Auto generated MACRO code for ctor of 'wxBoxSizer':
         // =================================
         BIND_CTOR(int)
@@ -897,7 +896,7 @@ REGISTER_WXLUA_BIND(wxsizer)
         END_BIND_CLASS(wxBoxSizer)
 
 #if wxUSE_STATBOX
-        BEGIN_BIND_CLASS(wxStaticBoxSizer, wxBoxSizer)
+        BEGIN_BIND_CPPCLASS(wxStaticBoxSizer, wxBoxSizer)
         // Auto generated MACRO code for ctor of 'wxStaticBoxSizer':
         // =================================
         BIND_CTOR(wxStaticBox *, int)
@@ -920,7 +919,7 @@ REGISTER_WXLUA_BIND(wxsizer)
 
 #if wxUSE_BUTTON
         //All macro code for wxluabind
-        BEGIN_BIND_CLASS(wxStdDialogButtonSizer, wxBoxSizer)
+        BEGIN_BIND_CPPCLASS(wxStdDialogButtonSizer, wxBoxSizer)
         // Auto generated MACRO code for ctor of 'wxStdDialogButtonSizer':
         // =================================
         BIND_CTOR()
@@ -944,5 +943,4 @@ REGISTER_WXLUA_BIND(wxsizer)
         BIND_ENUM(wxFLEX_GROWMODE_SPECIFIED)
         BIND_ENUM(wxFLEX_GROWMODE_ALL)
     END_LUA_TABLE(wx)
-    return 0;
-}
+END_REGISTER(sizer)

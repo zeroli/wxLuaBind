@@ -2,10 +2,8 @@
 
 #include <wx/spinbutt.h>
 
-REGISTER_WXLUA_BIND(spinbutt)
-{
 #if wxUSE_SPINBTN
+REGISTER_WXLUA_BIND(spinbutt)
 
+END_REGISTER(spinbutt)
 #endif  // wxUSE_SPINBTN
-    return 0;
-}

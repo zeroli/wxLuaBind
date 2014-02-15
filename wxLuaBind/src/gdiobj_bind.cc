@@ -15,7 +15,6 @@ namespace
 }  // namespace
 
 REGISTER_WXLUA_PREBIND(gdiobj, BIND_NO_GDIOBJECT)
-{
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS_OBJECT(wxGDIObject)
         BIND_CTOR()
@@ -36,5 +35,4 @@ REGISTER_WXLUA_PREBIND(gdiobj, BIND_NO_GDIOBJECT)
 
         END_BIND_CLASS(wxGDIObject)
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(gdiobj)

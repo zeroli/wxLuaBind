@@ -18,6 +18,7 @@ class testclass
 {
 public:
     testclass(const std::string& s = "this is one default value"): m_string(s) { }
+    ~testclass() { std::cout << "In testclass's dtor\n"; }
     void print_string() { std::cout << m_string << "\n"; }
 
 private:
@@ -35,7 +36,7 @@ public:
 
 public:
     A(int ia = 230) : a(ia) { }
-
+    ~A() { std::cout << "in A::dtor\n"; }
     int a;
     int b;
     void seta(int x) { a = x; }
@@ -63,6 +64,7 @@ public:
 
 class B : public A {
 public:
+    ~B() { std::cout << "in B::dtor\n"; }
     virtual void f(int a) { std::cout << "in B::f(int) : " << a << "\n"; }
 
     static int m_sa;

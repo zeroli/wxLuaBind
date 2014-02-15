@@ -240,9 +240,8 @@ namespace
 }  // namespace
 
 REGISTER_WXLUA_BIND(wxtoolbar)
-{
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS_OBJECT(wxToolBarToolBase)
+        BEGIN_BIND_CPPCLASS_OBJECT(wxToolBarToolBase)
             // Auto generated MACRO code for ctor of 'wxToolBarToolBase':
             // =================================
             BIND_CTOR()
@@ -517,5 +516,4 @@ REGISTER_WXLUA_BIND(wxtoolbar)
         // bind pointer:  (const wxChar wxToolBarNameStr[])
         BIND_TABLE_VALUE(wxToolBarNameStr, &wxToolBarNameStr[0])
     END_LUA_TABLE(wx)
-    return 0;
-}
+END_REGISTER(toolbar)

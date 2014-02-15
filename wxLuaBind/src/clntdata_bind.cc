@@ -27,7 +27,6 @@ namespace
 }  // namespace for wxShadowObject
 
 REGISTER_WXLUA_PREBIND(clntdata, BIND_NO_CLIENTDATA)
-{
     BEGIN_LUA_TABLE(wx)
         // Bind enum wxClientDataType (totally 3)
         BIND_ENUM(wxClientData_None)
@@ -38,14 +37,14 @@ REGISTER_WXLUA_PREBIND(clntdata, BIND_NO_CLIENTDATA)
 
     BEGIN_BIND_MODULE(wx)
         // Bind class wxClientData
-        BEGIN_BIND_CLASS(wxClientData)
+        BEGIN_BIND_CPPCLASS(wxClientData)
             // Auto generated MACRO code for ctor of 'wxClientData':
             // =================================
             BIND_CTOR()
         END_BIND_CLASS(wxClientData)
 
         // Bind class wxStringClientData
-        BEGIN_BIND_CLASS(wxStringClientData, wxClientData)
+        BEGIN_BIND_CPPCLASS(wxStringClientData, wxClientData)
             BIND_CTOR()
             BIND_CTOR(const wxString&)
             BIND_MF(wxStringClientData, SetData)
@@ -53,7 +52,7 @@ REGISTER_WXLUA_PREBIND(clntdata, BIND_NO_CLIENTDATA)
         END_BIND_CLASS(wxStringClientData)
 
         // Bind class wxClientDataContainer
-        BEGIN_BIND_CLASS(wxClientDataContainer)
+        BEGIN_BIND_CPPCLASS(wxClientDataContainer)
             // Auto generated MACRO code for ctor of 'wxClientDataContainer':
             // =================================
             BIND_CTOR()
@@ -64,14 +63,14 @@ REGISTER_WXLUA_PREBIND(clntdata, BIND_NO_CLIENTDATA)
         END_BIND_CLASS(wxClientDataContainer)
 
         // Bind class wxClientDataDictionaryPair
-        BEGIN_BIND_CLASS(wxClientDataDictionaryPair)
+        BEGIN_BIND_CPPCLASS(wxClientDataDictionaryPair)
             BIND_CTOR(size_t)
             BIND_MD(wxClientDataDictionaryPair, index)
             BIND_MD(wxClientDataDictionaryPair, data)
         END_BIND_CLASS(wxClientDataDictionaryPair)
 
         // Bind class wxClientDataDictionary
-        BEGIN_BIND_CLASS(wxClientDataDictionary)
+        BEGIN_BIND_CPPCLASS(wxClientDataDictionary)
             // Auto generated MACRO code for ctor of 'wxClientDataDictionary':
             // =================================
             BIND_CTOR()
@@ -82,6 +81,4 @@ REGISTER_WXLUA_PREBIND(clntdata, BIND_NO_CLIENTDATA)
         END_BIND_CLASS(wxClientDataDictionary)
 
     END_BIND_MODULE(wx)
-
-    return 0;
-}
+END_REGISTER(clntdata)

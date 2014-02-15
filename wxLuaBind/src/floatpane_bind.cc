@@ -35,13 +35,12 @@ namespace
 #else
 #endif
 
-REGISTER_WXLUA_BIND(floatpane)
-{
 #if wxUSE_AUI
+REGISTER_WXLUA_BIND(floatpane)
     BEGIN_BIND_MODULE(wx)
 #if defined( __WXMSW__ ) || defined( __WXMAC__ ) ||  defined( __WXGTK__ )
         // Bind class wxMiniFrame
-        BEGIN_BIND_CLASS(wxMiniFrame, wxFrame)
+        BEGIN_BIND_CPPCLASS(wxMiniFrame, wxFrame)
         // Auto generated MACRO code for ctor of 'wxMiniFrame':
         // =================================
         BIND_CTOR()
@@ -68,7 +67,7 @@ REGISTER_WXLUA_BIND(floatpane)
 #endif
 
         // Bind class wxAuiFloatingFrame
-        BEGIN_BIND_CLASS(wxAuiFloatingFrame, wxAuiFloatingFrameBaseClass)
+        BEGIN_BIND_CPPCLASS(wxAuiFloatingFrame, wxAuiFloatingFrameBaseClass)
         // Auto generated MACRO code for ctor of 'wxAuiFloatingFrame':
         // =================================
         BIND_CTOR(wxWindow*, wxAuiManager*, const wxAuiPaneInfo&)
@@ -79,6 +78,5 @@ REGISTER_WXLUA_BIND(floatpane)
         END_BIND_CLASS(wxAuiFloatingFrame)
 
     END_BIND_MODULE(wx)
+END_REGISTER(floatpane)
 #endif // wxUSE_AUI
-    return 0;
-}

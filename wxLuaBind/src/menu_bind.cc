@@ -200,9 +200,8 @@ namespace
 }  // namespace
 
 REGISTER_WXLUA_BIND(wxmenu)
-{
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS_OBJECT(wxMenuItem)
+        BEGIN_BIND_CPPCLASS_OBJECT(wxMenuItem)
             BIND_CTOR()
             BIND_CTOR(wxMenu*)
             BIND_CTOR(wxMenu*, int)
@@ -284,7 +283,7 @@ REGISTER_WXLUA_BIND(wxmenu)
         END_BIND_CLASS(wxMenuItem)
 
         // wxMenu class bind
-        BEGIN_BIND_CLASS(wxMenu)
+        BEGIN_BIND_CPPCLASS(wxMenu)
             BIND_CTOR()
             BIND_CTOR(const wxString&)
             BIND_CTOR(const wxString&, long)
@@ -550,6 +549,4 @@ REGISTER_WXLUA_BIND(wxmenu)
 #endif
         END_BIND_CLASS(wxMenuBar)
     END_BIND_MODULE(wx)
-
-    return 0;
-}
+END_REGISTER(menu)

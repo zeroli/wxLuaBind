@@ -103,7 +103,6 @@ namespace
 }  // namespace for wxFileIconsTable
 
 REGISTER_WXLUA_BIND(dirctrl)
-{
     BEGIN_LUA_TABLE(wx)
         // Bind enum  (totally 5)
         BIND_ENUM(wxDIRCTRL_DIR_ONLY)
@@ -203,12 +202,12 @@ REGISTER_WXLUA_BIND(dirctrl)
         END_BIND_CLASS(wxGenericDirCtrl)
 
 #if !defined(__WXMSW__) && !defined(__WXMAC__) && !defined(__WXPM__)
-        BEGIN_BIND_CLASS_NAME(wxDirCtrl, wxGenericDirCtrl, wxControl)
+        BEGIN_BIND_CPPCLASS_NAME(wxDirCtrl, wxGenericDirCtrl, wxControl)
         END_BIND_CLASS(wxGenericDirCtrl)
 #endif
 
         // Bind class wxDirFilterListCtrl
-        BEGIN_BIND_CLASS(wxDirFilterListCtrl, wxChoice)
+        BEGIN_BIND_CPPCLASS(wxDirFilterListCtrl, wxChoice)
         // Auto generated MACRO code for ctor of 'wxDirFilterListCtrl':
         // =================================
         BIND_CTOR()
@@ -266,5 +265,4 @@ REGISTER_WXLUA_BIND(dirctrl)
         END_BIND_CLASS(wxFileIconsTable)
 #endif
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(dirctrl)

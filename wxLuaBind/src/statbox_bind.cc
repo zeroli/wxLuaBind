@@ -28,7 +28,6 @@ namespace
 }  // namespace for wxStaticBox
 
 REGISTER_WXLUA_BIND(statbox)
-{
     BEGIN_BIND_MODULE(wx)
         // Bind class wxStaticBoxBase
         BEGIN_BIND_CLASS_CONTROL(wxStaticBoxBase)
@@ -38,7 +37,7 @@ REGISTER_WXLUA_BIND(statbox)
         END_BIND_CLASS(wxStaticBoxBase)
 
         // Bind class wxStaticBox
-        BEGIN_BIND_CLASS(wxStaticBox, wxStaticBoxBase)
+        BEGIN_BIND_CPPCLASS(wxStaticBox, wxStaticBoxBase)
         // Auto generated MACRO code for ctor of 'wxStaticBox':
         // =================================
         BIND_CTOR()
@@ -65,5 +64,4 @@ REGISTER_WXLUA_BIND(statbox)
         END_BIND_CLASS(wxStaticBox)
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(statbox)

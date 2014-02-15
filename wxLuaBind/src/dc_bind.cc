@@ -287,7 +287,6 @@ namespace
 }  // namespace for wxDCBase
 
 REGISTER_WXLUA_PREBIND(dc, BIND_NO_DC)
-{
     BEGIN_BIND_MODULE(wx)
         // Bind class wxDrawObject
         BEGIN_BIND_CLASS(wxDrawObject)
@@ -683,5 +682,4 @@ REGISTER_WXLUA_PREBIND(dc, BIND_NO_DC)
         END_BIND_CLASS(wxPaintDC)
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(dc)

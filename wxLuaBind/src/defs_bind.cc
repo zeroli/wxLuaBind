@@ -1,7 +1,6 @@
 #include <precompile.h>
 
 REGISTER_WXLUA_PREBIND(defs, BIND_NO_WXDEFS)
-{
     BEGIN_LUA_TABLE(wx)
         BIND_TABLE_VALUE(NULL, nil)
 
@@ -769,7 +768,5 @@ REGISTER_WXLUA_PREBIND(defs, BIND_NO_WXDEFS)
 
         BIND_VARIABLE(wxALL_FILES_PATTERN)
     END_LUA_TABLE(wx)
-
-    return 0;
-}
+END_REGISTER(defs)
 

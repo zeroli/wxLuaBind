@@ -146,10 +146,10 @@ namespace
     }
 }  // namespace for wxComboCtrl
 
-REGISTER_WXLUA_PREBIND(combo, BIND_NO_COMBO)
-{
-    BEGIN_BIND_MODULE(wx)
 #if wxUSE_COMBOCTRL
+
+REGISTER_WXLUA_PREBIND(combo, BIND_NO_COMBO)
+    BEGIN_BIND_MODULE(wx)
         // Bind class wxComboCtrlBase
         BEGIN_BIND_CLASS_CONTROL(wxComboCtrlBase)
         BIND_MF(wxComboCtrlBase, Create)
@@ -269,7 +269,7 @@ REGISTER_WXLUA_PREBIND(combo, BIND_NO_COMBO)
         END_BIND_CLASS(wxComboCtrlBase)
 
         // Bind class wxComboPopup
-        BEGIN_BIND_CLASS(wxComboPopup)
+        BEGIN_BIND_CPPCLASS(wxComboPopup)
         BIND_MF(wxComboPopup, Init)
         BIND_MF(wxComboPopup, Create)
         BIND_MF(wxComboPopup, GetControl)
@@ -290,7 +290,7 @@ REGISTER_WXLUA_PREBIND(combo, BIND_NO_COMBO)
         END_BIND_CLASS(wxComboPopup)
 
         // Bind class wxComboCtrl
-        BEGIN_BIND_CLASS(wxComboCtrl, wxComboCtrlBase)
+        BEGIN_BIND_CPPCLASS(wxComboCtrl, wxComboCtrlBase)
         // Auto generated MACRO code for ctor of 'wxComboCtrl':
         // =================================
         BIND_CTOR()
@@ -340,7 +340,6 @@ REGISTER_WXLUA_PREBIND(combo, BIND_NO_COMBO)
         END_CLASS_ENUM(constantl)
 
         END_BIND_CLASS()
-#endif
     END_BIND_MODULE(wx)
 
     BEGIN_LUA_TABLE(wx)
@@ -368,5 +367,6 @@ REGISTER_WXLUA_PREBIND(combo, BIND_NO_COMBO)
     BIND_ENUM(wxCC_MF_ON_CLICK_AREA)
 
     END_LUA_TABLE(wx)
-    return 0;
-}
+END_REGISTER(combo)
+
+#endif

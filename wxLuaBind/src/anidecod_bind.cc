@@ -3,7 +3,6 @@
 #include <wx/anidecod.h>
 
 REGISTER_WXLUA_BIND(anidecod)
-{
     BEGIN_BIND_MODULE(wx)
 #if wxUSE_STREAMS && wxUSE_ICO_CUR
         // Bind class wxANIDecoder
@@ -24,5 +23,5 @@ REGISTER_WXLUA_BIND(anidecod)
         END_BIND_CLASS(wxANIDecoder)
 #endif
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(anidecod)
+

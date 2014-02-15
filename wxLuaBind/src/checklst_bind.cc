@@ -84,11 +84,10 @@ namespace
     }
 }  // namespace for wxCheckListBox
 
-REGISTER_WXLUA_BIND(checklist)
-{
+REGISTER_WXLUA_BIND(checklst)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxCheckListBoxBase
-        BEGIN_BIND_CLASS(wxCheckListBoxBase, wxListBox)
+        BEGIN_BIND_CPPCLASS(wxCheckListBoxBase, wxListBox)
         // Auto generated MACRO code for ctor of 'wxCheckListBoxBase':
         // =================================
         BIND_MF(wxCheckListBoxBase, IsChecked)
@@ -101,7 +100,7 @@ REGISTER_WXLUA_BIND(checklist)
         END_BIND_CLASS(wxCheckListBoxBase)
 
         // Bind class wxCheckListBox
-        BEGIN_BIND_CLASS(wxCheckListBox, wxCheckListBoxBase)
+        BEGIN_BIND_CPPCLASS(wxCheckListBox, wxCheckListBoxBase)
         // Auto generated MACRO code for ctor of 'wxCheckListBox':
         // =================================
         BIND_CTOR()
@@ -166,5 +165,4 @@ REGISTER_WXLUA_BIND(checklist)
         END_BIND_CLASS(wxCheckListBox)
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(checklst)

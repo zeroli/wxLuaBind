@@ -3,7 +3,6 @@
 #include <wx/busyinfo.h>
 
 REGISTER_WXLUA_BIND(busyinfo)
-{
     BEGIN_BIND_MODULE(wx)
 #if wxUSE_BUSYINFO
         BEGIN_BIND_CLASS_OBJECT(wxBusyInfo)
@@ -14,5 +13,7 @@ REGISTER_WXLUA_BIND(busyinfo)
         END_BIND_CLASS(wxBusyInfo)
 #endif
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(busyinfo)
+
+// TODO: how to implement RAII??
+

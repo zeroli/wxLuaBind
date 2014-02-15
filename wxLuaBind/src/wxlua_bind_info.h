@@ -41,10 +41,13 @@ private:
     EXTERN_C int luaopen_##name(lua_State* L); \
     wxLuaBindInfo wxLB_##name(wxT(#name), \
         (wxLuaBindFunc)luaopen_##name, ##__VA_ARGS__); \
-    int luaopen_##name(lua_State* L)
-
+    int luaopen_##name(lua_State* L) {
 #define REGISTER_WXLUA_PREBIND(name, NO) \
     REGISTER_WXLUA_BIND(name, true, NO)
+
+#define END_REGISTER(name) \
+    return 0; \
+}
 
 enum {
     BIND_NO_WXDEFS = 0,

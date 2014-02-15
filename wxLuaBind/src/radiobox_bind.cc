@@ -136,10 +136,9 @@ namespace
 }  // namespace for wxRadioBox
 
 REGISTER_WXLUA_BIND(radiobox)
-{
     BEGIN_BIND_MODULE(wx)
         // Bind class wxRadioBoxBase
-        BEGIN_BIND_CLASS(wxRadioBoxBase, wxItemContainerImmutable)
+        BEGIN_BIND_CPPCLASS(wxRadioBoxBase, wxItemContainerImmutable)
         // Auto generated MACRO code for 'Enable':
         // =================================
         BIND_F2MF_OVERLOAD(Enable, 1,
@@ -173,7 +172,7 @@ REGISTER_WXLUA_BIND(radiobox)
         END_BIND_CLASS(wxRadioBoxBase)
 
         // Bind class wxRadioBox
-        BEGIN_BIND_CLASS(wxRadioBox, wxStaticBox, wxRadioBoxBase)
+        BEGIN_BIND_CPPCLASS(wxRadioBox, wxStaticBox, wxRadioBoxBase)
         // Auto generated MACRO code for ctor of 'wxRadioBox':
         // =================================
         BIND_CTOR()
@@ -283,5 +282,4 @@ REGISTER_WXLUA_BIND(radiobox)
         END_BIND_CLASS(wxRadioBox)
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(radiobox)

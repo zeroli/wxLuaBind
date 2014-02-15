@@ -329,9 +329,9 @@ namespace
     }
 }  // namespace for wxImage
 
-REGISTER_WXLUA_BIND(image)
-{
 #if wxUSE_IMAGE
+
+REGISTER_WXLUA_BIND(image)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxImage
         BEGIN_BIND_CLASS_OBJECT(wxImage)
@@ -678,6 +678,5 @@ REGISTER_WXLUA_BIND(image)
     BEGIN_LUA_TABLE(wx)
         BIND_VARIABLE(wxNullImage)
     END_LUA_TABLE(wx)
+END_REGISTER(Image)
 #endif  // wxUSE_IMAGE
-    return 0;
-}

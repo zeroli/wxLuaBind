@@ -1,7 +1,6 @@
 #include <precompile.h>
 
 REGISTER_WXLUA_BIND(wxdnd)
-{
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS(wxDropTarget)
             BIND_MF(wxDropTarget, GetDataObject)
@@ -24,6 +23,4 @@ REGISTER_WXLUA_BIND(wxdnd)
             BIND_MF(wxFileDropTarget, OnDropFiles)
         END_BIND_CLASS(wxFileDropTarget)
     END_BIND_MODULE(wx)
-
-    return 0;
-}
+END_REGISTER(dnd)

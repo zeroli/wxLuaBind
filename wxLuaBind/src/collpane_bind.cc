@@ -59,10 +59,10 @@ namespace
     }
 }  // namespace for wxCollapsiblePane
 
-REGISTER_WXLUA_BIND(collpane)
-{
-    BEGIN_BIND_MODULE(wx)
 #if wxUSE_COLLPANE
+
+REGISTER_WXLUA_BIND(collpane)
+    BEGIN_BIND_MODULE(wx)
         // Bind class wxCollapsiblePaneBase
         BEGIN_BIND_CLASS_CONTROL(wxCollapsiblePaneBase)
         // Auto generated MACRO code for 'Collapse':
@@ -78,7 +78,6 @@ REGISTER_WXLUA_BIND(collpane)
         BIND_MF(wxCollapsiblePaneBase, GetLabel)
         BIND_MF(wxCollapsiblePaneBase, SetLabel)
         END_BIND_CLASS(wxCollapsiblePaneBase)
-#endif
 
         // Bind class wxCollapsiblePaneEvent
         BEGIN_BIND_CLASS(wxCollapsiblePaneEvent, wxCommandEvent)
@@ -90,7 +89,7 @@ REGISTER_WXLUA_BIND(collpane)
         END_BIND_CLASS(wxCollapsiblePaneEvent)
 
         // Bind class wxCollapsiblePane
-        BEGIN_BIND_CLASS(wxCollapsiblePane)
+        BEGIN_BIND_CPPCLASS(wxCollapsiblePane, wxCollapsiblePaneBase)
         // Auto generated MACRO code for ctor of 'wxGenericCollapsiblePane':
         // =================================
         BIND_CTOR()
@@ -138,5 +137,6 @@ REGISTER_WXLUA_BIND(collpane)
     BEGIN_LUA_TABLE(wx)
         BIND_TABLE_VALUE(wxCollapsiblePaneNameStr, &wxCollapsiblePaneNameStr[0])
     END_LUA_TABLE(wx)
-    return 0;
-}
+END_REGISTER(collpane)
+#endif
+

@@ -48,7 +48,6 @@ namespace
 }  // namespace for wxArtProvider
 
 REGISTER_WXLUA_BIND(artprov)
-{
     BEGIN_LUA_TABLE(wx)
         BIND_MACRO(wxART_TOOLBAR)
         BIND_MACRO(wxART_MENU)
@@ -164,6 +163,4 @@ REGISTER_WXLUA_BIND(artprov)
         END_BIND_CLASS(wxArtProvider)
 
     END_BIND_MODULE(wx)
-
-    return 0;
-}
+END_REGISTER(artprov)

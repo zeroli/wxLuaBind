@@ -3,7 +3,6 @@
 #include <wx/animdecod.h>
 
 REGISTER_WXLUA_BIND(animdecod)
-{
     BEGIN_BIND_MODULE(wx)
         // Bind class wxAnimationDecoder
         BEGIN_BIND_CLASS(wxAnimationDecoder, wxObjectRefData)
@@ -40,5 +39,4 @@ REGISTER_WXLUA_BIND(animdecod)
     BIND_ENUM(wxANIMATION_TYPE_ANY)
 
     END_LUA_TABLE(wx)
-    return 0;
-}
+END_REGISTER(animdecod)

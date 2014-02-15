@@ -1,9 +1,8 @@
 #include <precompile.h>
 
 REGISTER_WXLUA_PREBIND(wxobject, BIND_NO_OBJECT)
-{
     BEGIN_BIND_MODULE(wx)
-        BEGIN_BIND_CLASS(wxObject)
+        BEGIN_BIND_CPPCLASS(wxObject)
             BIND_CTOR()
             BIND_CTOR(const wxObject&)
 
@@ -28,5 +27,4 @@ REGISTER_WXLUA_PREBIND(wxobject, BIND_NO_OBJECT)
         END_BIND_CLASS(wxObjectRefData)
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(object)

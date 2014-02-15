@@ -81,10 +81,8 @@ namespace
     }
 }  // namespace for wxAuiToolBar
 
-REGISTER_WXLUA_BIND(auibar)
-{
 #if wxUSE_AUI
-
+REGISTER_WXLUA_BIND(auibar)
     BEGIN_BIND_MODULE(wx)
     // Bind class wxAuiToolBarEvent
     BEGIN_BIND_CLASS(wxAuiToolBarEvent, wxNotifyEvent)
@@ -344,6 +342,5 @@ REGISTER_WXLUA_BIND(auibar)
     BIND_VARIABLE(wxEVT_COMMAND_AUITOOLBAR_BEGIN_DRAG)
 
     END_LUA_TABLE(wx)
+END_REGISTER(auibar)
 #endif // wxUSE_AUI
-    return 0;
-}

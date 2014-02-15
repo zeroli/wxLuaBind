@@ -31,9 +31,8 @@ namespace
     }
 }  // namespace for wxCheckBox
 
+#if wxUSE_CHECKBOX
 REGISTER_WXLUA_BIND(checkbox)
-{
-    #if wxUSE_CHECKBOX
     BEGIN_LUA_TABLE(wx)
         BIND_MACRO(wxCHK_2STATE)
         BIND_MACRO(wxCHK_3STATE)
@@ -63,7 +62,7 @@ REGISTER_WXLUA_BIND(checkbox)
         END_BIND_CLASS(wxCheckBoxBase)
 
         // Bind class wxCheckBox
-        BEGIN_BIND_CLASS(wxCheckBox, wxCheckBoxBase)
+        BEGIN_BIND_CPPCLASS(wxCheckBox, wxCheckBoxBase)
         // Auto generated MACRO code for ctor of 'wxCheckBox':
         // =================================
         BIND_CTOR()
@@ -94,6 +93,6 @@ REGISTER_WXLUA_BIND(checkbox)
         END_BIND_CLASS(wxCheckBox)
 
     END_BIND_MODULE(wx)
+END_REGISTER(checkbox)
+
 #endif
-    return 0;
-}

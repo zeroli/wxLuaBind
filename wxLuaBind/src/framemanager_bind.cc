@@ -271,10 +271,8 @@ namespace
     }
 }  // namespace for wxAuiManagerEvent
 
-REGISTER_WXLUA_BIND(framemanager)
-{
 #if wxUSE_AUI
-
+REGISTER_WXLUA_BIND(framemanager)
     BEGIN_BIND_MODULE(wx)
     // Bind class wxAuiPaneInfo
     BEGIN_BIND_CLASS(wxAuiPaneInfo)
@@ -715,7 +713,5 @@ REGISTER_WXLUA_BIND(framemanager)
     BIND_ENUM(wxEVT_AUI_RENDER)
     BIND_ENUM(wxEVT_AUI_FIND_MANAGER)
     END_LUA_TABLE(wx)
+END_REGISTER(framemanager)
 #endif // wxUSE_AUI
-    return 0;
-}
-

@@ -36,9 +36,11 @@ namespace
     // =================================
     void Connect4(wxEvtHandler* self, int winid, int lastId, int eventType, object objfunc)
     {
-        if (objfunc.is_valid() && type(objfunc) != LUA_TFUNCTION)
+        wxASSERT_MSG(objfunc.is_valid(), wxT("Lua state is not valid for last argument."));
+
+        if (type(objfunc) != LUA_TFUNCTION)
         {
-            wxLogError("The passed 3rd argument is not valid Lua function");
+            wxLogError("The last argument is not valid Lua function");
             return;
         }
 
@@ -86,7 +88,6 @@ namespace
 }  // namespace
 
 REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
-{
     BEGIN_BIND_MODULE(wx)
         BIND_FUNC(wxNewEventType)
     END_BIND_MODULE(wx)
@@ -817,7 +818,7 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
         END_BIND_CLASS(wxIdleEvent)
 
         // wxEvtHandler bind
-        BEGIN_BIND_CLASS_OBJECT(wxEvtHandler)
+        BEGIN_BIND_CPPCLASS_OBJECT(wxEvtHandler)
             BIND_CTOR()
 
             BIND_MF(wxEvtHandler, GetNextHandler)
@@ -884,5 +885,5 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
 
         BIND_FUNC(wxPostEvent)
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(event)
+

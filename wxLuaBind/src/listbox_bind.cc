@@ -107,10 +107,9 @@ namespace
 }  // namespace for wxListBox
 
 REGISTER_WXLUA_BIND(listbox)
-{
     BEGIN_BIND_MODULE(wx)
         // Bind class wxListBoxBase
-        BEGIN_BIND_CLASS(wxListBoxBase, wxControlWithItems)
+        BEGIN_BIND_CPPCLASS(wxListBoxBase, wxControlWithItems)
         BIND_MF_OVERLOAD(wxListBoxBase, Insert,
         void, (const wxString&, unsigned int))
         BIND_MF_OVERLOAD(wxListBoxBase, Insert,
@@ -163,7 +162,7 @@ REGISTER_WXLUA_BIND(listbox)
         END_BIND_CLASS(wxListBoxBase)
 
         // Bind class wxListBox
-        BEGIN_BIND_CLASS(wxListBox, wxListBoxBase)
+        BEGIN_BIND_CPPCLASS(wxListBox, wxListBoxBase)
         // Auto generated MACRO code for ctor of 'wxListBox':
         // =================================
         BIND_CTOR()
@@ -228,5 +227,5 @@ REGISTER_WXLUA_BIND(listbox)
         END_BIND_CLASS(wxListBox)
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(listbox)
+

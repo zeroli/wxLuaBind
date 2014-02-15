@@ -46,8 +46,7 @@ int main(int argc, char** argv)
     lua_State* L = lua_open();
     dofile(L, luafile);
 
-    // FIXME: adding it will crash at lua's gc
-    //lua_close(L);
+    lua_close(L);
 
     return 0;
 }

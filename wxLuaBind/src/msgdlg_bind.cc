@@ -1,7 +1,6 @@
 #include <precompile.h>
 
 REGISTER_WXLUA_BIND(msgdlg)
-{
     BEGIN_BIND_MODULE(wx)
         // Auto generated MACRO code for 'wxMessageBox':
         // =================================
@@ -19,5 +18,4 @@ REGISTER_WXLUA_BIND(msgdlg)
             int, (const wxString&, const wxString&, long, wxWindow*, int, int))
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(msgdlg)

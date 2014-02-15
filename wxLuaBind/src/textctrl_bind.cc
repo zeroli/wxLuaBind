@@ -117,10 +117,9 @@ namespace
 }  // namespace for wxTextAttr
 
 REGISTER_WXLUA_BIND(wxtextctrl)
-{
     BEGIN_BIND_MODULE(wx)
         // Bind class wxTextAttr
-        BEGIN_BIND_CLASS(wxTextAttr)
+        BEGIN_BIND_CPPCLASS(wxTextAttr)
         // Auto generated MACRO code for ctor of 'wxTextAttr':
         // =================================
         BIND_CTOR()
@@ -266,7 +265,7 @@ REGISTER_WXLUA_BIND(wxtextctrl)
         BIND_MF(wxTextCtrlBase, ShouldInheritColours)
         END_BIND_CLASS(wxTextCtrlBase)
 
-        BEGIN_BIND_CLASS(wxTextCtrl, wxTextCtrlBase)
+        BEGIN_BIND_CPPCLASS(wxTextCtrl, wxTextCtrlBase)
         BIND_CTOR()
         // Auto generated MACRO code for ctor of 'wxTextCtrl':
         // =================================
@@ -361,5 +360,4 @@ REGISTER_WXLUA_BIND(wxtextctrl)
         BIND_ENUM(wxEVT_COMMAND_TEXT_URL)
         BIND_ENUM(wxEVT_COMMAND_TEXT_MAXLEN)
     END_LUA_TABLE(wx)
-    return 0;
-}
+END_REGISTER(textctrl)

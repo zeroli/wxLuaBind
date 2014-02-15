@@ -27,8 +27,7 @@ namespace
     }
 }  // namespace
 
-REGISTER_WXLUA_BIND(wxcolor)
-{
+REGISTER_WXLUA_BIND(color)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS(wxColour, wxGDIObject)
         // Auto generated MACRO code for ctor of 'wxColour':
@@ -80,5 +79,4 @@ REGISTER_WXLUA_BIND(wxcolor)
     BEGIN_LUA_TABLE(wx)
         BIND_VARIABLE(wxNullColour)
     END_LUA_TABLE(wx)
-    return 0;
-}
+END_REGISTER(colour)

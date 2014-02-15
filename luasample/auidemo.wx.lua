@@ -60,10 +60,6 @@ local sample_xpm = {
 "++++++++++++++++++++++++++++++++"
 };
 
-
-local wxT = function(s) return wx.wxString(s) end
-local _ = function(s) return wx.wxString(s) end
-
 local IDCounter = nil
 local function NewID()
     if not IDCounter then IDCounter = wx.wxID_HIGHEST end
@@ -163,19 +159,19 @@ function wxSizeReportCtrl(parent, id, pos, size, mgr)
             --if (m_mgr) then
                 --local pi = m_mgr:GetPane(this);
 --
-                --s = string.format(wxT("Layer: %d"), pi.dock_layer);
+                --s = string.format(wx.wxT("Layer: %d"), pi.dock_layer);
                 --w,h = dc:GetTextExtent(s);
                 --dc:DrawText(s, (sizex-w)/2, ((sizey-(height*5))/2)+(height*1));
 --
-                --s = string.format(wxT("Dock: %d Row: %d"), pi.dock_direction, pi.dock_row);
+                --s = string.format(wx.wxT("Dock: %d Row: %d"), pi.dock_direction, pi.dock_row);
                 --w,h = dc:GetTextExtent(s);
                 --dc:DrawText(s, (sizex-w)/2, ((sizey-(height*5))/2)+(height*2));
 --
-                --s = string.format(wxT("Position: %d"), pi.dock_pos);
+                --s = string.format(wx.wxT("Position: %d"), pi.dock_pos);
                 --w,h = dc:GetTextExtent(s);
                 --dc:DrawText(s, (sizex-w)/2, ((sizey-(height*5))/2)+(height*3));
 --
-                --s = string.format(wxT("Proportion: %d"), pi.dock_proportion);
+                --s = string.format(wx.wxT("Proportion: %d"), pi.dock_proportion);
                 --w,h = dc:GetTextExtent(s);
                 --dc:DrawText(s, (sizex-w)/2, ((sizey-(height*5))/2)+(height*4));
             --end
@@ -210,7 +206,7 @@ function wxSizeReportCtrl:OnPaint(evt)
         local s;
         local h, w, height;
 
-        s = string.format(wxT("Size: %d x %d"), sizex, sizey);
+        s = string.format(wx.wxT("Size: %d x %d"), sizex, sizey);
 
         dc:SetFont(wx.wxNORMAL_FONT);
         w,height=dc:GetTextExtent(s);
@@ -228,19 +224,19 @@ function wxSizeReportCtrl:OnPaint(evt)
             ---- [.[hd.FIXME
             local pi = m_mgr:GetPane(this);
 
-            s = string.format(wxT("Layer: %d"), pi.dock_layer);
+            s = string.format(wx.wxT("Layer: %d"), pi.dock_layer);
             w,h = dc:GetTextExtent(s);
             dc:DrawText(s, (size.x-w)/2, ((size.y-(height*5))/2)+(height*1));
 
-            s = string.format(wxT("Dock: %d Row: %d"), pi.dock_direction, pi.dock_row);
+            s = string.format(wx.wxT("Dock: %d Row: %d"), pi.dock_direction, pi.dock_row);
             w,h = dc:GetTextExtent(s);
             dc:DrawText(s, (size.x-w)/2, ((size.y-(height*5))/2)+(height*2));
 
-            s = string.format(wxT("Position: %d"), pi.dock_pos);
+            s = string.format(wx.wxT("Position: %d"), pi.dock_pos);
             w,h = dc:GetTextExtent(s);
             dc:DrawText(s, (size.x-w)/2, ((size.y-(height*5))/2)+(height*3));
 
-            s = string.format(wxT("Proportion: %d"), pi.dock_proportion);
+            s = string.format(wx.wxT("Proportion: %d"), pi.dock_proportion);
             w,h = dc:GetTextExtent(s);
             dc:DrawText(s, (size.x-w)/2, ((size.y-(height*5))/2)+(height*4));
             ---- ].]
@@ -301,37 +297,37 @@ function SettingsPanel:create(parent, frame)
         --//vert:Add(1, 1, 1, wxEXPAND);
 
         local s1 = wx.wxBoxSizer(wx.wxHORIZONTAL);
-        self.m_border_size = wx.wxSpinCtrl(this, self.ID_PaneBorderSize, wxT(string.format(("%d"),
+        self.m_border_size = wx.wxSpinCtrl(this, self.ID_PaneBorderSize, wx.wxT(string.format(("%d"),
             frame:GetDockArt():GetMetric(wx.wxAUI_DOCKART_PANE_BORDER_SIZE))),
             wx.wxDefaultPosition, wx.wxSize(50,20), wx.wxSP_ARROW_KEYS, 0, 100,
             frame:GetDockArt():GetMetric(wx.wxAUI_DOCKART_PANE_BORDER_SIZE));
         s1:Add(1, 1, 1, wx.wxEXPAND);
 
-        s1:Add(wx.wxStaticText(this, wx.wxID_ANY, wxT("Pane Border Size:")));
+        s1:Add(wx.wxStaticText(this, wx.wxID_ANY, wx.wxT("Pane Border Size:")));
         s1:Add(self.m_border_size, 0);
         s1:Add(1, 1, 1, wx.wxEXPAND);
         s1:SetItemMinSize(1, 180, 20);
         --//vert:Add(s1, 0, wxEXPAND | wxLEFT | wxBOTTOM, 5);
 
         local s2 = wx.wxBoxSizer(wx.wxHORIZONTAL);
-        self.m_sash_size = wx.wxSpinCtrl(this, self.ID_SashSize, wxT(string.format(("%d"),
+        self.m_sash_size = wx.wxSpinCtrl(this, self.ID_SashSize, wx.wxT(string.format(("%d"),
             frame:GetDockArt():GetMetric(wx.wxAUI_DOCKART_SASH_SIZE))),
             wx.wxDefaultPosition, wx.wxSize(50,20), wx.wxSP_ARROW_KEYS, 0, 100,
             frame:GetDockArt():GetMetric(wx.wxAUI_DOCKART_SASH_SIZE));
         s2:Add(1, 1, 1, wx.wxEXPAND);
-        s2:Add(wx.wxStaticText(this, wx.wxID_ANY, wxT("Sash Size:")));
+        s2:Add(wx.wxStaticText(this, wx.wxID_ANY, wx.wxT("Sash Size:")));
         s2:Add(self.m_sash_size);
         s2:Add(1, 1, 1, wx.wxEXPAND);
         s2:SetItemMinSize(1, 180, 20);
         --//vert:Add(s2, 0, wxEXPAND | wxLEFT | wxBOTTOM, 5);
 
         local s3 = wx.wxBoxSizer(wx.wxHORIZONTAL);
-        self.m_caption_size = wx.wxSpinCtrl(this, self.ID_CaptionSize, wxT(string.format(("%d"),
+        self.m_caption_size = wx.wxSpinCtrl(this, self.ID_CaptionSize, wx.wxT(string.format(("%d"),
             frame:GetDockArt():GetMetric(wx.wxAUI_DOCKART_CAPTION_SIZE))),
             wx.wxDefaultPosition, wx.wxSize(50,20), wx.wxSP_ARROW_KEYS, 0, 100,
             frame:GetDockArt():GetMetric(wx.wxAUI_DOCKART_CAPTION_SIZE));
         s3:Add(1, 1, 1, wx.wxEXPAND);
-        s3:Add(wx.wxStaticText(this, wx.wxID_ANY, wxT("Caption Size:")));
+        s3:Add(wx.wxStaticText(this, wx.wxID_ANY, wx.wxT("Caption Size:")));
         s3:Add(self.m_caption_size);
         s3:Add(1, 1, 1, wx.wxEXPAND);
         s3:SetItemMinSize(1, 180, 20);
@@ -345,7 +341,7 @@ function SettingsPanel:create(parent, frame)
         local s4 = wx.wxBoxSizer(wx.wxHORIZONTAL);
         self.m_background_color = wx.wxBitmapButton(this, self.ID_BackgroundColor, b, wx.wxDefaultPosition, wx.wxSize(50,25));
         s4:Add(1, 1, 1, wx.wxEXPAND);
-        s4:Add(wx.wxStaticText(this, wx.wxID_ANY, wxT("Background Color:")));
+        s4:Add(wx.wxStaticText(this, wx.wxID_ANY, wx.wxT("Background Color:")));
         s4:Add(self.m_background_color);
         s4:Add(1, 1, 1, wx.wxEXPAND);
         s4:SetItemMinSize(1, 180, 20);
@@ -353,7 +349,7 @@ function SettingsPanel:create(parent, frame)
         local s5 = wx.wxBoxSizer(wx.wxHORIZONTAL);
         self.m_sash_color = wx.wxBitmapButton(this, self.ID_SashColor, b, wx.wxDefaultPosition, wx.wxSize(50,25));
         s5:Add(1, 1, 1, wx.wxEXPAND);
-        s5:Add(wx.wxStaticText(this, wx.wxID_ANY, wxT("Sash Color:")));
+        s5:Add(wx.wxStaticText(this, wx.wxID_ANY, wx.wxT("Sash Color:")));
         s5:Add(self.m_sash_color);
         s5:Add(1, 1, 1, wx.wxEXPAND);
         s5:SetItemMinSize(1, 180, 20);
@@ -361,7 +357,7 @@ function SettingsPanel:create(parent, frame)
         local s6 = wx.wxBoxSizer(wx.wxHORIZONTAL);
         self.m_inactive_caption_color = wx.wxBitmapButton(this, self.ID_InactiveCaptionColor, b, wx.wxDefaultPosition, wx.wxSize(50,25));
         s6:Add(1, 1, 1, wx.wxEXPAND);
-        s6:Add(wx.wxStaticText(this, wx.wxID_ANY, wxT("Normal Caption:")));
+        s6:Add(wx.wxStaticText(this, wx.wxID_ANY, wx.wxT("Normal Caption:")));
         s6:Add(self.m_inactive_caption_color);
         s6:Add(1, 1, 1, wx.wxEXPAND);
         s6:SetItemMinSize(1, 180, 20);
@@ -369,7 +365,7 @@ function SettingsPanel:create(parent, frame)
         local s7 = wx.wxBoxSizer(wx.wxHORIZONTAL);
         self.m_inactive_caption_gradient_color = wx.wxBitmapButton(this, self.ID_InactiveCaptionGradientColor, b, wx.wxDefaultPosition, wx.wxSize(50,25));
         s7:Add(1, 1, 1, wx.wxEXPAND);
-        s7:Add(wx.wxStaticText(this, wx.wxID_ANY, wxT("Normal Caption Gradient:")));
+        s7:Add(wx.wxStaticText(this, wx.wxID_ANY, wx.wxT("Normal Caption Gradient:")));
         s7:Add(self.m_inactive_caption_gradient_color);
         s7:Add(1, 1, 1, wx.wxEXPAND);
         s7:SetItemMinSize(1, 180, 20);
@@ -377,7 +373,7 @@ function SettingsPanel:create(parent, frame)
         local s8 = wx.wxBoxSizer(wx.wxHORIZONTAL);
         self.m_inactive_caption_text_color = wx.wxBitmapButton(this, self.ID_InactiveCaptionTextColor, b, wx.wxDefaultPosition, wx.wxSize(50,25));
         s8:Add(1, 1, 1, wx.wxEXPAND);
-        s8:Add(wx.wxStaticText(this, wx.wxID_ANY, wxT("Normal Caption Text:")));
+        s8:Add(wx.wxStaticText(this, wx.wxID_ANY, wx.wxT("Normal Caption Text:")));
         s8:Add(self.m_inactive_caption_text_color);
         s8:Add(1, 1, 1, wx.wxEXPAND);
         s8:SetItemMinSize(1, 180, 20);
@@ -385,7 +381,7 @@ function SettingsPanel:create(parent, frame)
         local s9 = wx.wxBoxSizer(wx.wxHORIZONTAL);
         self.m_active_caption_color = wx.wxBitmapButton(this, self.ID_ActiveCaptionColor, b, wx.wxDefaultPosition, wx.wxSize(50,25));
         s9:Add(1, 1, 1, wx.wxEXPAND);
-        s9:Add(wx.wxStaticText(this, wx.wxID_ANY, wxT("Active Caption:")));
+        s9:Add(wx.wxStaticText(this, wx.wxID_ANY, wx.wxT("Active Caption:")));
         s9:Add(self.m_active_caption_color);
         s9:Add(1, 1, 1, wx.wxEXPAND);
         s9:SetItemMinSize(1, 180, 20);
@@ -393,7 +389,7 @@ function SettingsPanel:create(parent, frame)
         local s10 = wx.wxBoxSizer(wx.wxHORIZONTAL);
         self.m_active_caption_gradient_color = wx.wxBitmapButton(this, self.ID_ActiveCaptionGradientColor, b, wx.wxDefaultPosition, wx.wxSize(50,25));
         s10:Add(1, 1, 1, wx.wxEXPAND);
-        s10:Add(wx.wxStaticText(this, wx.wxID_ANY, wxT("Active Caption Gradient:")));
+        s10:Add(wx.wxStaticText(this, wx.wxID_ANY, wx.wxT("Active Caption Gradient:")));
         s10:Add(self.m_active_caption_gradient_color);
         s10:Add(1, 1, 1, wx.wxEXPAND);
         s10:SetItemMinSize(1, 180, 20);
@@ -401,7 +397,7 @@ function SettingsPanel:create(parent, frame)
         local s11 = wx.wxBoxSizer(wx.wxHORIZONTAL);
         self.m_active_caption_text_color = wx.wxBitmapButton(this, self.ID_ActiveCaptionTextColor, b, wx.wxDefaultPosition, wx.wxSize(50,25));
         s11:Add(1, 1, 1, wx.wxEXPAND);
-        s11:Add(wx.wxStaticText(this, wx.wxID_ANY, wxT("Active Caption Text:")));
+        s11:Add(wx.wxStaticText(this, wx.wxID_ANY, wx.wxT("Active Caption Text:")));
         s11:Add(self.m_active_caption_text_color);
         s11:Add(1, 1, 1, wx.wxEXPAND);
         s11:SetItemMinSize(1, 180, 20);
@@ -409,7 +405,7 @@ function SettingsPanel:create(parent, frame)
         local s12 = wx.wxBoxSizer(wx.wxHORIZONTAL);
         self.m_border_color = wx.wxBitmapButton(this, self.ID_BorderColor, b, wx.wxDefaultPosition, wx.wxSize(50,25));
         s12:Add(1, 1, 1, wx.wxEXPAND);
-        s12:Add(wx.wxStaticText(this, wx.wxID_ANY, wxT("Border Color:")));
+        s12:Add(wx.wxStaticText(this, wx.wxID_ANY, wx.wxT("Border Color:")));
         s12:Add(self.m_border_color);
         s12:Add(1, 1, 1, wx.wxEXPAND);
         s12:SetItemMinSize(1, 180, 20);
@@ -417,7 +413,7 @@ function SettingsPanel:create(parent, frame)
         local s13 = wx.wxBoxSizer(wx.wxHORIZONTAL);
         self.m_gripper_color = wx.wxBitmapButton(this, self.ID_GripperColor, b, wx.wxDefaultPosition, wx.wxSize(50,25));
         s13:Add(1, 1, 1, wx.wxEXPAND);
-        s13:Add(wx.wxStaticText(this, wx.wxID_ANY, wxT("Gripper Color:")));
+        s13:Add(wx.wxStaticText(this, wx.wxID_ANY, wx.wxT("Gripper Color:")));
         s13:Add(self.m_gripper_color);
         s13:Add(1, 1, 1, wx.wxEXPAND);
         s13:SetItemMinSize(1, 180, 20);
@@ -529,7 +525,7 @@ end
 
 function SettingsPanel:OnSetColor(event)
         local dlg = wx.wxColourDialog(self.m_frame.this);
-        dlg:SetTitle(_("Color Picker"));
+        dlg:SetTitle(wx._("Color Picker"));
         if (dlg:ShowModal() ~= wx.wxID_OK) then
             return;
         end
@@ -561,7 +557,7 @@ end
 function MyFrame:create(parent, id, title, pos, size, style)
     self.this = wx.wxFrame(wx.NULL,
                         wx.wxID_ANY,
-                        wxT("wxAUI Sample Application"),
+                        wx.wxT("wxAUI Sample Application"),
                         wx.wxDefaultPosition,
                         wx.wxSize(800, 600));
     local this = self.this
@@ -589,81 +585,81 @@ function MyFrame:create(parent, id, title, pos, size, style)
     local mb = wx.wxMenuBar();
 
     local file_menu = wx.wxMenu();
-    file_menu:Append(wx.wxID_EXIT, _("Exit"));
+    file_menu:Append(wx.wxID_EXIT, wx._("Exit"));
 
     local view_menu = wx.wxMenu();
-    view_menu:Append(self.ID_CreateText, _("Create Text Control"));
-    view_menu:Append(self.ID_CreateHTML, _("Create HTML Control"));
-    view_menu:Append(self.ID_CreateTree, _("Create Tree"));
-    view_menu:Append(self.ID_CreateGrid, _("Create Grid"));
-    view_menu:Append(self.ID_CreateNotebook, _("Create Notebook"));
-    view_menu:Append(self.ID_CreateSizeReport, _("Create Size Reporter"));
+    view_menu:Append(self.ID_CreateText, wx._("Create Text Control"));
+    view_menu:Append(self.ID_CreateHTML, wx._("Create HTML Control"));
+    view_menu:Append(self.ID_CreateTree, wx._("Create Tree"));
+    view_menu:Append(self.ID_CreateGrid, wx._("Create Grid"));
+    view_menu:Append(self.ID_CreateNotebook, wx._("Create Notebook"));
+    view_menu:Append(self.ID_CreateSizeReport, wx._("Create Size Reporter"));
     view_menu:AppendSeparator();
-    view_menu:Append(self.ID_GridContent, _("Use a Grid for the Content Pane"));
-    view_menu:Append(self.ID_TextContent, _("Use a Text Control for the Content Pane"));
-    view_menu:Append(self.ID_HTMLContent, _("Use an HTML Control for the Content Pane"));
-    view_menu:Append(self.ID_TreeContent, _("Use a Tree Control for the Content Pane"));
-    view_menu:Append(self.ID_NotebookContent, _("Use a wxAuiNotebook control for the Content Pane"));
-    view_menu:Append(self.ID_SizeReportContent, _("Use a Size Reporter for the Content Pane"));
+    view_menu:Append(self.ID_GridContent, wx._("Use a Grid for the Content Pane"));
+    view_menu:Append(self.ID_TextContent, wx._("Use a Text Control for the Content Pane"));
+    view_menu:Append(self.ID_HTMLContent, wx._("Use an HTML Control for the Content Pane"));
+    view_menu:Append(self.ID_TreeContent, wx._("Use a Tree Control for the Content Pane"));
+    view_menu:Append(self.ID_NotebookContent, wx._("Use a wxAuiNotebook control for the Content Pane"));
+    view_menu:Append(self.ID_SizeReportContent, wx._("Use a Size Reporter for the Content Pane"));
 
     local options_menu = wx.wxMenu();
-    options_menu:AppendRadioItem(self.ID_TransparentHint, _("Transparent Hint"));
-    options_menu:AppendRadioItem(self.ID_VenetianBlindsHint, _("Venetian Blinds Hint"));
-    options_menu:AppendRadioItem(self.ID_RectangleHint, _("Rectangle Hint"));
-    options_menu:AppendRadioItem(self.ID_NoHint, _("No Hint"));
+    options_menu:AppendRadioItem(self.ID_TransparentHint, wx._("Transparent Hint"));
+    options_menu:AppendRadioItem(self.ID_VenetianBlindsHint, wx._("Venetian Blinds Hint"));
+    options_menu:AppendRadioItem(self.ID_RectangleHint, wx._("Rectangle Hint"));
+    options_menu:AppendRadioItem(self.ID_NoHint, wx._("No Hint"));
     options_menu:AppendSeparator();
-    options_menu:AppendCheckItem(self.ID_HintFade, _("Hint Fade-in"));
-    options_menu:AppendCheckItem(self.ID_AllowFloating, _("Allow Floating"));
-    options_menu:AppendCheckItem(self.ID_NoVenetianFade, _("Disable Venetian Blinds Hint Fade-in"));
-    options_menu:AppendCheckItem(self.ID_TransparentDrag, _("Transparent Drag"));
-    options_menu:AppendCheckItem(self.ID_AllowActivePane, _("Allow Active Pane"));
+    options_menu:AppendCheckItem(self.ID_HintFade, wx._("Hint Fade-in"));
+    options_menu:AppendCheckItem(self.ID_AllowFloating, wx._("Allow Floating"));
+    options_menu:AppendCheckItem(self.ID_NoVenetianFade, wx._("Disable Venetian Blinds Hint Fade-in"));
+    options_menu:AppendCheckItem(self.ID_TransparentDrag, wx._("Transparent Drag"));
+    options_menu:AppendCheckItem(self.ID_AllowActivePane, wx._("Allow Active Pane"));
     options_menu:AppendSeparator();
-    options_menu:AppendRadioItem(self.ID_NoGradient, _("No Caption Gradient"));
-    options_menu:AppendRadioItem(self.ID_VerticalGradient, _("Vertical Caption Gradient"));
-    options_menu:AppendRadioItem(self.ID_HorizontalGradient, _("Horizontal Caption Gradient"));
+    options_menu:AppendRadioItem(self.ID_NoGradient, wx._("No Caption Gradient"));
+    options_menu:AppendRadioItem(self.ID_VerticalGradient, wx._("Vertical Caption Gradient"));
+    options_menu:AppendRadioItem(self.ID_HorizontalGradient, wx._("Horizontal Caption Gradient"));
     options_menu:AppendSeparator();
-    options_menu:Append(self.ID_Settings, _("Settings Pane"));
+    options_menu:Append(self.ID_Settings, wx._("Settings Pane"));
 
     local notebook_menu = wx.wxMenu();
-    notebook_menu:AppendRadioItem(self.ID_NotebookArtGloss, _("Glossy Theme (Default)"));
-    notebook_menu:AppendRadioItem(self.ID_NotebookArtSimple, _("Simple Theme"));
+    notebook_menu:AppendRadioItem(self.ID_NotebookArtGloss, wx._("Glossy Theme (Default)"));
+    notebook_menu:AppendRadioItem(self.ID_NotebookArtSimple, wx._("Simple Theme"));
     notebook_menu:AppendSeparator();
-    notebook_menu:AppendRadioItem(self.ID_NotebookNoCloseButton, _("No Close Button"));
-    notebook_menu:AppendRadioItem(self.ID_NotebookCloseButton, _("Close Button at Right"));
-    notebook_menu:AppendRadioItem(self.ID_NotebookCloseButtonAll, _("Close Button on All Tabs"));
-    notebook_menu:AppendRadioItem(self.ID_NotebookCloseButtonActive, _("Close Button on Active Tab"));
+    notebook_menu:AppendRadioItem(self.ID_NotebookNoCloseButton, wx._("No Close Button"));
+    notebook_menu:AppendRadioItem(self.ID_NotebookCloseButton, wx._("Close Button at Right"));
+    notebook_menu:AppendRadioItem(self.ID_NotebookCloseButtonAll, wx._("Close Button on All Tabs"));
+    notebook_menu:AppendRadioItem(self.ID_NotebookCloseButtonActive, wx._("Close Button on Active Tab"));
     notebook_menu:AppendSeparator();
-    notebook_menu:AppendRadioItem(self.ID_NotebookAlignTop, _("Tab Top Alignment"));
-    notebook_menu:AppendRadioItem(self.ID_NotebookAlignBottom, _("Tab Bottom Alignment"));
+    notebook_menu:AppendRadioItem(self.ID_NotebookAlignTop, wx._("Tab Top Alignment"));
+    notebook_menu:AppendRadioItem(self.ID_NotebookAlignBottom, wx._("Tab Bottom Alignment"));
     notebook_menu:AppendSeparator();
-    notebook_menu:AppendCheckItem(self.ID_NotebookAllowTabMove, _("Allow Tab Move"));
-    notebook_menu:AppendCheckItem(self.ID_NotebookAllowTabExternalMove, _("Allow External Tab Move"));
-    notebook_menu:AppendCheckItem(self.ID_NotebookAllowTabSplit, _("Allow Notebook Split"));
-    notebook_menu:AppendCheckItem(self.ID_NotebookScrollButtons, _("Scroll Buttons Visible"));
-    notebook_menu:AppendCheckItem(self.ID_NotebookWindowList, _("Window List Button Visible"));
-    notebook_menu:AppendCheckItem(self.ID_NotebookTabFixedWidth, _("Fixed-width Tabs"));
+    notebook_menu:AppendCheckItem(self.ID_NotebookAllowTabMove, wx._("Allow Tab Move"));
+    notebook_menu:AppendCheckItem(self.ID_NotebookAllowTabExternalMove, wx._("Allow External Tab Move"));
+    notebook_menu:AppendCheckItem(self.ID_NotebookAllowTabSplit, wx._("Allow Notebook Split"));
+    notebook_menu:AppendCheckItem(self.ID_NotebookScrollButtons, wx._("Scroll Buttons Visible"));
+    notebook_menu:AppendCheckItem(self.ID_NotebookWindowList, wx._("Window List Button Visible"));
+    notebook_menu:AppendCheckItem(self.ID_NotebookTabFixedWidth, wx._("Fixed-width Tabs"));
 
     self.m_perspectives_menu = wx.wxMenu();
-    self.m_perspectives_menu:Append(self.ID_CreatePerspective, _("Create Perspective"));
-    self.m_perspectives_menu:Append(self.ID_CopyPerspectiveCode, _("Copy Perspective Data To Clipboard"));
+    self.m_perspectives_menu:Append(self.ID_CreatePerspective, wx._("Create Perspective"));
+    self.m_perspectives_menu:Append(self.ID_CopyPerspectiveCode, wx._("Copy Perspective Data To Clipboard"));
     self.m_perspectives_menu:AppendSeparator();
-    self.m_perspectives_menu:Append(self.ID_FirstPerspective+0, _("Default Startup"));
-    self.m_perspectives_menu:Append(self.ID_FirstPerspective+1, _("All Panes"));
+    self.m_perspectives_menu:Append(self.ID_FirstPerspective+0, wx._("Default Startup"));
+    self.m_perspectives_menu:Append(self.ID_FirstPerspective+1, wx._("All Panes"));
 
     local help_menu = wx.wxMenu();
-    help_menu:Append(wx.wxID_ABOUT, _("About..."));
+    help_menu:Append(wx.wxID_ABOUT, wx._("About..."));
 
-    mb:Append(file_menu, _("File"));
-    mb:Append(view_menu, _("View"));
-    mb:Append(self.m_perspectives_menu, _("Perspectives"));
-    mb:Append(options_menu, _("Options"));
-    mb:Append(notebook_menu, _("Notebook"));
-    mb:Append(help_menu, _("Help"));
+    mb:Append(file_menu, wx._("File"));
+    mb:Append(view_menu, wx._("View"));
+    mb:Append(self.m_perspectives_menu, wx._("Perspectives"));
+    mb:Append(options_menu, wx._("Options"));
+    mb:Append(notebook_menu, wx._("Notebook"));
+    mb:Append(help_menu, wx._("Help"));
 
     this:SetMenuBar(mb);
 
     this:CreateStatusBar();
-    this:GetStatusBar():SetStatusText(_("Ready"));
+    this:GetStatusBar():SetStatusText(wx._("Ready"));
 
 
     --// min size for the frame itself isn't completely done.
@@ -675,12 +671,12 @@ function MyFrame:create(parent, id, title, pos, size, style)
     local tb1 = wx.wxToolBar(this, wx.wxID_ANY, wx.wxDefaultPosition, wx.wxDefaultSize,
                                    wx.wxTB_FLAT + wx.wxTB_NODIVIDER);
     tb1:SetToolBitmapSize(wx.wxSize(48,48));
-    tb1:AddTool(101, wxT("Test"), wx.wxArtProvider.GetBitmap(wxT(wx.wxART_ERROR)));
+    tb1:AddTool(101, wx.wxT("Test"), wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_ERROR)));
     tb1:AddSeparator();
-    tb1:AddTool(102, wxT("Test"), wx.wxArtProvider.GetBitmap(wxT(wx.wxART_QUESTION)));
-    tb1:AddTool(103, wxT("Test"), wx.wxArtProvider.GetBitmap(wxT(wx.wxART_INFORMATION)));
-    tb1:AddTool(103, wxT("Test"), wx.wxArtProvider.GetBitmap(wxT(wx.wxART_WARNING)));
-    tb1:AddTool(103, wxT("Test"), wx.wxArtProvider.GetBitmap(wxT(wx.wxART_MISSING_IMAGE)));
+    tb1:AddTool(102, wx.wxT("Test"), wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_QUESTION)));
+    tb1:AddTool(103, wx.wxT("Test"), wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_INFORMATION)));
+    tb1:AddTool(103, wx.wxT("Test"), wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_WARNING)));
+    tb1:AddTool(103, wx.wxT("Test"), wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_MISSING_IMAGE)));
     tb1:Realize();
 
 
@@ -688,168 +684,168 @@ function MyFrame:create(parent, id, title, pos, size, style)
                                    wx.wxTB_FLAT + wx.wxTB_NODIVIDER);
     tb2:SetToolBitmapSize(wx.wxSize(16,16));
 
-    local tb2_bmp1 = wx.wxArtProvider.GetBitmap(wxT(wx.wxART_QUESTION), wxT(wx.wxART_OTHER), wx.wxSize(16,16));
-    tb2:AddTool(101, wxT("Test"), tb2_bmp1);
-    tb2:AddTool(101, wxT("Test"), tb2_bmp1);
-    tb2:AddTool(101, wxT("Test"), tb2_bmp1);
-    tb2:AddTool(101, wxT("Test"), tb2_bmp1);
+    local tb2_bmp1 = wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_QUESTION), wx.wxT(wx.wxART_OTHER), wx.wxSize(16,16));
+    tb2:AddTool(101, wx.wxT("Test"), tb2_bmp1);
+    tb2:AddTool(101, wx.wxT("Test"), tb2_bmp1);
+    tb2:AddTool(101, wx.wxT("Test"), tb2_bmp1);
+    tb2:AddTool(101, wx.wxT("Test"), tb2_bmp1);
     tb2:AddSeparator();
-    tb2:AddTool(101, wxT("Test"), tb2_bmp1);
-    tb2:AddTool(101, wxT("Test"), tb2_bmp1);
+    tb2:AddTool(101, wx.wxT("Test"), tb2_bmp1);
+    tb2:AddTool(101, wx.wxT("Test"), tb2_bmp1);
     tb2:AddSeparator();
-    tb2:AddTool(101, wxT("Test"), tb2_bmp1);
-    tb2:AddTool(101, wxT("Test"), tb2_bmp1);
-    tb2:AddTool(101, wxT("Test"), tb2_bmp1);
-    tb2:AddTool(101, wxT("Test"), tb2_bmp1);
+    tb2:AddTool(101, wx.wxT("Test"), tb2_bmp1);
+    tb2:AddTool(101, wx.wxT("Test"), tb2_bmp1);
+    tb2:AddTool(101, wx.wxT("Test"), tb2_bmp1);
+    tb2:AddTool(101, wx.wxT("Test"), tb2_bmp1);
     tb2:Realize();
 
 
     local tb3 = wx.wxToolBar(this, wx.wxID_ANY, wx.wxDefaultPosition, wx.wxDefaultSize,
                                    wx.wxTB_FLAT + wx.wxTB_NODIVIDER);
     tb3:SetToolBitmapSize(wx.wxSize(16,16));
-    local tb3_bmp1 = wx.wxArtProvider.GetBitmap(wxT(wx.wxART_FOLDER), wxT(wx.wxART_OTHER), wx.wxSize(16,16));
-    tb3:AddTool(101, wxT("Test"), tb3_bmp1);
-    tb3:AddTool(101, wxT("Test"), tb3_bmp1);
-    tb3:AddTool(101, wxT("Test"), tb3_bmp1);
-    tb3:AddTool(101, wxT("Test"), tb3_bmp1);
+    local tb3_bmp1 = wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_FOLDER), wx.wxT(wx.wxART_OTHER), wx.wxSize(16,16));
+    tb3:AddTool(101, wx.wxT("Test"), tb3_bmp1);
+    tb3:AddTool(101, wx.wxT("Test"), tb3_bmp1);
+    tb3:AddTool(101, wx.wxT("Test"), tb3_bmp1);
+    tb3:AddTool(101, wx.wxT("Test"), tb3_bmp1);
     tb3:AddSeparator();
-    tb3:AddTool(101, wxT("Test"), tb3_bmp1);
-    tb3:AddTool(101, wxT("Test"), tb3_bmp1);
+    tb3:AddTool(101, wx.wxT("Test"), tb3_bmp1);
+    tb3:AddTool(101, wx.wxT("Test"), tb3_bmp1);
     tb3:Realize();
 
 
     local tb4 = wx.wxToolBar(this, wx.wxID_ANY, wx.wxDefaultPosition, wx.wxDefaultSize,
                                    wx.wxTB_FLAT + wx.wxTB_NODIVIDER + wx.wxTB_HORZ_TEXT);
     tb4:SetToolBitmapSize(wx.wxSize(16,16));
-    local tb4_bmp1 = wx.wxArtProvider.GetBitmap(wxT(wx.wxART_NORMAL_FILE), wxT(wx.wxART_OTHER), wx.wxSize(16,16));
-    tb4:AddTool(101, wxT("Item 1"), tb4_bmp1);
-    tb4:AddTool(101, wxT("Item 2"), tb4_bmp1);
-    tb4:AddTool(101, wxT("Item 3"), tb4_bmp1);
-    tb4:AddTool(101, wxT("Item 4"), tb4_bmp1);
+    local tb4_bmp1 = wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_NORMAL_FILE), wx.wxT(wx.wxART_OTHER), wx.wxSize(16,16));
+    tb4:AddTool(101, wx.wxT("Item 1"), tb4_bmp1);
+    tb4:AddTool(101, wx.wxT("Item 2"), tb4_bmp1);
+    tb4:AddTool(101, wx.wxT("Item 3"), tb4_bmp1);
+    tb4:AddTool(101, wx.wxT("Item 4"), tb4_bmp1);
     tb4:AddSeparator();
-    tb4:AddTool(101, wxT("Item 5"), tb4_bmp1);
-    tb4:AddTool(101, wxT("Item 6"), tb4_bmp1);
-    tb4:AddTool(101, wxT("Item 7"), tb4_bmp1);
-    tb4:AddTool(101, wxT("Item 8"), tb4_bmp1);
+    tb4:AddTool(101, wx.wxT("Item 5"), tb4_bmp1);
+    tb4:AddTool(101, wx.wxT("Item 6"), tb4_bmp1);
+    tb4:AddTool(101, wx.wxT("Item 7"), tb4_bmp1);
+    tb4:AddTool(101, wx.wxT("Item 8"), tb4_bmp1);
     tb4:Realize();
 
     --// create some toolbars
     local tb5 = wx.wxToolBar(this, wx.wxID_ANY, wx.wxDefaultPosition, wx.wxDefaultSize,
                                    wx.wxTB_FLAT + wx.wxTB_NODIVIDER + wx.wxTB_VERTICAL);
     tb5:SetToolBitmapSize(wx.wxSize(48,48));
-    tb5:AddTool(101, wxT("Test"), wx.wxArtProvider.GetBitmap(wxT(wx.wxART_ERROR)));
+    tb5:AddTool(101, wx.wxT("Test"), wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_ERROR)));
     tb5:AddSeparator();
-    tb5:AddTool(102, wxT("Test"), wx.wxArtProvider.GetBitmap(wxT(wx.wxART_QUESTION)));
-    tb5:AddTool(103, wxT("Test"), wx.wxArtProvider.GetBitmap(wxT(wx.wxART_INFORMATION)));
-    tb5:AddTool(103, wxT("Test"), wx.wxArtProvider.GetBitmap(wxT(wx.wxART_WARNING)));
-    tb5:AddTool(103, wxT("Test"), wx.wxArtProvider.GetBitmap(wxT(wx.wxART_MISSING_IMAGE)));
+    tb5:AddTool(102, wx.wxT("Test"), wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_QUESTION)));
+    tb5:AddTool(103, wx.wxT("Test"), wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_INFORMATION)));
+    tb5:AddTool(103, wx.wxT("Test"), wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_WARNING)));
+    tb5:AddTool(103, wx.wxT("Test"), wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_MISSING_IMAGE)));
     tb5:Realize();
 
     --// add a bunch of panes
     self.m_mgr:AddPane(self:CreateSizeReportCtrl(), wx.wxAuiPaneInfo():
-                  Name(wxT("test1")):Caption(wxT("Pane Caption")):
+                  Name(wx.wxT("test1")):Caption(wx.wxT("Pane Caption")):
                   Top());
 
     self.m_mgr:AddPane(self:CreateSizeReportCtrl(), wx.wxAuiPaneInfo():
-                  Name(wxT("test2")):Caption(wxT("Client Size Reporter")):
+                  Name(wx.wxT("test2")):Caption(wx.wxT("Client Size Reporter")):
                   Bottom():Position(1):
                   CloseButton(true):MaximizeButton(true));
 
     self.m_mgr:AddPane(self:CreateSizeReportCtrl(), wx.wxAuiPaneInfo():
-                  Name(wxT("test3")):Caption(wxT("Client Size Reporter")):
+                  Name(wx.wxT("test3")):Caption(wx.wxT("Client Size Reporter")):
                   Bottom():
                   CloseButton(true):MaximizeButton(true));
 
     self.m_mgr:AddPane(self:CreateSizeReportCtrl(), wx.wxAuiPaneInfo():
-                  Name(wxT("test4")):Caption(wxT("Pane Caption")):
+                  Name(wx.wxT("test4")):Caption(wx.wxT("Pane Caption")):
                   Left());
 
     self.m_mgr:AddPane(self:CreateSizeReportCtrl(), wx.wxAuiPaneInfo():
-                  Name(wxT("test5")):Caption(wxT("No Close Button")):
+                  Name(wx.wxT("test5")):Caption(wx.wxT("No Close Button")):
                   Right():CloseButton(false));
 
     self.m_mgr:AddPane(self:CreateSizeReportCtrl(), wx.wxAuiPaneInfo():
-                  Name(wxT("test6")):Caption(wxT("Client Size Reporter")):
+                  Name(wx.wxT("test6")):Caption(wx.wxT("Client Size Reporter")):
                   Right():Row(1):
                   CloseButton(true):MaximizeButton(true));
 
     self.m_mgr:AddPane(self:CreateSizeReportCtrl(), wx.wxAuiPaneInfo():
-                  Name(wxT("test7")):Caption(wxT("Client Size Reporter")):
+                  Name(wx.wxT("test7")):Caption(wx.wxT("Client Size Reporter")):
                   Left():Layer(1):
                   CloseButton(true):MaximizeButton(true));
 
     self.m_mgr:AddPane(self:CreateTreeCtrl(), wx.wxAuiPaneInfo():
-                  Name(wxT("test8")):Caption(wxT("Tree Pane")):
+                  Name(wx.wxT("test8")):Caption(wx.wxT("Tree Pane")):
                   Left():Layer(1):Position(1):
                   CloseButton(true):MaximizeButton(true));
 
     self.m_mgr:AddPane(self:CreateSizeReportCtrl(), wx.wxAuiPaneInfo():
-                  Name(wxT("test9")):Caption(wxT("Min Size 200x100")):
+                  Name(wx.wxT("test9")):Caption(wx.wxT("Min Size 200x100")):
                   BestSize(wx.wxSize(200,100)):MinSize(wx.wxSize(200,100)):
                   Bottom():Layer(1):
                   CloseButton(true):MaximizeButton(true));
 
-    local wnd10 = self:CreateTextCtrl(wxT("This pane will prompt the user before hiding."));
+    local wnd10 = self:CreateTextCtrl(wx.wxT("This pane will prompt the user before hiding."));
     self.m_mgr:AddPane(wnd10, wx.wxAuiPaneInfo():
-                  Name(wxT("test10")):Caption(wxT("Text Pane with Hide Prompt")):
+                  Name(wx.wxT("test10")):Caption(wx.wxT("Text Pane with Hide Prompt")):
                   Bottom():Layer(1):Position(1));
 
     self.m_mgr:AddPane(self:CreateSizeReportCtrl(), wx.wxAuiPaneInfo():
-                  Name(wxT("test11")):Caption(wxT("Fixed Pane")):
+                  Name(wx.wxT("test11")):Caption(wx.wxT("Fixed Pane")):
                   Bottom():Layer(1):Position(2):Fixed());
 
 
     self.m_mgr:AddPane(SettingsPanel:create(self,self).this, wx.wxAuiPaneInfo():
-                  Name(wxT("settings")):Caption(wxT("Dock Manager Settings")):
+                  Name(wx.wxT("settings")):Caption(wx.wxT("Dock Manager Settings")):
                   Dockable(false):Float():Hide());
 
     --// create some center panes
 --[[
-    self.m_mgr:AddPane(self:CreateGrid(), wx.wxAuiPaneInfo():Name(wxT("grid_content")):
+    self.m_mgr:AddPane(self:CreateGrid(), wx.wxAuiPaneInfo():Name(wx.wxT("grid_content")):
                   CenterPane():Hide());
 --]]
-    self.m_mgr:AddPane(self:CreateTreeCtrl(), wx.wxAuiPaneInfo():Name(wxT("tree_content")):
+    self.m_mgr:AddPane(self:CreateTreeCtrl(), wx.wxAuiPaneInfo():Name(wx.wxT("tree_content")):
                   CenterPane():Hide());
 
-    self.m_mgr:AddPane(self:CreateSizeReportCtrl(), wx.wxAuiPaneInfo():Name(wxT("sizereport_content")):
+    self.m_mgr:AddPane(self:CreateSizeReportCtrl(), wx.wxAuiPaneInfo():Name(wx.wxT("sizereport_content")):
                   CenterPane():Hide());
 
-    self.m_mgr:AddPane(self:CreateTextCtrl(), wx.wxAuiPaneInfo():Name(wxT("text_content")):
+    self.m_mgr:AddPane(self:CreateTextCtrl(), wx.wxAuiPaneInfo():Name(wx.wxT("text_content")):
                   CenterPane():Hide():Hide());
-    --self.m_mgr:AddPane(self:CreateHTMLCtrl(), wx.wxAuiPaneInfo():Name(wxT("html_content")):
+    --self.m_mgr:AddPane(self:CreateHTMLCtrl(), wx.wxAuiPaneInfo():Name(wx.wxT("html_content")):
                   --CenterPane():Hide());
-    self.m_mgr:AddPane(self:CreateNotebook(), wx.wxAuiPaneInfo():Name(wxT("notebook_content")):
+    self.m_mgr:AddPane(self:CreateNotebook(), wx.wxAuiPaneInfo():Name(wx.wxT("notebook_content")):
                   CenterPane():PaneBorder(false));
 
     --// add the toolbars to the manager
     self.m_mgr:AddPane(tb1, wx.wxAuiPaneInfo():
-                  Name(wxT("tb1")):Caption(wxT("Big Toolbar")):
+                  Name(wx.wxT("tb1")):Caption(wx.wxT("Big Toolbar")):
                   ToolbarPane():Top():
                   LeftDockable(false):RightDockable(false));
 
     self.m_mgr:AddPane(tb2, wx.wxAuiPaneInfo():
-                  Name(wxT("tb2")):Caption(wxT("Toolbar 2")):
+                  Name(wx.wxT("tb2")):Caption(wx.wxT("Toolbar 2")):
                   ToolbarPane():Top():Row(1):
                   LeftDockable(false):RightDockable(false));
 
     self.m_mgr:AddPane(tb3, wx.wxAuiPaneInfo():
-                  Name(wxT("tb3")):Caption(wxT("Toolbar 3")):
+                  Name(wx.wxT("tb3")):Caption(wx.wxT("Toolbar 3")):
                   ToolbarPane():Top():Row(1):Position(1):
                   LeftDockable(false):RightDockable(false));
 
     self.m_mgr:AddPane(tb4, wx.wxAuiPaneInfo():
-                  Name(wxT("tb4")):Caption(wxT("Sample Bookmark Toolbar")):
+                  Name(wx.wxT("tb4")):Caption(wx.wxT("Sample Bookmark Toolbar")):
                   ToolbarPane():Top():Row(2):
                   LeftDockable(false):RightDockable(false))
 
     self.m_mgr:AddPane(tb5, wx.wxAuiPaneInfo():
-                  Name(wxT("tb5")):Caption(wxT("Sample Vertical Toolbar")):
+                  Name(wx.wxT("tb5")):Caption(wx.wxT("Sample Vertical Toolbar")):
                   ToolbarPane():Left():
                   GripperTop():
                   TopDockable(false):BottomDockable(false));
 
-    self.m_mgr:AddPane(wx.wxButton(this, wx.wxID_ANY, _("Test Button")),
-                  wx.wxAuiPaneInfo():Name(wxT("tb6")):
+    self.m_mgr:AddPane(wx.wxButton(this, wx.wxID_ANY, wx._("Test Button")),
+                  wx.wxAuiPaneInfo():Name(wx.wxT("tb6")):
                   ToolbarPane():Top():Row(2):Position(1):
                   LeftDockable(false):RightDockable(false):Hide());
 
@@ -864,11 +860,11 @@ function MyFrame:create(parent, id, title, pos, size, style)
             --all_panes:Item(i):Hide();
         --end
     --end
-    self.m_mgr:GetPane(wxT("tb1")):Hide();
-    self.m_mgr:GetPane(wxT("tb6")):Hide();
-    self.m_mgr:GetPane(wxT("test8")):Show():Left():Layer(0):Row(0):Position(0);
-    self.m_mgr:GetPane(wxT("test10")):Show():Bottom():Layer(0):Row(0):Position(0);
-    self.m_mgr:GetPane(wxT("notebook_content")):Show();
+    self.m_mgr:GetPane(wx.wxT("tb1")):Hide();
+    self.m_mgr:GetPane(wx.wxT("tb6")):Hide();
+    self.m_mgr:GetPane(wx.wxT("test8")):Show():Left():Layer(0):Row(0):Position(0);
+    self.m_mgr:GetPane(wx.wxT("test10")):Show():Bottom():Layer(0):Row(0):Position(0);
+    self.m_mgr:GetPane(wx.wxT("notebook_content")):Show();
     --local perspective_default = self.m_mgr:SavePerspective();
 
     --self.m_perspectives = wx.wxArrayString()
@@ -994,7 +990,7 @@ end
 
 function MyFrame:OnSettings(event)
     --// show the settings pane, and float it
-    local floating_pane = self.m_mgr:GetPane(wxT("settings")):Float():Show();
+    local floating_pane = self.m_mgr:GetPane(wx.wxT("settings")):Float():Show();
 
     if (floating_pane.floating_pos == wx.wxDefaultPosition) then
         floating_pane:FloatingPosition(self:GetStartPosition());
@@ -1026,7 +1022,7 @@ if false then
     if (id == self.ID_TransparentDrag or
         id == self.ID_TransparentHint or
         id == self.ID_HintFade) then
-        wx.wxMessageBox(wxT("This option is presently only available on wxGTK, wxMSW and wxMac"));
+        wx.wxMessageBox(wx.wxT("This option is presently only available on wxGTK, wxMSW and wxMac"));
         return;
     end
 end
@@ -1251,9 +1247,9 @@ end
 function MyFrame:OnPaneClose(evt)
     local this = self.this
     ----[[hd.FIXME
-    if (evt:GetPane().name == wxT("test10")) then
-        local res = wx.wxMessageBox(wxT("Are you sure you want to close/hide this pane?"),
-                               wxT("wxAUI"),
+    if (evt:GetPane().name == wx.wxT("test10")) then
+        local res = wx.wxMessageBox(wx.wxT("Are you sure you want to close/hide this pane?"),
+                               wx.wxT("wxAUI"),
                                wx.wxYES_NO,
                                this);
         if (res ~= wx.wxYES) then
@@ -1265,10 +1261,10 @@ end
 
 function MyFrame:OnCreatePerspective(event)
     local this = self.this
-    local dlg = wx.wxTextEntryDialog(this, wxT("Enter a name for the new perspective:"),
-                          wxT("wxAUI Test"));
+    local dlg = wx.wxTextEntryDialog(this, wx.wxT("Enter a name for the new perspective:"),
+                          wx.wxT("wxAUI Test"));
 
-    dlg:SetValue(string.format(wxT("Perspective %u"), (self.m_perspectives:GetCount() + 1)));
+    dlg:SetValue(string.format(wx.wxT("Perspective %u"), (self.m_perspectives:GetCount() + 1)));
     if (dlg:ShowModal() ~= wx.wxID_OK) then
         return;
     end
@@ -1308,8 +1304,8 @@ function MyFrame:OnNotebookPageClose(evt)
     local this = self.this
     local ctrl = evt:GetEventObject():DynamicCast("wxAuiNotebook");
     if (ctrl:GetPage(evt:GetSelection()):IsKindOf(wx.wxClassInfo.FindClass("wxHtmlWindow"))) then
-        local res = wx.wxMessageBox(wxT("Are you sure you want to close/hide this notebook page?"),
-                       wxT("wxAUI"),
+        local res = wx.wxMessageBox(wx.wxT("Are you sure you want to close/hide this notebook page?"),
+                       wx.wxT("wxAUI"),
                        wx.wxYES_NO,
                        this);
         if (res ~= wx.wxYES) then
@@ -1333,7 +1329,7 @@ end
 
 function MyFrame:OnCreateTree(event)
     self.m_mgr:AddPane(self:CreateTreeCtrl(), wx.wxAuiPaneInfo():
-                  Caption(wxT("Tree Control")):
+                  Caption(wx.wxT("Tree Control")):
                   Float():FloatingPosition(self:GetStartPosition()):
                   FloatingSize(wx.wxSize(150,300)));
     self.m_mgr:Update();
@@ -1342,7 +1338,7 @@ end
 function MyFrame:OnCreateGrid(event)
 --[[
     self.m_mgr:AddPane(self:CreateGrid(), wx.wxAuiPaneInfo():
-                  Caption(wxT("Grid")):
+                  Caption(wx.wxT("Grid")):
                   Float():FloatingPosition(self:GetStartPosition()):
                   FloatingSize(wx.wxSize(300,200)));
     self.m_mgr:Update();
@@ -1352,7 +1348,7 @@ end
 function MyFrame:OnCreateHTML(event)
 --[[
     self.m_mgr:AddPane(self:CreateHTMLCtrl(), wx.wxAuiPaneInfo():
-                  Caption(wxT("HTML Control")):
+                  Caption(wx.wxT("HTML Control")):
                   Float():FloatingPosition(self:GetStartPosition()):
                   FloatingSize(wx.wxSize(300,200)));
     self.m_mgr:Update();
@@ -1361,7 +1357,7 @@ end
 
 function MyFrame:OnCreateNotebook(event)
     self.m_mgr:AddPane(self:CreateNotebook(), wx.wxAuiPaneInfo():
-                  Caption(wxT("Notebook")):
+                  Caption(wx.wxT("Notebook")):
                   Float():FloatingPosition(self:GetStartPosition()):
                   --//FloatingSize(300,200):
                   CloseButton(true):MaximizeButton(true));
@@ -1370,26 +1366,26 @@ end
 
 function MyFrame:OnCreateText(event)
     self.m_mgr:AddPane(self:CreateTextCtrl(), wx.wxAuiPaneInfo():
-                  Caption(wxT("Text Control")):
+                  Caption(wx.wxT("Text Control")):
                   Float():FloatingPosition(self:GetStartPosition()));
     self.m_mgr:Update();
 end
 
 function MyFrame:OnCreateSizeReport(event)
     self.m_mgr:AddPane(self:CreateSizeReportCtrl(), wx.wxAuiPaneInfo():
-                  Caption(wxT("Client Size Reporter")):
+                  Caption(wx.wxT("Client Size Reporter")):
                   Float():FloatingPosition(self:GetStartPosition()):
                   CloseButton(true):MaximizeButton(true));
     self.m_mgr:Update();
 end
 
 function MyFrame:OnChangeContentPane(event)
-    self.m_mgr:GetPane(wxT("grid_content")):Show(event:GetId() == self.ID_GridContent);
-    self.m_mgr:GetPane(wxT("text_content")):Show(event:GetId() == self.ID_TextContent);
-    self.m_mgr:GetPane(wxT("tree_content")):Show(event:GetId() == self.ID_TreeContent);
-    self.m_mgr:GetPane(wxT("sizereport_content")):Show(event:GetId() == self.ID_SizeReportContent);
-    self.m_mgr:GetPane(wxT("html_content")):Show(event:GetId() == self.ID_HTMLContent);
-    self.m_mgr:GetPane(wxT("notebook_content")):Show(event:GetId() == self.ID_NotebookContent);
+    self.m_mgr:GetPane(wx.wxT("grid_content")):Show(event:GetId() == self.ID_GridContent);
+    self.m_mgr:GetPane(wx.wxT("text_content")):Show(event:GetId() == self.ID_TextContent);
+    self.m_mgr:GetPane(wx.wxT("tree_content")):Show(event:GetId() == self.ID_TreeContent);
+    self.m_mgr:GetPane(wx.wxT("sizereport_content")):Show(event:GetId() == self.ID_SizeReportContent);
+    self.m_mgr:GetPane(wx.wxT("html_content")):Show(event:GetId() == self.ID_HTMLContent);
+    self.m_mgr:GetPane(wx.wxT("notebook_content")):Show(event:GetId() == self.ID_NotebookContent);
     self.m_mgr:Update();
 end
 
@@ -1422,7 +1418,7 @@ end
 
 function MyFrame:OnAbout(event)
     local this = self.this
-    wx.wxMessageBox(_("wxAUI Demo\nAn advanced window management library for wxWidgets\n(c) Copyright 2005-2006, Kirix Corporation"), _("About wxAUI Demo"), wx.wxOK, this);
+    wx.wxMessageBox(wx._("wxAUI Demo\nAn advanced window management library for wxWidgets\n(c) Copyright 2005-2006, Kirix Corporation"), wx._("About wxAUI Demo"), wx.wxOK, this);
 end
 
 local n = 0;
@@ -1436,7 +1432,7 @@ function MyFrame:CreateTextCtrl(ctrl_text)
         text = string.format("This is text box %d", n+1); n=n+1
     end
 
-    return wx.wxTextCtrl(this,wx.wxID_ANY, wxT(text),
+    return wx.wxTextCtrl(this,wx.wxID_ANY, wx.wxT(text),
                           wx.wxPoint(0,0), wx.wxSize(150,90),
                           wx.wxNO_BORDER + wx.wxTE_MULTILINE);
 end
@@ -1462,28 +1458,28 @@ function MyFrame:CreateTreeCtrl()
                                       wx.wxTR_DEFAULT_STYLE + wx.wxNO_BORDER);
 --[[
     local imglist = wx.wxImageList(16, 16, true, 2);
-    imglist:Add(wx.wxArtProvider.GetBitmap(wxT(wx.wxART_FOLDER), wxT(wx.wxART_OTHER), wx.wxSize(16,16)));
-    imglist:Add(wx.wxArtProvider.GetBitmap(wxT(wx.wxART_NORMAL_FILE), wxT(wx.wxART_OTHER), wx.wxSize(16,16)));
+    imglist:Add(wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_FOLDER), wx.wxT(wx.wxART_OTHER), wx.wxSize(16,16)));
+    imglist:Add(wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_NORMAL_FILE), wx.wxT(wx.wxART_OTHER), wx.wxSize(16,16)));
     tree:AssignImageList(imglist);
 --]]
-    local root = tree:AddRoot(wxT("wxAUI Project"), 0);
+    local root = tree:AddRoot(wx.wxT("wxAUI Project"), 0);
     local items = {} --local items = wx.wxArrayTreeItemIds();
 
-    items[#items+1] = tree:AppendItem(root, wxT("Item 1"), 0); --items:Add(tree:AppendItem(root, wxT("Item 1"), 0));
-    items[#items+1] = tree:AppendItem(root, wxT("Item 2"), 0); --items:Add(tree:AppendItem(root, wxT("Item 2"), 0));
-    items[#items+1] = tree:AppendItem(root, wxT("Item 3"), 0); --items:Add(tree:AppendItem(root, wxT("Item 3"), 0));
-    items[#items+1] = tree:AppendItem(root, wxT("Item 4"), 0); --items:Add(tree:AppendItem(root, wxT("Item 4"), 0));
-    items[#items+1] = tree:AppendItem(root, wxT("Item 5"), 0); --items:Add(tree:AppendItem(root, wxT("Item 5"), 0));
+    items[#items+1] = tree:AppendItem(root, wx.wxT("Item 1"), 0); --items:Add(tree:AppendItem(root, wx.wxT("Item 1"), 0));
+    items[#items+1] = tree:AppendItem(root, wx.wxT("Item 2"), 0); --items:Add(tree:AppendItem(root, wx.wxT("Item 2"), 0));
+    items[#items+1] = tree:AppendItem(root, wx.wxT("Item 3"), 0); --items:Add(tree:AppendItem(root, wx.wxT("Item 3"), 0));
+    items[#items+1] = tree:AppendItem(root, wx.wxT("Item 4"), 0); --items:Add(tree:AppendItem(root, wx.wxT("Item 4"), 0));
+    items[#items+1] = tree:AppendItem(root, wx.wxT("Item 5"), 0); --items:Add(tree:AppendItem(root, wx.wxT("Item 5"), 0));
 
     local i, count;
     count = #items --items:Count()
     for i = 1, count do --for i = 0, count-1 do
         local id = items[i]; --local id = items:Item(i);
-        tree:AppendItem(id, wxT("Subitem 1"), 1);
-        tree:AppendItem(id, wxT("Subitem 2"), 1);
-        tree:AppendItem(id, wxT("Subitem 3"), 1);
-        tree:AppendItem(id, wxT("Subitem 4"), 1);
-        tree:AppendItem(id, wxT("Subitem 5"), 1);
+        tree:AppendItem(id, wx.wxT("Subitem 1"), 1);
+        tree:AppendItem(id, wx.wxT("Subitem 2"), 1);
+        tree:AppendItem(id, wx.wxT("Subitem 3"), 1);
+        tree:AppendItem(id, wx.wxT("Subitem 4"), 1);
+        tree:AppendItem(id, wx.wxT("Subitem 5"), 1);
     end
 
     tree:Expand(root);
@@ -1533,49 +1529,49 @@ function MyFrame:CreateNotebook()
                                     wx.wxSize(430,200),
                                     self.m_notebook_style);
 
-   local page_bmp = wx.wxArtProvider.GetBitmap(wxT(wx.wxART_NORMAL_FILE), wxT(wx.wxART_OTHER), wx.wxSize(16,16));
+   local page_bmp = wx.wxArtProvider.GetBitmap(wx.wxT(wx.wxART_NORMAL_FILE), wx.wxT(wx.wxART_OTHER), wx.wxSize(16,16));
 
-   --ctrl:AddPage(self:CreateHTMLCtrl(ctrl), wxT("Welcome to wxAUI") , false, page_bmp);
+   --ctrl:AddPage(self:CreateHTMLCtrl(ctrl), wx.wxT("Welcome to wxAUI") , false, page_bmp);
 
    local panel = wx.wxPanel( ctrl, wx.wxID_ANY );
    local flex = wx.wxFlexGridSizer( 2,0 );
    flex:AddGrowableRow( 0 );
    flex:AddGrowableCol( 1 );
    flex:Add( 5,5 );   flex:Add( 5,5 );
-   flex:Add( wx.wxStaticText( panel, -1, wxT("wxTextCtrl:") ), 0, wx.wxALL+wx.wxALIGN_CENTRE, 5 );
-   flex:Add( wx.wxTextCtrl( panel, -1, wxT(""), wx.wxDefaultPosition, wx.wxSize(100,-1)),
+   flex:Add( wx.wxStaticText( panel, -1, wx.wxT("wxTextCtrl:") ), 0, wx.wxALL+wx.wxALIGN_CENTRE, 5 );
+   flex:Add( wx.wxTextCtrl( panel, -1, wx.wxT(""), wx.wxDefaultPosition, wx.wxSize(100,-1)),
                 1, wx.wxALL+wx.wxALIGN_CENTRE, 5 );
-   flex:Add( wx.wxStaticText( panel, -1, wxT("wxSpinCtrl:") ), 0, wx.wxALL+wx.wxALIGN_CENTRE, 5 );
-   flex:Add( wx.wxSpinCtrl( panel, -1, wxT("5"), wx.wxDefaultPosition, wx.wxSize(100,-1),
+   flex:Add( wx.wxStaticText( panel, -1, wx.wxT("wxSpinCtrl:") ), 0, wx.wxALL+wx.wxALIGN_CENTRE, 5 );
+   flex:Add( wx.wxSpinCtrl( panel, -1, wx.wxT("5"), wx.wxDefaultPosition, wx.wxSize(100,-1),
                 wx.wxSP_ARROW_KEYS, 5, 50, 5 ), 0, wx.wxALL+wx.wxALIGN_CENTRE, 5 );
    flex:Add( 5,5 );   flex:Add( 5,5 );
    panel:SetSizer( flex );
-   ctrl:AddPage( panel, wxT("wxPanel"), false, page_bmp );
+   ctrl:AddPage( panel, wx.wxT("wxPanel"), false, page_bmp );
 
 
-   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wxT("Some text"),
-                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wxT("wxTextCtrl 1"), false, page_bmp );
+   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wx.wxT("Some text"),
+                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wx.wxT("wxTextCtrl 1"), false, page_bmp );
 
-   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wxT("Some more text"),
-                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wxT("wxTextCtrl 2") );
+   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wx.wxT("Some more text"),
+                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wx.wxT("wxTextCtrl 2") );
 
-   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wxT("Some more text"),
-                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wxT("wxTextCtrl 3") );
+   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wx.wxT("Some more text"),
+                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wx.wxT("wxTextCtrl 3") );
 
-   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wxT("Some more text"),
-                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wxT("wxTextCtrl 4") );
+   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wx.wxT("Some more text"),
+                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wx.wxT("wxTextCtrl 4") );
 
-   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wxT("Some more text"),
-                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wxT("wxTextCtrl 5") );
+   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wx.wxT("Some more text"),
+                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wx.wxT("wxTextCtrl 5") );
 
-   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wxT("Some more text"),
-                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wxT("wxTextCtrl 6") );
+   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wx.wxT("Some more text"),
+                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wx.wxT("wxTextCtrl 6") );
 
-   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wxT("Some more text"),
-                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wxT("wxTextCtrl 7 (longer title)") );
+   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wx.wxT("Some more text"),
+                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wx.wxT("wxTextCtrl 7 (longer title)") );
 
-   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wxT("Some more text"),
-                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wxT("wxTextCtrl 8") );
+   ctrl:AddPage( wx.wxTextCtrl( ctrl, wx.wxID_ANY, wx.wxT("Some more text"),
+                wx.wxDefaultPosition, wx.wxDefaultSize, wx.wxTE_MULTILINE+wx.wxNO_BORDER) , wx.wxT("wxTextCtrl 8") );
 
    return ctrl;
 end

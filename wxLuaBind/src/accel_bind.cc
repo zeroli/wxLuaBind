@@ -15,7 +15,6 @@ namespace
 }  // namespace
 
 REGISTER_WXLUA_BIND(accel)
-{
     BEGIN_BIND_MODULE(wx)
         // wxAcceleratorEntry binding
         BEGIN_BIND_CLASS(wxAcceleratorEntry)
@@ -54,5 +53,4 @@ REGISTER_WXLUA_BIND(accel)
         END_BIND_CLASS(wxAcceleratorEntry)
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(accel)

@@ -75,10 +75,9 @@ namespace
 }  // namespace for wxColourDialog
 
 REGISTER_WXLUA_BIND(dialog)
-{
     BEGIN_BIND_MODULE(wx)
         // Bind class wxDialogBase
-        BEGIN_BIND_CLASS(wxDialogBase, wxTopLevelWindow)
+        BEGIN_BIND_CPPCLASS(wxDialogBase, wxTopLevelWindow)
         BIND_MF(wxDialogBase, ShowModal)
         BIND_MF(wxDialogBase, EndModal)
         BIND_MF(wxDialogBase, IsModal)
@@ -99,7 +98,7 @@ REGISTER_WXLUA_BIND(dialog)
         END_BIND_CLASS(wxDialogBase)
 
         // Bind class wxDialog
-        BEGIN_BIND_CLASS(wxDialog, wxDialogBase)
+        BEGIN_BIND_CPPCLASS(wxDialog, wxDialogBase)
         // Auto generated MACRO code for ctor of 'wxDialog':
         // =================================
         BIND_CTOR()
@@ -153,7 +152,7 @@ REGISTER_WXLUA_BIND(dialog)
 
 #if wxUSE_COLOURDLG
         // Bind class wxColourDialog
-        BEGIN_BIND_CLASS(wxColourDialog, wxDialog)
+        BEGIN_BIND_CPPCLASS(wxColourDialog, wxDialog)
         // Auto generated MACRO code for ctor of 'wxColourDialog':
         // =================================
         BIND_CTOR()
@@ -177,5 +176,4 @@ REGISTER_WXLUA_BIND(dialog)
 #endif
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(dialog)

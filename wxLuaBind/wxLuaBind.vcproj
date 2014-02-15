@@ -421,6 +421,10 @@
 					RelativePath=".\src\version_bind.cc"
 					>
 				</File>
+				<File
+					RelativePath=".\src\wxchar_bind.cc"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="aui"

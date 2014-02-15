@@ -161,13 +161,12 @@ namespace
     }
 }  // namespace for wxAuiMDIClientWindow
 
-REGISTER_WXLUA_BIND(tabmdi)
-{
 #if wxUSE_AUI
+REGISTER_WXLUA_BIND(tabmdi)
     BEGIN_BIND_MODULE(wx)
 #if 0
         // Bind class wxAuiMDIParentFrame
-        BEGIN_BIND_CLASS(wxAuiMDIParentFrame, wxFrame)
+        BEGIN_BIND_CPPCLASS(wxAuiMDIParentFrame, wxFrame)
         // Auto generated MACRO code for ctor of 'wxAuiMDIParentFrame':
         // =================================
         BIND_CTOR()
@@ -215,7 +214,7 @@ REGISTER_WXLUA_BIND(tabmdi)
         END_BIND_CLASS(wxAuiMDIParentFrame)
 
         // Bind class wxAuiMDIChildFrame
-        BEGIN_BIND_CLASS(wxAuiMDIChildFrame, wxPanel)
+        BEGIN_BIND_CPPCLASS(wxAuiMDIChildFrame, wxPanel)
         // Auto generated MACRO code for ctor of 'wxAuiMDIChildFrame':
         // =================================
         BIND_CTOR()
@@ -314,7 +313,7 @@ REGISTER_WXLUA_BIND(tabmdi)
         END_BIND_CLASS(wxAuiMDIChildFrame)
 
         // Bind class wxAuiMDIClientWindow
-        BEGIN_BIND_CLASS(wxAuiMDIClientWindow, wxAuiNotebook)
+        BEGIN_BIND_CPPCLASS(wxAuiMDIClientWindow, wxAuiNotebook)
         // Auto generated MACRO code for ctor of 'wxAuiMDIClientWindow':
         // =================================
         BIND_CTOR()
@@ -333,6 +332,5 @@ REGISTER_WXLUA_BIND(tabmdi)
 #endif
 
     END_BIND_MODULE(wx)
+END_REGISTER(tabmdi)
 #endif // wxUSE_AUI
-    return 0;
-}

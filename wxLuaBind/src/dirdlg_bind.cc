@@ -36,7 +36,6 @@ namespace
 }  // namespace for wxDirDialogBase
 
 REGISTER_WXLUA_BIND(dirdlg)
-{
     BEGIN_LUA_TABLE(wx)
         BIND_TABLE_VALUE(wxDirDialogNameStr, &wxDirDialogNameStr[0])
         BIND_TABLE_VALUE(wxDirDialogDefaultFolderStr, &wxDirDialogDefaultFolderStr[0])
@@ -49,7 +48,7 @@ REGISTER_WXLUA_BIND(dirdlg)
 
     BEGIN_BIND_MODULE(wx)
         // Bind class wxDirDialogBase
-        BEGIN_BIND_CLASS(wxDirDialogBase, wxDialog)
+        BEGIN_BIND_CPPCLASS(wxDirDialogBase, wxDialog)
         // Auto generated MACRO code for ctor of 'wxDirDialogBase':
         // =================================
         BIND_CTOR()
@@ -85,7 +84,7 @@ REGISTER_WXLUA_BIND(dirdlg)
         END_BIND_CLASS(wxDirDialogBase)
 
         // Bind class wxDirDialog
-        BEGIN_BIND_CLASS(wxDirDialog, wxDialogBase)
+        BEGIN_BIND_CPPCLASS(wxDirDialog, wxDialogBase)
         // Auto generated MACRO code for ctor of 'wxDirDialog':
         // =================================
         BIND_CTOR(wxWindow *)
@@ -99,5 +98,4 @@ REGISTER_WXLUA_BIND(dirdlg)
 
         BIND_FUNC(wxDirSelector)
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(dirdlg)

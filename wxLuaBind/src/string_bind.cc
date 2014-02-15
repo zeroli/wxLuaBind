@@ -1,7 +1,28 @@
 #include <precompile.h>
 
-REGISTER_WXLUA_BIND(wxstring)
+namespace
 {
+    object strlua2wx(const object luastr)
+    {
+        wxASSERT_MSG(luastr.is_valid(), wxT("Lua state is not valid for argument"));
+        int luatype = type(luastr);
+
+        lua_State* L = luastr.interpreter();
+        if (luatype == LUA_TSTRING)
+        {
+            const char* pstr;
+            size_t len = 0;
+            pstr = lua_tolstring(L, 1, &len);
+
+            wxString str(pstr, len);
+            object obj(L, str);
+            return obj;
+        }
+        return luastr;
+    }
+}
+
+REGISTER_WXLUA_BIND(string)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS(wxString)
             BIND_CTOR()
@@ -16,7 +37,12 @@ REGISTER_WXLUA_BIND(wxstring)
             BIND_MF(wxString, Truncate)
             BIND_MF(wxString, Empty)
             BIND_MF(wxString, Clear)
+            BIND_CLASS_PRINT()
+
         END_BIND_CLASS(wxString)
+
+        BIND_FUNC_NAME(wxT, strlua2wx)
+        BIND_FUNC_NAME(_T, strlua2wx)
+        BIND_FUNC_NAME(_, strlua2wx)
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(string)

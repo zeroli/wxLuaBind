@@ -66,7 +66,6 @@ namespace
 }  // namespace for wxBitmapButton
 
 REGISTER_WXLUA_BIND(button)
-{
     BEGIN_LUA_TABLE(wx)
         BIND_MACRO(wxBU_EXACTFIT)
         BIND_TABLE_VALUE(wxButtonNameStr, &wxButtonNameStr[0])
@@ -112,7 +111,7 @@ REGISTER_WXLUA_BIND(button)
         END_BIND_SCOPE()
         END_BIND_CLASS(wxButton)
 
-        BEGIN_BIND_CLASS(wxBitmapButton, wxButton)
+        BEGIN_BIND_CPPCLASS(wxBitmapButton, wxButton)
         // Auto generated MACRO code for ctor of 'wxBitmapButton':
         // =================================
         BIND_CTOR()
@@ -169,5 +168,4 @@ REGISTER_WXLUA_BIND(button)
         END_BIND_CLASS(wxBitmapButton)
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(button)

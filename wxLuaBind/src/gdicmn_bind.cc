@@ -65,7 +65,6 @@ namespace
 }  // anonymous namespace
 
 REGISTER_WXLUA_BIND(gdicmn)
-{
     BEGIN_BIND_MODULE(wx)
         // wxSize bind
         BEGIN_BIND_CLASS(wxSize)
@@ -423,7 +422,4 @@ REGISTER_WXLUA_BIND(gdicmn)
         BIND_FUNC(wxGetClientDisplayRect)
         BIND_FUNC(wxSetCursor)
     END_BIND_MODULE(wx)
-
-    return 0;
-}
-
+END_REGISTER(gdicmn)

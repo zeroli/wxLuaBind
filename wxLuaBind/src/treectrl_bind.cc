@@ -246,9 +246,8 @@ namespace
     }
 }  // namespace for wxTreeCtrl
 
-REGISTER_WXLUA_BIND(treectrl)
-{
 #if wxUSE_TREECTRL
+REGISTER_WXLUA_BIND(treectrl)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxTreeCtrlBase
         BEGIN_BIND_CLASS_CONTROL(wxTreeCtrlBase)
@@ -432,7 +431,7 @@ REGISTER_WXLUA_BIND(treectrl)
         END_BIND_CLASS(wxTreeCtrlBase)
 
         // Bind class wxTreeCtrl
-        BEGIN_BIND_CLASS(wxTreeCtrl, wxTreeCtrlBase)
+        BEGIN_BIND_CPPCLASS(wxTreeCtrl, wxTreeCtrlBase)
         // Auto generated MACRO code for ctor of 'wxTreeCtrl':
         // =================================
         BIND_CTOR()
@@ -464,6 +463,5 @@ REGISTER_WXLUA_BIND(treectrl)
         END_BIND_CLASS(wxTreeCtrl)
 
     END_BIND_MODULE(wx)
+END_REGISTER(treectrl)
 #endif // wxUSE_TREECTRL
-    return 0;
-}

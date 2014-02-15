@@ -3,7 +3,6 @@
 #include <wx/treebase.h>
 
 REGISTER_WXLUA_PREBIND(treebase, BIND_NO_TREEBASE)
-{
     BEGIN_BIND_MODULE(wx)
 #if wxUSE_TREECTRL
         // Bind class wxTreeItemId
@@ -144,5 +143,4 @@ REGISTER_WXLUA_PREBIND(treebase, BIND_NO_TREEBASE)
         BIND_ENUM(wxEVT_COMMAND_TREE_ITEM_GETTOOLTIP)
         BIND_ENUM(wxEVT_COMMAND_TREE_ITEM_MENU)
     END_LUA_TABLE(wx)
-    return 0;
-}
+END_REGISTER(treebase)

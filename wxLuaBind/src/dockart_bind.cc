@@ -2,10 +2,8 @@
 
 #include <wx/aui/aui.h>
 
-REGISTER_WXLUA_BIND(dockart)
-{
 #if wxUSE_AUI
-
+REGISTER_WXLUA_BIND(dockart)
     BEGIN_BIND_MODULE(wx)
     // Bind class wxAuiDockArt
     BEGIN_BIND_CLASS(wxAuiDockArt)
@@ -49,6 +47,6 @@ REGISTER_WXLUA_BIND(dockart)
     BEGIN_LUA_TABLE(wx)
 
     END_LUA_TABLE(wx)
+END_REGISTER(dockart)
+
 #endif  // wxUSE_AUI
-    return 0;
-}

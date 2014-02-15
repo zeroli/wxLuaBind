@@ -89,10 +89,9 @@ namespace
     }
 }  // namespace for wxAuiNotebook
 
-REGISTER_WXLUA_BIND(auibook)
-{
 #ifdef wxUSE_AUI
 
+REGISTER_WXLUA_BIND(auibook)
     BEGIN_BIND_MODULE(wx)
     // Bind class wxAuiNotebookEvent
     BEGIN_BIND_CLASS(wxAuiNotebookEvent, wxNotifyEvent)
@@ -235,7 +234,7 @@ REGISTER_WXLUA_BIND(auibook)
     BIND_MF(wxAuiTabContainer, MakeTabVisible)
     END_BIND_CLASS(wxAuiTabContainer)
 
-    BEGIN_BIND_CLASS(wxAuiTabCtrl, wxControl, wxAuiTabContainer)
+    BEGIN_BIND_CPPCLASS(wxAuiTabCtrl, wxControl, wxAuiTabContainer)
 #if wxABI_VERSION >= 20805
         BIND_MF(wxAuiTabCtrl, IsDragging)
 #endif
@@ -358,6 +357,5 @@ REGISTER_WXLUA_BIND(auibook)
     BIND_VARIABLE(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CLOSE)
 #endif
     END_LUA_TABLE(wx)
+END_REGISTER(auibook)
 #endif  // wxUSE_AUI
-    return 0;
-}

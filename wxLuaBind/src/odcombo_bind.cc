@@ -87,10 +87,9 @@ namespace
 }  // namespace for wxOwnerDrawnComboBox
 
 REGISTER_WXLUA_PREBIND(odcombo, BIND_NO_ODCOMBO)
-{
     BEGIN_BIND_MODULE(wx)
         // Bind class wxOwnerDrawnComboBox
-        BEGIN_BIND_CLASS(wxOwnerDrawnComboBox, wxComboCtrl, wxItemContainer)
+        BEGIN_BIND_CPPCLASS(wxOwnerDrawnComboBox, wxComboCtrl, wxItemContainer)
         // Auto generated MACRO code for ctor of 'wxOwnerDrawnComboBox':
         // =================================
         BIND_CTOR()
@@ -159,6 +158,4 @@ REGISTER_WXLUA_PREBIND(odcombo, BIND_NO_ODCOMBO)
         END_BIND_CLASS(wxOwnerDrawnComboBox)
 
     END_BIND_MODULE(wx)
-
-    return 0;
-}
+END_REGISTER(odcombo)

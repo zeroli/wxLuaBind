@@ -16,7 +16,6 @@ namespace
 }  // namespace for wxItemContainerImmutable
 
 REGISTER_WXLUA_PREBIND(ctrlsub, BIND_NO_CTRLSUB)
-{
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS(wxItemContainer)
         // Auto generated MACRO code for ctor of 'wxItemContainer':
@@ -47,7 +46,7 @@ REGISTER_WXLUA_PREBIND(ctrlsub, BIND_NO_CTRLSUB)
         END_BIND_CLASS(wxItemContainer)
 
         // Bind class wxControlWithItems
-        BEGIN_BIND_CLASS(wxControlWithItems, wxControl, wxItemContainer)
+        BEGIN_BIND_CPPCLASS(wxControlWithItems, wxControl, wxItemContainer)
         // Auto generated MACRO code for ctor of 'wxControlWithItems':
         // =================================
         BIND_MF_OVERLOAD(wxControlWithItems, SetClientData,
@@ -90,5 +89,4 @@ REGISTER_WXLUA_PREBIND(ctrlsub, BIND_NO_CTRLSUB)
         END_BIND_CLASS(wxItemContainerImmutable)
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(ctrlsub)

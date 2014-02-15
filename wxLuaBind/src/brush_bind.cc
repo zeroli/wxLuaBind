@@ -1,7 +1,6 @@
 #include <precompile.h>
 
 REGISTER_WXLUA_BIND(brush)
-{
     BEGIN_BIND_MODULE(wx)
         // Bind class wxBrushBase
         BEGIN_BIND_CLASS_GDIOBJECT(wxBrushBase)
@@ -10,7 +9,7 @@ REGISTER_WXLUA_BIND(brush)
         END_BIND_CLASS(wxBrushBase)
 
         // Bind class wxBrush
-        BEGIN_BIND_CLASS(wxBrush)
+        BEGIN_BIND_CLASS(wxBrush, wxBrushBase)
         // Auto generated MACRO code for ctor of 'wxBrush':
         // =================================
         BIND_CTOR()
@@ -37,5 +36,4 @@ REGISTER_WXLUA_BIND(brush)
         END_BIND_CLASS(wxBrush)
 
     END_BIND_MODULE(wx)
-    return 0;
-}
+END_REGISTER(brush)

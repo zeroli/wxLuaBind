@@ -31,7 +31,6 @@ namespace
 }  // namespace
 
 REGISTER_WXLUA_BIND(wxpanel)
-{
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS_WIN(wxPanel)
         // Auto generated MACRO code for ctor of 'wxPanel':
@@ -70,6 +69,4 @@ REGISTER_WXLUA_BIND(wxpanel)
             BIND_MF(wxPanel, InitDialog)
         END_BIND_CLASS(wxPanel)
     END_BIND_MODULE(wx)
-
-    return 0;
-}
+END_REGISTER(panel)

@@ -27,7 +27,6 @@ namespace
 }  // namespace
 
 REGISTER_WXLUA_BIND(wxstatictext)
-{
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS_CONTROL(wxStaticText)
         // Auto generated MACRO code for ctor of 'wxStaticText':
@@ -59,5 +58,4 @@ REGISTER_WXLUA_BIND(wxstatictext)
     BEGIN_LUA_TABLE(wx)
         BIND_TABLE_VALUE(wxStaticTextNameStr, &wxStaticTextNameStr[0])
     END_LUA_TABLE(wx)
-    return 0;
-}
+END_REGISTER(stattext)

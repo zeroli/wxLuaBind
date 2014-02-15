@@ -103,7 +103,6 @@ namespace
 }  // namespace for wxSpinCtrl
 
 REGISTER_WXLUA_BIND(spinctrl)
-{
     BEGIN_BIND_MODULE(wx)
         // Bind class wxSpinButtonBase
         BEGIN_BIND_CLASS_CONTROL(wxSpinButtonBase)
@@ -120,7 +119,7 @@ REGISTER_WXLUA_BIND(spinctrl)
         END_BIND_CLASS(wxSpinButtonBase)
 
         // Bind class wxSpinButton
-        BEGIN_BIND_CLASS(wxSpinButton, wxSpinButtonBase)
+        BEGIN_BIND_CPPCLASS(wxSpinButton, wxSpinButtonBase)
         // Auto generated MACRO code for ctor of 'wxSpinButton':
         // =================================
         BIND_CTOR()
@@ -167,7 +166,7 @@ REGISTER_WXLUA_BIND(spinctrl)
 #if wxUSE_SPINCTRL
     BEGIN_BIND_MODULE(wx)
         // Bind class wxSpinCtrl
-        BEGIN_BIND_CLASS(wxSpinCtrl, wxSpinButton)
+        BEGIN_BIND_CPPCLASS(wxSpinCtrl, wxSpinButton)
         // Auto generated MACRO code for ctor of 'wxSpinCtrl':
         // =================================
         BIND_CTOR()
@@ -236,5 +235,4 @@ REGISTER_WXLUA_BIND(spinctrl)
 
     END_BIND_MODULE(wx)
 #endif  // wxUSE_SPINCTRL
-    return 0;
-}
+END_REGISTER(spinctrl)
