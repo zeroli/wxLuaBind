@@ -63,6 +63,7 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalDependencies="wxmsw28d.lib"
+				OutputFile="$(OutDir)\wx.lib"
 				AdditionalLibraryDirectories="&quot;D:\wxWidgets-2.8.9\lib\vc_lib&quot;"
 			/>
 			<Tool

@@ -25,8 +25,7 @@ int dofile(lua_State* L, const char* luafile)
 {
     luaL_openlibs(L);
 
-    if (luaL_loadfile(L, luafile) ||
-        lua_pcall(L, 0, 0, 0))
+    if (luaL_dofile(L, luafile))
     {
         LuaError(L);
     }
@@ -35,7 +34,84 @@ int dofile(lua_State* L, const char* luafile)
 }
 
 const char* luafile =
-    "D:\\cpp_lua\\wxLuaBind\\luasample\\minimal.wx.lua";
+    "D:\\cpp_lua\\wxLuaBind\\luasample\\test.lua";
+
+#if 1
+
+/* The function we'll call from the lua script */
+static int average(lua_State *L)
+{
+    /* get number of arguments */
+    int n = lua_gettop(L);
+    double sum = 0;
+    int i;
+
+    /* loop through each argument */
+    for (i = 1; i <= n; i++)
+    {
+        if (!lua_isnumber(L, i))
+        {
+            lua_pushstring(L, "Incorrect argument to 'average'");
+            lua_error(L);
+        }
+
+        /* total the arguments */
+        sum += lua_tonumber(L, i);
+    }
+
+    /* push the average */
+    lua_pushnumber(L, sum / n);
+
+    /* push the sum */
+    lua_pushnumber(L, sum);
+
+    /* return the number of results */
+    return 2;
+}
+
+int main()
+{
+    lua_State* L = lua_open();
+
+    /* register our function */
+    // this is to extend lua using C function
+    // call from lua into C
+    lua_register(L, "average", average);
+
+    dofile(L, luafile);
+
+    // this is to embed lua in C
+    // call from C into lua
+	/* the function name */
+	lua_getglobal(L, "add");
+
+	/* the first argument */
+	lua_pushnumber(L, 41 );
+
+	/* the second argument */
+	lua_pushnumber(L, 22 );
+
+	/* call the function with 2
+	   arguments, return 1 result */
+	lua_call(L, 2, 1);
+
+	/* get the result */
+	int sum = (int)lua_tonumber(L, -1);
+	lua_pop(L, 1);
+
+	/* print the result */
+	printf( "The result is %d\n", sum );
+
+    /* the function name */
+    lua_getglobal(L, "calc_average");
+    lua_call(L, 0, 0);
+
+    lua_close(L);
+
+    return 0;
+}
+
+#else
 
 class MyApp : public wxApp
 {
@@ -63,3 +139,5 @@ private:
 };
 
 IMPLEMENT_APP(MyApp)
+
+#endif
