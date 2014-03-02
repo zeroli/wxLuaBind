@@ -18,8 +18,8 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(SolutionDir)\build\$(ProjectName)"
-			ConfigurationType="2"
+			IntermediateDirectory="$(SolutionDir)\build\$(ProjectName)\$(ConfigurationName)"
+			ConfigurationType="4"
 			CharacterSet="2"
 			>
 			<Tool
@@ -41,7 +41,6 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;..\luabind-0.9.1&quot;;&quot;..\lua-5.1\include&quot;;&quot;D:\boost-1.37.0\include&quot;;&quot;D:\wxWidgets-2.8.9\include&quot;;.\;.\include"
-				PreprocessorDefinitions="LUABIND_DYNAMIC_LINK;WXUSINGDLL;WXLUABIND_DYNAMIC_LINK;WXLUABIND_BUILDING"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -62,18 +61,12 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
+				Name="VCLibrarianTool"
 				AdditionalDependencies="wxmsw28d.lib"
-				OutputFile="$(OutDir)\wx.dll"
-				AdditionalLibraryDirectories="&quot;D:\wxWidgets-2.8.9\lib\vc_dll&quot;"
-				GenerateDebugInformation="true"
-				TargetMachine="1"
+				AdditionalLibraryDirectories="&quot;D:\wxWidgets-2.8.9\lib\vc_lib&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -83,9 +76,6 @@
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -161,6 +151,82 @@
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
+		<Configuration
+			Name="DLL Debug|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionDir)\build\$(ProjectName)\$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="&quot;..\luabind-0.9.1&quot;;&quot;..\lua-5.1\include&quot;;&quot;D:\boost-1.37.0\include&quot;;&quot;D:\wxWidgets-2.8.9\include&quot;;.\;.\include"
+				PreprocessorDefinitions="LUABIND_DYNAMIC_LINK;WXUSINGDLL;WXLUABIND_DYNAMIC_LINK;WXLUABIND_BUILDING"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="1"
+				PrecompiledHeaderThrough="precompile.h"
+				PrecompiledHeaderFile="$(IntDir)\precompile.pch"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+				DisableSpecificWarnings="4251;4996;4003"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="wxmsw28d.lib"
+				OutputFile="$(OutDir)\wx.dll"
+				AdditionalLibraryDirectories="&quot;D:\wxWidgets-2.8.9\lib\vc_dll&quot;"
+				GenerateDebugInformation="true"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -176,10 +242,6 @@
 			</File>
 			<File
 				RelativePath=".\src\wx_luabind.cc"
-				>
-			</File>
-			<File
-				RelativePath=".\src\wxlua_bind_info.cc"
 				>
 			</File>
 			<Filter
@@ -490,10 +552,6 @@
 			</File>
 			<File
 				RelativePath=".\include\wx_luabind.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\wxlua_bind_info.h"
 				>
 			</File>
 		</Filter>

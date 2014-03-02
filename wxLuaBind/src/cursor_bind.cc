@@ -1,6 +1,6 @@
 #include <precompile.h>
 
-REGISTER_WXLUA_BIND(cursor)
+BEGIN_WXLUA_BINDFUNC(cursor)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxCursor
         BEGIN_BIND_CLASS_OBJECT(wxCursor)
@@ -58,4 +58,4 @@ REGISTER_WXLUA_BIND(cursor)
     BEGIN_LUA_TABLE(wx)
        BIND_VARIABLE(wxNullCursor)
     END_LUA_TABLE(wx)
-END_REGISTER(cursor)
+END_WXLUA_BINDFUNC(cursor)

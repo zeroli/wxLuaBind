@@ -331,7 +331,7 @@ namespace
 
 #if wxUSE_IMAGE
 
-REGISTER_WXLUA_BIND(image)
+BEGIN_WXLUA_BINDFUNC(image)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxImage
         BEGIN_BIND_CLASS_OBJECT(wxImage)
@@ -678,5 +678,5 @@ REGISTER_WXLUA_BIND(image)
     BEGIN_LUA_TABLE(wx)
         BIND_VARIABLE(wxNullImage)
     END_LUA_TABLE(wx)
-END_REGISTER(Image)
+END_WXLUA_BINDFUNC(Image)
 #endif  // wxUSE_IMAGE

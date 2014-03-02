@@ -61,7 +61,7 @@ namespace
 
 #if wxUSE_COLLPANE
 
-REGISTER_WXLUA_BIND(collpane)
+BEGIN_WXLUA_BINDFUNC(collpane)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxCollapsiblePaneBase
         BEGIN_BIND_CLASS_CONTROL(wxCollapsiblePaneBase)
@@ -137,6 +137,6 @@ REGISTER_WXLUA_BIND(collpane)
     BEGIN_LUA_TABLE(wx)
         BIND_TABLE_VALUE(wxCollapsiblePaneNameStr, &wxCollapsiblePaneNameStr[0])
     END_LUA_TABLE(wx)
-END_REGISTER(collpane)
+END_WXLUA_BINDFUNC(collpane)
 #endif
 

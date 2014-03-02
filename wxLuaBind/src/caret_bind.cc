@@ -14,7 +14,7 @@ namespace
     }
 }  // namespace
 
-REGISTER_WXLUA_BIND(caret)
+BEGIN_WXLUA_BINDFUNC(caret)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS(wxCaret)
             BIND_CTOR()
@@ -63,4 +63,4 @@ REGISTER_WXLUA_BIND(caret)
 
         END_BIND_CLASS(wxCaret)
     END_BIND_MODULE(wx)
-END_REGISTER(caret)
+END_WXLUA_BINDFUNC(caret)

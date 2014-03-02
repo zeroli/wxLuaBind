@@ -82,7 +82,7 @@ namespace
 }  // namespace for wxAuiToolBar
 
 #if wxUSE_AUI
-REGISTER_WXLUA_BIND(auibar)
+BEGIN_WXLUA_BINDFUNC(auibar)
     BEGIN_BIND_MODULE(wx)
     // Bind class wxAuiToolBarEvent
     BEGIN_BIND_CLASS(wxAuiToolBarEvent, wxNotifyEvent)
@@ -342,5 +342,5 @@ REGISTER_WXLUA_BIND(auibar)
     BIND_VARIABLE(wxEVT_COMMAND_AUITOOLBAR_BEGIN_DRAG)
 
     END_LUA_TABLE(wx)
-END_REGISTER(auibar)
+END_WXLUA_BINDFUNC(auibar)
 #endif // wxUSE_AUI

@@ -91,7 +91,7 @@ namespace
 
 #ifdef wxUSE_AUI
 
-REGISTER_WXLUA_BIND(auibook)
+BEGIN_WXLUA_BINDFUNC(auibook)
     BEGIN_BIND_MODULE(wx)
     // Bind class wxAuiNotebookEvent
     BEGIN_BIND_CLASS(wxAuiNotebookEvent, wxNotifyEvent)
@@ -357,5 +357,5 @@ REGISTER_WXLUA_BIND(auibook)
     BIND_VARIABLE(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CLOSE)
 #endif
     END_LUA_TABLE(wx)
-END_REGISTER(auibook)
+END_WXLUA_BINDFUNC(auibook)
 #endif  // wxUSE_AUI

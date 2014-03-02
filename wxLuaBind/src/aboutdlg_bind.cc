@@ -16,7 +16,7 @@ namespace
     }
 }  // namespace
 
-REGISTER_WXLUA_BIND(aboutdlg)
+BEGIN_WXLUA_BINDFUNC(aboutdlg)
     BEGIN_BIND_MODULE(wx)
         // wxAboutDialogInfo binding
         BEGIN_BIND_CLASS(wxAboutDialogInfo)
@@ -71,4 +71,4 @@ REGISTER_WXLUA_BIND(aboutdlg)
         END_BIND_CLASS(wxAboutDialogInfo)
 
     END_BIND_MODULE(wx)
-END_REGISTER(aboutdlg)
+END_WXLUA_BINDFUNC(aboutdlg)

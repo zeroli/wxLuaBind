@@ -54,7 +54,7 @@ namespace
     }
 }  // namespace for wxBitmapComboBox
 
-REGISTER_WXLUA_BIND(bmpcbox)
+BEGIN_WXLUA_BINDFUNC(bmpcbox)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CPPCLASS(wxBitmapComboBox, wxOwnerDrawnComboBox, wxBitmapComboBoxBase)
         // Auto generated MACRO code for ctor of 'wxBitmapComboBox':
@@ -110,4 +110,4 @@ REGISTER_WXLUA_BIND(bmpcbox)
         BIND_MF(wxBitmapComboBox, Delete)
         END_BIND_CLASS(wxBitmapComboBox)
    END_BIND_MODULE(wx)
-END_REGISTER(bmpcbox)
+END_WXLUA_BINDFUNC(bmpcbox)

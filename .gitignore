@@ -2,6 +2,5 @@
 *.ncb
 *.suo
 Debug/
+DLL Debug/
 Build/
-*.sln
-wxLuaBind.sln

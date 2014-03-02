@@ -74,7 +74,7 @@ namespace
     }
 }  // namespace for wxColourDialog
 
-REGISTER_WXLUA_BIND(dialog)
+BEGIN_WXLUA_BINDFUNC(dialog)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxDialogBase
         BEGIN_BIND_CPPCLASS(wxDialogBase, wxTopLevelWindow)
@@ -176,4 +176,4 @@ REGISTER_WXLUA_BIND(dialog)
 #endif
 
     END_BIND_MODULE(wx)
-END_REGISTER(dialog)
+END_WXLUA_BINDFUNC(dialog)

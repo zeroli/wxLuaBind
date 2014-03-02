@@ -4,9 +4,9 @@ test lua using minimal wx sample
 
 --package.cpath = package.cpath..";../../Debug/?.dll;"
 --package.loadlib('wx.dll', 'luaopen_wx')()
-require("wx")
+--require("wx")
 
-app = wx.wxApp()
+--app = wx.wxApp()
 
 function OnPaint(event)
     -- must always create a wxPaintDC in a wxEVT_PAINT handler
@@ -138,4 +138,4 @@ end
 
 main()
 
-app:MainLoop()
+--app:MainLoop()

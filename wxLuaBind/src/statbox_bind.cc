@@ -27,7 +27,7 @@ namespace
     }
 }  // namespace for wxStaticBox
 
-REGISTER_WXLUA_BIND(statbox)
+BEGIN_WXLUA_BINDFUNC(statbox)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxStaticBoxBase
         BEGIN_BIND_CLASS_CONTROL(wxStaticBoxBase)
@@ -64,4 +64,4 @@ REGISTER_WXLUA_BIND(statbox)
         END_BIND_CLASS(wxStaticBox)
 
     END_BIND_MODULE(wx)
-END_REGISTER(statbox)
+END_WXLUA_BINDFUNC(statbox)

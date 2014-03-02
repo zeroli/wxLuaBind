@@ -1,6 +1,6 @@
 #include <precompile.h>
 
-REGISTER_WXLUA_BIND(brush)
+BEGIN_WXLUA_BINDFUNC(brush)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxBrushBase
         BEGIN_BIND_CLASS_GDIOBJECT(wxBrushBase)
@@ -36,4 +36,4 @@ REGISTER_WXLUA_BIND(brush)
         END_BIND_CLASS(wxBrush)
 
     END_BIND_MODULE(wx)
-END_REGISTER(brush)
+END_WXLUA_BINDFUNC(brush)

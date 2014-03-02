@@ -247,7 +247,7 @@ namespace
 }  // namespace for wxTreeCtrl
 
 #if wxUSE_TREECTRL
-REGISTER_WXLUA_BIND(treectrl)
+BEGIN_WXLUA_BINDFUNC(treectrl)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxTreeCtrlBase
         BEGIN_BIND_CLASS_CONTROL(wxTreeCtrlBase)
@@ -463,5 +463,5 @@ REGISTER_WXLUA_BIND(treectrl)
         END_BIND_CLASS(wxTreeCtrl)
 
     END_BIND_MODULE(wx)
-END_REGISTER(treectrl)
+END_WXLUA_BINDFUNC(treectrl)
 #endif // wxUSE_TREECTRL

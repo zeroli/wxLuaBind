@@ -22,7 +22,7 @@ namespace
     }
 }
 
-REGISTER_WXLUA_BIND(string)
+BEGIN_WXLUA_BINDFUNC(string)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS(wxString)
             BIND_CTOR()
@@ -45,4 +45,4 @@ REGISTER_WXLUA_BIND(string)
         BIND_FUNC_NAME(_T, strlua2wx)
         BIND_FUNC_NAME(_, strlua2wx)
     END_BIND_MODULE(wx)
-END_REGISTER(string)
+END_WXLUA_BINDFUNC(string)

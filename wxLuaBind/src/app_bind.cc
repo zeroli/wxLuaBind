@@ -29,7 +29,7 @@ wxApp* GetApp()
     return wxTheApp;
 }
 
-REGISTER_WXLUA_BIND(app)
+BEGIN_WXLUA_BINDFUNC(app)
     BEGIN_BIND_MODULE(wx)
         BIND_FUNC(GetApp)
 
@@ -46,4 +46,4 @@ REGISTER_WXLUA_BIND(app)
         END_BIND_CLASS(wxLuaApp)
 
     END_BIND_MODULE(wx)
-END_REGISTER(app)
+END_WXLUA_BINDFUNC(app)

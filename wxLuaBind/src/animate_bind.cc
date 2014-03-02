@@ -79,7 +79,7 @@ namespace
     }
 }  // namespace
 
-REGISTER_WXLUA_BIND(animate)
+BEGIN_WXLUA_BINDFUNC(animate)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxAnimation
         BEGIN_BIND_CLASS_GDIOBJECT(wxAnimation)
@@ -186,4 +186,4 @@ REGISTER_WXLUA_BIND(animate)
         BIND_VARIABLE(wxNullAnimation)
         BIND_TABLE_VALUE(wxAnimationCtrlNameStr, &wxAnimationCtrlNameStr[0])
     END_LUA_TABLE(wx)
-END_REGISTER(animate)
+END_WXLUA_BINDFUNC(animate)

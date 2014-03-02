@@ -272,7 +272,7 @@ namespace
 }  // namespace for wxAuiManagerEvent
 
 #if wxUSE_AUI
-REGISTER_WXLUA_BIND(framemanager)
+BEGIN_WXLUA_BINDFUNC(framemanager)
     BEGIN_BIND_MODULE(wx)
     // Bind class wxAuiPaneInfo
     BEGIN_BIND_CLASS(wxAuiPaneInfo)
@@ -713,5 +713,5 @@ REGISTER_WXLUA_BIND(framemanager)
     BIND_ENUM(wxEVT_AUI_RENDER)
     BIND_ENUM(wxEVT_AUI_FIND_MANAGER)
     END_LUA_TABLE(wx)
-END_REGISTER(framemanager)
+END_WXLUA_BINDFUNC(framemanager)
 #endif // wxUSE_AUI

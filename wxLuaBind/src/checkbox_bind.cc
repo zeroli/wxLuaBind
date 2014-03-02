@@ -32,7 +32,7 @@ namespace
 }  // namespace for wxCheckBox
 
 #if wxUSE_CHECKBOX
-REGISTER_WXLUA_BIND(checkbox)
+BEGIN_WXLUA_BINDFUNC(checkbox)
     BEGIN_LUA_TABLE(wx)
         BIND_MACRO(wxCHK_2STATE)
         BIND_MACRO(wxCHK_3STATE)
@@ -93,6 +93,6 @@ REGISTER_WXLUA_BIND(checkbox)
         END_BIND_CLASS(wxCheckBox)
 
     END_BIND_MODULE(wx)
-END_REGISTER(checkbox)
+END_WXLUA_BINDFUNC(checkbox)
 
 #endif

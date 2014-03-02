@@ -81,7 +81,7 @@ namespace
     }
 }  // namespace
 
-REGISTER_WXLUA_BIND(wxstatusbar)
+BEGIN_WXLUA_BINDFUNC(statusbar)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS_WIN(wxStatusBar)
             BIND_CTOR()
@@ -150,4 +150,4 @@ REGISTER_WXLUA_BIND(wxstatusbar)
             BIND_MF(wxStatusBar, AcceptsFocus)
         END_BIND_CLASS(wxStatusBar)
     END_BIND_MODULE(wx)
-END_REGISTER(statusbar)
+END_WXLUA_BINDFUNC(statusbar)

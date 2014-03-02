@@ -102,7 +102,7 @@ namespace
     }
 }  // namespace for wxFileIconsTable
 
-REGISTER_WXLUA_BIND(dirctrl)
+BEGIN_WXLUA_BINDFUNC(dirctrl)
     BEGIN_LUA_TABLE(wx)
         // Bind enum  (totally 5)
         BIND_ENUM(wxDIRCTRL_DIR_ONLY)
@@ -265,4 +265,4 @@ REGISTER_WXLUA_BIND(dirctrl)
         END_BIND_CLASS(wxFileIconsTable)
 #endif
     END_BIND_MODULE(wx)
-END_REGISTER(dirctrl)
+END_WXLUA_BINDFUNC(dirctrl)

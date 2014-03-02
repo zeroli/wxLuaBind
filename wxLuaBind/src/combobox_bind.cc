@@ -131,7 +131,7 @@ namespace
     }
 }  // namespace
 
-REGISTER_WXLUA_PREBIND(combobox, BIND_NO_COMBOBOX)
+BEGIN_WXLUA_BINDFUNC(combobox, BIND_NO_COMBOBOX)
     BEGIN_LUA_TABLE(wx)
         BIND_TABLE_VALUE(wxComboBoxNameStr, &wxComboBoxNameStr[0])
     END_LUA_TABLE(wx)
@@ -273,4 +273,4 @@ REGISTER_WXLUA_PREBIND(combobox, BIND_NO_COMBOBOX)
     BEGIN_LUA_TABLE(wx)
         BIND_MACRO(wxGENERIC_BITMAPCOMBOBOX)
     END_LUA_TABLE(wx)
-END_REGISTER(combobox)
+END_WXLUA_BINDFUNC(combobox)

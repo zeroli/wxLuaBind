@@ -15,7 +15,7 @@ namespace
     }
 }  // namespace for wxItemContainerImmutable
 
-REGISTER_WXLUA_PREBIND(ctrlsub, BIND_NO_CTRLSUB)
+BEGIN_WXLUA_BINDFUNC(ctrlsub)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS(wxItemContainer)
         // Auto generated MACRO code for ctor of 'wxItemContainer':
@@ -89,4 +89,4 @@ REGISTER_WXLUA_PREBIND(ctrlsub, BIND_NO_CTRLSUB)
         END_BIND_CLASS(wxItemContainerImmutable)
 
     END_BIND_MODULE(wx)
-END_REGISTER(ctrlsub)
+END_WXLUA_BINDFUNC(ctrlsub)

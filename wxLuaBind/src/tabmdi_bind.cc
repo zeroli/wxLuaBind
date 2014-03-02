@@ -162,7 +162,7 @@ namespace
 }  // namespace for wxAuiMDIClientWindow
 
 #if wxUSE_AUI
-REGISTER_WXLUA_BIND(tabmdi)
+BEGIN_WXLUA_BINDFUNC(tabmdi)
     BEGIN_BIND_MODULE(wx)
 #if 0
         // Bind class wxAuiMDIParentFrame
@@ -332,5 +332,5 @@ REGISTER_WXLUA_BIND(tabmdi)
 #endif
 
     END_BIND_MODULE(wx)
-END_REGISTER(tabmdi)
+END_WXLUA_BINDFUNC(tabmdi)
 #endif // wxUSE_AUI

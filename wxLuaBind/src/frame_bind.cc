@@ -112,7 +112,7 @@ namespace
     }
 }  // namespace
 
-REGISTER_WXLUA_BIND(wxframe)
+BEGIN_WXLUA_BINDFUNC(frame)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS_WIN(wxFrame)
             BIND_TITLE_WIN_ALL_CTORS()
@@ -214,4 +214,4 @@ REGISTER_WXLUA_BIND(wxframe)
             void, (wxFrame*,long))
         END_BIND_CLASS(wxFrame)
     END_BIND_MODULE(wx)
-END_REGISTER(frame)
+END_WXLUA_BINDFUNC(frame)

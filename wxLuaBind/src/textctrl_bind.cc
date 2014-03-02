@@ -116,7 +116,7 @@ namespace
     }
 }  // namespace for wxTextAttr
 
-REGISTER_WXLUA_BIND(wxtextctrl)
+BEGIN_WXLUA_BINDFUNC(textctrl)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxTextAttr
         BEGIN_BIND_CPPCLASS(wxTextAttr)
@@ -360,4 +360,4 @@ REGISTER_WXLUA_BIND(wxtextctrl)
         BIND_ENUM(wxEVT_COMMAND_TEXT_URL)
         BIND_ENUM(wxEVT_COMMAND_TEXT_MAXLEN)
     END_LUA_TABLE(wx)
-END_REGISTER(textctrl)
+END_WXLUA_BINDFUNC(textctrl)

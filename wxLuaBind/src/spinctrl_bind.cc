@@ -102,7 +102,7 @@ namespace
     }
 }  // namespace for wxSpinCtrl
 
-REGISTER_WXLUA_BIND(spinctrl)
+BEGIN_WXLUA_BINDFUNC(spinctrl)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxSpinButtonBase
         BEGIN_BIND_CLASS_CONTROL(wxSpinButtonBase)
@@ -235,4 +235,4 @@ REGISTER_WXLUA_BIND(spinctrl)
 
     END_BIND_MODULE(wx)
 #endif  // wxUSE_SPINCTRL
-END_REGISTER(spinctrl)
+END_WXLUA_BINDFUNC(spinctrl)

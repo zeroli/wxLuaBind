@@ -26,7 +26,7 @@ namespace
     }
 }  // namespace for wxShadowObject
 
-REGISTER_WXLUA_PREBIND(clntdata, BIND_NO_CLIENTDATA)
+BEGIN_WXLUA_BINDFUNC(clntdata)
     BEGIN_LUA_TABLE(wx)
         // Bind enum wxClientDataType (totally 3)
         BIND_ENUM(wxClientData_None)
@@ -81,4 +81,4 @@ REGISTER_WXLUA_PREBIND(clntdata, BIND_NO_CLIENTDATA)
         END_BIND_CLASS(wxClientDataDictionary)
 
     END_BIND_MODULE(wx)
-END_REGISTER(clntdata)
+END_WXLUA_BINDFUNC(clntdata)

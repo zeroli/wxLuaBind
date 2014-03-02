@@ -86,7 +86,7 @@ namespace
     }
 }  // namespace for wxOwnerDrawnComboBox
 
-REGISTER_WXLUA_PREBIND(odcombo, BIND_NO_ODCOMBO)
+BEGIN_WXLUA_BINDFUNC(odcombo, BIND_NO_ODCOMBO)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxOwnerDrawnComboBox
         BEGIN_BIND_CPPCLASS(wxOwnerDrawnComboBox, wxComboCtrl, wxItemContainer)
@@ -158,4 +158,4 @@ REGISTER_WXLUA_PREBIND(odcombo, BIND_NO_ODCOMBO)
         END_BIND_CLASS(wxOwnerDrawnComboBox)
 
     END_BIND_MODULE(wx)
-END_REGISTER(odcombo)
+END_WXLUA_BINDFUNC(odcombo)

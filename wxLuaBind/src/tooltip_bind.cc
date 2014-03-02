@@ -1,7 +1,7 @@
 #include <precompile.h>
 
 #if wxUSE_TOOLTIPS
-REGISTER_WXLUA_BIND(tooltip)
+BEGIN_WXLUA_BINDFUNC(tooltip)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS(wxToolTip)
             BIND_CTOR(const wxString&)
@@ -15,5 +15,5 @@ REGISTER_WXLUA_BIND(tooltip)
 
         END_BIND_CLASS(wxToolTip)
     END_BIND_MODULE(wx)
-END_REGISTER(tooltip)
+END_WXLUA_BINDFUNC(tooltip)
 #endif

@@ -1,4 +1,4 @@
 #include <precompile.h>
 
-REGISTER_WXLUA_BIND(char)
-END_REGISTER(char)
+BEGIN_WXLUA_BINDFUNC(wxchar)
+END_WXLUA_BINDFUNC(wxchar)

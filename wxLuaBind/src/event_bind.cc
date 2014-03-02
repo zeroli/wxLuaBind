@@ -87,7 +87,7 @@ namespace
     }
 }  // namespace
 
-REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
+BEGIN_WXLUA_BINDFUNC(event)
     BEGIN_BIND_MODULE(wx)
         BIND_FUNC(wxNewEventType)
     END_BIND_MODULE(wx)
@@ -885,5 +885,5 @@ REGISTER_WXLUA_PREBIND(wxevent, BIND_NO_EVENT)
 
         BIND_FUNC(wxPostEvent)
     END_BIND_MODULE(wx)
-END_REGISTER(event)
+END_WXLUA_BINDFUNC(event)
 

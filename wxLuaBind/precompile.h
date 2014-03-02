@@ -27,6 +27,5 @@ extern "C" {
 #include "config.h"
 #include "luabind_helper.h"
 #include "win_bind_helper.h"
-#include "wxlua_bind_info.h"
 
 #endif  // WXLUABIND_PRECOMPILE_H_

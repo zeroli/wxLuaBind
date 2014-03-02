@@ -81,7 +81,7 @@ int HitTest2(wxBookCtrlBase* self, const wxPoint& pt, long * flags)
 }
 }  // namespace for wxBookCtrlBase
 
-REGISTER_WXLUA_BIND(bookctrl)
+BEGIN_WXLUA_BINDFUNC(bookctrl)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxBookCtrlBase
         BEGIN_BIND_CLASS_CONTROL(wxBookCtrlBase)
@@ -158,4 +158,4 @@ REGISTER_WXLUA_BIND(bookctrl)
     END_BIND_CLASS(wxBookCtrlBase)
 
     END_BIND_MODULE(wx)
-END_REGISTER(bookctrl)
+END_WXLUA_BINDFUNC(bookctrl)

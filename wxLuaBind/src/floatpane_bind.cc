@@ -36,7 +36,7 @@ namespace
 #endif
 
 #if wxUSE_AUI
-REGISTER_WXLUA_BIND(floatpane)
+BEGIN_WXLUA_BINDFUNC(floatpane)
     BEGIN_BIND_MODULE(wx)
 #if defined( __WXMSW__ ) || defined( __WXMAC__ ) ||  defined( __WXGTK__ )
         // Bind class wxMiniFrame
@@ -78,5 +78,5 @@ REGISTER_WXLUA_BIND(floatpane)
         END_BIND_CLASS(wxAuiFloatingFrame)
 
     END_BIND_MODULE(wx)
-END_REGISTER(floatpane)
+END_WXLUA_BINDFUNC(floatpane)
 #endif // wxUSE_AUI

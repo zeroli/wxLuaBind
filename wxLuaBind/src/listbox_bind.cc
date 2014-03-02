@@ -106,7 +106,7 @@ namespace
     }
 }  // namespace for wxListBox
 
-REGISTER_WXLUA_BIND(listbox)
+BEGIN_WXLUA_BINDFUNC(listbox)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxListBoxBase
         BEGIN_BIND_CPPCLASS(wxListBoxBase, wxControlWithItems)
@@ -227,5 +227,5 @@ REGISTER_WXLUA_BIND(listbox)
         END_BIND_CLASS(wxListBox)
 
     END_BIND_MODULE(wx)
-END_REGISTER(listbox)
+END_WXLUA_BINDFUNC(listbox)
 

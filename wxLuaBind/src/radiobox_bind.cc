@@ -135,7 +135,7 @@ namespace
     }
 }  // namespace for wxRadioBox
 
-REGISTER_WXLUA_BIND(radiobox)
+BEGIN_WXLUA_BINDFUNC(radiobox)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxRadioBoxBase
         BEGIN_BIND_CPPCLASS(wxRadioBoxBase, wxItemContainerImmutable)
@@ -282,4 +282,4 @@ REGISTER_WXLUA_BIND(radiobox)
         END_BIND_CLASS(wxRadioBox)
 
     END_BIND_MODULE(wx)
-END_REGISTER(radiobox)
+END_WXLUA_BINDFUNC(radiobox)

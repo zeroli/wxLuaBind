@@ -131,4 +131,11 @@
 #define BIND_F2SMF_OVERLOAD(F, N, R, args) \
     def(#F, (R(*)args)&F##N),
 
+#define BEGIN_WXLUA_BINDFUNC(name, ...) \
+int luaopen_##name(lua_State* L) { \
+
+#define END_WXLUA_BINDFUNC(name) \
+    return 0; \
+}
+
 #endif  // WXLUABIND_LUABIND_HELPER_H_

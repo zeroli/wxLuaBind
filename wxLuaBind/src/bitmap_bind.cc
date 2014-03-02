@@ -73,7 +73,7 @@ namespace
     }
 }  // namespace for wxBitmap
 
-REGISTER_WXLUA_BIND(bitmap)
+BEGIN_WXLUA_BINDFUNC(bitmap)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxBitmapHandler
         BEGIN_BIND_CLASS_OBJECT(wxBitmapHandler)
@@ -258,4 +258,4 @@ REGISTER_WXLUA_BIND(bitmap)
     BEGIN_LUA_TABLE(wx)
         BIND_VARIABLE(wxNullBitmap)
     END_LUA_TABLE(wx)
-END_REGISTER(bitmap)
+END_WXLUA_BINDFUNC(bitmap)

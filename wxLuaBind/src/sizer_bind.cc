@@ -422,7 +422,7 @@ namespace
     }
 }  // namespace
 
-REGISTER_WXLUA_BIND(wxsizer)
+BEGIN_WXLUA_BINDFUNC(sizer)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS(wxSizerFlags)
         BIND_CTOR()
@@ -943,4 +943,4 @@ REGISTER_WXLUA_BIND(wxsizer)
         BIND_ENUM(wxFLEX_GROWMODE_SPECIFIED)
         BIND_ENUM(wxFLEX_GROWMODE_ALL)
     END_LUA_TABLE(wx)
-END_REGISTER(sizer)
+END_WXLUA_BINDFUNC(sizer)

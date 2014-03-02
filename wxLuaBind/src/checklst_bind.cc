@@ -84,7 +84,7 @@ namespace
     }
 }  // namespace for wxCheckListBox
 
-REGISTER_WXLUA_BIND(checklst)
+BEGIN_WXLUA_BINDFUNC(checklst)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxCheckListBoxBase
         BEGIN_BIND_CPPCLASS(wxCheckListBoxBase, wxListBox)
@@ -165,4 +165,4 @@ REGISTER_WXLUA_BIND(checklst)
         END_BIND_CLASS(wxCheckListBox)
 
     END_BIND_MODULE(wx)
-END_REGISTER(checklst)
+END_WXLUA_BINDFUNC(checklst)

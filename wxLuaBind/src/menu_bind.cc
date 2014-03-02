@@ -199,7 +199,7 @@ namespace
     }
 }  // namespace
 
-REGISTER_WXLUA_BIND(wxmenu)
+BEGIN_WXLUA_BINDFUNC(menu)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CPPCLASS_OBJECT(wxMenuItem)
             BIND_CTOR()
@@ -549,4 +549,4 @@ REGISTER_WXLUA_BIND(wxmenu)
 #endif
         END_BIND_CLASS(wxMenuBar)
     END_BIND_MODULE(wx)
-END_REGISTER(menu)
+END_WXLUA_BINDFUNC(menu)

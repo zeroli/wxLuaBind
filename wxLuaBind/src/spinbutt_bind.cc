@@ -3,7 +3,7 @@
 #include <wx/spinbutt.h>
 
 #if wxUSE_SPINBTN
-REGISTER_WXLUA_BIND(spinbutt)
+BEGIN_WXLUA_BINDFUNC(spinbutt)
 
-END_REGISTER(spinbutt)
+END_WXLUA_BINDFUNC(spinbutt)
 #endif  // wxUSE_SPINBTN

@@ -141,7 +141,7 @@ namespace
     }
 }  // namespace for wxCalendarCtrl
 
-REGISTER_WXLUA_BIND(calctrl)
+BEGIN_WXLUA_BINDFUNC(calctrl)
     BEGIN_LUA_TABLE(wx)
         // Bind enum  (totally 7)
         BIND_ENUM(wxCAL_SUNDAY_FIRST)
@@ -340,4 +340,4 @@ REGISTER_WXLUA_BIND(calctrl)
         END_BIND_CLASS(wxCalendarCtrl)
 
     END_BIND_MODULE(wx)
-END_REGISTER(calctrl)
+END_WXLUA_BINDFUNC(calctrl)

@@ -8,6 +8,7 @@ extern "C" {
 };
 
 #include <wx/wxprec.h>
+#include "wx_luabind.h"
 
 void LuaError(lua_State* L)
 {
@@ -33,41 +34,32 @@ int dofile(lua_State* L, const char* luafile)
     return 0;
 }
 
-int main(int argc, char** argv)
+const char* luafile =
+    "D:\\cpp_lua\\wxLuaBind\\luasample\\minimal.wx.lua";
+
+class MyApp : public wxApp
 {
-    if (argc < 2)
+public:
+    MyApp() : m_L(lua_open())
     {
-        fprintf(stderr, "Usage: %s %s\n", argv[0], argv[1]);
-        exit(1);
     }
 
-    const char* luafile = argv[1];
+    ~MyApp()
+    {
+        lua_close(m_L);
+    }
 
-    lua_State* L = lua_open();
-    dofile(L, luafile);
+    virtual bool OnInit()
+    {
+        luaopen_wx(m_L);
 
-    lua_close(L);
+        dofile(m_L, luafile);
 
-    return 0;
-}
+        return true;
+    }
 
-//class MyApp : public wxApp
-//{
-//public:
-//    MyApp() : m_L(lua_open()) { }
-//    ~MyApp() {
-//        //lua_close(m_L);
-//    }
-//
-//    virtual bool OnInit()
-//    {
-//        dofile(m_L);
-//
-//        return true;
-//    }
-//
-//private:
-//    lua_State* m_L;
-//};
-//
-//IMPLEMENT_APP(MyApp)
+private:
+    lua_State* m_L;
+};
+
+IMPLEMENT_APP(MyApp)

@@ -35,7 +35,7 @@ namespace
     }
 }  // namespace for wxDirDialogBase
 
-REGISTER_WXLUA_BIND(dirdlg)
+BEGIN_WXLUA_BINDFUNC(dirdlg)
     BEGIN_LUA_TABLE(wx)
         BIND_TABLE_VALUE(wxDirDialogNameStr, &wxDirDialogNameStr[0])
         BIND_TABLE_VALUE(wxDirDialogDefaultFolderStr, &wxDirDialogDefaultFolderStr[0])
@@ -98,4 +98,4 @@ REGISTER_WXLUA_BIND(dirdlg)
 
         BIND_FUNC(wxDirSelector)
     END_BIND_MODULE(wx)
-END_REGISTER(dirdlg)
+END_WXLUA_BINDFUNC(dirdlg)

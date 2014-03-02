@@ -1,6 +1,6 @@
 #include <precompile.h>
 
-REGISTER_WXLUA_PREBIND(toplevel, BIND_NO_TOPLEVELWIN)
+BEGIN_WXLUA_BINDFUNC(toplevel)
     BEGIN_LUA_TABLE(wx)
         BIND_MACRO(wxSTAY_ON_TOP)
         BIND_MACRO(wxICONIZE)
@@ -74,4 +74,4 @@ REGISTER_WXLUA_PREBIND(toplevel, BIND_NO_TOPLEVELWIN)
             BIND_MF(wxTopLevelWindow, DoSetSizeHints)
         END_BIND_CLASS(wxTopLevelWindow)
     END_BIND_MODULE(wx)
-END_REGISTER(toplevel)
+END_WXLUA_BINDFUNC(toplevel)

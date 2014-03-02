@@ -148,7 +148,7 @@ namespace
 
 #if wxUSE_COMBOCTRL
 
-REGISTER_WXLUA_PREBIND(combo, BIND_NO_COMBO)
+BEGIN_WXLUA_BINDFUNC(combo, BIND_NO_COMBO)
     BEGIN_BIND_MODULE(wx)
         // Bind class wxComboCtrlBase
         BEGIN_BIND_CLASS_CONTROL(wxComboCtrlBase)
@@ -367,6 +367,6 @@ REGISTER_WXLUA_PREBIND(combo, BIND_NO_COMBO)
     BIND_ENUM(wxCC_MF_ON_CLICK_AREA)
 
     END_LUA_TABLE(wx)
-END_REGISTER(combo)
+END_WXLUA_BINDFUNC(combo)
 
 #endif

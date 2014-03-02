@@ -390,7 +390,7 @@ namespace
     }
 }  // namespace
 
-REGISTER_WXLUA_PREBIND(window, BIND_NO_WINDOW)
+BEGIN_WXLUA_BINDFUNC(window, BIND_NO_WINDOW)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CPPCLASS(wxWindow, wxEvtHandler)
             BIND_WIN_ALL_CTORS()
@@ -935,4 +935,4 @@ REGISTER_WXLUA_PREBIND(window, BIND_NO_WINDOW)
         BIND_FUNC(wxGetActiveWindow)
         BIND_FUNC(wxGetTopLevelParent)
     END_BIND_MODULE(wx)
-END_REGISTER(window)
+END_WXLUA_BINDFUNC(window)
