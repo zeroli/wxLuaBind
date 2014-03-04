@@ -22,7 +22,7 @@ namespace
     }
 }
 
-BEGIN_WXLUA_BINDFUNC(string)
+BEGIN_WXLUA_BINDFUNC(wxstring)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CLASS(wxString)
             BIND_CTOR()

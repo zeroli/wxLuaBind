@@ -23,8 +23,6 @@ void LuaError(lua_State* L)
 
 int dofile(lua_State* L, const char* luafile)
 {
-    luaL_openlibs(L);
-
     if (luaL_dofile(L, luafile))
     {
         LuaError(L);
@@ -34,9 +32,9 @@ int dofile(lua_State* L, const char* luafile)
 }
 
 const char* luafile =
-    "D:\\cpp_lua\\wxLuaBind\\luasample\\test.lua";
+    "D:\\cpp_lua\\wxLuaBind\\luasample\\minimal.wx.lua";
 
-#if 1
+#if 0
 
 /* The function we'll call from the lua script */
 static int average(lua_State *L)
@@ -72,7 +70,7 @@ static int average(lua_State *L)
 int main()
 {
     lua_State* L = lua_open();
-
+    luaL_openlibs(L);
     /* register our function */
     // this is to extend lua using C function
     // call from lua into C
@@ -118,6 +116,7 @@ class MyApp : public wxApp
 public:
     MyApp() : m_L(lua_open())
     {
+        luaL_openlibs(m_L);
     }
 
     ~MyApp()
