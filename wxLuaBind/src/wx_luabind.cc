@@ -78,6 +78,8 @@ DECLARE_WXLUA_BINDFUNC(floatpane);
 DECLARE_WXLUA_BINDFUNC(framemanager);
 DECLARE_WXLUA_BINDFUNC(tabmdi);
 
+DECLARE_WXLUA_BINDFUNC(xmlres);
+
 int luaopen_wx(lua_State* L)
 {
     open(L);
@@ -159,6 +161,8 @@ int luaopen_wx(lua_State* L)
     INVOKE_WXLUA_BINDFUNC(floatpane);
     INVOKE_WXLUA_BINDFUNC(framemanager);
     INVOKE_WXLUA_BINDFUNC(tabmdi);
+
+    INVOKE_WXLUA_BINDFUNC(xmlres);
 
     return 0;
 }

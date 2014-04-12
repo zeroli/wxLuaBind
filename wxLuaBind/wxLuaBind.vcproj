@@ -528,6 +528,10 @@
 			<Filter
 				Name="xrc"
 				>
+				<File
+					RelativePath=".\src\xmlres_bind.cc"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="net"

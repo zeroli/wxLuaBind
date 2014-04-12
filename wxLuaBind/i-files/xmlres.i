@@ -1,3 +1,5 @@
+class WXDLLIMPEXP_XRC wxXmlResource : public wxObject
+{
   // Constructor.
     // Flags: wxXRC_USE_LOCALE
     //              translatable strings will be translated via _()
@@ -146,3 +148,4 @@
     // Get/Set the domain to be passed to the translation functions, defaults to NULL.
     wxChar* GetDomain() const { return m_domain; }
     void SetDomain(const wxChar* domain);
+}
