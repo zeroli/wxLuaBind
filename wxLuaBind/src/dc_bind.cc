@@ -648,6 +648,7 @@ BEGIN_WXLUA_BINDFUNC(dc, BIND_NO_DC)
         BEGIN_BIND_CLASS(wxDC, wxDCBase)
         END_BIND_CLASS(wxDC)
 
+#ifdef __WXMSW__
         // Bind class wxDCTemp
         BEGIN_BIND_CLASS(wxDCTemp)
         // Auto generated MACRO code for ctor of 'wxDCTemp':
@@ -655,6 +656,7 @@ BEGIN_WXLUA_BINDFUNC(dc, BIND_NO_DC)
         BIND_CTOR(WXHDC)
         BIND_CTOR(WXHDC, const wxSize&)
         END_BIND_CLASS(wxDCTemp)
+#endif
 
         BEGIN_BIND_CLASS(wxWindowDC, wxDC)
         BIND_CTOR()

@@ -27,8 +27,6 @@ BEGIN_WXLUA_BINDFUNC(cursor)
         // =================================
         BIND_CTOR(int)
 #elif defined(__WXGTK20__)
-        // Bind class wxCursor
-        BEGIN_BIND_CLASS(wxCursor)
         // Auto generated MACRO code for ctor of 'wxCursor':
         // =================================
         BIND_CTOR()
