@@ -202,8 +202,42 @@ BEGIN_WXLUA_BINDFUNC(combobox, BIND_NO_COMBOBOX)
     BIND_MF(wxChoice, SetString)
     END_BIND_CLASS(wxChoice)
 
+    // Bind class wxComboBoxBase
+    BEGIN_BIND_CPPCLASS(wxComboBoxBase, wxItemContainer)
+    BIND_MF(wxComboBoxBase, GetValue)
+    BIND_MF(wxComboBoxBase, SetValue)
+    BIND_MF(wxComboBoxBase, Copy)
+    BIND_MF(wxComboBoxBase, Cut)
+    BIND_MF(wxComboBoxBase, Paste)
+    BIND_MF(wxComboBoxBase, SetInsertionPoint)
+    BIND_MF(wxComboBoxBase, GetInsertionPoint)
+    BIND_MF(wxComboBoxBase, GetLastPosition)
+    BIND_MF(wxComboBoxBase, Replace)
+    BIND_MF_OVERLOAD(wxComboBoxBase, SetSelection,
+    void, (long, long))
+    BIND_MF(wxComboBoxBase, SetEditable)
+    BIND_MF(wxComboBoxBase, SetInsertionPointEnd)
+    BIND_MF(wxComboBoxBase, Remove)
+    BIND_MF(wxComboBoxBase, IsEditable)
+    BIND_MF(wxComboBoxBase, Undo)
+    BIND_MF(wxComboBoxBase, Redo)
+    BIND_MF(wxComboBoxBase, SelectAll)
+    BIND_MF(wxComboBoxBase, CanCopy)
+    BIND_MF(wxComboBoxBase, CanCut)
+    BIND_MF(wxComboBoxBase, CanPaste)
+    BIND_MF(wxComboBoxBase, CanUndo)
+    BIND_MF(wxComboBoxBase, CanRedo)
+    BIND_MF(wxComboBoxBase, GetCurrentSelection)
+    BIND_MF_OVERLOAD(wxComboBoxBase, SetSelection,
+    void, (int))
+    END_BIND_CLASS(wxComboBoxBase)
+
     // wxComboBox bind
+#ifdef __WXMSW__
     BEGIN_BIND_CPPCLASS(wxComboBox, wxChoice)
+#elif defined(__WXGTK20__)
+    BEGIN_BIND_CPPCLASS(wxComboBox, wxControl, wxComboBoxBase)
+#endif
     // Auto generated MACRO code for ctor of 'wxComboBox':
     // =================================
     BIND_CTOR()

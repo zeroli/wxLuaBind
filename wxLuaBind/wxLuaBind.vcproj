@@ -182,7 +182,7 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="1"
+				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="precompile.h"
 				PrecompiledHeaderFile="$(IntDir)\precompile.pch"
 				WarningLevel="3"
@@ -544,11 +544,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\include\config.h"
+				RelativePath=".\config.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\luabind_helper.h"
+				RelativePath=".\luabind_helper.h"
 				>
 			</File>
 			<File
@@ -556,7 +556,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\wx_luabind.h"
+				RelativePath=".\wx_luabind.h"
 				>
 			</File>
 		</Filter>
@@ -570,11 +570,11 @@
 			Name="precompile"
 			>
 			<File
-				RelativePath=".\precompile.cc"
+				RelativePath=".\src\precompile.cc"
 				>
 			</File>
 			<File
-				RelativePath=".\precompile.h"
+				RelativePath=".\src\precompile.h"
 				>
 			</File>
 		</Filter>

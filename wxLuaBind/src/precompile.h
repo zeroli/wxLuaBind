@@ -1,6 +1,3 @@
-#ifndef WXLUABIND_PRECOMPILE_H_
-#define WXLUABIND_PRECOMPILE_H_
-
 #include <wx/wxprec.h>
 #include <wx/caret.h>
 
@@ -28,4 +25,3 @@ extern "C" {
 #include "luabind_helper.h"
 #include "win_bind_helper.h"
 
-#endif  // WXLUABIND_PRECOMPILE_H_

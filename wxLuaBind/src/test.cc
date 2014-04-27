@@ -44,9 +44,9 @@ public:
 
     A& operator +(int x) { a += x; return *this; }
     A& operator +(const std::string& x) { std::cout << x << "\n"; return *this; }
-    A& operator ()(int x) { std::cout << "a = " << a << "\n"; return *this; }
+    A& operator ()(int /*x*/) { std::cout << "a = " << a << "\n"; return *this; }
 
-    bool operator==(const A& a) const { return true; }
+    bool operator==(const A& /*a*/) const { return true; }
 
     friend
     std::ostream& operator <<(std::ostream& out, const A& aa) {

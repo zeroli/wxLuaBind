@@ -100,7 +100,11 @@ BEGIN_WXLUA_BINDFUNC(checklst)
         END_BIND_CLASS(wxCheckListBoxBase)
 
         // Bind class wxCheckListBox
+#ifdef __WXMSW__
         BEGIN_BIND_CPPCLASS(wxCheckListBox, wxCheckListBoxBase)
+#elif defined(__WXGTK20__)
+        BEGIN_BIND_CPPCLASS(wxCheckListBox, wxListBox)
+#endif
         // Auto generated MACRO code for ctor of 'wxCheckListBox':
         // =================================
         BIND_CTOR()
