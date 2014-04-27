@@ -7,8 +7,13 @@ BEGIN_WXLUA_BINDFUNC(tooltip)
             BIND_CTOR(const wxString&)
 
             BIND_MF(wxToolTip, SetTip)
+            BIND_MF(wxToolTip, GetTip)
+#ifdef __WXMSW__
             BIND_MF(wxToolTip, SetWindow)
-            BIND_MF(wxToolTip, Enable)
+#elif defined(__WXGTK20__)
+            BIND_MF(wxToolTip, GetWindow)
+            BIND_MF(wxToolTip, IsOk)
+#endif
             BEGIN_BIND_SCOPE()
             BIND_SMF(wxToolTip, SetDelay)
             END_BIND_SCOPE()

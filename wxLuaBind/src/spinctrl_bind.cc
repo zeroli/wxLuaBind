@@ -166,7 +166,11 @@ BEGIN_WXLUA_BINDFUNC(spinctrl)
 #if wxUSE_SPINCTRL
     BEGIN_BIND_MODULE(wx)
         // Bind class wxSpinCtrl
+#ifdef __WXMSW__
         BEGIN_BIND_CPPCLASS(wxSpinCtrl, wxSpinButton)
+#elif defined(__WXGTK20__)
+        BEGIN_BIND_CPPCLASS(wxSpinCtrl, wxControl)
+#endif
         // Auto generated MACRO code for ctor of 'wxSpinCtrl':
         // =================================
         BIND_CTOR()

@@ -172,7 +172,11 @@ BEGIN_WXLUA_BINDFUNC(radiobox)
         END_BIND_CLASS(wxRadioBoxBase)
 
         // Bind class wxRadioBox
+#ifdef __WXMSW__
         BEGIN_BIND_CPPCLASS(wxRadioBox, wxStaticBox, wxRadioBoxBase)
+#elif defined (__WXGTK20__)
+        BEGIN_BIND_CPPCLASS(wxRadioBox, wxControl, wxRadioBoxBase)
+#endif
         // Auto generated MACRO code for ctor of 'wxRadioBox':
         // =================================
         BIND_CTOR()
@@ -269,16 +273,21 @@ BEGIN_WXLUA_BINDFUNC(radiobox)
         bool, (wxRadioBox*, bool))
         BIND_MF(wxRadioBox, SetFocus)
         BIND_MF(wxRadioBox, SetFont)
+#ifdef __WXMSW__
 #if wxUSE_TOOLTIPS
         BIND_MF(wxRadioBox, HasToolTips)
 #endif
+#endif
+
 #if wxUSE_HELP
         BIND_MF(wxRadioBox, GetHelpTextAtPoint)
 #endif
         BIND_MF(wxRadioBox, Reparent)
         BIND_MF(wxRadioBox, AcceptsFocus)
+#ifdef __WXMSW__
         BIND_MF(wxRadioBox, SetLabelFont)
         BIND_MF(wxRadioBox, SetButtonFont)
+#endif
         END_BIND_CLASS(wxRadioBox)
 
     END_BIND_MODULE(wx)

@@ -2,6 +2,7 @@
 
 namespace
 {
+#if defined(__WXMSW__) || defined(__WXPM__) || defined(__WXPALMOS__)
     // Auto generated CPP code for 'FreeResource'
     // =================================
     bool FreeResource0(wxGDIObject* self)
@@ -12,6 +13,7 @@ namespace
     {
         return self->FreeResource(WXUNUSED(force));
     }
+#endif
 }  // namespace
 
 BEGIN_WXLUA_BINDFUNC(gdiobj)

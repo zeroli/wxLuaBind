@@ -36,7 +36,7 @@ public:
 
 public:
     A(int ia = 230) : a(ia) { }
-    ~A() { std::cout << "in A::dtor\n"; }
+    virtual ~A() { std::cout << "in A::dtor\n"; }
     int a;
     int b;
     void seta(int x) { a = x; }
@@ -157,9 +157,9 @@ int WXLUABIND_API init(lua_State* L)
             .property("data", &A::geta, &A::seta)
             .enum_("constants")
             [
-                value("enum1", A::enum1),
-                value("enum2", A::enum2),
-                value("enum3", A::enum3)
+                value("enum1", (int)A::enum1),
+                value("enum2", (int)A::enum2),
+                value("enum3", (int)A::enum3)
             ]
             .def(self == other<const A&>())
             .def(self + other<int>())

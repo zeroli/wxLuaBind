@@ -262,6 +262,7 @@ BEGIN_WXLUA_BINDFUNC(menu)
             BIND_MF(wxMenuItem, SetAccel)
 #endif
 
+#ifdef __WXMSW__
             BIND_MF(wxMenuItem, SetBitmaps)
             BIND_MF(wxMenuItem, SetBitmap)
             BIND_MF(wxMenuItem, GetBitmap)
@@ -272,6 +273,7 @@ BEGIN_WXLUA_BINDFUNC(menu)
             BIND_MF(wxMenuItem, SetAsRadioGroupStart)
             BIND_MF(wxMenuItem, SetRadioGroupStart)
             BIND_MF(wxMenuItem, SetRadioGroupEnd)
+#endif
 
 #if wxABI_VERSION >= 20805
             BIND_MF(wxMenuItem, GetItemLabel)

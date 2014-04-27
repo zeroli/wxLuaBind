@@ -390,7 +390,7 @@ namespace
     }
 }  // namespace
 
-BEGIN_WXLUA_BINDFUNC(window, BIND_NO_WINDOW)
+BEGIN_WXLUA_BINDFUNC(window)
     BEGIN_BIND_MODULE(wx)
         BEGIN_BIND_CPPCLASS(wxWindow, wxEvtHandler)
             BIND_WIN_ALL_CTORS()
@@ -624,6 +624,7 @@ BEGIN_WXLUA_BINDFUNC(window, BIND_NO_WINDOW)
             BIND_MF(wxWindow, ToggleWindowStyle)
             BIND_MF(wxWindow, SetExtraStyle)
             BIND_MF(wxWindow, GetExtraStyle)
+
             // Auto generated MACRO code for 'MakeModal':
             // =================================
             BIND_F2MF_OVERLOAD(MakeModal, 0,
@@ -884,6 +885,7 @@ BEGIN_WXLUA_BINDFUNC(window, BIND_NO_WINDOW)
             BIND_MF(wxWindow, GetClientSizeConstraint)
             BIND_MF(wxWindow, GetPositionConstraint)
 #endif
+
             BIND_MF(wxWindow, SetAutoLayout)
             BIND_MF(wxWindow, GetAutoLayout)
             BIND_MF(wxWindow, Layout)
@@ -916,9 +918,11 @@ BEGIN_WXLUA_BINDFUNC(window, BIND_NO_WINDOW)
 #if wxUSE_HELP
             BIND_MF(wxWindow, OnHelp)
 #endif
+#ifdef __WXMSW__
             BIND_MF(wxWindow, GetHandle)
             BIND_MF(wxWindow, AssociateHandle)
             BIND_MF(wxWindow, DissociateHandle)
+#endif
 #if wxUSE_PALETTE
             BIND_MF(wxWindow, GetPalette)
             BIND_MF(wxWindow, SetPalette)
@@ -934,5 +938,6 @@ BEGIN_WXLUA_BINDFUNC(window, BIND_NO_WINDOW)
             wxPoint, ())
         BIND_FUNC(wxGetActiveWindow)
         BIND_FUNC(wxGetTopLevelParent)
+
     END_BIND_MODULE(wx)
 END_WXLUA_BINDFUNC(window)
