@@ -1,65 +1,3 @@
---[[
-///////////////////////////////////////////////////////////////////////////////
-// Name:        auidemo.cpp
-// Purpose:     wx: wx advanced user interface - sample/test program
-// Author:      Benjamin I. Williams
-// Modified by:
-// Created:     2005-10-03
-// RCS-ID:      $Id: auidemo.wx.lua,v 1.3 2008/01/22 04:45:39 jrl1 Exp $
-// Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
-// Licence:     wxWindows Library Licence, Version 3.1
-///////////////////////////////////////////////////////////////////////////////
---]]
-
--- Load the wxLua module, does nothing if running from wxLua, wxLuaFreeze, or wxLuaEdit
-package.cpath = package.cpath..";D:\\cpp_lua\\wxLuaBind\\debug\\?.dll;./?.so;../lib/?.so;../lib/vc_dll/?.dll;../lib/bcc_dll/?.dll;../lib/mingw_dll/?.dll;"
-require("wx")
-
---/* XPM */
-local sample_xpm = {
---/* columns rows colors chars-per-pixel */
-"32 32 6 1",
-"  c black",
-". c navy",
-"X c red",
-"o c yellow",
-"O c gray100",
-"+ c None",
---/* pixels */
-"++++++++++++++++++++++++++++++++",
-"++++++++++++++++++++++++++++++++",
-"++++++++++++++++++++++++++++++++",
-"++++++++++++++++++++++++++++++++",
-"++++++++++++++++++++++++++++++++",
-"++++++++              ++++++++++",
-"++++++++ ............ ++++++++++",
-"++++++++ ............ ++++++++++",
-"++++++++ .OO......... ++++++++++",
-"++++++++ .OO......... ++++++++++",
-"++++++++ .OO......... ++++++++++",
-"++++++++ .OO......              ",
-"++++++++ .OO...... oooooooooooo ",
-"         .OO...... oooooooooooo ",
-" XXXXXXX .OO...... oOOooooooooo ",
-" XXXXXXX .OO...... oOOooooooooo ",
-" XOOXXXX ......... oOOooooooooo ",
-" XOOXXXX ......... oOOooooooooo ",
-" XOOXXXX           oOOooooooooo ",
-" XOOXXXXXXXXX ++++ oOOooooooooo ",
-" XOOXXXXXXXXX ++++ oOOooooooooo ",
-" XOOXXXXXXXXX ++++ oOOooooooooo ",
-" XOOXXXXXXXXX ++++ oooooooooooo ",
-" XOOXXXXXXXXX ++++ oooooooooooo ",
-" XXXXXXXXXXXX ++++              ",
-" XXXXXXXXXXXX ++++++++++++++++++",
-"              ++++++++++++++++++",
-"++++++++++++++++++++++++++++++++",
-"++++++++++++++++++++++++++++++++",
-"++++++++++++++++++++++++++++++++",
-"++++++++++++++++++++++++++++++++",
-"++++++++++++++++++++++++++++++++"
-};
-
 local IDCounter = nil
 local function NewID()
     if not IDCounter then IDCounter = wx.wxID_HIGHEST end
@@ -67,8 +5,6 @@ local function NewID()
     return IDCounter
 end
 
-
-local MyApp = {}
 
 local MyFrame = {
     ID_CreateTree = NewID(),
@@ -880,9 +816,9 @@ function MyFrame:create(parent, id, title, pos, size, style)
                         -- You must ALWAYS UnInit() the wxAuiManager when closing
                         -- since it pushes event handlers into the frame.
                         self.m_mgr:UnInit()
-					  --end 
+                    --end 
                  end)
-    this:Connect(wx.wxEVT_ERASE_BACKGROUND, function(event) self:OnEraseBackground(event) end)
+--    this:Connect(wx.wxEVT_ERASE_BACKGROUND, function(event) self:OnEraseBackground(event) end)
   --  this:Connect(wx.wxEVT_SIZE, function(event) self:OnSize(event) end)
     this:Connect(self.ID_CreateTree, wx.wxEVT_COMMAND_MENU_SELECTED, function(event) self:OnCreateTree(event) end)
     this:Connect(self.ID_CreateGrid, wx.wxEVT_COMMAND_MENU_SELECTED, function(event) self:OnCreateGrid(event) end)
@@ -1068,6 +1004,14 @@ end
 
 
 function MyFrame:OnNotebookFlag(event)
+	if event == nil then
+		wx.wxMessageBox(wx.wxT('This is the "About" dialog of the Minimal wxLuaBind sample.\n'..
+                            " built with "..wx.wxVERSION_STRING),
+                            wx.wxT("About wxLuaBind"),
+                            wx.wxOK + wx.wxICON_INFORMATION,
+                            self)
+		return
+	end
     local id = event:GetId();
 
     if (id == self.ID_NotebookNoCloseButton or
@@ -1324,10 +1268,18 @@ local x=0
 function MyFrame:GetStartPosition()
     x = x+20;
     local pt = self.this:ClientToScreen(wx.wxPoint(0,0));
-    return wx.wxPoint(pt:GetX() + x, pt:GetY() + x);
+    return wx.wxPoint(pt.x + x, pt.y + x);
 end
 
 function MyFrame:OnCreateTree(event)
+	if event == nil then
+		wx.wxMessageBox(wx.wxT('This is the "About" dialog of the Minimal wxLuaBind sample.\n'..
+                            " built with "..wx.wxVERSION_STRING),
+                            wx.wxT("About wxLuaBind"),
+                            wx.wxOK + wx.wxICON_INFORMATION,
+                            self)
+        return
+	end
     self.m_mgr:AddPane(self:CreateTreeCtrl(), wx.wxAuiPaneInfo():
                   Caption(wx.wxT("Tree Control")):
                   Float():FloatingPosition(self:GetStartPosition()):
@@ -1638,19 +1590,11 @@ end
 
 
 
-function MyApp:OnInit()
+function main()
     local myframe = MyFrame:create()
     local frame = myframe.this
     frame:Show();
     return true;
 end
 
-app = wx.wxApp()
-MyApp:OnInit()
-
-
--- Call wx.wxGetApp():MainLoop() last to start the wxWidgets event loop,
--- otherwise the wxLua program will exit immediately.
--- Does nothing if running from wxLua, wxLuaFreeze, or wxLuaEdit since the
--- MainLoop is already running or will be started by the C++ program.
-app:MainLoop()
+main()

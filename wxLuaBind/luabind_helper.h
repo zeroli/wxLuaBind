@@ -1,10 +1,15 @@
 #ifndef WXLUABIND_LUABIND_HELPER_H_
 #define WXLUABIND_LUABIND_HELPER_H_
 
+#include <luabind/luabind.hpp>
+#include <luabind/operator.hpp>
+
 #define NEW_LUA_TABLE(name) \
     lua_newtable(L); \
     lua_setglobal(L, #name);
 
+#define BEGIN_BIND_G_MODULE() \
+    module(L) [
 #define BEGIN_BIND_MODULE(name) \
     module(L, #name) [
 #define END_BIND_MODULE(...) \

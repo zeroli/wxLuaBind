@@ -32,7 +32,7 @@ int dofile(lua_State* L, const char* luafile)
 }
 
 const char* luafile =
-    "D:\\cpp_lua\\wxLuaBind\\luasample\\minimal.wx.lua";
+    "D:\\cpp_lua\\wxLuaBind\\luasample\\auidemo.wx.lua";
 
 #if 0
 

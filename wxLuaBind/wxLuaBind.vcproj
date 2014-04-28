@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;..\luabind-0.9.1&quot;;&quot;..\lua-5.1\include&quot;;&quot;D:\boost-1.37.0\include&quot;;&quot;D:\wxWidgets-2.8.9\include&quot;;.\;.\include"
+				AdditionalIncludeDirectories="&quot;..\luabind-0.9.1&quot;;&quot;..\lua-5.1\include&quot;;&quot;D:\boost-1.37.0\include&quot;;&quot;D:\wxWidgets-2.8.9\include&quot;;.\;.\src"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -177,7 +177,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;..\luabind-0.9.1&quot;;&quot;..\lua-5.1\include&quot;;&quot;D:\boost-1.37.0\include&quot;;&quot;D:\wxWidgets-2.8.9\include&quot;;.\;.\include"
+				AdditionalIncludeDirectories="&quot;..\luabind-0.9.1&quot;;&quot;..\lua-5.1\include&quot;;&quot;D:\boost-1.37.0\include&quot;;&quot;D:\wxWidgets-2.8.9\include&quot;;.\;.\src"
 				PreprocessorDefinitions="LUABIND_DYNAMIC_LINK;WXUSINGDLL;WXLUABIND_DYNAMIC_LINK;WXLUABIND_BUILDING"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -572,6 +572,14 @@
 			<File
 				RelativePath=".\src\precompile.cc"
 				>
+				<FileConfiguration
+					Name="DLL Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\src\precompile.h"

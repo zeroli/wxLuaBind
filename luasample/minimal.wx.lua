@@ -126,11 +126,13 @@ function main()
     -- connect the selection event of the about menu item    
     frame:Connect(wx.wxID_ABOUT, wx.wxEVT_COMMAND_MENU_SELECTED,
         function (event)
+			if event ~= nil then
             wx.wxMessageBox(wx.wxT('This is the "About" dialog of the Minimal wxLuaBind sample.\n'..
                             " built with "..wx.wxVERSION_STRING),
                             wx.wxT("About wxLuaBind"),
                             wx.wxOK + wx.wxICON_INFORMATION,
                             frame)
+			end                            
         end )
 	
 	frame:Show(true)

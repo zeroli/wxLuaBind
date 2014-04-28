@@ -291,7 +291,7 @@ BEGIN_WXLUA_BINDFUNC(toolbar)
 
         END_BIND_CLASS(wxToolBarToolBase)
 
-        BEGIN_BIND_CLASS(wxToolBar, wxControl)
+        BEGIN_BIND_CPPCLASS(wxToolBar, wxControl)
             // Auto generated MACRO code for 'wxToolBar':
             // =================================
             BIND_CTOR()

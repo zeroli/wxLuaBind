@@ -43,11 +43,19 @@ namespace
     // =================================
     bool Create4(wxBitmap* self, const void* data, long type, int width, int height)
     {
+#ifdef __WXMSW__
         return self->Create(data,type,width,height);
+#else
+        return false;
+#endif
     }
     bool Create5(wxBitmap* self, const void* data, long type, int width, int height, int depth)
     {
+#ifdef __WXMSW__
         return self->Create(data,type,width,height,depth);
+#else
+        return false;
+#endif
     }
 
     // Auto generated CPP code for 'LoadFile'
@@ -58,29 +66,41 @@ namespace
     }
     bool LoadFile2(wxBitmap* self, const wxString& name, long type)
     {
+#ifdef __WXMSW__
         return self->LoadFile(name,type);
+#else
+        return false;
+#endif
     }
 
     // Auto generated CPP code for 'SaveFile'
     // =================================
     bool SaveFile2(wxBitmap* self, const wxString& name, int type)
     {
+#ifdef __WXMSW__
         return self->SaveFile(name,type);
+#else
+        return false;
+#endif
     }
     bool SaveFile3(wxBitmap* self, const wxString& name, int type, const wxPalette * cmap)
     {
+#ifdef __WXMSW__
         return self->SaveFile(name,type,cmap);
+#else
+        return false;
+#endif
     }
 }  // namespace for wxBitmap
 
 BEGIN_WXLUA_BINDFUNC(bitmap)
     BEGIN_BIND_MODULE(wx)
+
         // Bind class wxBitmapHandler
         BEGIN_BIND_CLASS_OBJECT(wxBitmapHandler)
         // Auto generated MACRO code for ctor of 'wxBitmapHandler':
         // =================================
         BIND_CTOR()
-        BIND_CTOR(const wxString&, const wxString&, long)
 
         // Auto generated MACRO code for 'Create':
         // =================================
@@ -117,31 +137,26 @@ BEGIN_WXLUA_BINDFUNC(bitmap)
         BIND_CTOR(const char* const*)
         // Auto generated MACRO code for ctor of 'wxBitmap':
         // =================================
-        BIND_CTOR(char**)
-        // Auto generated MACRO code for ctor of 'wxBitmap':
-        // =================================
         BIND_CTOR(const wxString&)
         BIND_CTOR(const wxString&, wxBitmapType)
         // Auto generated MACRO code for ctor of 'wxBitmap':
         // =================================
-        BIND_CTOR(const void*, long, int, int)
-        BIND_CTOR(const void*, long, int, int, int)
-        // Auto generated MACRO code for ctor of 'wxBitmap':
-        // =================================
         BIND_CTOR(int, int)
         BIND_CTOR(int, int, int)
-        // Auto generated MACRO code for ctor of 'wxBitmap':
-        // =================================
-        BIND_CTOR(int, int, const wxDC&)
+
         // Auto generated MACRO code for ctor of 'wxBitmap':
         // =================================
 #if wxUSE_IMAGE
         BIND_CTOR(const wxImage&)
         BIND_CTOR(const wxImage&, int)
+#endif
+
+#ifdef __WXMSW__
+        #if wxUSE_IMAGE
         // Auto generated MACRO code for ctor of 'wxBitmap':
         // =================================
         BIND_CTOR(const wxImage&, const wxDC&)
-#endif
+        #endif
         // Auto generated MACRO code for ctor of 'wxBitmap':
         // =================================
         BIND_CTOR(const wxIcon&)
@@ -149,22 +164,30 @@ BEGIN_WXLUA_BINDFUNC(bitmap)
         wxBitmap&, (const wxIcon&))
         BIND_MF_OVERLOAD_NAME(copy, wxBitmap, operator =,
         wxBitmap&, (const wxCursor&))
+#endif
+
 #if wxUSE_IMAGE
         BIND_MF(wxBitmap, ConvertToImage)
 #endif
         BIND_MF(wxBitmap, GetSubBitmap)
+#ifdef __WXMSW__
         BIND_MF(wxBitmap, GetSubBitmapOfHDC)
-        BIND_MF(wxBitmap, CopyFromIcon)
         BIND_MF(wxBitmap, CopyFromCursor)
 #if wxUSE_WXDIB
         BIND_MF(wxBitmap, CopyFromDIB)
 #endif
+#endif
+
+        BIND_MF(wxBitmap, CopyFromIcon)
+
         // Auto generated MACRO code for 'Create':
         // =================================
         BIND_F2MF_OVERLOAD(Create, 2,
         bool, (wxBitmap*, int, int))
         BIND_F2MF_OVERLOAD(Create, 3,
         bool, (wxBitmap*, int, int, int))
+
+#ifdef __WXMSW__
         BIND_MF_OVERLOAD(wxBitmap, Create,
         bool, (int, int, const wxDC&))
 
@@ -174,6 +197,7 @@ BEGIN_WXLUA_BINDFUNC(bitmap)
         bool, (wxBitmap*, const void*, long, int, int))
         BIND_F2MF_OVERLOAD(Create, 5,
         bool, (wxBitmap*, const void*, long, int, int, int))
+
         // Auto generated MACRO code for 'LoadFile':
         // =================================
         BIND_F2MF_OVERLOAD(LoadFile, 1,
@@ -195,8 +219,13 @@ BEGIN_WXLUA_BINDFUNC(bitmap)
         BIND_MF(wxBitmap, GetPalette)
         BIND_MF(wxBitmap, SetPalette)
 #endif
+
+#endif // turn off above binding
+
         BIND_MF(wxBitmap, GetMask)
+#ifdef __WXMSW__
         BIND_MF(wxBitmap, GetMaskBitmap)
+#endif
         BIND_MF(wxBitmap, SetMask)
 
         BIND_MF(wxBitmap, GetHeight)
@@ -219,18 +248,19 @@ BEGIN_WXLUA_BINDFUNC(bitmap)
         BIND_SMF_OVERLOAD(wxBitmap, FindHandler,
         wxGDIImageHandler*, (long))
 #else // defined(__WXGTK20__) || defined (__WXGTK__)
-        BIND_SMF_OVERLOAD(wxBitmap, FindHandler,
-        wxImageHandler*, (const wxString&))
-        BIND_SMF_OVERLOAD(wxBitmap, FindHandler,
-        wxImageHandler*, (const wxString&, wxBitmapType))
-        BIND_SMF_OVERLOAD(wxBitmap, FindHandler,
-        wxImageHandler*, (wxBitmapType))
+        //BIND_SMF_OVERLOAD(wxBitmap, FindHandler,
+        //wxImageHandler*, (const wxString&))
+        //BIND_SMF_OVERLOAD(wxBitmap, FindHandler,
+        //wxImageHandler*, (const wxString&, wxBitmapType))
+        //BIND_SMF_OVERLOAD(wxBitmap, FindHandler,
+        //wxImageHandler*, (wxBitmapType))
 #endif
 
         BIND_SMF(wxBitmap, CleanUpHandlers)
         END_BIND_SCOPE()
 
         END_BIND_CLASS(wxBitmap)
+
         // Bind class wxMask
         BEGIN_BIND_CLASS(wxMask)
         // Auto generated MACRO code for ctor of 'wxMask':
@@ -252,7 +282,6 @@ BEGIN_WXLUA_BINDFUNC(bitmap)
         BIND_MF_OVERLOAD(wxMask, Create,
         bool, (const wxBitmap&))
         END_BIND_CLASS(wxMask)
-
     END_BIND_MODULE(wx)
 
     BEGIN_LUA_TABLE(wx)

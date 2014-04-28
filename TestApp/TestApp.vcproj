@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;..\lua-5.1\include&quot;;&quot;D:\wxWidgets-2.8.9\include&quot;;..\wxLuaBind\include"
+				AdditionalIncludeDirectories="&quot;..\lua-5.1\include&quot;;&quot;D:\wxWidgets-2.8.9\include&quot;;..\wxLuaBind"
 				PreprocessorDefinitions="WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -182,7 +182,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;..\lua-5.1\include&quot;;&quot;D:\wxWidgets-2.8.9\include&quot;;..\wxLuaBind\include"
+				AdditionalIncludeDirectories="&quot;..\lua-5.1\include&quot;;&quot;D:\wxWidgets-2.8.9\include&quot;;..\wxLuaBind"
 				PreprocessorDefinitions="WXUSINGDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"

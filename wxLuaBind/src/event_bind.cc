@@ -17,7 +17,12 @@ namespace
 
             lua_State* L = m_luaFunc.interpreter();
             m_luaFunc.push(L);
-            lua_pushlightuserdata(L, &evt);
+            wxEvent** ppEvt = (wxEvent**)lua_newuserdata(L, sizeof(wxEvent*));
+            *ppEvt = evt.Clone();
+
+            luaL_getmetatable(L, "__luabind_classrep");
+            //lua_rawgeti(L, LUA_REGISTRYINDEX, 1);
+            lua_setmetatable(L, -2);
 
             if (lua_pcall(L, 1, 0, 0) != 0)
             {
@@ -88,9 +93,6 @@ namespace
 }  // namespace
 
 BEGIN_WXLUA_BINDFUNC(event)
-    BEGIN_BIND_MODULE(wx)
-        BIND_FUNC(wxNewEventType)
-    END_BIND_MODULE(wx)
 
     // EVENT types
     BEGIN_LUA_TABLE(wx)
@@ -249,6 +251,8 @@ BEGIN_WXLUA_BINDFUNC(event)
     END_LUA_TABLE(wx)
 
     BEGIN_BIND_MODULE(wx)
+        BIND_FUNC(wxNewEventType)
+
         BEGIN_BIND_CLASS_OBJECT(wxEvent)
             BIND_MF(wxEvent, SetEventType)
             BIND_MF(wxEvent, GetEventType)
